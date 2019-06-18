@@ -1,0 +1,3 @@
+- hosts: slave-blade
+  roles:
+    - framework

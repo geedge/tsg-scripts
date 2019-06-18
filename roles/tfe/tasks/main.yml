@@ -1,0 +1,14 @@
+---
+- name: "copy tfe program to destination server"
+  copy:
+    src: roles/tfe/files/
+    dest: /tmp/tfe/
+
+- name: "install tfe rpms"
+  yum:
+    name: /tmp/tfe/tfe-debug-*.rpm
+    state: present
+
+- name: "modify mgr interface"
+  ini_file:
+

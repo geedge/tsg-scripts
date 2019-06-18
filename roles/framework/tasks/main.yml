@@ -1,0 +1,51 @@
+---
+- name: "copy framework rpms to destination server"
+  synchronize:
+    src: roles/framework/files/
+    dest: /tmp/
+
+- name: "install kernel-ml"
+  yum:
+    name: /tmp/kernel-ml-5.1.8-1.el7.elrepo.x86_64.rpm
+    state: present
+
+- name: "install kernel-ml-devel"
+  yum:
+    name: /tmp/kernel-ml-devel-5.1.8-1.el7.elrepo.x86_64.rpm
+    state: present
+
+- name: "install framework"
+  yum:
+    name: /tmp/framework-debug-2.0.8-1.el7.centos.x86_64.rpm
+    state: present
+
+- name: "install mrzcpd"
+  yum:
+    name: /tmp/mrzcpd-4.3.9.497aaf5-1.el7.x86_64.rpm
+    state: present
+
+- name: "install/update rulescan header files"
+  synchronize:
+    src: roles/framework/files/rulescan/rulescan.h
+    dest: /opt/MESA/include/MESA/rulescan.h
+
+- name: "install/update rulescan library"
+  synchronize:
+    src: roles/framework/files/rulescan/librulescan.so
+    dest: /opt/MESA/lib/librulescan.so
+
+- name: "install/update maat header files"
+  synchronize:
+    src: roles/framework/files/maat/include/
+    dest: /opt/MESA/include/MESA/
+
+- name: "install/update maat library files"
+  synchronize:
+    src: roles/framework/files/maat/lib/
+    dest: /opt/MESA/lib/
+
+- name: "update ld"
+  command: ldconfig
+
+- name: "set kernel-ml as default kernel"
+  command: /usr/sbin/grub2-set-default 0

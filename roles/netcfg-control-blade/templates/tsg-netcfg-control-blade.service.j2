@@ -1,0 +1,38 @@
+[Unit]
+Description=Tango Secure Gateway - Control Blade Network Configuration
+
+[Service]
+EnvironmentFile=/etc/sysconfig/tsg-environment
+Type=oneshot
+
+# start vfs and set incoming mac address
+ExecStartPre=/usr/bin/bash -c "echo 3 > /sys/class/net/${TSG_PF_DEVICE}/device/sriov_numvfs"
+
+# dataincoming interface
+ExecStartPre=/usr/sbin/ip link set ${TSG_DEVICE_DATA_INCOMING} address ${TSG_LOCAL_MAC_DATA_INCOMING}
+ExecStartPre=/usr/sbin/ip link set ${TSG_DEVICE_DATA_INCOMING} up
+ExecStartPre=/usr/sbin/ip addr flush dev ${TSG_DEVICE_DATA_INCOMING}
+ExecStartPre=/usr/sbin/ip addr add ${TSG_LOCAL_IP_DATA_INCOMING}/30 dev ${TSG_DEVICE_DATA_INCOMING}
+ExecStartPre=/usr/sbin/ip neigh replace ${TSG_PEER_IP_DATA_INCOMING} laddr ${TSG_PEER_MAC_DATA_INCOMING}
+
+# policy route
+ExecStartPre=/usr/sbin/ip rule add iif ${TSG_DEVICE_DATA_INCOMING} tab 100
+ExecStartPre=/usr/sbin/ip route add local default dev lo table 100
+ExecStartPre=/usr/sbin/ip rule add fwmark 0x65 lookup ${TSG_DEVICE_DATA_INCOMING} table 101
+ExecStartPre=/usr/sbin/ip route add default dev ${TSG_DEVICE_DATA_INCOMING} via ${TSG_PEER_IP_DATA_INCOMING} table 101
+
+# policy route v6
+
+
+# all works are done in execstartpre, this is only a fake target
+ExecStart=/bin/true
+
+# stop, disable VFs
+ExecStop=/usr/bin/bash -c "echo 0 > /sys/class/net/${TSG_PF_DEVICE}/device/sriov_numvfs"
+ExecStop=/usr/sbin/ip link set ${TSG_DEVICE_DATA_INCOMING} down
+
+# stop, remove ip rule and table
+
+
+[Install]
+WantedBy=multi-user.target
