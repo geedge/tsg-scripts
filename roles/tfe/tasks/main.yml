@@ -1,14 +1,13 @@
 ---
 - name: "copy tfe program to destination server"
   copy:
-    src: roles/tfe/files/
-    dest: /tmp/tfe/
+    src: "{{ role_path }}/files/"
+    dest: /tmp/ansible_deploy/
 
 - name: "install tfe rpms"
   yum:
-    name: /tmp/tfe/tfe-debug-*.rpm
+    name: "/tmp/ansible_deploy/{{ packages }}"
     state: present
-
-- name: "modify mgr interface"
-  ini_file:
-
+  vars:
+    packages:
+      - tfe-debug-4.0.0.1a59abc-1.el7.x86_64.rpm

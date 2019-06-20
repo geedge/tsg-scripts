@@ -1,47 +1,43 @@
 ---
 - name: "copy framework rpms to destination server"
   synchronize:
-    src: roles/framework/files/
-    dest: /tmp/
+    src: "{{ role_path }}/files/"
+    dest: "/tmp/ansible_deploy/"
 
-- name: "install kernel-ml"
+- name: "install kernels and other packages"
   yum:
-    name: /tmp/kernel-ml-5.1.8-1.el7.elrepo.x86_64.rpm
+    name: "{{ packages }}"
     state: present
-
-- name: "install kernel-ml-devel"
-  yum:
-    name: /tmp/kernel-ml-devel-5.1.8-1.el7.elrepo.x86_64.rpm
-    state: present
-
-- name: "install framework"
-  yum:
-    name: /tmp/framework-debug-2.0.8-1.el7.centos.x86_64.rpm
-    state: present
-
-- name: "install mrzcpd"
-  yum:
-    name: /tmp/mrzcpd-4.3.9.497aaf5-1.el7.x86_64.rpm
-    state: present
+  vars:
+    packages:
+      - /tmp/ansible_deploy/kernel/kernel-ml-5.1.8-1.el7.elrepo.x86_64.rpm
+      - /tmp/ansible_deploy/kernel/kernel-ml-devel-5.1.8-1.el7.elrepo.x86_64.rpm
+      - /tmp/ansible_deploy/mrzcpd-4.3.9.497aaf5-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/framework/framework-debug-2.0.8-1.el7.centos.x86_64.rpm
+      - /tmp/ansible_deploy/dkms/zlib-devel-1.2.7-18.el7.x86_64.rpm
+      - /tmp/ansible_deploy/dkms/elfutils-libelf-devel-0.172-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/dkms/zlib-1.2.7-18.el7.x86_64.rpm
+      - /tmp/ansible_deploy/dkms/which-2.20-7.el7.x86_64.rpm
+      - /tmp/ansible_deploy/dkms/dkms-2.7.1-1.el7.noarch.rpm
 
 - name: "install/update rulescan header files"
   synchronize:
-    src: roles/framework/files/rulescan/rulescan.h
+    src: "{{ role_path }}/files/rulescan/rulescan.h"
     dest: /opt/MESA/include/MESA/rulescan.h
 
 - name: "install/update rulescan library"
   synchronize:
-    src: roles/framework/files/rulescan/librulescan.so
+    src: "{{ role_path }}/files/rulescan/librulescan.so"
     dest: /opt/MESA/lib/librulescan.so
 
 - name: "install/update maat header files"
   synchronize:
-    src: roles/framework/files/maat/include/
+    src: "{{ role_path }}/files/maat/include/"
     dest: /opt/MESA/include/MESA/
 
 - name: "install/update maat library files"
   synchronize:
-    src: roles/framework/files/maat/lib/
+    src: "{{ role_path }}/files/maat/lib/"
     dest: /opt/MESA/lib/
 
 - name: "update ld"
