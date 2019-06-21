@@ -1,0 +1,64 @@
+[system]
+nr_worker_threads={{ tfe.nr_threads }}
+
+[kni]
+ip=192.168.100.1
+scm_port=2475
+watchdog_switch=1
+watchdog_port=2476
+
+[ssl]
+ssl_max_version=tls13
+ssl_min_version=ssl3
+no_session_cache=0
+no_session_ticket=0
+log_master_key=0
+trusted_cert_load_local=1
+trusted_cert_file=resource/tfe/tls-ca-bundle.pem
+trusted_cert_dir=resource/tfe/trusted_storage
+key_log_file=log/sslkeylog.log
+no_alpn=0
+stek_group_num=4
+stek_rotation_time=3600
+service_cache_expire_seconds=600
+
+[key_keeper]
+#Mode: debug - generate cert with ca_path, normal - generate cert with cert store
+#0 on cache 1 off cache
+mode= {{ tfe.keykeeper.mode }}
+no_cache=0
+cert_store_host= {{ cert_store_server.address }}
+cert_store_port= {{ cert_store_server.port }}
+ca_path=resource/tfe/tango-ca-v3-trust-ca.pem
+untrusted_ca_path=resource/tfe/tango-ca-v3-untrust-ca.pem
+
+[debug]
+passthrough_all_tcp=0
+
+[traffic_mirror]
+device= {{ nic_traffic_mirror.name }}
+
+[ratelimit]
+#read_rate=200000
+#read_burst=200000
+#write_rate=200000
+#write_burst=200000
+
+[tcp]
+so_keepalive=1
+tcp_keepcnt=8
+tcp_keepintvl=15
+tcp_keepidle=30
+tcp_user_timeout=30
+tcp_ttl_upstream=75
+tcp_ttl_downstream=70
+
+[log]
+level=10
+
+[stat]
+statsd_server=192.168.10.72
+statsd_port=8126
+
+[http]
+loglevel=20

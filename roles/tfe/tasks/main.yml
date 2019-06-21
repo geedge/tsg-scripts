@@ -6,8 +6,18 @@
 
 - name: "install tfe rpms"
   yum:
-    name: "/tmp/ansible_deploy/{{ packages }}"
+    name: "{{ packages }}"
     state: present
   vars:
     packages:
-      - tfe-debug-4.0.0.1a59abc-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tfe-debug-4.0.0.1a59abc-1.el7.x86_64.rpm
+
+- name: "template the tfe.conf"
+  template:
+    src: "{{ role_path }}/templates/tfe.conf.j2"
+    dest: /home/tsg/tfe/conf/tfe/tfe.conf
+
+- name: "template the pangu_pxy.conf"
+  template:
+    src: "{{ role_path }}/templates/pangu_pxy.conf.j2"
+    dest: /home/tsg/tfe/conf/pangu/pangu_pxy.conf
