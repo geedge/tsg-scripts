@@ -25,12 +25,19 @@
   - nic_mgr:
       name: eth0
   - nic_data_incoming:
-      name: eth3
-      address: 172.16.254.1
-      mac: AA:BB:CC:DD:EE:FF
-      peer: 172.16.254.254
-  - nic_traffic_mirror:
-      name: eth4
+      name: eth6
+      ip: 192.168.17.1
+      mask: 255.255.255.0
+      gw: 192.168.17.254
+  - nic_inner_ctrl:
+      name: eth2.100
+  - nic_to_tfe:
+    - id: 0
+      name: eth7
+    - id: 1
+      name: eth8
+    - id: 2
+      name: eth9
 
 
 # - hosts: blade-00
