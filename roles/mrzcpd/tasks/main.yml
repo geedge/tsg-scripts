@@ -3,7 +3,6 @@
   synchronize:
     src: "{{ role_path }}/files/"
     dest: "/tmp/ansible_deploy/"
-  when: nic_traffic_mirror.use_mrzcpd
 
 - name: "install mrzcpd"
   yum:
@@ -11,17 +10,27 @@
     state: present
   vars:
     packages:
-    - /tmp/ansible_deploy/mrzcpd-4.3.9.497aaf5-1.el7.x86_64.rpm
-  when: nic_traffic_mirror.use_mrzcpd
+    - /tmp/ansible_deploy/mrzcpd-4.3.10.497aaf5-1.el7.x86_64.rpm
 
 - name: "update sysconfig/mrzcpd"
   template:
     src: "{{ role_path }}/templates/mrzcpd.j2"
     dest: /etc/sysconfig/mrzcpd
-  when: nic_traffic_mirror.use_mrzcpd
 
-- name: "update mrglobal.conf"
+- name: "update mrglobal.conf - slave blade"
   template:
     src: "{{ role_path }}/templates/mrglobal.conf.traffic_mirror.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
-  when: nic_traffic_mirror.use_mrzcpd
+  when: nic_traffic_mirror is defined
+
+- name: "update mrglobal.conf - master blade"
+  template:
+    src: "{{ role_path }}/templates/mrglobal.conf.inline.j2"
+    dest: /opt/mrzcpd/etc/mrglobal.conf
+  when: nic_traffic_mirror is not defined
+
+- name: "update mrtunnat.conf - master blade"
+  template:
+    src: "{{ role_path }}/templates/mrtunnat.conf.inline.j2"
+    dest: /opt/mrzcpd/etc/mrtunnat.conf
+  when: nic_traffic_mirror is not defined

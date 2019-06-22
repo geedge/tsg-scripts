@@ -1,0 +1,76 @@
+[device]
+device={{nic_data_incoming.name}},{{nic_to_tfe.tfe0.name}},{{nic_to_tfe.tfe1.name}},{{nic_to_tfe.tfe2.name}},vxlan_user,vxlan_fwd
+sz_tunnel=8192
+sz_buffer=0
+
+[device:{{nic_data_incoming.name}}]
+{% if nic_data_incoming.ip is defined %}
+in_addr={{nic_data_incoming.ip}}
+{% endif %}
+{% if nic_data_incoming.mask is defined %}
+in_mask={{nic_data_incoming.mask}}
+{% endif %}
+{% if nic_data_incoming.gw is defined %}
+gateway={{nic_data_incoming.gw}}
+{% endif %}
+jumbo_frame=1
+max_rx_pkt_len=15360
+clear_tx_flags=1
+vlan-filter=1
+vlan-id-allow=1
+vlan-pvid=0
+vlan-pvid-mode=0
+
+[device:{{nic_to_tfe.tfe0.name}}]
+jumbo_frame=1
+max_rx_pkt_len=15360
+clear_tx_flags=1
+promisc=1
+
+[device:{{nic_to_tfe.tfe1.name}}]
+jumbo_frame=1
+max_rx_pkt_len=15360
+clear_tx_flags=1
+promisc=1
+
+[device:{{nic_to_tfe.tfe2.name}}]
+jumbo_frame=1
+max_rx_pkt_len=15360
+clear_tx_flags=1
+promisc=1
+
+[service]
+# lcore id for i/o service, use comma to split
+iocore=53,54
+distmode=3
+hashmode=0
+
+[eal]
+virtaddr=0x7f40c4a00000
+loglevel=7
+
+[keepalive]
+check_spinlock=0
+
+[ctrlzone]
+ctrlzone0=tunnat,64
+
+[pool]
+create_mode=3
+sz_direct_pktmbuf=4194304
+sz_indirect_pktmbuf=8192
+sz_cache=256
+sz_data=4096
+
+[forward]
+nr_forward_rule=10
+forward_rule_0=pv,{{nic_data_incoming.name}},{{nic_data_incoming.name}}
+forward_rule_1=vp,{{nic_data_incoming.name}},{{nic_data_incoming.name}}
+forward_rule_2=vv,vxlan_fwd,vxlan_user
+forward_rule_3=vv,vxlan_user,vxlan_fwd
+forward_rule_4=pv,{{nic_to_tfe.tfe0.name}},{{nic_to_tfe.tfe0.name}}
+forward_rule_5=vp,{{nic_to_tfe.tfe0.name}},{{nic_to_tfe.tfe0.name}}
+forward_rule_6=pv,{{nic_to_tfe.tfe1.name}},{{nic_to_tfe.tfe1.name}}
+forward_rule_7=vp,{{nic_to_tfe.tfe1.name}},{{nic_to_tfe.tfe1.name}}
+forward_rule_8=pv,{{nic_to_tfe.tfe2.name}},{{nic_to_tfe.tfe2.name}}
+forward_rule_9=vp,{{nic_to_tfe.tfe2.name}},{{nic_to_tfe.tfe2.name}}

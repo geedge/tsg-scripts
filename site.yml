@@ -1,26 +1,28 @@
 - hosts: blade-00
   roles:
+    - framework
+    - mrzcpd
     - kni
   vars_files:
     - "vars/common.yml"
     - "vars/kni.yml"
   vars:
   - nic_mgr:
-      name: eth0
+      name: enp7s0
   - nic_data_incoming:
-      name: eth6
+      name: ens1f4
       ip: 192.168.17.1
       mask: 255.255.255.0
       gw: 192.168.17.254
   - nic_inner_ctrl:
-      name: eth2.100
+      name: ens1.100
   - nic_to_tfe:
       tfe0:
-        name: eth7
+        name: ens1f5
       tfe1: 
-        name: eth8
+        name: ens1f6
       tfe2: 
-        name: eth9
+        name: ens1f7
 
 - hosts: blade-03
   roles:
@@ -32,12 +34,12 @@
     - "vars/tfe.yml"
   vars:
   - nic_mgr:
-      name: eth0
+      name: enp7s0
   - nic_data_incoming:
-      name: eth3
+      name: ens1f1
       mac: AA:BB:CC:DD:EE:FF
   - nic_traffic_mirror:
-      name: eth4
+      name: ens1f2
       use_mrzcpd: 1
       
 # - hosts: blade-00
