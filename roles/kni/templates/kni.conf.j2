@@ -1,0 +1,77 @@
+[global]
+log_path = ./log/kni/kni.log
+log_level = {{ kni.global.log_level }}
+tfe_node_count = {{ kni.global.tfe_node_count }}
+tfe_data_recv_thread_num = {{ kni.global.tfe_data_recv_thread_num }}
+manage_eth = {{ kni.global.manage_eth }}
+keepalive_replay_switch = {{ kni.global.keepalive_replay_switch }}
+
+
+{% for node in kni.tfe_nodes %}
+[tfe{{ node.id }}]
+enabled = {{ node.enabled }}
+dev_eth_symbol = {{ node.dev_eth_symbol }}
+mac_addr = {{ node.mac_addr }}
+ip_addr = {{ node.ip_addr }}
+
+{% endfor %}
+
+[tfe_cmsg_receiver]
+listen_eth = {{ kni.tfe_cmsg_receiver.listen_eth }}
+listen_port = {{ kni.tfe_cmsg_receiver.listen_port }}
+
+[watch_dog]
+switch = {{ kni.watch_dog.switch }}
+listen_eth = {{ kni.watch_dog.listen_eth }}
+listen_port = {{ kni.watch_dog.listen_port }}
+keepalive_idle = 2
+keepalive_intvl = 1
+keepalive_cnt = 3
+
+[maat]
+readconf_mode = {{ kni.maat.readconf_mode }}
+tableinfo_path = ./conf/kni/maat_tableinfo.conf
+maatjson_path = ./conf/kni/maat_test.json
+redis_ip = {{ kni.maat.redis_ip }}
+redis_port = {{ kni.maat.redis_port }}
+redis_index = {{ kni.maat.redis_index }}
+tablename_intercept_ip = PXY_INTERCEPT_IP
+tablename_intercept_domain = PXY_INTERCEPT_DOMAIN
+default_action = {{ kni.maat.default_action }}
+
+[send_logger]
+switch = {{ kni.send_logger.switch }}
+kafka_topic = SESSION-RECORD-LOG
+kafka_brokerlist = {{ kni.send_logger.kafka_brokerlist }}
+
+[marsio]
+appsym = knifw
+dev_vxlan_symbol = vxlan_user
+src_mac_addr = 00:0e:c6:d6:72:c1
+
+[kafka]
+queue.buffering.max.messages = 1000000
+topic.metadata.refresh.interval.ms = 600000
+security.protocol = MG
+
+[traceid2pme_htable]
+mho_screen_print_ctrl = 0
+mho_thread_safe = 1
+mho_mutex_num = 160
+mho_hash_slot_size = 160000
+mho_hash_max_element_num = 640000
+mho_expire_time = 30
+mho_eliminate_type = LRU
+
+[keepalive_replay_htable]
+mho_screen_print_ctrl = 0
+mho_thread_safe = 1
+mho_mutex_num = 160
+mho_hash_slot_size = 160000
+mho_hash_max_element_num = 640000
+#must be 0
+mho_expire_time = 0
+mho_eliminate_type = LRU
+
+[field_stat]
+stat_path = ./fs2_kni.status

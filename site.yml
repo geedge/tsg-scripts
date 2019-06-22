@@ -16,6 +16,22 @@
       name: eth4
       use_mrzcpd: 1
 
+- hosts: blade-00
+  roles:
+    - kni
+  vars_files:
+    - "vars/kni.yml"
+  vars:
+  - nic_mgr:
+      name: eth0
+  - nic_data_incoming:
+      name: eth3
+      address: 172.16.254.1
+      mac: AA:BB:CC:DD:EE:FF
+      peer: 172.16.254.254
+  - nic_traffic_mirror:
+      name: eth4
+
 
 # - hosts: blade-00
 #   - roles:

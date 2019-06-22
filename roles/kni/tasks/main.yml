@@ -1,0 +1,16 @@
+---
+- name: Ensures /home/tsg exists
+  file: path=/home/tsg state=directory 
+  tags: mkdir
+  
+- name: Extract kni.tar.gz
+  unarchive:
+    src: "{{ role_path }}/files/kni.tar.gz"
+    dest: /home/tsg
+  tags: extract
+
+- name: Template the kni.conf
+  template:
+    src: "{{ role_path }}/templates/kni.conf.j2"
+    dest: /home/tsg/kni/conf/kni/kni.conf
+  tags: template

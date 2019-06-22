@@ -1,0 +1,731 @@
+{
+  "sftp://192.168.10.38:22@root": {
+    "root": {
+      "cuiyiming": {
+        "3rd-packages": {
+          "ansible": {
+            "PyYAML-3.10-11.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 156952,
+              "lmtime": 1561115765594,
+              "modified": false
+            },
+            "ansible-2.4.2.0-2.el7.noarch.rpm": {
+              "type": "-",
+              "size": 7968876,
+              "lmtime": 1561115765649,
+              "modified": false
+            },
+            "libyaml-0.1.4-11.el7_0.x86_64.rpm": {
+              "type": "-",
+              "size": 56068,
+              "lmtime": 1561115765656,
+              "modified": false
+            },
+            "make-3.82-23.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 430540,
+              "lmtime": 1561115765664,
+              "modified": false
+            },
+            "openssl-1.0.2k-16.el7_6.1.x86_64.rpm": {
+              "type": "-",
+              "size": 504632,
+              "lmtime": 1561115765677,
+              "modified": false
+            },
+            "openssl-libs-1.0.2k-16.el7_6.1.x86_64.rpm": {
+              "type": "-",
+              "size": 1251908,
+              "lmtime": 1561115765699,
+              "modified": false
+            },
+            "python-babel-0.9.6-8.el7.noarch.rpm": {
+              "type": "-",
+              "size": 1426348,
+              "lmtime": 1561115765734,
+              "modified": false
+            },
+            "python-backports-1.0-8.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 5932,
+              "lmtime": 1561115765736,
+              "modified": false
+            },
+            "python-backports-ssl_match_hostname-3.5.0.1-1.el7.noarch.rpm": {
+              "type": "-",
+              "size": 12896,
+              "lmtime": 1561115765738,
+              "modified": false
+            },
+            "python-cffi-1.6.0-5.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 223012,
+              "lmtime": 1561115765744,
+              "modified": false
+            },
+            "python-enum34-1.0.4-1.el7.noarch.rpm": {
+              "type": "-",
+              "size": 53496,
+              "lmtime": 1561115765746,
+              "modified": false
+            },
+            "python-httplib2-0.9.2-1.el7.noarch.rpm": {
+              "type": "-",
+              "size": 117968,
+              "lmtime": 1561115765749,
+              "modified": false
+            },
+            "python-idna-2.4-1.el7.noarch.rpm": {
+              "type": "-",
+              "size": 95952,
+              "lmtime": 1561115765754,
+              "modified": false
+            },
+            "python-ipaddress-1.0.16-2.el7.noarch.rpm": {
+              "type": "-",
+              "size": 35176,
+              "lmtime": 1561115765756,
+              "modified": false
+            },
+            "python-jinja2-2.7.2-3.el7_6.noarch.rpm": {
+              "type": "-",
+              "size": 530920,
+              "lmtime": 1561115765763,
+              "modified": false
+            },
+            "python-markupsafe-0.11-10.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 25792,
+              "lmtime": 1561115765765,
+              "modified": false
+            },
+            "python-paramiko-2.1.1-9.el7.noarch.rpm": {
+              "type": "-",
+              "size": 275112,
+              "lmtime": 1561115765770,
+              "modified": false
+            },
+            "python-passlib-1.6.5-2.el7.noarch.rpm": {
+              "type": "-",
+              "size": 500108,
+              "lmtime": 1561115765776,
+              "modified": false
+            },
+            "python-ply-3.4-11.el7.noarch.rpm": {
+              "type": "-",
+              "size": 125732,
+              "lmtime": 1561115765779,
+              "modified": false
+            },
+            "python-pycparser-2.14-1.el7.noarch.rpm": {
+              "type": "-",
+              "size": 106984,
+              "lmtime": 1561115765781,
+              "modified": false
+            },
+            "python-setuptools-0.9.8-7.el7.noarch.rpm": {
+              "type": "-",
+              "size": 406404,
+              "lmtime": 1561115765786,
+              "modified": false
+            },
+            "python-six-1.9.0-2.el7.noarch.rpm": {
+              "type": "-",
+              "size": 29404,
+              "lmtime": 1561115765787,
+              "modified": false
+            },
+            "python2-cryptography-1.7.2-2.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 514504,
+              "lmtime": 1561115765792,
+              "modified": false
+            },
+            "python2-jmespath-0.9.0-3.el7.noarch.rpm": {
+              "type": "-",
+              "size": 39576,
+              "lmtime": 1561115765796,
+              "modified": false
+            },
+            "python2-pyasn1-0.1.9-7.el7.noarch.rpm": {
+              "type": "-",
+              "size": 102132,
+              "lmtime": 1561115765799,
+              "modified": false
+            },
+            "sshpass-1.06-2.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 21896,
+              "lmtime": 1561115765800,
+              "modified": false
+            }
+          },
+          "dkms": {
+            "dkms-2.7.1-1.el7.noarch.rpm": {
+              "type": "-",
+              "size": 76956,
+              "lmtime": 1561115765803,
+              "modified": false
+            },
+            "elfutils-libelf-devel-0.172-2.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 39872,
+              "lmtime": 1561115765804,
+              "modified": false
+            },
+            "which-2.20-7.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 41716,
+              "lmtime": 1561115765805,
+              "modified": false
+            },
+            "zlib-1.2.7-18.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 91960,
+              "lmtime": 1561115765807,
+              "modified": false
+            },
+            "zlib-devel-1.2.7-18.el7.x86_64.rpm": {
+              "type": "-",
+              "size": 51128,
+              "lmtime": 1561115765808,
+              "modified": false
+            }
+          }
+        },
+        "hosts.hyadc": {
+          "type": "-",
+          "size": 87,
+          "lmtime": 1561115765809,
+          "modified": false
+        },
+        "hosts.ycxadc": {
+          "type": "-",
+          "size": 174,
+          "lmtime": 1561115765809,
+          "modified": false
+        },
+        "roles": {
+          "framework": {
+            "files": {
+              "dkms": {
+                "dkms-2.7.1-1.el7.noarch.rpm": {
+                  "type": "-",
+                  "size": 76956,
+                  "lmtime": 1561115765813,
+                  "modified": false
+                },
+                "elfutils-libelf-devel-0.172-2.el7.x86_64.rpm": {
+                  "type": "-",
+                  "size": 39872,
+                  "lmtime": 1561115765814,
+                  "modified": false
+                },
+                "which-2.20-7.el7.x86_64.rpm": {
+                  "type": "-",
+                  "size": 41716,
+                  "lmtime": 1561115765815,
+                  "modified": false
+                },
+                "zlib-1.2.7-18.el7.x86_64.rpm": {
+                  "type": "-",
+                  "size": 91960,
+                  "lmtime": 1561115765815,
+                  "modified": false
+                },
+                "zlib-devel-1.2.7-18.el7.x86_64.rpm": {
+                  "type": "-",
+                  "size": 51128,
+                  "lmtime": 1561115765816,
+                  "modified": false
+                }
+              },
+              "framework": {
+                "framework-debug-2.0.8-1.el7.centos.x86_64.rpm": {
+                  "type": "-",
+                  "size": 1321048,
+                  "lmtime": 1561115765826,
+                  "modified": false
+                }
+              },
+              "kernel": {
+                "kernel-ml-5.1.8-1.el7.elrepo.x86_64.rpm": {
+                  "type": "-",
+                  "size": 9469952,
+                  "lmtime": 0,
+                  "modified": false
+                }
+              },
+              "rulescan": {}
+            },
+            "tasks": {}
+          },
+          "kni": {
+            "files": {},
+            "tasks": {},
+            "templates": {}
+          },
+          "netcfg-control-blade": {},
+          "tfe": {
+            "files": {},
+            "tasks": {},
+            "templates": {}
+          }
+        },
+        ".vscode": {
+          "ftp-kr.json": {
+            "type": "-",
+            "size": 324,
+            "lmtime": 1561182296827,
+            "modified": false
+          }
+        },
+        "vars": {},
+        "tsg_scripts": {
+          "3rd-packages": {
+            "ansible": {
+              "PyYAML-3.10-11.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 156952,
+                "lmtime": 1561115765594,
+                "modified": false
+              },
+              "ansible-2.4.2.0-2.el7.noarch.rpm": {
+                "type": "-",
+                "size": 7968876,
+                "lmtime": 1561115765649,
+                "modified": false
+              },
+              "libyaml-0.1.4-11.el7_0.x86_64.rpm": {
+                "type": "-",
+                "size": 56068,
+                "lmtime": 1561115765656,
+                "modified": false
+              },
+              "make-3.82-23.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 430540,
+                "lmtime": 1561115765664,
+                "modified": false
+              },
+              "openssl-1.0.2k-16.el7_6.1.x86_64.rpm": {
+                "type": "-",
+                "size": 504632,
+                "lmtime": 1561115765677,
+                "modified": false
+              },
+              "openssl-libs-1.0.2k-16.el7_6.1.x86_64.rpm": {
+                "type": "-",
+                "size": 1251908,
+                "lmtime": 1561115765699,
+                "modified": false
+              },
+              "python-babel-0.9.6-8.el7.noarch.rpm": {
+                "type": "-",
+                "size": 1426348,
+                "lmtime": 1561115765734,
+                "modified": false
+              },
+              "python-backports-1.0-8.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 5932,
+                "lmtime": 1561115765736,
+                "modified": false
+              },
+              "python-backports-ssl_match_hostname-3.5.0.1-1.el7.noarch.rpm": {
+                "type": "-",
+                "size": 12896,
+                "lmtime": 1561115765738,
+                "modified": false
+              },
+              "python-cffi-1.6.0-5.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 223012,
+                "lmtime": 1561115765744,
+                "modified": false
+              },
+              "python-enum34-1.0.4-1.el7.noarch.rpm": {
+                "type": "-",
+                "size": 53496,
+                "lmtime": 1561115765746,
+                "modified": false
+              },
+              "python-httplib2-0.9.2-1.el7.noarch.rpm": {
+                "type": "-",
+                "size": 117968,
+                "lmtime": 1561115765749,
+                "modified": false
+              },
+              "python-idna-2.4-1.el7.noarch.rpm": {
+                "type": "-",
+                "size": 95952,
+                "lmtime": 1561115765754,
+                "modified": false
+              },
+              "python-ipaddress-1.0.16-2.el7.noarch.rpm": {
+                "type": "-",
+                "size": 35176,
+                "lmtime": 1561115765756,
+                "modified": false
+              },
+              "python-jinja2-2.7.2-3.el7_6.noarch.rpm": {
+                "type": "-",
+                "size": 530920,
+                "lmtime": 1561115765763,
+                "modified": false
+              },
+              "python-markupsafe-0.11-10.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 25792,
+                "lmtime": 1561115765765,
+                "modified": false
+              },
+              "python-paramiko-2.1.1-9.el7.noarch.rpm": {
+                "type": "-",
+                "size": 275112,
+                "lmtime": 1561115765770,
+                "modified": false
+              },
+              "python-passlib-1.6.5-2.el7.noarch.rpm": {
+                "type": "-",
+                "size": 500108,
+                "lmtime": 1561115765776,
+                "modified": false
+              },
+              "python-ply-3.4-11.el7.noarch.rpm": {
+                "type": "-",
+                "size": 125732,
+                "lmtime": 1561115765779,
+                "modified": false
+              },
+              "python-pycparser-2.14-1.el7.noarch.rpm": {
+                "type": "-",
+                "size": 106984,
+                "lmtime": 1561115765781,
+                "modified": false
+              },
+              "python-setuptools-0.9.8-7.el7.noarch.rpm": {
+                "type": "-",
+                "size": 406404,
+                "lmtime": 1561115765786,
+                "modified": false
+              },
+              "python-six-1.9.0-2.el7.noarch.rpm": {
+                "type": "-",
+                "size": 29404,
+                "lmtime": 1561115765787,
+                "modified": false
+              },
+              "python2-cryptography-1.7.2-2.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 514504,
+                "lmtime": 1561115765792,
+                "modified": false
+              },
+              "python2-jmespath-0.9.0-3.el7.noarch.rpm": {
+                "type": "-",
+                "size": 39576,
+                "lmtime": 1561115765796,
+                "modified": false
+              },
+              "python2-pyasn1-0.1.9-7.el7.noarch.rpm": {
+                "type": "-",
+                "size": 102132,
+                "lmtime": 1561115765799,
+                "modified": false
+              },
+              "sshpass-1.06-2.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 21896,
+                "lmtime": 1561115765800,
+                "modified": false
+              }
+            },
+            "dkms": {
+              "dkms-2.7.1-1.el7.noarch.rpm": {
+                "type": "-",
+                "size": 76956,
+                "lmtime": 1561115765803,
+                "modified": false
+              },
+              "elfutils-libelf-devel-0.172-2.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 39872,
+                "lmtime": 1561115765804,
+                "modified": false
+              },
+              "which-2.20-7.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 41716,
+                "lmtime": 1561115765805,
+                "modified": false
+              },
+              "zlib-1.2.7-18.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 91960,
+                "lmtime": 1561115765807,
+                "modified": false
+              },
+              "zlib-devel-1.2.7-18.el7.x86_64.rpm": {
+                "type": "-",
+                "size": 51128,
+                "lmtime": 1561115765808,
+                "modified": false
+              }
+            }
+          },
+          "hosts.hyadc": {
+            "type": "-",
+            "size": 87,
+            "lmtime": 1561115765809,
+            "modified": false
+          },
+          "hosts.ycxadc": {
+            "type": "-",
+            "size": 174,
+            "lmtime": 1561115765809,
+            "modified": false
+          },
+          "roles": {
+            "framework": {
+              "files": {
+                "dkms": {
+                  "dkms-2.7.1-1.el7.noarch.rpm": {
+                    "type": "-",
+                    "size": 76956,
+                    "lmtime": 1561115765813,
+                    "modified": false
+                  },
+                  "elfutils-libelf-devel-0.172-2.el7.x86_64.rpm": {
+                    "type": "-",
+                    "size": 39872,
+                    "lmtime": 1561115765814,
+                    "modified": false
+                  },
+                  "which-2.20-7.el7.x86_64.rpm": {
+                    "type": "-",
+                    "size": 41716,
+                    "lmtime": 1561115765815,
+                    "modified": false
+                  },
+                  "zlib-1.2.7-18.el7.x86_64.rpm": {
+                    "type": "-",
+                    "size": 91960,
+                    "lmtime": 1561115765815,
+                    "modified": false
+                  },
+                  "zlib-devel-1.2.7-18.el7.x86_64.rpm": {
+                    "type": "-",
+                    "size": 51128,
+                    "lmtime": 1561115765816,
+                    "modified": false
+                  }
+                },
+                "framework": {
+                  "framework-debug-2.0.8-1.el7.centos.x86_64.rpm": {
+                    "type": "-",
+                    "size": 1321048,
+                    "lmtime": 1561115765826,
+                    "modified": false
+                  }
+                },
+                "kernel": {
+                  "kernel-ml-5.1.8-1.el7.elrepo.x86_64.rpm": {
+                    "type": "-",
+                    "size": 49649456,
+                    "lmtime": 1561115766331,
+                    "modified": false
+                  },
+                  "kernel-ml-devel-5.1.8-1.el7.elrepo.x86_64.rpm": {
+                    "type": "-",
+                    "size": 13079596,
+                    "lmtime": 1561115766442,
+                    "modified": false
+                  }
+                },
+                "maat": {
+                  "include": {
+                    "Maat_command.h": {
+                      "type": "-",
+                      "size": 5987,
+                      "lmtime": 1561115766448,
+                      "modified": false
+                    },
+                    "Maat_rule.h": {
+                      "type": "-",
+                      "size": 13989,
+                      "lmtime": 1561115766448,
+                      "modified": false
+                    },
+                    "gram_index_engine.h": {
+                      "type": "-",
+                      "size": 1632,
+                      "lmtime": 1561115766448,
+                      "modified": false
+                    },
+                    "stream_fuzzy_hash.h": {
+                      "type": "-",
+                      "size": 1906,
+                      "lmtime": 1561115766448,
+                      "modified": false
+                    }
+                  },
+                  "lib": {
+                    "libmaatframe.so": {
+                      "type": "-",
+                      "size": 4579656,
+                      "lmtime": 1561115766501,
+                      "modified": false
+                    },
+                    "libmaatframe.so.2": {
+                      "type": "-",
+                      "size": 4579656,
+                      "lmtime": 1561115766501,
+                      "modified": false
+                    },
+                    "libmaatframe.so.2.7": {
+                      "type": "-",
+                      "size": 4579656,
+                      "lmtime": 1561115766501,
+                      "modified": false
+                    }
+                  }
+                },
+                "mrzcpd-4.3.9.497aaf5-1.el7.x86_64.rpm": {
+                  "type": "-",
+                  "size": 39793496,
+                  "lmtime": 1561115766876,
+                  "modified": false
+                },
+                "rulescan": {
+                  "librulescan.so": {
+                    "type": "-",
+                    "size": 4574184,
+                    "lmtime": 1561115767001,
+                    "modified": false
+                  },
+                  "rulescan.h": {
+                    "type": "-",
+                    "size": 13272,
+                    "lmtime": 1561115767025,
+                    "modified": false
+                  }
+                }
+              },
+              "tasks": {
+                "main.yml": {
+                  "type": "-",
+                  "size": 1602,
+                  "lmtime": 1561115767029,
+                  "modified": false
+                }
+              }
+            },
+            "kni": {
+              "files": {
+                "kni.tar.gz": {
+                  "type": "-",
+                  "size": 1020018,
+                  "lmtime": 1561180439000,
+                  "modified": false
+                }
+              },
+              "tasks": {
+                "main.yml": {
+                  "type": "-",
+                  "size": 364,
+                  "lmtime": 1561187383683,
+                  "modified": false
+                }
+              },
+              "templates": {
+                "kni.conf.j2": {
+                  "type": "-",
+                  "size": 2018,
+                  "lmtime": 1561187099641,
+                  "modified": false
+                }
+              }
+            },
+            "netcfg-control-blade": {
+              "templates": {
+                "tsg-environment.j2": {
+                  "type": "-",
+                  "size": 408,
+                  "lmtime": 1561115767033,
+                  "modified": false
+                },
+                "tsg-netcfg-control-blade.service.j2": {
+                  "type": "-",
+                  "size": 1474,
+                  "lmtime": 1561115767035,
+                  "modified": false
+                }
+              }
+            },
+            "tfe": {
+              "files": {
+                "tfe-debug-4.0.0.1a59abc-1.el7.x86_64.rpm": {
+                  "type": "-",
+                  "size": 3466152,
+                  "lmtime": 1561115767072,
+                  "modified": false
+                }
+              },
+              "tasks": {
+                "main.yml": {
+                  "type": "-",
+                  "size": 589,
+                  "lmtime": 1561115767076,
+                  "modified": false
+                }
+              },
+              "templates": {
+                "pangu_pxy.conf.j2": {
+                  "type": "-",
+                  "size": 3951,
+                  "lmtime": 1561115767077,
+                  "modified": false
+                },
+                "tfe.conf.j2": {
+                  "type": "-",
+                  "size": 1221,
+                  "lmtime": 1561115767078,
+                  "modified": false
+                }
+              }
+            }
+          },
+          "site.yml": {
+            "type": "-",
+            "size": 1301,
+            "lmtime": 1561182351626,
+            "modified": false
+          },
+          "vars": {
+            "common.yml": {
+              "type": "-",
+              "size": 252,
+              "lmtime": 1561115767080,
+              "modified": false
+            },
+            "kni.yml": {
+              "type": "-",
+              "size": 1058,
+              "lmtime": 1561187464820,
+              "modified": false
+            },
+            "tfe.yml": {
+              "type": "-",
+              "size": 88,
+              "lmtime": 1561115767081,
+              "modified": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "$version": 1
+}
