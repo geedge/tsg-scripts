@@ -3,27 +3,35 @@ log_path = ./log/kni/kni.log
 log_level = {{ kni.global.log_level }}
 tfe_node_count = {{ kni.global.tfe_node_count }}
 tfe_data_recv_thread_num = {{ kni.global.tfe_data_recv_thread_num }}
-manage_eth = {{ kni.global.manage_eth }}
+manage_eth = {{ nic_mgr.name }}
 keepalive_replay_switch = {{ kni.global.keepalive_replay_switch }}
 
+[tfe0]
+enabled = 1
+mac_addr = fe:65:b7:03:50:bd
+dev_eth_symbol = {{ nic_to_tfe.tfe0.name }}
+ip_addr = 192.168.100.2
 
-{% for node in kni.tfe_nodes %}
-[tfe{{ node.id }}]
-enabled = {{ node.enabled }}
-dev_eth_symbol = {{ node.dev_eth_symbol }}
-mac_addr = {{ node.mac_addr }}
-ip_addr = {{ node.ip_addr }}
+[tfe1]
+enabled = 1
+mac_addr = fe:65:b7:03:50:bd
+dev_eth_symbol = {{ nic_to_tfe.tfe1.name }}
+ip_addr = 192.168.100.3
 
-{% endfor %}
+[tfe2]
+enabled = 1
+mac_addr = fe:65:b7:03:50:bd
+dev_eth_symbol = {{ nic_to_tfe.tfe2.name }}
+ip_addr = 192.168.100.4
 
 [tfe_cmsg_receiver]
-listen_eth = {{ kni.tfe_cmsg_receiver.listen_eth }}
-listen_port = {{ kni.tfe_cmsg_receiver.listen_port }}
+listen_eth = {{ nic_inner_ctrl.name }}
+listen_port = 2375
 
 [watch_dog]
 switch = {{ kni.watch_dog.switch }}
-listen_eth = {{ kni.watch_dog.listen_eth }}
-listen_port = {{ kni.watch_dog.listen_port }}
+listen_eth = {{ nic_inner_ctrl.name }}
+listen_port = 2376
 keepalive_idle = 2
 keepalive_intvl = 1
 keepalive_cnt = 3
@@ -32,9 +40,9 @@ keepalive_cnt = 3
 readconf_mode = {{ kni.maat.readconf_mode }}
 tableinfo_path = ./conf/kni/maat_tableinfo.conf
 maatjson_path = ./conf/kni/maat_test.json
-redis_ip = {{ kni.maat.redis_ip }}
-redis_port = {{ kni.maat.redis_port }}
-redis_index = {{ kni.maat.redis_index }}
+redis_ip = {{ maat_redis_server.address }}
+redis_port = {{ maat_redis_server.port }}
+redis_index = {{ maat_redis_server.db }}
 tablename_intercept_ip = PXY_INTERCEPT_IP
 tablename_intercept_domain = PXY_INTERCEPT_DOMAIN
 default_action = {{ kni.maat.default_action }}
@@ -42,7 +50,7 @@ default_action = {{ kni.maat.default_action }}
 [send_logger]
 switch = {{ kni.send_logger.switch }}
 kafka_topic = SESSION-RECORD-LOG
-kafka_brokerlist = {{ kni.send_logger.kafka_brokerlist }}
+kafka_brokerlist = {{ log_kafkabrokers.address }}
 
 [marsio]
 appsym = knifw
