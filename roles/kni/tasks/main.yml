@@ -14,3 +14,9 @@
     src: "{{ role_path }}/templates/kni.conf.j2"
     dest: /home/tsg/kni/conf/kni/kni.conf
   tags: template
+
+- name: Template the gdev.conf
+  template:
+    src: "{{ role_path }}/templates/gdev.conf.j2"
+    dest: /home/tsg/kni/conf/gdev.conf
+  tags: template

@@ -15,11 +15,11 @@
   - nic_inner_ctrl:
       name: eth2.100
   - nic_to_tfe:
-    tfe0:
+      tfe0:
         name: eth7
-    tfe1: 
+      tfe1: 
         name: eth8
-    tfe2: 
+      tfe2: 
         name: eth9
 
 - hosts: blade-03
