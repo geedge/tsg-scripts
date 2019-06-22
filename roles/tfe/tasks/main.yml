@@ -10,7 +10,7 @@
     state: present
   vars:
     packages:
-      - /tmp/ansible_deploy/tfe-4.0.0.acfad0f-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tfe-4.0.1.c7ecf01-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/tfe-kmod-6ed8c79-1dkms.noarch.rpm
 
 - name: "template tfe-env config"
