@@ -1,0 +1,27 @@
+---
+- name: "copy mrzcpd to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/"
+    dest: "/tmp/ansible_deploy/"
+  when: nic_traffic_mirror.use_mrzcpd
+
+- name: "install mrzcpd"
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - /tmp/ansible_deploy/mrzcpd-4.3.9.497aaf5-1.el7.x86_64.rpm
+  when: nic_traffic_mirror.use_mrzcpd
+
+- name: "update sysconfig/mrzcpd"
+  template:
+    src: "{{ role_path }}/templates/mrzcpd.j2"
+    dest: /etc/sysconfig/mrzcpd
+  when: nic_traffic_mirror.use_mrzcpd
+
+- name: "update mrglobal.conf"
+  template:
+    src: "{{ role_path }}/templates/mrglobal.conf.traffic_mirror.j2"
+    dest: /opt/mrzcpd/etc/mrglobal.conf
+  when: nic_traffic_mirror.use_mrzcpd
