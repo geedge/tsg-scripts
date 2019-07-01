@@ -1,0 +1,10 @@
+- hosts: blade-*
+  roles:
+    - kernel-ml
+    - framework
+
+- hosts: certstore
+  roles:
+    - framework
+  become: yes
+  become_user: root

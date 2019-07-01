@@ -10,7 +10,7 @@
     state: present
   vars:
     packages:
-      - /tmp/ansible_deploy/tfe-4.0.1.c7ecf01-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tfe-4.0.5.348afbc-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/tfe-kmod-6ed8c79-1dkms.noarch.rpm
 
 - name: "template tfe-env config"
@@ -28,7 +28,7 @@
     src: "{{ role_path }}/templates/pangu_pxy.conf.j2"
     dest: /home/tsg/tfe/conf/pangu/pangu_pxy.conf
 
-- name: "add tfe-kmod to boot"
+- name: "start tfe-kmod"
   modprobe:
     name: tfe_kmod
     state: present
@@ -36,6 +36,18 @@
 - name: "enable tfe-env"
   systemd:
     name: tfe-env
-    enabled: no
+    enabled: yes
     daemon_reload: yes
     state: restarted
+
+- name: "add tfe-kmod to boot"
+  template:
+    src: "{{ role_path }}/templates/tfe_kmod.conf.j2"
+    dest: /etc/modules-load.d/tfe_kmod.conf
+
+- name: "bootup tfe"
+  blockinfile:
+    path: /etc/rc.d/rc.local
+    block: |
+        systemctl start tfe-env
+        cd /home/tsg/tfe; ./r2_tfe

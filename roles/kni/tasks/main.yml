@@ -5,7 +5,7 @@
   
 - name: Extract kni.tar.gz
   unarchive:
-    src: "{{ role_path }}/files/kni.tar.gz"
+    src: "{{ role_path }}/files/kni_20190630.tar.gz"
     dest: /home/tsg
   tags: extract
 
@@ -15,8 +15,12 @@
     dest: /home/tsg/kni/conf/kni/kni.conf
   tags: template
 
-- name: Template the gdev.conf
-  template:
-    src: "{{ role_path }}/templates/gdev.conf.j2"
-    dest: /home/tsg/kni/conf/gdev.conf
-  tags: template
+- name: bootup sapp
+  blockinfile:
+    path: /etc/rc.d/rc.local
+    block: |
+        systemctl start mrzcpd
+        systemctl start mrtunnat
+        sleep 15
+        cd /home/tsg/kni; ./r2
+

@@ -4,18 +4,12 @@
     src: "{{ role_path }}/files/"
     dest: "/tmp/ansible_deploy/"
 
-- name: "install kernels and other packages"
+- name: "install framework packages"
   yum:
     name: "{{ packages }}"
     state: present
   vars:
     packages:
-      - /tmp/ansible_deploy/kernel/kernel-ml-5.1.8-1.el7.elrepo.x86_64.rpm
-      - /tmp/ansible_deploy/kernel/kernel-ml-devel-5.1.8-1.el7.elrepo.x86_64.rpm
-      - /tmp/ansible_deploy/dkms/zlib-devel-1.2.7-18.el7.x86_64.rpm
-      - /tmp/ansible_deploy/dkms/elfutils-libelf-devel-0.172-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/dkms/zlib-1.2.7-18.el7.x86_64.rpm
-      - /tmp/ansible_deploy/dkms/which-2.20-7.el7.x86_64.rpm
       - /tmp/ansible_deploy/dkms/dkms-2.7.1-1.el7.noarch.rpm
       - /tmp/ansible_deploy/framework/framework-2.0.9.f583d06-1.el7.centos.x86_64.rpm
 
@@ -39,13 +33,5 @@
     src: "{{ role_path }}/files/maat/lib/"
     dest: /opt/MESA/lib/
 
-- name: "downgrade htable"
-  synchronize:
-    src: "{{ role_path }}/files/htable"
-    dest: /opt/MESA/lib/
-
 - name: "update ld"
   command: ldconfig
-
-- name: "set kernel-ml as default kernel"
-  command: /usr/sbin/grub2-set-default 0

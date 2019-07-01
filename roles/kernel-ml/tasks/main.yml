@@ -1,0 +1,19 @@
+---
+- name: "copy framework rpms to destination server"
+  synchronize:
+    src: "{{ role_path }}/files/"
+    dest: "/tmp/ansible_deploy/"
+
+- name: "install kernels-ml"
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - /tmp/ansible_deploy/kernel/kernel-ml-5.1.8-1.el7.elrepo.x86_64.rpm
+      - /tmp/ansible_deploy/kernel/kernel-ml-devel-5.1.8-1.el7.elrepo.x86_64.rpm
+  register: t_kernel_ml
+
+- name: "set kernel-ml as default kernel"
+  command: /usr/sbin/grub2-set-default 0
+  when: t_kernel_ml.changed

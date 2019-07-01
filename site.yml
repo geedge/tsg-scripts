@@ -1,5 +1,6 @@
 - hosts: blade-00
   roles:
+    - kernel-ml
     - framework
     - mrzcpd
     - kni
@@ -11,9 +12,6 @@
       name: enp7s0
   - nic_data_incoming:
       name: ens1f4
-      ip: 192.168.17.1
-      mask: 255.255.255.0
-      gw: 192.168.17.254
   - nic_inner_ctrl:
       name: ens1.100
   - nic_to_tfe:
@@ -24,8 +22,9 @@
       tfe2: 
         name: ens1f7
 
-- hosts: blade-03
+- hosts: blade-01
   roles:
+    - kernel-ml
     - framework
     - mrzcpd
     - tfe
@@ -41,40 +40,28 @@
   - nic_traffic_mirror:
       name: ens1f2
       use_mrzcpd: 1
-      
-# - hosts: blade-00
-#   - roles:
-#     - framework
-#     - sapp
-#     - kni
 
-# - hosts: blade-01
-#   - roles:
-#     - framework
-#     - tfe-kmod
-#     - tfe
-#   - vars:
-#     nic_mgr:
-#       - name: eth0
-#     nic_data_incoming:
-#       - name: eth3
-#       - address: 172.16.254.1
-#       - mac: AA:BB:CC:DD:EE:FF
-#       - peer: 172.16.254.254
-#     nic_traffic_mirror:
-#       - name: eth4
+- hosts: blade-02 blade-03
+  roles:
+    - kernel-ml
+    - framework
+    - mrzcpd
+    - tfe
+  vars_files:
+    - "vars/common.yml"
+    - "vars/tfe.yml"
+  vars:
+  - nic_mgr:
+      name: enp7s0
+  - nic_data_incoming:
+      name: ens8f1
+      mac: AA:BB:CC:DD:EE:FF
+  - nic_traffic_mirror:
+      name: ens8f2
+      use_mrzcpd: 1
 
-# - hosts: blade-02
-#     - net-ctrlblade
-#     - tfe-kmod
-#     - tfe
-#   nic_mgr:
-#     - name: eth0
-#     nic_data_incoming:
-#       name: eth3
-#       inet_addr: 172.16.254.2
-#       inet6_addr: fd00::1
-#       gw_inet_addr: 172.16.254.254
-#       gw_ether_addr: BB:CC:DD:EE:FF:AA
-#     nic_traffic_mirror:
-#       name: eth4
+- hosts: certstore
+  roles:
+    - framework
+  become: yes
+  become_user: root
