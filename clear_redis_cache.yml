@@ -1,0 +1,8 @@
+- hosts: blade-00
+  tasks:
+  - name: "killall certstore"
+    command: "killall certstore"
+  - name: "clear redis cache"
+    command: "redis-cli flushdb"
+  - name: "killall sapp"
+    command: "killall sapp"

@@ -4,6 +4,7 @@
     - framework
     - mrzcpd
     - kni
+    - certstore
   vars_files:
     - "vars/common.yml"
     - "vars/kni.yml"
@@ -59,9 +60,3 @@
   - nic_traffic_mirror:
       name: ens8f2
       use_mrzcpd: 1
-
-- hosts: certstore
-  roles:
-    - framework
-  become: yes
-  become_user: root

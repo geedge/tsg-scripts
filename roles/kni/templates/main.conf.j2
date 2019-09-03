@@ -1,0 +1,93 @@
+[Module]
+threadnum=16
+cpu_bind_core_mask=0x1fffe
+app_instance_name=sapp_master
+MaxTcpStreams=200000
+MaxUdpStreams=200000
+LinkTimeout=30
+UdpResetTime=0
+CreatLinkMode=1
+MaxUnorderNum=5
+TcpAllEnable=1
+IPv6_module_enable=1
+IPv6_raw_socket=1
+ipentry_priority_over_ipfrag=0
+dictator_switch=0
+load_plug_switch=1
+discard_ack=0
+kill_tcp_remedy=0
+
+signal_take_over_switch=0
+
+timestamp_record=0
+#timedelay_threshold unit: CPU CYCLE
+timedelay_threshold=99900000
+
+analyse_tcp_option=1
+
+#in linux kernel 2.6.20 and subsequent version, should enable this
+use_MESAsleep=0
+
+#skip ethernet, if you don't care MAC address
+skip_ethernet_layer=0
+
+#for dual-stack send rst 
+skip_not_ip_layer=0
+
+#packet use DDP protocol
+encapsulate_with_ddp=0
+
+maxrandval=65535
+randkeyval=13
+
+#(0:pag,1:pcap,2:dumpfile,3:pfring,4:DPDK,5:ppf,6:NPacket,7:qnf,8:N95,9:pcap-dumpfile-list,10:topsec,
+#(11:ipfile, 12:marsio4, 13:agent_smith, 14:dpdk_vxlan, 15:marsio_vxlan, 16:pag_marsio
+capdatamodlel=12
+forwardpkt=0
+pcapdevice=vxlan_user
+#pcapdevice=lo
+pcapdevice2=
+pcapfilter=
+pcap_dumpfile_list=dumpfile.list
+senddevice=lo
+gateway_mac=00:90:0b:1b:a1:2b
+
+
+#max pending packet num between capture-thread and handle-thread
+queue_max_num=2000
+
+#-----network connection mode definition-----
+#	0: don't send packet, only capture;
+#	1: parallel mode with single card; 
+#	2: serial mode with two card;	
+#	3: logic serial mode with G device.	
+net_connection_mode=3
+
+
+[ShowStatInfo]
+showinterval=3
+iknow_listen_port=65500
+platform_log_level=20
+FS_switch=1
+FS_print_switch=1
+FS_server_ip=127.0.0.1
+FS_server_port=8126
+FS_cycle=10
+
+[pkt_dump]
+pkt_dump_switch=0
+#1:local file; 2:udp socket
+pkt_dump_mode=2
+pkt_dump_cmd_port=12345
+pkt_dump_bpf_filter=
+pkt_dump_file_root_dir=/dev/shm/pkt_dump234
+
+#config 'pkt_dump_total_size' means summation of all files size in 'root_dir', unit:MB.
+pkt_dump_total_size=29900
+
+#config 'pkt_dump_file_max_size' means MB per thread.
+pkt_dump_file_max_size=10000
+
+#config 'pkt_dump_thread_seq' means which thread enable this module, 'all' is total running thread.
+pkt_dump_thread_seq=all
+#pkt_dump_thread_seq=0,1,2,3

@@ -5,7 +5,7 @@
   
 - name: Extract kni.tar.gz
   unarchive:
-    src: "{{ role_path }}/files/kni_20190630.tar.gz"
+    src: "{{ role_path }}/files/kni_20190703.tar.gz"
     dest: /home/tsg
   tags: extract
 
@@ -15,9 +15,16 @@
     dest: /home/tsg/kni/conf/kni/kni.conf
   tags: template
 
+- name: Template the main.conf
+  template:
+    src: "{{ role_path }}/templates/main.conf.j2"
+    dest: /home/tsg/kni/conf/main.conf
+  tags: template
+
 - name: bootup sapp
   blockinfile:
     path: /etc/rc.d/rc.local
+    marker: "## {mark} bootstrap mrzcpd and kni"
     block: |
         systemctl start mrzcpd
         systemctl start mrtunnat

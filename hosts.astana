@@ -37,5 +37,22 @@ ansible_user=root
 10.4.39.32
 10.4.39.36
 
+[astana-adc-3]
+10.4.39.9
+10.4.39.10
+10.4.39.11
+10.4.39.12
+
+[astana-adc-9]
+10.4.39.33
+10.4.39.34
+10.4.39.35
+10.4.39.36
+
+[control-blade-all:children]
+blade-01
+blade-02
+blade-03
+
 [certstore]
 10.4.35.1 ansible_user=tsg

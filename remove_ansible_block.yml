@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+  - name: "remove all ansible manange block"
+    blockinfile:
+       dest: "/etc/rc.d/rc.local"
+       state: absent 

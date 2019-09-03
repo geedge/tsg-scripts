@@ -29,7 +29,7 @@ mode= {{ tfe.keykeeper.mode }}
 no_cache=0
 cert_store_host= {{ cert_store_server.address }}
 cert_store_port= {{ cert_store_server.port }}
-ca_path=resource/tfe/tango-ca-v3-trust-ca.pem
+ca_path=resource/tfe/qaznet_intermedia.pem
 untrusted_ca_path=resource/tfe/tango-ca-v3-untrust-ca.pem
 
 [debug]
@@ -54,11 +54,11 @@ tcp_ttl_upstream=75
 tcp_ttl_downstream=70
 
 [log]
-level=10
+level=30
 
 [stat]
 statsd_server=192.168.10.72
 statsd_port=8126
 
 [http]
-loglevel=20
+loglevel=30

@@ -1,0 +1,22 @@
+---
+- name: Ensures /home/tsg exists
+  file: path=/home/tsg state=directory 
+  tags: mkdir
+  
+- name: install certstore
+  unarchive:
+    src: "{{ role_path }}/files/certstore-base-online-20190701.tar.gz"
+    dest: /home/tsg
+
+- name: template certstore configure file
+  template:
+    src: "{{ role_path }}/templates/cert_store.ini.j2"
+    dest: /home/tsg/certstore-base/conf/cert_store.ini
+
+- name: bootup certstore
+  blockinfile:
+    marker: "## {mark} bootstrap certstore"
+    path: /etc/rc.d/rc.local
+    block: |
+        cd /home/tsg/certstore-base; ./r2_certstore
+

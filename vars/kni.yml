@@ -2,8 +2,8 @@
     global:
         log_level: 30
         tfe_node_count: 3
-        tfe_data_recv_thread_num: 3
-        keepalive_replay_switch: 1 
+        tfe_data_recv_thread_num: 6
+        keepalive_replay_switch: 1
     watch_dog: 
         switch: 1 
     maat:

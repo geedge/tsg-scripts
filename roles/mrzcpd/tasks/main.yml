@@ -10,7 +10,7 @@
     state: present
   vars:
     packages:
-    - /tmp/ansible_deploy/mrzcpd-4.3.10.497aaf5-1.el7.x86_64.rpm
+    - /tmp/ansible_deploy/mrzcpd-4.3.12.6ee1589-1.el7.x86_64.rpm
 
 - name: "update sysconfig/mrzcpd"
   template:

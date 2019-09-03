@@ -1,5 +1,5 @@
 - tfe:
-    nr_threads: 16
+    nr_threads: 32
     keykeeper:
-        mode: "normal"
+        mode: "debug"
         no_cache : 0
