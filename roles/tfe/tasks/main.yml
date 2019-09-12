@@ -8,24 +8,10 @@
   yum:
     name: "{{ packages }}"
     state: present
-    allow_downgrade: yes
   vars:
     packages:
-      - /tmp/ansible_deploy/tfe-4.0.5.348afbc-1.el7.x86_64.rpm
-
-- name: "hotfix tfe program"
-  synchronize:
-    src: "{{ role_path }}/files/tfe"
-    dest: /home/tsg/tfe/bin/tfe
-
-#- name: "remove the old tfe-kmod"
-#  command: rpm -e tfe-kmod
-
-#- name: "delete the tfe_kmod.ko"
-#  command: rm -f /lib/modules/5.1.8-1.el7.elrepo.x86_64/extra/tfe_kmod.ko
-
-#- name: "reinstall the tfe-kmod"
-#  command: rpm -i /tmp/ansible_deploy/tfe-kmod-c498d30-1dkms.noarch.rpm --force
+      - /tmp/ansible_deploy/tfe-kmod-v1.0.3.20190828-1dkms.noarch.rpm
+      - /tmp/ansible_deploy/tfe-4.1.0.d94c397-1.el7.x86_64.rpm
 
 - name: "template tfe-env config"
   template:
@@ -42,11 +28,6 @@
     src: "{{ role_path }}/templates/pangu_pxy.conf.j2"
     dest: /home/tsg/tfe/conf/pangu/pangu_pxy.conf
 
-- name: "deploy qaznet cert"
-  copy:
-    src: "{{ role_path }}/files/qaznet_intermedia.pem"
-    dest: "/home/tsg/tfe/resource/tfe/qaznet_intermedia.pem"
-
 - name: "start tfe-kmod"
   modprobe:
     name: tfe_kmod
@@ -57,17 +38,3 @@
     name: tfe-env
     enabled: yes
     daemon_reload: yes
-    state: restarted
-
-- name: "add tfe-kmod to boot"
-  template:
-    src: "{{ role_path }}/templates/tfe_kmod.conf.j2"
-    dest: /etc/modules-load.d/tfe_kmod.conf
-
-- name: "bootup tfe"
-  blockinfile:
-    path: /etc/rc.d/rc.local
-    marker: "## {mark} bootstrap tfe"
-    block: |
-        systemctl start tfe-env
-        cd /home/tsg/tfe; ./r2_tfe
