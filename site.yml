@@ -42,7 +42,27 @@
       name: ens1f2
       use_mrzcpd: 1
 
-- hosts: blade-02 blade-03
+- hosts: blade-02
+  roles:
+    - kernel-ml
+    - framework
+    - mrzcpd
+    - tfe
+  vars_files:
+    - "vars/common.yml"
+    - "vars/tfe.yml"
+  vars:
+  - nic_mgr:
+      name: enp7s0
+  - nic_data_incoming:
+      name: ens8f1
+      mac: AA:BB:CC:DD:EE:FF
+  - nic_traffic_mirror:
+      name: ens8f2
+      use_mrzcpd: 1
+
+
+- hosts: blade-03
   roles:
     - kernel-ml
     - framework
