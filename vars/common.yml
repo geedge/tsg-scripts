@@ -1,12 +1,12 @@
 - maat_redis_server:
-    address: 10.4.35.1
-    port: 6379
+    address: 192.168.100.3
+    port: 7002
     db: 0
 - cert_store_server:
     address: 192.168.100.1
     port: 9991
 - log_kafkabrokers:
-    address: "10.4.37.7:9092,10.4.35.8:9092,10.4.35.9:9092"
+    address: "192.168.100.4:9092"
 - log_minio:
-    address: "10.4.35.1;"
+    address: "192.168.100.4;"
     port: 9000

@@ -6,31 +6,40 @@
 
 - name: "install mrzcpd"
   yum:
-    name: "{{ packages }}"
+    name: /tmp/ansible_deploy/mrzcpd-4.3.14.79e262c-1.el7.x86_64.rpm
     state: present
-  vars:
-    packages:
-    - /tmp/ansible_deploy/mrzcpd-4.3.12.6ee1589-1.el7.x86_64.rpm
 
 - name: "update sysconfig/mrzcpd"
   template:
-    src: "{{ role_path }}/templates/mrzcpd.j2"
+    path: "{{ role_path }}/templates/mrzcpd.j2"
     dest: /etc/sysconfig/mrzcpd
 
 - name: "update mrglobal.conf - slave blade"
   template:
-    src: "{{ role_path }}/templates/mrglobal.conf.traffic_mirror.j2"
+    path: "{{ role_path }}/templates/mrglobal.conf.traffic_mirror.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: nic_traffic_mirror is defined
 
 - name: "update mrglobal.conf - master blade"
   template:
-    src: "{{ role_path }}/templates/mrglobal.conf.inline.j2"
+    path: "{{ role_path }}/templates/mrglobal.conf.inline.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: nic_traffic_mirror is not defined
 
 - name: "update mrtunnat.conf - master blade"
   template:
-    src: "{{ role_path }}/templates/mrtunnat.conf.inline.j2"
+    path: "{{ role_path }}/templates/mrtunnat.conf.inline.j2"
     dest: /opt/mrzcpd/etc/mrtunnat.conf
   when: nic_traffic_mirror is not defined
+
+- name: "enable mrenv"
+  systemd:
+    name: mrenv
+    enabled: yes
+    daemon_reload: yes
+
+- name: "enable mrzcpd"
+  systemd:
+    name: mrzcpd
+    enabled: yes
+    daemon_reload: yes
