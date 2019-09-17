@@ -11,24 +11,24 @@
 
 - name: "update sysconfig/mrzcpd"
   template:
-    path: "{{ role_path }}/templates/mrzcpd.j2"
+    src: "{{ role_path }}/templates/mrzcpd.j2"
     dest: /etc/sysconfig/mrzcpd
 
 - name: "update mrglobal.conf - slave blade"
   template:
-    path: "{{ role_path }}/templates/mrglobal.conf.traffic_mirror.j2"
+    src: "{{ role_path }}/templates/mrglobal.conf.traffic_mirror.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: nic_traffic_mirror is defined
 
 - name: "update mrglobal.conf - master blade"
   template:
-    path: "{{ role_path }}/templates/mrglobal.conf.inline.j2"
+    src: "{{ role_path }}/templates/mrglobal.conf.inline.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: nic_traffic_mirror is not defined
 
 - name: "update mrtunnat.conf - master blade"
   template:
-    path: "{{ role_path }}/templates/mrtunnat.conf.inline.j2"
+    src: "{{ role_path }}/templates/mrtunnat.conf.inline.j2"
     dest: /opt/mrzcpd/etc/mrtunnat.conf
   when: nic_traffic_mirror is not defined
 

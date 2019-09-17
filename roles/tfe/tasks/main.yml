@@ -11,21 +11,21 @@
   vars:
     packages:
       - /tmp/ansible_deploy/tfe-kmod-v1.0.3.20190828-1dkms.noarch.rpm
-      - /tmp/ansible_deploy/tfe-4.1.1.48a5f7a-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tfe-4.1.2.af90bc7-1.el7.x86_64.rpm
 
 - name: "template tfe-env config"
   template:
-    path: "{{ role_path }}/templates/tfe-env-config.j2"
+    src: "{{ role_path }}/templates/tfe-env-config.j2"
     dest: /etc/sysconfig/tfe-env-config
 
 - name: "template the tfe.conf"
   template:
-    path: "{{ role_path }}/templates/tfe.conf.j2"
+    src: "{{ role_path }}/templates/tfe.conf.j2"
     dest: /opt/tsg/tfe/conf/tfe/tfe.conf
 
 - name: "template the pangu_pxy.conf"
   template:
-    path: "{{ role_path }}/templates/pangu_pxy.conf.j2"
+    src: "{{ role_path }}/templates/pangu_pxy.conf.j2"
     dest: /opt/tsg/tfe/conf/pangu/pangu_pxy.conf
 
 - name: "enable tfe-env"
@@ -37,5 +37,5 @@
 - name: "enable tfe"
   systemd:
     name: tfe
-    enable: yes
+    enabled: yes
     daemon_reload: yes
