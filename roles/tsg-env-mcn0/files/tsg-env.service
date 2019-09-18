@@ -1,0 +1,14 @@
+[Unit]
+Description=tsg env init
+Requires=network.target
+After=network.target
+Before=mrenv.service
+
+[Service]
+ExecStart=/opt/tsg/env/setup
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+RequiredBy=mrenv.service

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+  ifconfig ens1 up
+
+  modprobe 8021q
+  vconfig add ens1 100
+  vconfig set_flag ens1.100 1 1
+  ifconfig ens1.100 192.168.100.1 netmask 255.255.255.0 up
+
+  echo 0 > /sys/class/net/ens1/device/sriov_numvfs
+  sleep 1
+  echo 8 > /sys/class/net/ens1/device/sriov_numvfs
+  sleep 1
+
+  ifconfig ens1f3 up
+  ip link set ens1 vf 2 vlan 200
+  ifconfig ens1f3 192.168.200.1 netmask 255.255.255.0
+
+ifconfig enp7s0 up
+ifconfig enp8s0 up
+ifconfig ens1f1 up
+ifconfig ens1f2 up
+ifconfig ens1f3 up
+ifconfig ens1f4 up
+ifconfig ens1f5 up
+ifconfig ens1f6 up
+ifconfig ens1f7 up
+ifconfig enp1s1 up
