@@ -1,7 +1,13 @@
 ---
-- name: "copy setup.sh"
+- name: "copy setup script"
   copy:
     src: "{{ role_path }}/files/setup"
+    dest: "/opt/tsg/env/"   
+    mode: 0755   
+
+- name: "copy stop script"
+  copy:
+    src: "{{ role_path }}/files/stop"
     dest: "/opt/tsg/env/"   
     mode: 0755   
     
