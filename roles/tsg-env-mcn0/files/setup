@@ -16,8 +16,8 @@
   ip link set ens1 vf 2 vlan 200
   ifconfig ens1f3 192.168.200.1 netmask 255.255.255.0
 
-ifconfig enp7s0 up
 ifconfig enp8s0 up
+ifconfig enp9s0 up
 ifconfig ens1f1 up
 ifconfig ens1f2 up
 ifconfig ens1f3 up

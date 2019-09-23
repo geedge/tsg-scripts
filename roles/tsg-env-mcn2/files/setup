@@ -8,15 +8,15 @@
 
   echo 0 > /sys/class/net/ens8/device/sriov_numvfs
   sleep 1
-  echo 3 > /sys/class/net/ens8/device/sriov_numvfs
+  echo 4 > /sys/class/net/ens8/device/sriov_numvfs
   sleep 1
 
   ifconfig ens8f3 up
   ip link set ens8 vf 2 vlan 200
   ifconfig ens8f3 192.168.200.3 netmask 255.255.255.0
 
-ifconfig enp7s0 up
 ifconfig enp8s0 up
+ifconfig enp9s0 up
 ifconfig ens8f1 up
 ifconfig ens8f2 up
 ifconfig ens8f3 up
