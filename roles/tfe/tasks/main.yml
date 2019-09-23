@@ -7,15 +7,15 @@
 - name: "install tfe rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/tfe-kmod-v1.0.3.20190828-1dkms.noarch.rpm
-      - /tmp/ansible_deploy/tfe-4.1.2.af90bc7-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tfe-kmod-v1.0.4.20190923-1dkms.noarch.rpm
+      - /tmp/ansible_deploy/tfe-4.1.4.cd0fd18-1.el7.x86_64.rpm
     state: present
   when: package_source == "local"
 
 - name: "install tfe rpms from pulp"
   yum:
     name:
-      - /tmp/ansible_deploy/tfe-kmod-v1.0.3.20190828-1dkms.noarch.rpm
+      - /tmp/ansible_deploy/tfe-kmod-v1.0.4.20190923-1dkms.noarch.rpm
       - tfe
     state: latest
   when: package_source == "pulp"
