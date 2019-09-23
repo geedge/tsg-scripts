@@ -1,7 +1,7 @@
 - hosts: all
   roles:
-    - kernel-ml
     - framework
+    - kernel-ml
 
 - hosts: blade-00
   roles:
@@ -9,19 +9,19 @@
     - mrzcpd
     - kni
     - certstore
-    
+
 - hosts: blade-01
   roles:
     - tsg-env-mcn1
     - mrzcpd
     - tfe
-    
+
 - hosts: blade-02
   roles:
     - tsg-env-mcn2
     - mrzcpd
     - tfe
-    
+
 - hosts: blade-03
   roles:
     - tsg-env-mcn3
