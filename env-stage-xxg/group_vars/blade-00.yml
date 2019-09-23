@@ -1,5 +1,5 @@
 nic_mgr:
-    name: enp7s0
+    name: enp8s0
 nic_data_incoming:
     name: ens1f4
 nic_inner_ctrl:

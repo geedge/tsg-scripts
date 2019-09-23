@@ -1,5 +1,5 @@
 maat_redis_server:
-    address: 192.168.100.3
+    address: 192.168.40.120
     port: 7002
     db: 0
 
