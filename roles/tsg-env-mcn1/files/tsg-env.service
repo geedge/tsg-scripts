@@ -6,6 +6,7 @@ Before=tfe-env.service
 
 [Service]
 ExecStart=/opt/tsg/env/setup
+ExecStop=/opt/tsg/env/stop
 Type=oneshot
 RemainAfterExit=yes
 
