@@ -2,32 +2,52 @@
 - name: Ensures /home/tsg exists
   file: path=/home/tsg state=directory 
   tags: mkdir
-  
-- name: Extract kni.tar.gz
-  unarchive:
-    src: "{{ role_path }}/files/kni_20190703.tar.gz"
-    dest: /home/tsg
-  tags: extract
+
+- name: "install sapp rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/sapp-4.0.3.be1157c-1.el7.x86_64.rpm
+    state: present
+
+- name: "install kni rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/kni-2.1.0.b0bbde4-1.el7.centos.x86_64.rpm
+    state: present
+
+- name: Template the sapp.toml
+  template:
+    src: "{{ role_path }}/templates/sapp.toml.j2"
+    dest: /home/mesasoft/sapp_run/etc/sapp.toml
+  tags: template
+
+- name: Template the project_list.conf
+  template:
+    src: "{{ role_path }}/templates/project_list.conf.j2"
+    dest: /home/mesasoft/sapp_run/etc/project_list.conf
+  tags: template
+
+- name: Template the conflist.inf
+  template:
+    src: "{{ role_path }}/templates/conflist.inf.j2"
+    dest: /home/mesasoft/sapp_run/plug/conflist.inf
+  tags: template
+
+- name: Template the gdev.conf
+  template:
+    src: "{{ role_path }}/templates/gdev.conf.j2"
+    dest: /home/mesasoft/sapp_run/etc/gdev.conf
+  tags: template
 
 - name: Template the kni.conf
   template:
     src: "{{ role_path }}/templates/kni.conf.j2"
-    dest: /home/tsg/kni/conf/kni/kni.conf
+    dest: /home/mesasoft/sapp_run/etc/kni/kni.conf
   tags: template
 
-- name: Template the main.conf
-  template:
-    src: "{{ role_path }}/templates/main.conf.j2"
-    dest: /home/tsg/kni/conf/main.conf
-  tags: template
-
-- name: bootup sapp
-  blockinfile:
-    path: /etc/rc.d/rc.local
-    marker: "## {mark} bootstrap mrzcpd and kni"
-    block: |
-        systemctl start mrzcpd
-        systemctl start mrtunnat
-        sleep 15
-        cd /home/tsg/kni; ./r2
+- name: "enable sapp"
+  systemd:
+    name: sapp
+    enabled: yes
+    daemon_reload: yes
 

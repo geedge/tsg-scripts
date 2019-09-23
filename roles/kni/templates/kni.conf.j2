@@ -2,25 +2,24 @@
 log_path = ./log/kni/kni.log
 log_level = {{ kni.global.log_level }}
 tfe_node_count = {{ kni.global.tfe_node_count }}
-tfe_data_recv_thread_num = {{ kni.global.tfe_data_recv_thread_num }}
 manage_eth = {{ nic_mgr.name }}
-keepalive_replay_switch = {{ kni.global.keepalive_replay_switch }}
+deploy_mode = normal
+tun_name = tun_kni
+src_mac_addr = 00:0e:c6:d6:72:c1
+dst_mac_addr = fe:65:b7:03:50:bd
 
 [tfe0]
 enabled = 1
-mac_addr = fe:65:b7:03:50:bd
 dev_eth_symbol = {{ nic_to_tfe.tfe0.name }}
 ip_addr = 192.168.100.2
 
 [tfe1]
 enabled = 1
-mac_addr = fe:65:b7:03:50:bd
 dev_eth_symbol = {{ nic_to_tfe.tfe1.name }}
 ip_addr = 192.168.100.3
 
 [tfe2]
 enabled = 1
-mac_addr = fe:65:b7:03:50:bd
 dev_eth_symbol = {{ nic_to_tfe.tfe2.name }}
 ip_addr = 192.168.100.4
 
@@ -54,32 +53,40 @@ kafka_brokerlist = {{ log_kafkabrokers.address }}
 
 [marsio]
 appsym = knifw
-dev_vxlan_symbol = vxlan_user
-src_mac_addr = 00:0e:c6:d6:72:c1
 
 [kafka]
 queue.buffering.max.messages = 1000000
 topic.metadata.refresh.interval.ms = 600000
 security.protocol = MG
 
+[dup_traffic]
+switch = 1
+action = 2
+capacity = 10000000
+error_rate = 0.00001
+expiry_time = 60
+
 [traceid2pme_htable]
 mho_screen_print_ctrl = 0
 mho_thread_safe = 1
 mho_mutex_num = 160
-mho_hash_slot_size = 160000
-mho_hash_max_element_num = 1280000
+mho_hash_slot_size = 640000
+mho_hash_max_element_num = 2560000
 mho_expire_time = 30
 mho_eliminate_type = LRU
 
-[keepalive_replay_htable]
+//per thread
+[tuple2stream_htable]
 mho_screen_print_ctrl = 0
-mho_thread_safe = 1
+mho_thread_safe = 0
 mho_mutex_num = 160
-mho_hash_slot_size = 160000
-mho_hash_max_element_num = 1280000
-#must be 0
+mho_hash_slot_size = 80000
+mho_hash_max_element_num = 320000
 mho_expire_time = 0
 mho_eliminate_type = LRU
 
 [field_stat]
-stat_path = ./fs2_kni.status
+remote_switch = {{ fs_remote.switch }}
+remote_ip = {{ fs_remote.address }}
+remote_port = {{ fs_remote.port }}
+local_path = ./fs2_kni.status
