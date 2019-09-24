@@ -35,16 +35,21 @@ keepalive_idle = 2
 keepalive_intvl = 1
 keepalive_cnt = 3
 
-[maat]
+[static_maat]
 readconf_mode = {{ kni.maat.readconf_mode }}
-tableinfo_path = ./conf/kni/maat_tableinfo.conf
+tableinfo_path = ./conf/kni/static_maat_tableinfo.conf
 maatjson_path = ./conf/kni/maat_test.json
 redis_ip = {{ maat_redis_server.address }}
 redis_port = {{ maat_redis_server.port }}
 redis_index = {{ maat_redis_server.db }}
-tablename_intercept_ip = PXY_INTERCEPT_IP
-tablename_intercept_domain = PXY_INTERCEPT_DOMAIN
-default_action = {{ kni.maat.default_action }}
+
+[dynamic_maat]
+readconf_mode = {{ kni.maat.readconf_mode }}
+tableinfo_path = ./conf/kni/dynamic_maat_tableinfo.conf
+maatjson_path = ./conf/kni/maat_test.json
+redis_ip = {{ dynamic_maat_redis_server.address }}
+redis_port = {{ dynamic_maat_redis_server.port }}
+redis_index = {{ dynamic_maat_redis_server.db }}
 
 [send_logger]
 switch = {{ kni.send_logger.switch }}

@@ -3,6 +3,11 @@ maat_redis_server:
     port: 7002
     db: 0
 
+dynamic_maat_redis_server:
+    address: 192.168.100.3
+    port: 7002
+    db: 0
+    
 cert_store_server:
     address: 192.168.100.1
     port: 9991
@@ -27,7 +32,6 @@ kni:
         switch: 1
     maat:
         readconf_mode: 2
-        default_action: 128
     send_logger:
         switch: 1
     tfe_nodes:
