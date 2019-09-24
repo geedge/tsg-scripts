@@ -1,7 +1,8 @@
 ---
-- name: Ensures /home/tsg exists
-  file: path=/home/tsg state=directory 
-  tags: mkdir
+- name: "copy sapp and kni to destination server"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: /tmp/ansible_deploy/
 
 - name: "install sapp rpms from localhost"
   yum:
