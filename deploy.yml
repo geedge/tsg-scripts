@@ -27,3 +27,8 @@
     - tsg-env-mcn3
     - mrzcpd
     - tfe
+
+- hosts: blade-mxn
+  roles:
+    - tsg-env-mxn
+    

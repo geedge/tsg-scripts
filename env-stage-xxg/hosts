@@ -2,6 +2,9 @@
 ansible_user=root
 package_source=local
 
+[blade-mxn]
+192.168.40.25
+
 [blade-00]
 192.168.40.21
 
