@@ -37,21 +37,16 @@ keepalive_cnt = 3
 
 [static_maat]
 readconf_mode = {{ kni.maat.readconf_mode }}
-<<<<<<< HEAD
-tableinfo_path = ./conf/kni/static_maat_tableinfo.conf
-maatjson_path = ./conf/kni/maat_test.json
-=======
 tableinfo_path = ./etc/kni/maat_tableinfo.conf
 maatjson_path = ./etc/kni/maat_test.json
->>>>>>> 58004fe3153e15435552a47a28c7944d10b363f0
 redis_ip = {{ maat_redis_server.address }}
 redis_port = {{ maat_redis_server.port }}
 redis_index = {{ maat_redis_server.db }}
 
 [dynamic_maat]
 readconf_mode = {{ kni.maat.readconf_mode }}
-tableinfo_path = ./conf/kni/dynamic_maat_tableinfo.conf
-maatjson_path = ./conf/kni/maat_test.json
+tableinfo_path = ./etc/kni/dynamic_maat_tableinfo.conf
+maatjson_path = ./etc/kni/maat_test.json
 redis_ip = {{ dynamic_maat_redis_server.address }}
 redis_port = {{ dynamic_maat_redis_server.port }}
 redis_index = {{ dynamic_maat_redis_server.db }}
