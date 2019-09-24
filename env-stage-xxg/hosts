@@ -1,15 +1,15 @@
 [all:vars]
 ansible_user=root
-package_source=pulp
+package_source=local
 
 [blade-00]
-192.168.40.161
+192.168.40.21
 
 [blade-01]
-192.168.40.162
+192.168.40.22
 
 [blade-02]
-192.168.40.163
+192.168.40.23
 
 [blade-03]
-192.168.40.164
+192.168.40.24
