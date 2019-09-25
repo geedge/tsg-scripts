@@ -40,7 +40,6 @@ ip = 127.0.0.1
 port = 6379
 [MAAT_REDIS]
 #Maat monitors the Redsi server IP address and port number
-ip = 10.4.35.1
-port = 6379
-dbindex = 0
-
+ip = {{ maat_redis_server.address }}
+port = {{ maat_redis_server.port }}
+dbindex =  {{ maat_redis_server.db }}
