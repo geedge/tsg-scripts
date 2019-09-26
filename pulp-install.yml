@@ -1,0 +1,3 @@
+- hosts: blade-0*
+  roles:
+    - pulp-consumer

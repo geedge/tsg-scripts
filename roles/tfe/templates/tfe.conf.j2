@@ -58,8 +58,8 @@ tcp_ttl_downstream=70
 level=30
 
 [stat]
-statsd_server=192.168.10.72
-statsd_port=8126
+statsd_server={{ fs_remote.address }}
+statsd_port={{ fs_remote.port }}
 
 [http]
 loglevel=30

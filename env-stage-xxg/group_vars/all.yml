@@ -20,8 +20,8 @@ log_minio:
     port: 9000
     
 fs_remote:
-    switch: 0
-    address: "192.168.10.152"
+    switch: 1
+    address: "192.168.100.1"
     port: 8125
 
 kni:
