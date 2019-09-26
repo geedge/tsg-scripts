@@ -40,6 +40,14 @@
     name: tfe-env
     enabled: yes
     daemon_reload: yes
+  when: not run_as_tun_mode
+
+- name: "enable tfe-env-tun"
+  systemd:
+    name: tfe-env-tun-mode
+    enabled: yes
+    daemon_reload: yes
+  when: run_as_tun_mode
 
 - name: "enable tfe"
   systemd:

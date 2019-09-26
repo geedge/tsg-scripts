@@ -20,16 +20,30 @@ BSD_packet_filter=""
    
 ### note, depolyment.mode options: [mirror, inline, transparent]
     [packet_io.depolyment]
+    {% if nic_transparent_mode.enable %}
+    mode=transparent
+    {% else %}
     mode=inline
+    {% endif %}
 
 ### note, interface.type options: [pag,pcap,marsio]
     [packet_io.internal.interface]
+    {% if nic_transparent_mode.enable %}
+    type={{nic_transparent_mode.mode}}
+    name={{nic_transparent_mode.internel_interface}}
+    {% else %}
     type=marsio
     name=vxlan_user
+    {% endif %}
 
     [packet_io.external.interface]
+    {% if nic_transparent_mode.enable %}
+    type={{nic_transparent_mode.mode}}
+    name={{nic_transparent_mode.external_interface}}
+    {% else %}
     type=pcap
     name=lo
+    {% endif %}
 
     [packet_io.polling]
 ### note, polling_priority = call sapp_recv_pkt every call polling_entry times,     

@@ -31,4 +31,11 @@
 - hosts: blade-mxn
   roles:
     - tsg-env-mxn
-    
+
+- hosts: pc-as-tun-mode
+  roles:
+    - mrzcpd
+    - framework
+    - kni
+    - certstore
+    - tfe

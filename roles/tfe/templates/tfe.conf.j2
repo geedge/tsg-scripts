@@ -37,7 +37,7 @@ passthrough_all_tcp=0
 
 [traffic_mirror]
 device= {{ nic_traffic_mirror.name }}
-type = 1
+type = {{ nic_traffic_mirror.use_mrzcpd }}
 
 [ratelimit]
 #read_rate=200000

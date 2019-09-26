@@ -37,9 +37,25 @@
     name: mrenv
     enabled: yes
     daemon_reload: yes
+  when: nic_traffic_mirror.use_mrzcpd == 1
+
+- name: "mask mrenv"
+  systemd:
+    name: mrenv
+    masked: yes
+    daemon_reload: yes
+  when: nic_traffic_mirror.use_mrzcpd == 0
 
 - name: "enable mrzcpd"
   systemd:
     name: mrzcpd
     enabled: yes
     daemon_reload: yes
+  when: nic_traffic_mirror.use_mrzcpd == 1
+
+- name: "mask mrzcpd"
+  systemd:
+    name: mrzcpd
+    masked: yes
+    daemon_reload: yes
+  when: nic_traffic_mirror.use_mrzcpd == 0
