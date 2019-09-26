@@ -2,11 +2,11 @@ maat_redis_server:
     address: "192.168.40.120"
     port: 7002
     db: 0
-    
+
 dynamic_maat_redis_server:
-    address: 192.168.100.3
+    address: "192.168.40.120"
     port: 7002
-    db: 0
+    db: 1
 
 cert_store_server:
     address: "192.168.40.161"
@@ -18,7 +18,7 @@ log_kafkabrokers:
 log_minio:
     address: "192.168.40.223;"
     port: 9000
-    
+
 fs_remote:
     switch: 1
     address: "192.168.100.1"

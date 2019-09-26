@@ -71,9 +71,9 @@ effect_interval_s=1
 [dynamic_maat]
 maat_input_mode=1
 table_info=resource/pangu/dynamic_maat_table_info.conf
-maat_redis_server=127.0.0.1
-maat_redis_port_range=6380-6389
-maat_redis_db_index=0
+maat_redis_server={{ dynamic_maat_redis_server.address }}
+maat_redis_port_range={{ dynamic_maat_redis_server.port }}
+maat_redis_db_index={{ dynamic_maat_redis_server.db }}
 effect_interval_s=1
 
 [tango_cache]
