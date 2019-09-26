@@ -7,7 +7,7 @@
 - name: "install sapp rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/sapp-4.0.3.be1157c-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/sapp-4.0.4.d31932a-1.el7.x86_64.rpm
     state: present
 
 - name: "install kni rpms from localhost"
