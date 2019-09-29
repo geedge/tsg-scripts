@@ -16,3 +16,9 @@ package_source=pulp
 
 [blade-03]
 192.168.40.24
+
+[Functional_Host:children]
+blade-00
+blade-01
+blade-02
+blade-03

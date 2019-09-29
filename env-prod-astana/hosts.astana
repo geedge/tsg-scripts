@@ -65,3 +65,12 @@ blade-03
 
 [certstore]
 10.4.35.1 ansible_user=tsg
+
+
+[Functional_Host:children]
+blade-00
+blade-01
+blade-02
+blade-03
+
+

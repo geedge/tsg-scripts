@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: Functional_Host
   roles:
     - framework
     - kernel-ml
