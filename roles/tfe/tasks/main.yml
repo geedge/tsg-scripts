@@ -8,7 +8,7 @@
   yum:
     name:
       - /tmp/ansible_deploy/tfe-kmod-v1.0.4.20190923-1dkms.noarch.rpm
-      - /tmp/ansible_deploy/tfe-4.1.5.8d29fe5-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tfe-4.1.6.e94a8bb-1.el7.x86_64.rpm
     state: present
   when: package_source == "local"
 
