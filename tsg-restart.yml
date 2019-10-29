@@ -1,0 +1,15 @@
+- hosts: blade-00:blade-01:blade-02:blade-03
+  tasks:
+  - name: "restart mrzcpd"
+    systemd:
+      name: mrzcpd
+      daemon_reload: 1
+      state: restarted
+
+#- hosts: blade-01:blade-02:blade-03
+#  tasks:
+#  - name: "restart tfe"
+#    systemd:
+#      name: tfe
+#      daemon_reload: 1
+#      state: restarted

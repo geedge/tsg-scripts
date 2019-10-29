@@ -1,0 +1,11 @@
+nic_mgr:
+    name: enp7s0
+nic_data_incoming:
+    name: ens1f1
+    mac: AA:BB:CC:DD:EE:FF
+    address: 127.0.0.1
+nic_inner_ctrl:
+    name: ens1.100
+nic_traffic_mirror:
+    name: ens1f2
+    use_mrzcpd: 1

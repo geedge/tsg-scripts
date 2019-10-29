@@ -1,0 +1,30 @@
+- hosts: blade-00
+  tasks:
+  - name: "blade incpt - find corefiles to delete"
+    find:
+      paths: 
+        - /
+        - /home/tsg/certstore-base/
+        - /home/mesasoft/sapp_run/
+      patterns: core.*
+    register: blade_incpt_corefiles_to_delete
+
+  - name: "blade incpt cleanup coredump"
+    file:
+      state: absent
+      path: '{{ item.path }}'
+    with_items: "{{ blade_incpt_corefiles_to_delete.files }}"
+
+- hosts: blade-01:blade-02:blade-03
+  tasks:
+  - name: "find corefiles to delete"
+    find:
+      paths: /opt/tsg/tfe/
+      patterns: core.*
+    register: ctrl_corefiles_to_delete
+
+  - name: "cleanup coredump"
+    file:
+      state: absent
+      path: '{{ item.path }}'
+    with_items: "{{ ctrl_corefiles_to_delete.files }}"

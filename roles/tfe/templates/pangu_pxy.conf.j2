@@ -107,8 +107,8 @@ wiredlb_group=TangoCache
 
 cache_undefined_obj=1
 query_undefined_obj=0
-statsd_server=192.168.10.72
-statsd_port=8126
+statsd_server={{fs_remote.address}}
+statsd_port={{fs_remote.port}}
 histogram_bins=0.20,0.40,0.6,0.8
 
 log_fsstat_appname=tango_cache

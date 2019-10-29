@@ -1,5 +1,9 @@
 [system]
 nr_worker_threads={{ tfe.nr_threads }}
+enable_breakpad=1
+enable_breakpad_upload=0
+breakpad_minidump_dir=/run/tfe/crashreport/
+breakpad_upload_url=http://127.0.0.1:9000/
 
 [kni]
 ip=192.168.100.1
@@ -36,8 +40,8 @@ untrusted_ca_path=resource/tfe/tango-ca-v3-untrust-ca.pem
 passthrough_all_tcp=0
 
 [traffic_mirror]
-device= {{ nic_traffic_mirror.name }}
-type = {{ nic_traffic_mirror.use_mrzcpd }}
+device={{ nic_traffic_mirror.name }}
+type=0
 
 [ratelimit]
 #read_rate=200000

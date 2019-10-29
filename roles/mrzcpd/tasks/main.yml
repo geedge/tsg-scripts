@@ -6,7 +6,7 @@
 
 - name: "install mrzcpd"
   yum:
-    name: /tmp/ansible_deploy/mrzcpd-4.3.14.79e262c-1.el7.x86_64.rpm
+    name: /tmp/ansible_deploy/mrzcpd-4.3.15.7b8ad9e-1.el7.x86_64.rpm
     state: present
 
 - name: "update sysconfig/mrzcpd"
@@ -37,25 +37,38 @@
     name: mrenv
     enabled: yes
     daemon_reload: yes
-  when: nic_traffic_mirror.use_mrzcpd == 1
 
-- name: "mask mrenv"
-  systemd:
-    name: mrenv
-    masked: yes
-    daemon_reload: yes
-  when: nic_traffic_mirror.use_mrzcpd == 0
+#- name: "mask mrenv"
+#  systemd:
+#    name: mrenv
+#    masked: yes
+#    daemon_reload: yes
+#  when: nic_traffic_mirror.use_mrzcpd == 0
 
 - name: "enable mrzcpd"
   systemd:
     name: mrzcpd
-    enabled: yes
+    enabled: 1
     daemon_reload: yes
-  when: nic_traffic_mirror.use_mrzcpd == 1
 
-- name: "mask mrzcpd"
+- name: "enable mrtunnat on master"
   systemd:
-    name: mrzcpd
-    masked: yes
+    name: mrtunnat
+    enabled: 1
     daemon_reload: yes
-  when: nic_traffic_mirror.use_mrzcpd == 0
+  when: nic_traffic_mirror is not defined
+
+- name: "disable mrtunnat on slave"
+  systemd:
+    name: mrtunnat
+    enabled: 0
+    daemon_reload: yes
+  when: nic_traffic_mirror is defined
+
+
+#- name: "mask mrzcpd"
+#  systemd:
+#    name: mrzcpd
+#    masked: yes
+#    daemon_reload: yes
+#  when: nic_traffic_mirror.use_mrzcpd == 0

@@ -1,0 +1,48 @@
+- hosts: all
+  tasks:
+  - name: "empty rc.local"
+    copy:
+      src: rc.local
+      dest: /etc/rc.d/rc.local 
+      mode: 755
+
+- hosts: Functional_Host
+  tasks:
+   - name: "remove framework rpms"
+     yum: 
+       name: framework
+       state: absent
+   - name: "remove framework files"
+     file:
+       path: /opt/MESA/
+       state: absent
+       force: 1
+
+- hosts: blade-00
+  tasks:
+  - name: "remove certstore"
+    file:
+      path: /home/tsg/certstore-base/
+      state: absent
+      force: 1
+
+  - name: "remove kni"
+    file:
+      path: /home/tsg/kni/
+      state: absent
+      force: 1
+
+- hosts: Slave_Host
+  tasks:
+  - name: "remove tfe rpms"
+    yum:
+      name:
+        - tfe
+        - tfe-kmod
+      state: absent
+
+  - name: "remove tfe"
+    file:
+      path: /home/tsg/tfe
+      state: absent
+      force: 1

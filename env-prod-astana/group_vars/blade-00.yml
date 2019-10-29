@@ -1,0 +1,14 @@
+nic_mgr:
+    name: enp7s0
+nic_data_incoming:
+    name: ens1f4
+    address: 127.0.0.1
+nic_inner_ctrl:
+    name: ens1.100
+nic_to_tfe:
+    tfe0:
+        name: ens1f5
+    tfe1:
+        name: ens1f6
+    tfe2:
+        name: ens1f7

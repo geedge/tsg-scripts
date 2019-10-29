@@ -30,10 +30,26 @@
     src: "{{ role_path }}/templates/tfe.conf.j2"
     dest: /opt/tsg/tfe/conf/tfe/tfe.conf
 
+- name: "template the future.conf"
+  template:
+    src: "{{ role_path }}/templates/future.conf.j2"
+    dest: /opt/tsg/tfe/conf/tfe/future.conf
+
 - name: "template the pangu_pxy.conf"
   template:
     src: "{{ role_path }}/templates/pangu_pxy.conf.j2"
     dest: /opt/tsg/tfe/conf/pangu/pangu_pxy.conf
+
+- name: "create a override conf - first step, create dir"
+  file:
+    path: /etc/systemd/system/tfe.service.d/
+    state: directory
+    mode: '0755'
+
+- name: "create a override conf - second step, copy a override service file"
+  template:
+    src: "{{ role_path }}/templates/require-mrzcpd.conf.j2"
+    dest: /etc/systemd/system/tfe.service.d/require-mrzcpd.conf
 
 - name: "enable tfe-env"
   systemd:
