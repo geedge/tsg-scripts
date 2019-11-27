@@ -5,9 +5,9 @@
     dest: "/opt/tsg/env/"   
     mode: 0755   
 
-- name: "copy stop script"
+- name: "copy switch_control_client_non_block"
   copy:
-    src: "{{ role_path }}/files/stop"
+    src: "{{ role_path }}/files/switch_control_client_non_block"
     dest: "/opt/tsg/env/"   
     mode: 0755   
     
