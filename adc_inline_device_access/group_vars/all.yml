@@ -1,0 +1,62 @@
+maat_redis_server:
+    address: "192.168.41.206"
+    port: 7001
+    db: 0
+
+dynamic_maat_redis_server:
+    address: "192.168.41.206"
+    port: 7001
+    db: 1
+
+cert_store_server:
+    address: "192.168.100.1"
+    port: 9991
+
+log_kafkabrokers:
+    address: "192.168.41.204:9092"
+
+log_minio:
+    address: "192.168.41.206"
+    port: 9000
+
+fs_remote:
+    switch: 1
+    address: "192.168.100.1"
+    port: 58125
+
+nic_transparent_mode:
+    enable: 0
+
+run_as_tun_mode: 0
+package_source: "local"
+
+kni:
+    global:
+        log_level: 10
+        tfe_node_count: 3
+    watch_dog:
+        switch: 1
+    maat:
+        readconf_mode: 2
+    send_logger:
+        switch: 1
+    tfe_nodes:
+        - tfe0:
+              enabled: 1
+        - tfe1:
+              enabled: 1
+        - tfe2:
+              enabled: 1
+tfe:
+    nr_threads: 16
+    keykeeper:
+        mode: "normal"
+        no_cache: 0
+
+mrzcpd:
+    iocore: 47
+
+mrtunnat:
+    lcore_id: 46
+
+
