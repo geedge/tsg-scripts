@@ -1,11 +1,11 @@
 maat_redis_server:
     address: "192.168.41.206"
-    port: 7001
+    port: 7002
     db: 0
 
 dynamic_maat_redis_server:
     address: "192.168.41.206"
-    port: 7001
+    port: 7002
     db: 1
 
 cert_store_server:
