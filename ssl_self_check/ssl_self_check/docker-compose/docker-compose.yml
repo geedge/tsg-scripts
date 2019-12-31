@@ -1,0 +1,93 @@
+#for ssl self test
+version: '2.1'
+services:
+
+  badssl_test:
+    image: "badssl:ssl-self-test"
+    container_name: "badssl_ssl_self_test"
+    tty: true
+    networks:
+      vlan_ssl_net:
+        ipv4_address: 192.168.253.130
+        ipv6_address: fd00:a1bf:2c3d:ef5a:1e2f:3d4c:56ab:1010
+    volumes:
+     - /root/.badssl_self_test_cert_dict:/root/cert_dict
+    command: >
+      bash -c "cp /root/cert_dict/certs -rf /badssl.com
+      && cp /root/cert_dict/common -rf /badssl.com
+      && make inside-docker
+      && nginx
+      && tail -f /dev/null"
+
+  wpr_test:
+    image: "golang:wpr-alpine"
+    container_name: "wpr_ssl_self_test"
+    tty: true
+    networks:
+      vlan_ssl_net:
+        ipv4_address: 192.168.253.131
+        ipv6_address: fd00:a1bf:2c3d:ef5a:1e2f:3d4c:56ab:1011
+    volumes:
+     - /root/.go_wpr_test:/root/go_wpr_test
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        /root/wpr/wpr replay --http_port=80 --https_port=443 --host=0.0.0.0 --quiet_mode /root/wpr/archive.wprgo 
+        tail -f /dev/null
+        
+  ssl_unittest:
+    image: "python:unittest-alpine"
+    container_name: "unittest_ssl_self_test"
+    depends_on: 
+      - badssl_test
+      - wpr_test
+    tty: true
+    networks:
+      vlan_unittest_net:
+        ipv4_address: 192.168.253.3
+        ipv6_address: fd00:a1bf:2c3d:ef5b:6e7f:8d9c:abfe:1012
+    volumes:
+     - /root/.unittest_self_test_cafile_dict:/root/cafile_dict
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        cp -rf /root/cafile_dict/ca-root.crt /usr/local/share/ca-certificates
+        update-ca-certificates
+        cat /root/unittest/badssl.test.hosts >> /etc/hosts
+        python /root/unittest/unittest_self.py
+        tail -f /dev/null
+
+
+
+networks: 
+  vlan_ssl_net: 
+    name: vlan_ssl_self_test_net
+    driver: macvlan
+    enable_ipv6: true
+    driver_opts: 
+      parent: enp1s1
+    ipam: 
+      config: 
+        - subnet: 192.168.253.0/24
+          ip_range: 192.168.253.128/25  
+          gateway: 192.168.253.129
+        - subnet: fd00:a1bf:2c3d:ef5a::/63
+          ip_range: fd00:a1bf:2c3d:ef5a::/64
+          gateway: fd00:a1bf:2c3d:ef5a::1010
+
+  vlan_unittest_net: 
+    name: vlan_unittest_self_test_net
+    driver: macvlan
+    enable_ipv6: true
+    driver_opts:
+      parent: ens1f1
+    ipam:
+      config:
+        - subnet: 192.168.253.0/24
+          ip_range: 192.168.253.0/25
+          gateway: 192.168.253.1
+        - subnet: fd00:a1bf:2c3d:ef5a::/63
+          ip_range: fd00:a1bf:2c3d:ef5b::/64
+          gateway: fd00:a1bf:2c3d:ef5a::1011
