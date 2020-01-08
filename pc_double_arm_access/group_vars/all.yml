@@ -23,6 +23,17 @@ fs_remote:
   switch: 1
   address: "127.0.0.1"
   port: 8125
+  
+install_dns_debug: "yes"
+install_ftp_debug: "yes"
+install_http_debug: "yes"
+install_mail_debug: "yes"
+install_ssl_debug: "yes"
+install_fw_dns_plug_debug: "yes"
+install_fw_ftp_plug_debug: "yes"
+install_fw_http_plug_debug: "yes"
+install_fw_mail_plug_debug: "yes"
+install_tsg_master: "yes"
 
 kni:
   global:
