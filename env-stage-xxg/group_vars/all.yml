@@ -24,15 +24,14 @@ fs_remote:
     address: "192.168.100.1"
     port: 8125
 
+nic_transparent_mode:
+    enable: 0
+
 kni:
     global:
         log_level: 30
         tfe_node_count: 3
     watch_dog:
-        switch: 1
-    maat:
-        readconf_mode: 2
-    send_logger:
         switch: 1
     tfe_nodes:
         - tfe0:
@@ -52,3 +51,5 @@ mrzcpd:
 
 mrtunnat:
     lcore_id: 46
+
+run_as_tun_mode: 1

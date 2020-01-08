@@ -1,0 +1,41 @@
+---
+- name: "copy sapp to destination server"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: /tmp/ansible_deploy/
+
+- name: "install sapp rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/sapp-4.0.5.3385992-1.el7.x86_64.rpm
+    state: present
+
+- name: Template the sapp.toml
+  template:
+    src: "{{ role_path }}/templates/sapp.toml.j2"
+    dest: /home/mesasoft/sapp_run/etc/sapp.toml
+  tags: template
+
+- name: Template the project_list.conf
+  template:
+    src: "{{ role_path }}/templates/project_list.conf.j2"
+    dest: /home/mesasoft/sapp_run/etc/project_list.conf
+  tags: template
+
+- name: Template the conflist.inf
+  template:
+    src: "{{ role_path }}/templates/conflist.inf.j2"
+    dest: /home/mesasoft/sapp_run/plug/conflist.inf
+  tags: template
+
+- name: Template the gdev.conf
+  template:
+    src: "{{ role_path }}/templates/gdev.conf.j2"
+    dest: /home/mesasoft/sapp_run/etc/gdev.conf
+  tags: template
+  
+- name: "enable sapp"
+  systemd:
+    name: sapp
+    enabled: yes
+    daemon_reload: yes

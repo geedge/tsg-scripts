@@ -1,53 +1,17 @@
 ---
-- name: "copy sapp and kni to destination server"
+- name: "copy kni to destination server"
   copy:
     src: "{{ role_path }}/files/"
     dest: /tmp/ansible_deploy/
 
-- name: "install sapp rpms from localhost"
-  yum:
-    name:
-      - /tmp/ansible_deploy/sapp-4.0.4.d31932a-1.el7.x86_64.rpm
-    state: present
-
 - name: "install kni rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/kni-2.1.5.9e42ae3-1.el7.centos.x86_64.rpm
+      - /tmp/ansible_deploy/kni-3.0.0.4484554-1.el7.x86_64.rpm
     state: present
-
-- name: Template the sapp.toml
-  template:
-    src: "{{ role_path }}/templates/sapp.toml.j2"
-    dest: /home/mesasoft/sapp_run/etc/sapp.toml
-  tags: template
-
-- name: Template the project_list.conf
-  template:
-    src: "{{ role_path }}/templates/project_list.conf.j2"
-    dest: /home/mesasoft/sapp_run/etc/project_list.conf
-  tags: template
-
-- name: Template the conflist.inf
-  template:
-    src: "{{ role_path }}/templates/conflist.inf.j2"
-    dest: /home/mesasoft/sapp_run/plug/conflist.inf
-  tags: template
-
-- name: Template the gdev.conf
-  template:
-    src: "{{ role_path }}/templates/gdev.conf.j2"
-    dest: /home/mesasoft/sapp_run/etc/gdev.conf
-  tags: template
 
 - name: Template the kni.conf
   template:
     src: "{{ role_path }}/templates/kni.conf.j2"
     dest: /home/mesasoft/sapp_run/etc/kni/kni.conf
   tags: template
-
-- name: "enable sapp"
-  systemd:
-    name: sapp
-    enabled: yes
-    daemon_reload: yes

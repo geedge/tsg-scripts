@@ -36,8 +36,6 @@ kni:
         tfe_node_count: 3
     watch_dog:
         switch: 1
-    maat:
-        readconf_mode: 2
     send_logger:
         switch: 1
     tfe_nodes:
