@@ -23,7 +23,7 @@
 
 - name: install certstore
   unarchive:
-    src: "{{ role_path }}/files/certstore-base-online-20191217.tar.gz"
+    src: "{{ role_path }}/files/certstore-base-online-20200108.tar.gz"
     dest: /home/tsg
 
 - name: template certstore configure file

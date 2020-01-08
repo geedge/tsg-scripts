@@ -26,6 +26,16 @@ stek_group_num=4
 stek_rotation_time=3600
 service_cache_expire_seconds=600
 
+# SSL mid cert cache
+# default 0
+mc_cache_enable=1
+# default eth0
+mc_cache_eth=ens1.100
+# default NULL
+mc_cache_broker_list=192.168.40.186:9092
+# default PXY-EXCH-INTERMEDIA-CERT
+mc_cache_topic=PXY-EXCH-INTERMEDIA-CERT
+
 [key_keeper]
 #Mode: debug - generate cert with ca_path, normal - generate cert with cert store
 #0 on cache 1 off cache
