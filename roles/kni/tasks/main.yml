@@ -68,7 +68,7 @@
 - name: "install fw_http_plug-debug rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/fw_http_plug-debug-1.0.2.f307503-1.el7.centos.x86_64.rpm
+      - /tmp/ansible_deploy/fw_http_plug-debug-1.0.3.3c95e78-1.el7.centos.x86_64.rpm
     state: present
   when: install_fw_http_plug_debug == "yes" 
  
