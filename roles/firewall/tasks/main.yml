@@ -1,0 +1,75 @@
+---
+- name: "copy firewall rpms to destination server"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: /tmp/ansible_deploy/
+
+- name: "install dns-debug rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/dns-debug-1.0.0.-1.el7.x86_64.rpm
+    state: present
+  when: install_dns_debug == "yes"
+
+- name: "install ftp-debug rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/ftp-debug-1.0.0.-1.el7.x86_64.rpm
+    state: present
+  when: install_ftp_debug == "yes"
+
+- name: "install http-debug rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/http-debug-1.0.0.-1.el7.x86_64.rpm
+    state: present
+  when: install_http_debug == "yes"
+ 
+- name: "install mail-debug rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/mail-debug-1.0.0.-1.el7.x86_64.rpm
+    state: present
+  when: install_mail_debug == "yes"
+
+- name: "install ssl-debug rpms from localhost"
+  yum:
+    name:   
+      - /tmp/ansible_deploy/ssl-debug-1.0.0.-1.el7.x86_64.rpm
+    state: present
+  when: install_ssl_debug == "yes"
+
+- name: "install fw_dns_plug-debug rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/fw_dns_plug-debug-1.0.2.1c9d36d-1.el7.centos.x86_64.rpm
+    state: present
+  when: install_fw_dns_plug_debug == "yes" 
+ 
+- name: "install fw_ftp_plug-debug rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/fw_ftp_plug-debug-1.0.0.bd656e4-1.el7.centos.x86_64.rpm
+    state: present
+  when: install_fw_ftp_plug_debug == "yes"
+  
+- name: "install fw_http_plug-debug rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/fw_http_plug-debug-1.0.3.3c95e78-1.el7.centos.x86_64.rpm
+    state: present
+  when: install_fw_http_plug_debug == "yes" 
+ 
+- name: "install fw_mail_plug-debug rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/fw_mail_plug-debug-1.0.1.8792ed8-1.el7.centos.x86_64.rpm
+    state: present
+  when: install_fw_mail_plug_debug == "yes"
+
+- name: "install tsg-master rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/tsg_master-debug-1.0.1.f624b67-1.el7.centos.x86_64.rpm
+    state: present
+  when: install_tsg_master == "yes" 
