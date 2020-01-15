@@ -7,7 +7,7 @@
 - name: "install kni rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/kni-3.0.0.4484554-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/kni-debug-3.0.1.f81dd69-1.el7.x86_64.rpm
     state: present
 
 - name: Template the kni.conf
