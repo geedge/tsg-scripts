@@ -60,6 +60,8 @@ kni:
               enabled: 1
 tfe:
     nr_threads: 16
+    kni_ip: 192.168.100.1
+    mc_cache_eth: ens1.100
     keykeeper:
         mode: "normal"
         no_cache: 0

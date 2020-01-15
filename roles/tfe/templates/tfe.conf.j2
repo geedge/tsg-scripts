@@ -6,7 +6,7 @@ breakpad_minidump_dir=/run/tfe/crashreport/
 breakpad_upload_url=http://127.0.0.1:9000/
 
 [kni]
-ip=192.168.100.1
+ip={{ tfe.kni_ip }}
 scm_port=2475
 watchdog_switch=1
 watchdog_port=2476
@@ -30,7 +30,7 @@ service_cache_expire_seconds=600
 # default 0
 mc_cache_enable=1
 # default eth0
-mc_cache_eth=ens1.100
+mc_cache_eth={{ tfe.mc_cache_eth }}
 # default NULL
 mc_cache_broker_list={{ log_kafkabrokers.address }}
 # default PXY-EXCH-INTERMEDIA-CERT
@@ -46,7 +46,7 @@ cert_store_port= {{ cert_store_server.port }}
 ca_path=resource/tfe/tango-ca-v3-trust-ca.pem
 untrusted_ca_path=resource/tfe/tango-ca-v3-untrust-ca.pem
 
-[debug]
+[debug]	
 passthrough_all_tcp=0
 
 [traffic_mirror]
