@@ -7,7 +7,9 @@
   roles:
     - tsg-env-mcn0
     - mrzcpd
+    - sapp
     - kni
+    - firewall
     - certstore
 
 - hosts: blade-01
@@ -36,6 +38,8 @@
   roles:
     - mrzcpd
     - framework
+    - sapp
     - kni
+    - firewall
     - certstore
     - tfe
