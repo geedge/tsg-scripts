@@ -11,6 +11,7 @@
     - kni
     - firewall
     - certstore
+    - cert-redis
 
 - hosts: blade-01
   roles:

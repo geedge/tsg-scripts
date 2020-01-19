@@ -34,6 +34,12 @@
     dest: /home/mesasoft/sapp_run/etc/gdev.conf
   tags: template
   
+- name: Template the tsgconf/main.conf
+  template:
+    src: "{{ role_path }}/templates/main.conf.j2"
+    dest: /home/mesasoft/sapp_run/tsgconf/main.conf
+  tags: template
+
 - name: "enable sapp"
   systemd:
     name: sapp

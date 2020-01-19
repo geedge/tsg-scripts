@@ -30,7 +30,7 @@ service_cache_expire_seconds=600
 # default 0
 mc_cache_enable=1
 # default eth0
-mc_cache_eth={{ tfe.mc_cache_eth }}
+mc_cache_eth={{ nic_inner_ctrl.name }}
 # default NULL
 mc_cache_broker_list={{ log_kafkabrokers.address }}
 # default PXY-EXCH-INTERMEDIA-CERT

@@ -4,26 +4,13 @@
     src: "{{ role_path }}/files/"
     dest: "/tmp/ansible_deploy/"
 
-#- name: "install redis"
-#  yum:
-#    name:
-#      - /tmp/ansible_deploy/jemalloc-3.6.0-1.el7.x86_64.rpm
-#      - /tmp/ansible_deploy/redis-3.2.12-2.el7.x86_64.rpm
-#    state: present
-
-#- name: "enable redis"
-#  systemd:
-#    name: redis
-#    enabled: yes
-#    state: started
-
 - name: Ensures /home/tsg exists
   file: path=/home/tsg state=directory
   tags: mkdir
 
 - name: install certstore
   unarchive:
-    src: "{{ role_path }}/files/certstore-base-online-20200108.tar.gz"
+    src: "{{ role_path }}/files/certstore-base-online-20200119.tar.gz"
     dest: /home/tsg
 
 - name: template certstore configure file

@@ -1,0 +1,4 @@
+#!/bin/bash
+#
+
+/usr/local/bin/redis-server /home/ceiec/cert-redis/6379/6379.conf
