@@ -1,6 +1,6 @@
 - hosts: all
   roles:
-   - dogroups
+   - groups-by-IPMB-addr
 
 - hosts: Functional_Host
   roles:
