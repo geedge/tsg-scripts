@@ -1,0 +1,38 @@
+#!/usr/bin/python
+import json
+import os
+import re
+
+class GroupsByIPMB(object):
+
+    def __init__(self,IPMB_cmd_str):
+        self.IPMB_cmd_str = IPMB_cmd_str
+        self.IPMB_num_str = None 
+        self.IPMB_cmd_ret_str = None
+
+    def groups_exec_IPMB_command(self):
+        opt_handler = os.popen(self.IPMB_cmd_str)
+        self.IPMB_cmd_ret_str = opt_handler.read()
+        opt_handler.close()
+
+    def groups_split_IPMB_ret_str(self):
+        info_list = re.split(' |\n',self.IPMB_cmd_ret_str)
+        if info_list [5] == '90':
+            self.IPMB_num_str = 'IPMB_num_blade_00'
+        if info_list [5] == '80':
+            self.IPMB_num_str = 'IPMB_num_blade_01'
+        if info_list [5] == '88':
+            self.IPMB_num_str = 'IPMB_num_blade_02'
+        if info_list [5] == '98':
+            self.IPMB_num_str = 'IPMB_num_blade_03' 
+
+    def groups_print_IPMB_num_str(self):
+            print (json.dumps(self.IPMB_num_str))
+
+
+if __name__ == '__main__':
+    IPMB_cmd_str = 'ipmitool raw 0x2e 0x32 0x13 0x5f 0x00'        
+    groups_by_IPMB = GroupsByIPMB(IPMB_cmd_str)
+    groups_by_IPMB.groups_exec_IPMB_command()
+    groups_by_IPMB.groups_split_IPMB_ret_str()
+    groups_by_IPMB.groups_print_IPMB_num_str()
