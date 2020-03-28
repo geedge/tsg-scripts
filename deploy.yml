@@ -37,8 +37,9 @@
 
 - hosts: pc-as-tun-mode
   roles:
-    - mrzcpd
+    - kernel-ml
     - framework
+    - mrzcpd
     - sapp
     - kni
     - firewall

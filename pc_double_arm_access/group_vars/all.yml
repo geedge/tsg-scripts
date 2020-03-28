@@ -35,6 +35,9 @@ install_fw_http_plug_debug: "yes"
 install_fw_mail_plug_debug: "yes"
 install_tsg_master: "yes"
 
+sapp:
+  worker_threads: 16
+
 kni:
   global:
     log_level: 30
@@ -72,13 +75,6 @@ nic_data_incoming:
   address: 127.0.0.1
 nic_inner_ctrl:
   name: lo
-nic_to_tfe:
-  tfe0:
-    name: lo
-  tfe1:
-    name: lo
-  tfe2:
-    name: lo
 nic_traffic_mirror:
   name: lo
   use_mrzcpd: 0
