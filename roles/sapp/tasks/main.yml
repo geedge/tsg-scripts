@@ -40,6 +40,13 @@
     dest: /home/mesasoft/sapp_run/tsgconf/main.conf
   tags: template
 
+
+- name: Template the tsgconf/maat.conf
+  template:
+    src: "{{ role_path }}/templates/maat.conf.j2"
+    dest: /home/mesasoft/sapp_run/tsgconf/maat.conf
+  tags: template
+
 - name: "enable sapp"
   systemd:
     name: sapp

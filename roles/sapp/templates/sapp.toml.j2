@@ -9,10 +9,17 @@
 instance_name = "sapp4"
 
 [CPU]
-worker_threads=16
+{% if run_as_tun_mode %}
+worker_threads=1
+{% else %}
+worker_threads={{ sapp.worker_threads }}
+{% endif %}
 ### note, bind_mask, if you do not want to bind thread to special CPU core, keep it empty as []
+{% if run_as_tun_mode %}
+bind_mask=[]
+{% else %}
 bind_mask=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
-#bind_mask=[]
+{% endif %}
 
 [PACKET_IO]
 ### note, BSD_packet_filter, if you do not want to set any filter rule, keep it empty as ""

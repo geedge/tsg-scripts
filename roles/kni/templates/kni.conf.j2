@@ -11,7 +11,8 @@ deploy_mode = normal
 tun_name = tun_kni
 src_mac_addr = 00:0e:c6:d6:72:c1
 dst_mac_addr = fe:65:b7:03:50:bd
-
+{% if run_as_tun_mode %}
+{% else %}
 [tfe0]
 enabled = 1
 dev_eth_symbol = {{ nic_to_tfe.tfe0.name }}
@@ -26,7 +27,7 @@ ip_addr = 192.168.100.3
 enabled = 1
 dev_eth_symbol = {{ nic_to_tfe.tfe2.name }}
 ip_addr = 192.168.100.4
-
+{% endif %}
 [tfe_cmsg_receiver]
 listen_eth = {{ nic_inner_ctrl.name }}
 listen_port = 2475
