@@ -40,8 +40,10 @@
     - kernel-ml
     - framework
     - mrzcpd
+    - tsg-env-tun-mode
     - sapp
     - kni
     - firewall
     - certstore
+    - cert-redis
     - tfe

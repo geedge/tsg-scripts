@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+echo 0 >/sys/class/net/ens1/device/sriov_numvfs
+ifconfig {{ nic_mgr.name }}.100 down
+vconfig rem {{ nic_mgr.name }}.100
