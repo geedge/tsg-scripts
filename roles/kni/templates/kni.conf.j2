@@ -28,6 +28,7 @@ enabled = 1
 dev_eth_symbol = {{ nic_to_tfe.tfe2.name }}
 ip_addr = 192.168.100.4
 {% endif %}
+
 [tfe_cmsg_receiver]
 listen_eth = {{ nic_inner_ctrl.name }}
 listen_port = 2475
