@@ -73,3 +73,17 @@
       - /tmp/ansible_deploy/tsg_master-debug-1.0.1.f624b67-1.el7.centos.x86_64.rpm
     state: present
   when: install_tsg_master == "yes" 
+
+- name: Template the tsgconf/main.conf
+  template:
+    src: "{{ role_path }}/templates/main.conf.j2"
+    dest: /home/mesasoft/sapp_run/tsgconf/main.conf
+  tags: template
+
+
+- name: Template the tsgconf/maat.conf
+  template:
+    src: "{{ role_path }}/templates/maat.conf.j2"
+    dest: /home/mesasoft/sapp_run/tsgconf/maat.conf
+  tags: template
+

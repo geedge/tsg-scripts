@@ -10,6 +10,11 @@
       - /tmp/ansible_deploy/sapp-4.0.5.3385992-1.el7.x86_64.rpm
     state: present
 
+- name: make dir
+  file:
+    path: /home/mesasoft/sapp_run/tsgconf
+    state: directory
+
 - name: Template the sapp.toml
   template:
     src: "{{ role_path }}/templates/sapp.toml.j2"
@@ -34,19 +39,6 @@
     dest: /home/mesasoft/sapp_run/etc/gdev.conf
   tags: template
   
-- name: Template the tsgconf/main.conf
-  template:
-    src: "{{ role_path }}/templates/main.conf.j2"
-    dest: /home/mesasoft/sapp_run/tsgconf/main.conf
-  tags: template
-
-
-- name: Template the tsgconf/maat.conf
-  template:
-    src: "{{ role_path }}/templates/maat.conf.j2"
-    dest: /home/mesasoft/sapp_run/tsgconf/maat.conf
-  tags: template
-
 - name: "enable sapp"
   systemd:
     name: sapp
