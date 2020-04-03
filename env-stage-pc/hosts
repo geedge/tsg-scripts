@@ -1,6 +1,0 @@
-[all:vars]
-ansible_user=root
-package_source=local
-
-[pc-as-tun-mode]
-192.168.40.85
