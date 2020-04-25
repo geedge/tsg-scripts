@@ -9,16 +9,16 @@
 instance_name = "sapp4"
 
 [CPU]
-{% if run_as_tun_mode %}
+{% if tsg_access_type == 0 %}
 worker_threads=1
 {% else %}
 worker_threads={{ sapp.worker_threads }}
 {% endif %}
 ### note, bind_mask, if you do not want to bind thread to special CPU core, keep it empty as []
-{% if run_as_tun_mode %}
+{% if tsg_access_type == 0 %}
 bind_mask=[]
 {% else %}
-bind_mask=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+bind_mask=[{{ sapp.bind_mask }}]
 {% endif %}
 
 [PACKET_IO]
@@ -27,7 +27,7 @@ BSD_packet_filter=""
    
 ### note, depolyment.mode options: [mirror, inline, transparent]
     [packet_io.depolyment]
-    {% if nic_transparent_mode.enable %}
+    {% if nic_transparent_mode.enable == 1 %}
     mode=transparent
     {% else %}
     mode=inline
@@ -35,7 +35,7 @@ BSD_packet_filter=""
 
 ### note, interface.type options: [pag,pcap,marsio]
     [packet_io.internal.interface]
-    {% if nic_transparent_mode.enable %}
+    {% if nic_transparent_mode.enable == 1 %}
     type={{nic_transparent_mode.mode}}
     name={{nic_transparent_mode.internel_interface}}
     {% else %}

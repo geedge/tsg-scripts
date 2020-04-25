@@ -9,6 +9,7 @@
     name:
       - /tmp/ansible_deploy/kernel/kernel-ml-5.1.8-1.el7.elrepo.x86_64.rpm
       - /tmp/ansible_deploy/kernel/kernel-ml-devel-5.1.8-1.el7.elrepo.x86_64.rpm
+      - /tmp/ansible_deploy/dkms-2.7.1-1.el7.noarch.rpm
     state: present
   register: t_kernel_ml
 

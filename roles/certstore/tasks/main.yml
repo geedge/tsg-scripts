@@ -1,5 +1,4 @@
----
-- name: "copy redis and dependency to destination"
+- name: "copy certstore rpm to destination"
   synchronize:
     src: "{{ role_path }}/files/"
     dest: "/tmp/ansible_deploy/"
@@ -9,18 +8,19 @@
   tags: mkdir
 
 - name: install certstore
-  unarchive:
-    src: "{{ role_path }}/files/certstore-base-online-20200119.tar.gz"
-    dest: /home/tsg
+  yum:
+    name:
+      - /tmp/ansible_deploy/certstore-v20.04.3989072-1.el7.x86_64.rpm
+    state: present
 
 - name: template certstore configure file
   template:
     src: "{{ role_path }}/templates/cert_store.ini.j2"
     dest: /home/tsg/certstore-base/conf/cert_store.ini
 
-- name: bootup certstore
-  blockinfile:
-    marker: "## {mark} bootstrap certstore"
-    path: /etc/rc.d/rc.local
-    block: |
-      cd /home/tsg/certstore-base; ./r2_certstore
+- name: "start certstore"
+  systemd:
+    name: certstore.service
+    state: started
+    enabled: yes
+    daemon_reload: yes

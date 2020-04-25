@@ -10,6 +10,8 @@
     - sapp
     - kni
     - firewall
+    - http_healthcheck
+    - clotho
     - certstore
     - cert-redis
 
@@ -44,6 +46,8 @@
     - sapp
     - kni
     - firewall
+    - http_healthcheck
+    - clotho
     - certstore
     - cert-redis
     - tfe

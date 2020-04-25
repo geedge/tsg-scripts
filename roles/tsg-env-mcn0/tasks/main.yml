@@ -2,8 +2,16 @@
 - name: "copy setup script"
   copy:
     src: "{{ role_path }}/files/setup"
-    dest: "/opt/tsg/env/"   
+    dest: /opt/tsg/env/   
     mode: 0755   
+  when: tsg_access_type == 1
+
+- name: "Template setup script"
+  template:
+    src: "{{ role_path }}/templates/setup.AllotAccess.j2"
+    dest: /opt/tsg/env/setup
+    mode: 0755
+  when: tsg_access_type == 2
 
 - name: "copy switch_control_client_non_block"
   copy:

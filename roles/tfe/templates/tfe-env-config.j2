@@ -5,7 +5,7 @@ TFE_PEER_MAC_DATA_INCOMING=aa:bb:cc:dd:ee:ff
 TFE_LOCAL_IP_DATA_INCOMING=172.16.241.2
 TFE_PEER_IP_DATA_INCOMING=172.16.241.1
 
-{% if run_as_tun_mode %}
+{% if tsg_access_type == 0 %}
 TFE_WATCHDOG_DEVICE={{ nic_inner_ctrl.name }}
 TFE_WATCHDOG_IP=192.168.100.1
 {% endif %}

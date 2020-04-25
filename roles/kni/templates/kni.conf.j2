@@ -3,7 +3,7 @@ log_path = ./log/kni/kni.log
 log_level = {{ kni.global.log_level }}
 tfe_node_count = {{ kni.global.tfe_node_count }}
 manage_eth = {{ nic_mgr.name }}
-{% if run_as_tun_mode %}
+{% if tsg_access_type == 0 %}
 deploy_mode = tun
 {% else %}
 deploy_mode = normal
@@ -11,7 +11,7 @@ deploy_mode = normal
 tun_name = tun_kni
 src_mac_addr = 00:0e:c6:d6:72:c1
 dst_mac_addr = fe:65:b7:03:50:bd
-{% if run_as_tun_mode %}
+{% if tsg_access_type == 0 %}
 {% else %}
 [tfe0]
 enabled = 1

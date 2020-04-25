@@ -7,18 +7,9 @@
 - name: "install tfe rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/tfe-kmod-v1.0.4.20190923-1dkms.noarch.rpm
-      - /tmp/ansible_deploy/tfe-4.3.0.202001081429550800.92060ee-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tfe-kmod-v1.0.5.20200408-1dkms.noarch.rpm
+      - /tmp/ansible_deploy/tfe-4.3.1.cc89b5b-1.el7.x86_64.rpm
     state: present
-  when: package_source == "local"
-
-- name: "install tfe rpms from pulp"
-  yum:
-    name:
-      - /tmp/ansible_deploy/tfe-kmod-v1.0.4.20190923-1dkms.noarch.rpm
-      - tfe
-    state: latest
-  when: package_source == "pulp"
 
 - name: "template tfe-env config"
   template:
@@ -56,14 +47,6 @@
     name: tfe-env
     enabled: yes
     daemon_reload: yes
-  when: not run_as_tun_mode
-
-- name: "enable tfe-env-tun"
-  systemd:
-    name: tfe-env-tun-mode
-    enabled: yes
-    daemon_reload: yes
-  when: run_as_tun_mode
 
 - name: "enable tfe"
   systemd:

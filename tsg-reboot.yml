@@ -1,9 +1,0 @@
-#- hosts: all
-#  tasks:
-#  - name: "reboot all"
-#    reboot:
-
-- hosts: Functional_Host
-  tasks:
-  - name: "reboot all compute blade"
-    reboot:
