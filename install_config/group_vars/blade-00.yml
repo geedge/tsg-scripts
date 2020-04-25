@@ -1,0 +1,23 @@
+nic_mgr:
+    name: enp6s0
+nic_data_incoming:
+    name: ens1f4
+    ip: 192.168.1.30
+    mask: 255.255.255.252
+nic_inner_ctrl:
+    name: ens1.100
+nic_to_tfe:
+    tfe0:
+        name: ens1f5
+    tfe1:
+        name: ens1f6
+    tfe2:
+        name: ens1f7
+
+AllotAccess:
+    virturlInterface_1: ens1f2.103
+    virturlInterface_2: ens1f2.104
+    virturlID_1: 103
+    virturlID_2: 104
+    vvipv4_mask: 24
+    vvipv6_mask: 64

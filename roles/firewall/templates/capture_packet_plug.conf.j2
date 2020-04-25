@@ -1,0 +1,25 @@
+[MAAT]
+MAAT_MODE=2
+#EFFECTIVE_FLAG=
+STAT_SWITCH=1
+PERF_SWITCH=1
+TABLE_INFO=conf/capture_packet_tableinfo.conf
+STAT_FILE=capture_packet_maat.status
+EFFECT_INTERVAL_S=1
+REDIS_IP={{ maat_redis_server.address }}
+REDIS_PORT_NUM=1
+REDIS_PORT={{ maat_redis_server.port }}
+REDIS_INDEX=0
+JSON_CFG_FILE=conf/capture_packet_maat.json
+INC_CFG_DIR=capture_packet_rule/inc/index/
+FULL_CFG_DIR=capture_packet_rule/full/index/
+
+[LOG]
+NIC_NAME={{ nic_mgr.name }}
+BROKER_LIST={{ log_kafkabrokers.address }}
+FIELD_FILE=conf/capture_packet_log_field.conf
+
+[SYSTEM]
+LOG_LEVEL=10
+LOG_PATH=./tsglog/capture_packet_plug/capture_packet
+
