@@ -25,6 +25,5 @@
   systemd:
     name: clotho.service
     enabled: yes
-    state: started
     daemon_reload: yes
 

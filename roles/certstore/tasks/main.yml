@@ -16,7 +16,7 @@
 - name: template certstore configure file
   template:
     src: "{{ role_path }}/templates/cert_store.ini.j2"
-    dest: /home/tsg/certstore-base/conf/cert_store.ini
+    dest: /home/tsg/certstore/conf/cert_store.ini
 
 - name: "start certstore"
   systemd:

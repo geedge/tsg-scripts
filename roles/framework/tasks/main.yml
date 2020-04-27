@@ -10,7 +10,6 @@
   vars:
     packages:
       - /tmp/ansible_deploy/framework-debug-2.0.17.1e678c4-1.el7.centos.x86_64.rpm
-      - /tmp/ansible_deploy/libmaatframe-2.8.0.5a450d2-1.el7.x86_64.rpm/
 
 - name: "install framework ld.conf"
   synchronize:
