@@ -11,10 +11,5 @@
     packages:
       - /tmp/ansible_deploy/framework-debug-2.0.17.1e678c4-1.el7.centos.x86_64.rpm
 
-- name: "install framework ld.conf"
-  synchronize:
-    src: "{{ role_path }}/files/framework/framework.conf"
-    dest: /etc/ld.so.conf.d/framework.conf
-
 - name: "update ld"
   command: ldconfig
