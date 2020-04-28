@@ -5,7 +5,7 @@
 
 - hosts: blade-00
   roles:
-    - tsg-env-mcn0
+#    - tsg-env-mcn0
     - mrzcpd
     - sapp
     - kni
@@ -17,25 +17,25 @@
 
 - hosts: blade-01
   roles:
-    - tsg-env-mcn1
+#    - tsg-env-mcn1
     - mrzcpd
     - tfe
 
 - hosts: blade-02
   roles:
-    - tsg-env-mcn2
+#    - tsg-env-mcn2
     - mrzcpd
     - tfe
 
 - hosts: blade-03
   roles:
-    - tsg-env-mcn3
+#    - tsg-env-mcn3
     - mrzcpd
     - tfe
 
 - hosts: blade-mxn
   roles:
-    - tsg-env-mxn
+#    - tsg-env-mxn
 
 - hosts: pc-as-tun-mode
   roles:
