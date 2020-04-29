@@ -1,8 +1,13 @@
 [platform]
 {% if tsg_access_type == 1 %}
 ./plug/platform/g_device_plug/g_device_plug.inf
+#./plug/platform/http_healthcheck/http_healthcheck.inf
+{% elif tsg_access_type == 2 %}
+#./plug/platform/g_device_plug/g_device_plug.inf
+./plug/platform/http_healthcheck/http_healthcheck.inf
 {% else %}
 #./plug/platform/g_device_plug/g_device_plug.inf
+#./plug/platform/http_healthcheck/http_healthcheck.inf
 {% endif %}
 ./plug/platform/tsg_master/tsg_master.inf
 
