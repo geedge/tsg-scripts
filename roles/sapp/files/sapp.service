@@ -1,0 +1,11 @@
+[Unit]
+Description=sapp service
+Requires=mrzcpd.service
+After=mrzcpd.service
+[Service]
+WorkingDirectory=/home/mesasoft/sapp_run
+ExecStart=/home/mesasoft/sapp_run/sapp
+Restart=always
+RestartSec=5s
+[Install]
+WantedBy=multi-user.target
