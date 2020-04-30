@@ -18,9 +18,9 @@
       - /tmp/ansible_deploy/tsg_conn_record-1.0.0.2155660-1.el7.centos.x86_64.rpm
       - /tmp/ansible_deploy/fw_dns_plug-debug-1.0.3.ea8e0f6-1.el7.centos.x86_64.rpm
       - /tmp/ansible_deploy/fw_ftp_plug-debug-1.0.1.a5c1e05-1.el7.centos.x86_64.rpm
-      - /tmp/ansible_deploy/fw_http_plug-debug-1.0.8.620f455-1.el7.centos.x86_64.rpm
-      - /tmp/ansible_deploy/fw_mail_plug-debug-1.0.2.f513698-1.el7.centos.x86_64.rpm
-      - /tmp/ansible_deploy/fw_ssl_plug-1.0.1.d232f96-1.el7.centos.x86_64.rpm
+      - /tmp/ansible_deploy/fw_ssl_plug-1.0.0.-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_mail_plug-debug-1.0.0.-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_http_plug-debug-1.0.0.-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/capture_packet_plug-debug-1.0.0.-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/clotho-debug-1.0.0.-1.el7.x86_64.rpm
 

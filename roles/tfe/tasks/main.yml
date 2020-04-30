@@ -8,7 +8,7 @@
   yum:
     name:
       - /tmp/ansible_deploy/tfe-kmod-v1.0.5.20200408-1dkms.noarch.rpm
-      - /tmp/ansible_deploy/tfe-4.3.1.cc89b5b-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tfe-4.3.1.202004291711100800.374930d-1.el7.x86_64.rpm
     state: present
 
 - name: "template tfe-env config"
