@@ -13,7 +13,7 @@ dynamic_maat_redis_server:
   db: 0
 
 cert_store_server:
-  address: "127.0.0.1"
+  address: "192.168.100.1"
   port: 9991
 
 log_kafkabrokers:
@@ -25,8 +25,8 @@ log_minio:
 
 fs_remote:
   switch: 1
-  address: "127.0.0.1"
-  port: 8125
+  address: "192.168.100.1"
+  port: 58125
   
 ########################################
 sapp:
