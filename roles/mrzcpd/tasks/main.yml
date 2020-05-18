@@ -6,7 +6,7 @@
 
 - name: "install mrzcpd"
   yum:
-    name: /tmp/ansible_deploy/mrzcpd-4.3.18.f543325-1.el7.x86_64.rpm
+    name: /tmp/ansible_deploy/mrzcpd-4.3.19.f936069-1.el7.x86_64.rpm
     state: present
 
 - name: "update sysconfig/mrzcpd"
@@ -19,6 +19,15 @@
     src: "{{ role_path }}/templates/mrglobal.conf.traffic_mirror.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: nic_traffic_mirror is defined
+
+
+- name: "update mrglobal.conf.tun_mode - tun_server"
+  template:
+    src: "{{ role_path }}/templates/mrglobal.conf.tun_mode.j2"
+    dest: /opt/mrzcpd/etc/mrglobal.conf
+  when: 
+    - nic_traffic_mirror is not defined
+    - tsg_access_type == 0
 
 - name: "update mrglobal.conf.inline - blade00"
   template:
@@ -36,6 +45,14 @@
     - nic_traffic_mirror is not defined
     - tsg_access_type == 2
 
+- name: "update mrglobal.conf.allot - blade00"
+  template:
+    src: "{{ role_path }}/templates/mrglobal.conf.adc_tun_mode.j2"
+    dest: /opt/mrzcpd/etc/mrglobal.conf
+  when: 
+    - nic_traffic_mirror is not defined
+    - tsg_access_type == 3
+
 - name: "update mrtunnat.conf.inline - blade00"
   template:
     src: "{{ role_path }}/templates/mrtunnat.conf.inline.j2"
@@ -52,6 +69,14 @@
     - nic_traffic_mirror is not defined
     - tsg_access_type == 2
 
+- name: "update mrtunnat.conf.allot_access - blade00"
+  template:
+    src: "{{ role_path }}/templates/mrtunnat.conf.adc_tun_mode.j2"
+    dest: /opt/mrzcpd/etc/mrtunnat.conf
+  when: 
+    - nic_traffic_mirror is not defined
+    - tsg_access_type == 3
+
 - name: "enable mrenv"
   systemd:
     name: mrenv
@@ -61,19 +86,19 @@
 - name: "enable mrzcpd"
   systemd:
     name: mrzcpd
-    enabled: 1
+    enabled: yes
     daemon_reload: yes
 
 - name: "enable mrtunnat on master"
   systemd:
     name: mrtunnat
-    enabled: 1
+    enabled: yes
     daemon_reload: yes
   when: nic_traffic_mirror is not defined
 
 - name: "disable mrtunnat on slave"
   systemd:
     name: mrtunnat
-    enabled: 0
+    enabled: no
     daemon_reload: yes
   when: nic_traffic_mirror is defined

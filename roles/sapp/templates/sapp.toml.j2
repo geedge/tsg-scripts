@@ -27,7 +27,7 @@ BSD_packet_filter=""
    
 ### note, depolyment.mode options: [mirror, inline, transparent]
     [packet_io.depolyment]
-    {% if nic_transparent_mode.enable == 1 %}
+    {% if tsg_access_type == 0 %}
     mode=transparent
     {% else %}
     mode=inline
@@ -35,18 +35,18 @@ BSD_packet_filter=""
 
 ### note, interface.type options: [pag,pcap,marsio]
     [packet_io.internal.interface]
-    {% if nic_transparent_mode.enable == 1 %}
-    type={{nic_transparent_mode.mode}}
-    name={{nic_transparent_mode.internel_interface}}
+    {% if tsg_access_type == 0 %}
+    type=pcap
+    name={{tsg_tun_mode.internel_interface}}
     {% else %}
     type=marsio
     name=vxlan_user
     {% endif %}
 
     [packet_io.external.interface]
-    {% if nic_transparent_mode.enable %}
-    type={{nic_transparent_mode.mode}}
-    name={{nic_transparent_mode.external_interface}}
+    {% if tsg_access_type == 0 %}
+    type=pcap
+    name={{tsg_tun_mode.external_interface}}
     {% else %}
     type=pcap
     name=lo

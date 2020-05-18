@@ -24,7 +24,11 @@ IP_ADDR_TABLE=TSG_SECURITY_ADDR
 
 [TSG_LOG]
 MODE=1
+{% if tsg_access_type == 0 %}
+NIC_NAME={{ tsg_tun_mode.ethname }}
+{% else %}
 NIC_NAME={{ nic_mgr.name }}
+{% endif %}
 MAX_SERVICE=1
 LOG_LEVEL=10
 LOG_PATH=./tsglog/tsglog

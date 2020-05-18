@@ -15,7 +15,11 @@ INC_CFG_DIR=capture_packet_rule/inc/index/
 FULL_CFG_DIR=capture_packet_rule/full/index/
 
 [LOG]
+{% if tsg_access_type == 0 %}
+NIC_NAME={{ tsg_tun_mode.ethname }}
+{% else %}
 NIC_NAME={{ nic_mgr.name }}
+{% endif %}
 BROKER_LIST={{ log_kafkabrokers.address }}
 FIELD_FILE=conf/capture_packet_log_field.conf
 

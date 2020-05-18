@@ -4,6 +4,7 @@ enable_breakpad=1
 enable_breakpad_upload=0
 breakpad_minidump_dir=/run/tfe/crashreport/
 breakpad_upload_url=http://127.0.0.1:9000/
+disable_coredump=0
 
 [kni]
 ip=192.168.100.1
@@ -30,7 +31,11 @@ service_cache_expire_seconds=600
 # default 0
 mc_cache_enable=1
 # default eth0
+{% if tsg_access_type == 0 %}
+mc_cache_eth={{ tsg_tun_mode.tun_name }}
+{% else %}
 mc_cache_eth={{ nic_inner_ctrl.name }}
+{% endif %}
 # default NULL
 mc_cache_broker_list={{ log_kafkabrokers.address }}
 # default PXY-EXCH-INTERMEDIA-CERT

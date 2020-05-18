@@ -2,7 +2,11 @@
 log_level=30
 
 [log]
-nic_name= {{ nic_mgr.name }}
+{% if tsg_access_type == 0 %}
+nic_name={{ tsg_tun_mode.ethname }}
+{% else %}
+nic_name={{ nic_mgr.name }}
+{% endif %}
 entrance_id=0
 kafka_brokerlist= {{ log_kafkabrokers.address }}
 kafka_topic=PROXY-EVENT-LOG

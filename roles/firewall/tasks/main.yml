@@ -10,17 +10,17 @@
     state: present
   vars:
     fw_packages:
-      - /tmp/ansible_deploy/dns-debug-1.0.0.-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/ftp-debug-1.0.2.1cddd55-1.el7.centos.x86_64.rpm
-      - /tmp/ansible_deploy/http-debug-1.0.0.-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/mail-debug-1.0.0.-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/ssl-debug-1.0.0.-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/dns-2.0.2.5effe72-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/ftp-1.0.4.5d3a283-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/http-2.0.1.e8f12ee-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/mail-1.0.3.cbc6034-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/ssl-1.0.0.73e5273-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/tsg_conn_record-1.0.0.2155660-1.el7.centos.x86_64.rpm
       - /tmp/ansible_deploy/fw_dns_plug-debug-1.0.3.ea8e0f6-1.el7.centos.x86_64.rpm
-      - /tmp/ansible_deploy/fw_ftp_plug-debug-1.0.1.a5c1e05-1.el7.centos.x86_64.rpm
-      - /tmp/ansible_deploy/fw_ssl_plug-1.0.0.-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_mail_plug-debug-1.0.0.-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_http_plug-debug-1.0.0.-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_ftp_plug-1.0.3.73372b5-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_ssl_plug-1.0.3.30fcf35-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_mail_plug-1.0.4.03e1b53-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_http_plug-1.0.14.2f3b011-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/capture_packet_plug-debug-1.0.0.-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/clotho-debug-1.0.0.-1.el7.x86_64.rpm
 

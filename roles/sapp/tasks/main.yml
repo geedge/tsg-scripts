@@ -7,8 +7,7 @@
 - name: "install sapp rpms from localhost"
   yum:
     name:
-    #  - /tmp/ansible_deploy/sapp-4.0.11.347f7b7-x86_64.rpm
-      - /tmp/ansible_deploy/tsg_master-debug-1.0.0.-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tsg_master-1.0.6.7c22c8d-2.el7.x86_64.rpm
     state: present
 
 - name: "judge sapp"
@@ -17,7 +16,7 @@
   ignore_errors: true
 
 - name: "install sapp rpms from localhost"
-  shell: cd /tmp/ansible_deploy;rpm -ivh sapp-4.0.8.fb5bce9-1.el7.x86_64.rpm
+  shell: cd /tmp/ansible_deploy;rpm -ivh sapp-4.0.12.f8435d8-x86_64.rpm
   when: return.rc != 0
 
 - name: make dir

@@ -1,11 +1,11 @@
 #!/bin/bash
 modprobe 8021q
-vconfig add {{ nic_mgr.name }} 100
-vconfig set_flag {{ nic_mgr.name }}.100 1 1
-ifconfig {{ nic_mgr.name }}.100 192.168.100.1 netmask 255.255.255.0 up
-ethtool -K {{ nic_transparent_mode.internel_interface }} tso off
-ethtool -K {{ nic_transparent_mode.internel_interface }} gso off
-ethtool -K {{ nic_transparent_mode.internel_interface }} gro off
-ethtool -K {{ nic_transparent_mode.externel_interface }} tso off
-ethtool -K {{ nic_transparent_mode.externel_interface }} gso off
-ethtool -K {{ nic_transparent_mode.externel_interface }} gro off
+vconfig add {{ tsg_tun_mode.ethname }} 100
+vconfig set_flag {{ tsg_tun_mode.ethname }}.100 1 1
+ifconfig {{ tsg_tun_mode.ethname }}.100 192.168.100.1 netmask 255.255.255.0 up
+ethtool -K {{ tsg_tun_mode.internel_interface }} tso off
+ethtool -K {{ tsg_tun_mode.internel_interface }} gso off
+ethtool -K {{ tsg_tun_mode.internel_interface }} gro off
+ethtool -K {{ tsg_tun_mode.externel_interface }} tso off
+ethtool -K {{ tsg_tun_mode.externel_interface }} gso off
+ethtool -K {{ tsg_tun_mode.externel_interface }} gro off
