@@ -68,17 +68,6 @@ mrtunnat:
   lcore_id: 38
 
 ########################################
-nic_mgr:
-  name: eth0
-nic_data_incoming:
-  name: tun_kni
-  address: 127.0.0.1
-nic_inner_ctrl:
-  name: eth0.100
-nic_traffic_mirror:
-  name: lo
-  use_mrzcpd: 0
-
 tsg_tun_mode:
   ethname: eth0
   tun_name: eth0.100

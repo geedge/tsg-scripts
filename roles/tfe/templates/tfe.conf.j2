@@ -55,7 +55,11 @@ untrusted_ca_path=resource/tfe/tango-ca-v3-untrust-ca.pem
 passthrough_all_tcp=0
 
 [traffic_mirror]
+{% if tsg_access_type == 0 %}
+device=lo
+{% else %}
 device={{ nic_traffic_mirror.name }}
+{% endif %}
 type=0
 
 [ratelimit]

@@ -26,7 +26,6 @@
     src: "{{ role_path }}/templates/mrglobal.conf.tun_mode.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: 
-    - nic_traffic_mirror is not defined
     - tsg_access_type == 0
 
 - name: "update mrglobal.conf.inline - blade00"
