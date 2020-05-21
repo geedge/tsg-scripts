@@ -79,9 +79,9 @@ nic_traffic_mirror:
   name: lo
   use_mrzcpd: 0
 
-nic_transparent_mode:
-  enable: 1
-  mode: pcap
+tsg_tun_mode:
+  ethname: eth0
+  tun_name: eth0.100
   internel_interface: "eth2"
   external_interface: "eth3"
 
