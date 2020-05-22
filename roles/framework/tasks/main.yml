@@ -20,6 +20,7 @@
       - /tmp/ansible_deploy/libmaatframe-2.8.1.8729ebf-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/librulescan-2.1.7.c27f70d-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/libwiredcfg-2.0.2.7ce1eea-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/librdkafka-0.11.4-1.el7.x86_64.rpm
 
 - name: "mkdir /etc/ld.so.conf.d/"
   file:
