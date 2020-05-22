@@ -37,7 +37,7 @@ BSD_packet_filter=""
     [packet_io.internal.interface]
     {% if tsg_access_type == 0 %}
     type=pcap
-    name={{tsg_tun_mode.internel_interface}}
+    name={{tsg_tun_mode.internal_interface}}
     {% else %}
     type=marsio
     name=vxlan_user
