@@ -7,7 +7,6 @@
 - name: "install sapp rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/tsg_master-1.0.6.7c22c8d-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/sapp-4.0.12.f8435d8-x86_64.rpm
     state: present
     skip_broken: yes

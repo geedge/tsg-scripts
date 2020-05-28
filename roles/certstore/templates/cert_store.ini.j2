@@ -15,7 +15,7 @@ expire_after = 30
 local_debug = 1
 ca_path = ./cert/tango-ca-v3-trust-ca.pem
 untrusted_ca_path = ./cert/mesalab-ca-untrust.pem
-[NTC_MAAT]
+[MAAT]
 #Configure the load mode,
 #0: using the configuration distribution network
 #1: using local json
@@ -43,3 +43,6 @@ port = 6379
 ip = {{ maat_redis_server.address }}
 port = {{ maat_redis_server.port }}
 dbindex =  {{ maat_redis_server.db }}
+[stat]
+statsd_server=192.168.100.1
+statsd_port=8126

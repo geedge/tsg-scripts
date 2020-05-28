@@ -8,6 +8,7 @@
 #    - tsg-env-mcn0
     - mrzcpd
     - sapp
+    - tsg_master
     - kni
     - firewall
     - http_healthcheck
@@ -44,6 +45,7 @@
     - mrzcpd
     - tsg-env-tun-mode
     - sapp
+    - tsg_master
     - kni
     - firewall
     - http_healthcheck

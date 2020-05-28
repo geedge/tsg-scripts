@@ -8,6 +8,7 @@ nic_name={{ tsg_tun_mode.ethname }}
 nic_name={{ nic_mgr.name }}
 {% endif %}
 entrance_id=0
+device_id_filepath=/opt/tsg/etc/tsg_sn.json
 kafka_brokerlist= {{ log_kafkabrokers.address }}
 kafka_topic=PROXY-EVENT-LOG
 

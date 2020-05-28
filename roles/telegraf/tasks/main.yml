@@ -1,0 +1,22 @@
+- name: "copy telegraf.rpm to destination server"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: /tmp
+
+- name: "install telegraf"
+  yum:
+    name:
+      - /tmp/telegraf-1.13.0-1.x86_64.rpm
+    state: present
+
+- name: "Templates telegraf.conf"
+  template:
+    src: "{{role_path}}/templates/telegraf.conf.j2"
+    dest: /etc/telegraf/telegraf.conf
+  tags: template
+
+- name: "Start telegraf"
+  systemd:
+    name: telegraf.service
+    state: restarted
+    enabled: yes

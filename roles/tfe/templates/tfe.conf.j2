@@ -50,6 +50,7 @@ cert_store_host= {{ cert_store_server.address }}
 cert_store_port= {{ cert_store_server.port }}
 ca_path=resource/tfe/tango-ca-v3-trust-ca.pem
 untrusted_ca_path=resource/tfe/tango-ca-v3-untrust-ca.pem
+enable_health_check=0
 
 [debug]	
 passthrough_all_tcp=0
@@ -78,11 +79,11 @@ tcp_ttl_upstream=75
 tcp_ttl_downstream=70
 
 [log]
-level=30
+level=10
 
 [stat]
 statsd_server={{ fs_remote.address }}
 statsd_port={{ fs_remote.port }}
 
 [http]
-loglevel=30
+loglevel=10
