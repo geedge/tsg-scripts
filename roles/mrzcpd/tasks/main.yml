@@ -52,6 +52,15 @@
     - nic_traffic_mirror is not defined
     - tsg_access_type == 3
 
+
+- name: "update mrglobal.conf.ATCA_40G - blade00"
+  template:
+    src: "{{ role_path }}/templates/mrglobal.conf.ATCA_40G.j2"
+    dest: /opt/mrzcpd/etc/mrglobal.conf
+  when: 
+    - nic_traffic_mirror is not defined
+    - tsg_access_type == 4   
+
 - name: "update mrtunnat.conf.inline - blade00"
   template:
     src: "{{ role_path }}/templates/mrtunnat.conf.inline.j2"
@@ -76,24 +85,38 @@
     - nic_traffic_mirror is not defined
     - tsg_access_type == 3
 
+- name: "update mrtunnat.conf.ATCA_40G - blade00"
+  template:
+    src: "{{ role_path }}/templates/mrtunnat.conf.ATCA_40G.j2"
+    dest: /opt/mrzcpd/etc/mrtunnat.conf
+  when: 
+    - nic_traffic_mirror is not defined
+    - tsg_access_type == 4
+
 - name: "enable mrenv"
   systemd:
     name: mrenv
     enabled: yes
     daemon_reload: yes
+  when: 
+    - tsg_access_type != 0
 
 - name: "enable mrzcpd"
   systemd:
     name: mrzcpd
     enabled: yes
     daemon_reload: yes
+  when: 
+    - tsg_access_type != 0
 
 - name: "enable mrtunnat on master"
   systemd:
     name: mrtunnat
     enabled: yes
     daemon_reload: yes
-  when: nic_traffic_mirror is not defined
+  when: 
+    - nic_traffic_mirror is not defined
+    - tsg_access_type != 0
 
 - name: "disable mrtunnat on slave"
   systemd:

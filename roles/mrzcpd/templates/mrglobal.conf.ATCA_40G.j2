@@ -1,0 +1,45 @@
+[device]
+device={{nic_data_incoming.name}},vxlan_user,vxlan_fwd
+sz_tunnel=8192
+sz_buffer=0
+
+[device:{{nic_data_incoming.name}}]
+jumbo_frame=1
+max_rx_pkt_len=4096
+clear_tx_flags=1
+vlan-filter=1
+vlan-strip=1
+vlan-id-allow={{ VlanFlipping.vlanID_1 }},{{ VlanFlipping.vlanID_2 }}
+vlan-pvid=0
+vlan-pvid-mode=2
+
+[service]
+# lcore id for i/o service, use comma to split
+iocore={{ mrzcpd.iocore }}
+distmode=2
+hashmode=0
+
+[eal]
+virtaddr=0x7f40c4a00000
+loglevel=7
+
+[keepalive]
+check_spinlock=0
+
+[ctrlzone]
+ctrlzone0=tunnat,64
+
+[pool]
+create_mode=3
+sz_direct_pktmbuf=4194304
+sz_indirect_pktmbuf=8192
+sz_cache=256
+sz_data=4096
+
+[forward]
+nr_forward_rule=4
+forward_rule_0=pv,{{nic_data_incoming.name}},{{nic_data_incoming.name}}
+forward_rule_1=vp,{{nic_data_incoming.name}},{{nic_data_incoming.name}}
+forward_rule_2=vv,vxlan_fwd,vxlan_user
+forward_rule_3=vv,vxlan_user,vxlan_fwd
+

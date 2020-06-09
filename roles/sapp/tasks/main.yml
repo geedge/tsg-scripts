@@ -40,6 +40,13 @@
     dest: /home/mesasoft/sapp_run/etc/gdev.conf
   when: tsg_access_type == 1
   
+
+- name: "copy sapp.service destination server"
+  copy:
+    src: "{{ role_path }}/files/sapp.service"
+    dest: /usr/lib/systemd/system/
+    mode: 0755
+
 - name: "enable sapp"
   systemd:
     name: sapp

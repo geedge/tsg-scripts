@@ -9,13 +9,13 @@
 instance_name = "sapp4"
 
 [CPU]
-{% if tsg_access_type == 0 %}
+{% if tsg_running_type == 0 %}
 worker_threads=1
 {% else %}
 worker_threads={{ sapp.worker_threads }}
 {% endif %}
 ### note, bind_mask, if you do not want to bind thread to special CPU core, keep it empty as []
-{% if tsg_access_type == 0 %}
+{% if tsg_running_type == 0 %}
 bind_mask=[]
 {% else %}
 bind_mask=[{{ sapp.bind_mask }}]

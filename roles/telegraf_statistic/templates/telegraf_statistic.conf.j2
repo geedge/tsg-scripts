@@ -1,0 +1,29 @@
+[global_tags]
+[agent]
+  interval = "30s"
+  round_interval = true
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  collection_jitter = "0s"
+  flush_interval = "10s"
+  flush_jitter = "0s"
+  precision = ""
+  debug = false
+  quiet = false
+  logfile = ""
+  hostname = ""
+  omit_hostname = false
+ [[outputs.file]]
+    files = ["stdout", "/tmp/metrics.out"]
+       data_format = "json"
+ [[outputs.kafka]]
+   brokers = ["{{ log_kafkabrokers.address }}"]
+   topic = "TRAFFIC-METRICS-LOG"
+    data_format = "json"
+ [[outputs.prometheus_client]]
+   listen = ":9273"
+    path = "/metrics"
+ [[inputs.tcp_listener]]
+ [[inputs.udp_listener]]
+ServiceAddress= ":8100"
+data_format = "influx"

@@ -15,6 +15,7 @@
     - clotho
     - certstore
     - cert-redis
+    - telegraf_statistic
 
 - hosts: blade-01
   roles:
@@ -53,3 +54,4 @@
     - certstore
     - cert-redis
     - tfe
+    - telegraf_statistic

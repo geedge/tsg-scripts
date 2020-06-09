@@ -2,7 +2,7 @@
 log_level=30
 
 [log]
-{% if tsg_access_type == 0 %}
+{% if tsg_running_type == 0 %}
 nic_name={{ tsg_tun_mode.ethname }}
 {% else %}
 nic_name={{ nic_mgr.name }}

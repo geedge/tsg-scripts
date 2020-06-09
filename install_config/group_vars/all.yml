@@ -1,5 +1,9 @@
-########################################
+#########################################
+#####0: Pcap; 1: Inline_device;  2: Allot;  3: ADC_Tun_mode;  4: ATCA;
 tsg_access_type: 0
+
+#####0: Tun_mode;  1: ADC;
+tsg_runnning_type: 0 
 
 ########################################
 maat_redis_server:
@@ -67,6 +71,12 @@ mrzcpd:
 mrtunnat:
   lcore_id: 38
 
+nic_data_incoming:
+  name: enp1s0
+
+VlanFlipping:
+  vlanID_1: 100
+  vlanID_2: 101
 ########################################
 tsg_tun_mode:
   ethname: eth0

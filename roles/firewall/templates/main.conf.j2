@@ -24,7 +24,7 @@ IP_ADDR_TABLE=TSG_SECURITY_ADDR
 
 [TSG_LOG]
 MODE=1
-{% if tsg_access_type == 0 %}
+{% if tsg_running_type == 0 %}
 NIC_NAME={{ tsg_tun_mode.ethname }}
 {% else %}
 NIC_NAME={{ nic_mgr.name }}
@@ -36,7 +36,7 @@ BROKER_LIST={{ log_kafkabrokers.address }}
 COMMON_FIELD_FILE=tsgconf/tsg_log_field.conf
 
 [STATISTIC]
-CYCLE=0
+CYCLE=1
 TELEGRAF_PORT=8100
 TELEGRAF_IP=127.0.0.1
 OUTPUT_PATH=./tsg_statistic.log
