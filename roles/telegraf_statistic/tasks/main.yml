@@ -19,7 +19,7 @@
   copy:
     src: "{{ role_path }}/files/telegraf_statistic.service"
     dest: /usr/lib/systemd/system
-    chmod: 0755
+    mode: 0755
 
 - name: "Start telegraf"
   systemd:

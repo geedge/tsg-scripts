@@ -1,14 +1,14 @@
 [tunnat]
 lcore_id={{ mrtunnat.lcore_id }}
 appsym=tunnat
-phydev={{nic_data_incoming.name}}
+phydev={{nic_data_incoming.vf0_name}}
 virtdev=vxlan_fwd
 nr_max_sessions=524280
 nr_slots=1048576
 expire_time=60
 reverse_tunnel=0
 use_recent_tunnel=0
-use_tuple4_as_sskey=1
+use_tuple4_as_sskey=0
 ctrlzone_addr_info_type=2
 
 [vlan_flipping]

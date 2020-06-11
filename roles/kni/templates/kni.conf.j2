@@ -15,8 +15,12 @@ deploy_mode = normal
 tun_name = tun_kni
 src_mac_addr = 00:0e:c6:d6:72:c1
 dst_mac_addr = fe:65:b7:03:50:bd
-{% if tsg_running_type == 0 %}
-{% else %}
+{% if tsg_access_type == 4 %}
+[tfe0]
+enabled = 1
+dev_eth_symbol = {{ nic_data_incoming.vf1_name }}
+ip_addr = 192.168.100.1
+{% elif tsg_running_type == 1 %}
 [tfe0]
 enabled = 1
 dev_eth_symbol = {{ nic_to_tfe.tfe0.name }}

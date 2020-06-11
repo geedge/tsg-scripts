@@ -3,7 +3,7 @@
 tsg_access_type: 0
 
 #####0: Tun_mode;  1: ADC;
-tsg_runnning_type: 0 
+tsg_running_type: 0 
 
 ########################################
 maat_redis_server:
@@ -73,6 +73,9 @@ mrtunnat:
 
 nic_data_incoming:
   name: enp1s0
+  vf0_name: enp1s2
+  vf1_name: enp1s2f1
+  vf2_name: enp1s2f2
 
 VlanFlipping:
   vlanID_1: 100

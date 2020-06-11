@@ -1,17 +1,27 @@
 [device]
-device={{nic_data_incoming.name}},vxlan_user,vxlan_fwd
+device={{nic_data_incoming.vf0_name}},{{ nic_data_incoming.vf1_name }},vxlan_user,vxlan_fwd
 sz_tunnel=8192
 sz_buffer=0
 
-[device:{{nic_data_incoming.name}}]
-jumbo_frame=1
-max_rx_pkt_len=4096
+[device:{{nic_data_incoming.vf0_name}}]
+mtu=4096
 clear_tx_flags=1
 vlan-filter=1
 vlan-strip=1
 vlan-id-allow={{ VlanFlipping.vlanID_1 }},{{ VlanFlipping.vlanID_2 }}
 vlan-pvid=0
 vlan-pvid-mode=2
+hw_strip_crc=1
+
+[device:{{ nic_data_incoming.vf1_name }}]
+mtu=4096
+clear_tx_flags=1
+vlan-filter=1
+vlan-strip=1
+vlan-id-allow=4095
+vlan-pvid=0
+vlan-pvid-mode=2
+hw_strip_crc=1
 
 [service]
 # lcore id for i/o service, use comma to split
@@ -37,9 +47,10 @@ sz_cache=256
 sz_data=4096
 
 [forward]
-nr_forward_rule=4
-forward_rule_0=pv,{{nic_data_incoming.name}},{{nic_data_incoming.name}}
-forward_rule_1=vp,{{nic_data_incoming.name}},{{nic_data_incoming.name}}
+nr_forward_rule=6
+forward_rule_0=pv,{{nic_data_incoming.vf0_name}},{{nic_data_incoming.vf0_name}}
+forward_rule_1=vp,{{nic_data_incoming.vf0_name}},{{nic_data_incoming.vf0_name}}
 forward_rule_2=vv,vxlan_fwd,vxlan_user
 forward_rule_3=vv,vxlan_user,vxlan_fwd
-
+forward_rule_4=pv,{{ nic_data_incoming.vf1_name }},{{ nic_data_incoming.vf1_name }}
+forward_rule_5=vp,{{ nic_data_incoming.vf1_name }},{{ nic_data_incoming.vf1_name }}

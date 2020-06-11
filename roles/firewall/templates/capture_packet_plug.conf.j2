@@ -15,7 +15,7 @@ INC_CFG_DIR=capture_packet_rule/inc/index/
 FULL_CFG_DIR=capture_packet_rule/full/index/
 
 [LOG]
-{% if tsg_runnning_type == 0 %}
+{% if tsg_running_type == 0 %}
 NIC_NAME={{ tsg_tun_mode.ethname }}
 {% else %}
 NIC_NAME={{ nic_mgr.name }}
