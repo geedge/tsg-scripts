@@ -11,15 +11,15 @@
   vars:
     packages:
       - /tmp/ansible_deploy/libMESA_field_stat-1.0.1.852c2df-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/libMESA_field_stat2-2.8.6.c183ed6-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/libMESA_handle_logger-1.0.8.bd5f0ac-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/libMESA_field_stat2-2.9.0.16ecf3b-2.el7.x86_64.rpm
+      - /tmp/ansible_deploylibMESA_handle_logger-1.0.9.304259e-2.el7.x86_64.rpm/
       - /tmp/ansible_deploy/libMESA_htable-3.10.11.6275308-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/libMESA_prof_load-1.0.5.bf755de-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/libWiredLB-2.0.3.c7d131b-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/libcjson-1.7.8.542ad7f-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/libdocumentanalyze-2.0.4.efdfc29-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/libmaatframe-2.8.1.8729ebf-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/librulescan-2.1.7.c27f70d-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/libmaatframe-2.9.2.7519c63-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/librulescan-devel-2.2.0.900d2b3-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libwiredcfg-2.0.2.7ce1eea-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/lz4-1.7.5-3.el7.x86_64.rpm
       - /tmp/ansible_deploy/librdkafka-0.11.4-1.el7.x86_64.rpm

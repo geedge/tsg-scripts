@@ -17,12 +17,14 @@
       - /tmp/ansible_deploy/ssl-1.0.0.73e5273-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/tsg_conn_record-1.0.0.2155660-1.el7.centos.x86_64.rpm
       - /tmp/ansible_deploy/fw_dns_plug-debug-1.0.3.ea8e0f6-1.el7.centos.x86_64.rpm
-      - /tmp/ansible_deploy/fw_ftp_plug-1.0.4.4a87a1e-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_ftp_plug-1.1.0.74c9a05-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_ssl_plug-1.0.3.30fcf35-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_mail_plug-1.0.4.03e1b53-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_http_plug-1.0.15.9cf2c79-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_mail_plug-1.1.0.a42c5a0-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_http_plug-1.1.1.d5a0b10-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/capture_packet_plug-debug-1.0.0.-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/clotho-debug-1.0.0.-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/quic-1.1.4.9c2e0ba-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_quic_plug-1.0.1.e8cded4-2.el7.x86_64.rpm
 
 - name: "Template the tsgconf/main.conf"
   template:
