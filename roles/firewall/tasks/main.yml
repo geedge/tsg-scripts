@@ -20,7 +20,7 @@
       - /tmp/ansible_deploy/fw_ftp_plug-1.1.0.74c9a05-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_ssl_plug-1.0.3.30fcf35-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_mail_plug-1.1.0.a42c5a0-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_http_plug-1.1.1.d5a0b10-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_http_plug-1.2.0.a7e63c0-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/capture_packet_plug-debug-1.0.0.-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/clotho-debug-1.0.0.-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/quic-1.1.4.9c2e0ba-2.el7.x86_64.rpm

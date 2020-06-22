@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+
+systemctl start tsg-env-tun-mode.service &>/dev/null &
+sleep 2
+systemctl start sapp.service &>/dev/null &
+sleep 5
+systemctl start tfe-env.service &>/dev/null &
+sleep 5
+systemctl start tfe.service &>/dev/null &
+systemctl start certstore.service &>/dev/null &
+systemctl start cert-redis.service &>/dev/null &
