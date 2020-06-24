@@ -14,6 +14,9 @@ worker_threads=1
 {% else %}
 worker_threads={{ sapp.worker_threads }}
 {% endif %}
+{% if tsg_access_type == 4 %}
+send_only_threads_max={{ sapp.send_only_threads_max }}
+{% endif %}
 ### note, bind_mask, if you do not want to bind thread to special CPU core, keep it empty as []
 {% if tsg_access_type == 0 %}
 bind_mask=[]
@@ -22,6 +25,13 @@ bind_mask=[{{ sapp.bind_mask }}]
 {% endif %}
 
 [PACKET_IO]
+{% if tsg_access_type == 4 %}
+### note, used to represent inbound or outbound direction value,
+##### because it comes from other device, so it needs to be specified manually,
+##### if inbound_route_dir=1, then outbound_route_dir=0, vice versa,
+##### in other words, outbound_route_dir = 1 ^ inbound_route_dir;
+inbound_route_dir={{ sapp.inbound_route_dir }}
+{% endif %}
 ### note, BSD_packet_filter, if you do not want to set any filter rule, keep it empty as ""
 BSD_packet_filter=""
    
@@ -37,7 +47,7 @@ BSD_packet_filter=""
     [packet_io.internal.interface]
     {% if tsg_access_type == 0 %}
     type=pcap
-    name={{tsg_tun_mode.internal_interface}}
+    name={{server.internal_interface}}
     {% else %}
     type=marsio
     name=vxlan_user
@@ -46,7 +56,7 @@ BSD_packet_filter=""
     [packet_io.external.interface]
     {% if tsg_access_type == 0 %}
     type=pcap
-    name={{tsg_tun_mode.external_interface}}
+    name={{server.external_interface}}
     {% else %}
     type=pcap
     name=lo

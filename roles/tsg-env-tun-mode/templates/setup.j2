@@ -1,25 +1,25 @@
 #!/bin/bash
 modprobe 8021q
-vconfig add {{ tsg_tun_mode.ethname }} 100
-vconfig set_flag {{ tsg_tun_mode.ethname }}.100 1 1
-ifconfig {{ tsg_tun_mode.ethname }}.100 192.168.100.1 netmask 255.255.255.0 up
+vconfig add {{ server.ethname }} 100
+vconfig set_flag {{ server.ethname }}.100 1 1
+ifconfig {{ server.ethname }}.100 192.168.100.1 netmask 255.255.255.0 up
 {% if tsg_access_type == 0 %}
-ethtool -K {{ tsg_tun_mode.internal_interface }} tso off
-ethtool -K {{ tsg_tun_mode.internal_interface }} gso off
-ethtool -K {{ tsg_tun_mode.internal_interface }} gro off
-ethtool -K {{ tsg_tun_mode.external_interface }} tso off
-ethtool -K {{ tsg_tun_mode.external_interface }} gso off
-ethtool -K {{ tsg_tun_mode.external_interface }} gro off
+ethtool -K {{ server.internal_interface }} tso off
+ethtool -K {{ server.internal_interface }} gso off
+ethtool -K {{ server.internal_interface }} gro off
+ethtool -K {{ server.external_interface }} tso off
+ethtool -K {{ server.external_interface }} gso off
+ethtool -K {{ server.external_interface }} gro off
 {% elif tsg_access_type == 4 %}
-echo 3 > /sys/class/net/{{ nic_data_incoming.name }}/device/sriov_numvfs
-ip link set {{ nic_data_incoming.name }} vf 1 vlan 4095
-ip link set {{ nic_data_incoming.name }} vf 2 vlan 4095
-ip link set {{ nic_data_incoming.name }} vf 0 trust on
-ip link set {{ nic_data_incoming.name }} vf 1 trust on
-ip link set {{ nic_data_incoming.name }} vf 2 trust on
-ip link set {{ nic_data_incoming.name }} vf 1 mac 00:0e:c6:d6:72:c1
-ip link set {{ nic_data_incoming.name }} vf 2 mac fe:65:b7:03:50:bd
-ip link set {{ nic_data_incoming.name }} vf 0 spoofchk off
+echo 3 > /sys/class/net/{{ nic_data_incoming.ethname }}/device/sriov_numvfs
+ip link set {{ nic_data_incoming.ethname }} vf 1 vlan 4095
+ip link set {{ nic_data_incoming.ethname }} vf 2 vlan 4095
+ip link set {{ nic_data_incoming.ethname }} vf 0 trust on
+ip link set {{ nic_data_incoming.ethname }} vf 1 trust on
+ip link set {{ nic_data_incoming.ethname }} vf 2 trust on
+ip link set {{ nic_data_incoming.ethname }} vf 1 mac 00:0e:c6:d6:72:c1
+ip link set {{ nic_data_incoming.ethname }} vf 2 mac fe:65:b7:03:50:bd
+ip link set {{ nic_data_incoming.ethname }} vf 0 spoofchk off
 ip link set {{ nic_data_incoming.vf0_name }} up
 ip link set {{ nic_data_incoming.vf1_name }} up
 ip link set {{ nic_data_incoming.vf2_name }} up

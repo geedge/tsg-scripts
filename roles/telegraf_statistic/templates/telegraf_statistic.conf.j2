@@ -17,7 +17,7 @@
     files = ["stdout", "/tmp/metrics.out"]
        data_format = "json"
  [[outputs.kafka]]
-   brokers = ["{{ log_kafkabrokers.address }}"]
+   brokers = ["192.168.40.186:9092"]
    topic = "TRAFFIC-METRICS-LOG"
     data_format = "json"
  [[outputs.prometheus_client]]

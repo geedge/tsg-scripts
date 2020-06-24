@@ -8,6 +8,7 @@
   yum:
     name: "{{ fw_packages }}"
     state: present
+    skip_broken: yes
   vars:
     fw_packages:
       - /tmp/ansible_deploy/dns-2.0.2.5effe72-2.el7.x86_64.rpm

@@ -6,10 +6,7 @@
 
 - name: "copy files"
   copy:
-    src: 
-      - "{{ role_path }}/files/proxy_start"
-      - "{{ role_path }}/files/proxy_status"
-      - "{{ role_path }}/files/proxy_stop"
+    src: "{{ role_path }}/files/" 
     dest: /opt/proxy_status
     mode: 0755
 

@@ -2,8 +2,8 @@
 log_level=30
 
 [log]
-{% if tsg_running_type == 0 %}
-nic_name={{ tsg_tun_mode.ethname }}
+{% if tsg_running_type == 0 or 1 %}
+nic_name={{ server.ethname }}
 {% else %}
 nic_name={{ nic_mgr.name }}
 {% endif %}

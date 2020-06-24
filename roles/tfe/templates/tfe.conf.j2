@@ -31,8 +31,8 @@ service_cache_expire_seconds=600
 # default 0
 mc_cache_enable=1
 # default eth0
-{% if tsg_running_type == 0 %}
-mc_cache_eth={{ tsg_tun_mode.tun_name }}
+{% if tsg_running_type == 0 or 1 %}
+mc_cache_eth={{ server.tun_name }}
 {% else %}
 mc_cache_eth={{ nic_inner_ctrl.name }}
 {% endif %}
@@ -56,7 +56,7 @@ enable_health_check=0
 passthrough_all_tcp=0
 
 [traffic_mirror]
-{% if tsg_running_type == 0 %}
+{% if tsg_running_type == 0 or 1 %}
 device=lo
 {% else %}
 device={{ nic_traffic_mirror.name }}

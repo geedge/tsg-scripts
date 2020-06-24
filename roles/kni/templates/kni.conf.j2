@@ -2,8 +2,8 @@
 log_path = ./log/kni/kni.log
 log_level = {{ kni.global.log_level }}
 tfe_node_count = {{ kni.global.tfe_node_count }}
-{% if tsg_running_type == 0 %}
-manage_eth = {{ tsg_tun_mode.ethname }}
+{% if tsg_running_type == 0 or 1 %}
+manage_eth = {{ server.ethname }}
 {% else %}
 manage_eth = {{ nic_mgr.name }}
 {% endif %}
@@ -20,26 +20,26 @@ dst_mac_addr = fe:65:b7:03:50:bd
 enabled = 1
 dev_eth_symbol = {{ nic_data_incoming.vf1_name }}
 ip_addr = 192.168.100.1
-{% elif tsg_running_type == 1 %}
+{% elif tsg_running_type == 2 %}
 [tfe0]
-enabled = 1
+enabled = {{ kni.tfe_nodes.tfe0_enabled }}
 dev_eth_symbol = {{ nic_to_tfe.tfe0.name }}
 ip_addr = 192.168.100.2
 
 [tfe1]
-enabled = 1
+enabled = {{ kni.tfe_nodes.tfe1_enabled }}
 dev_eth_symbol = {{ nic_to_tfe.tfe1.name }}
 ip_addr = 192.168.100.3
 
 [tfe2]
-enabled = 1
+enabled = {{ kni.tfe_nodes.tfe2_enabled }}
 dev_eth_symbol = {{ nic_to_tfe.tfe2.name }}
 ip_addr = 192.168.100.4
 {% endif %}
 
 [tfe_cmsg_receiver]
-{% if tsg_running_type == 0 %}
-listen_eth = {{ tsg_tun_mode.tun_name }}
+{% if tsg_running_type == 0 or 1%}
+listen_eth = {{ server.tun_name }}
 {% else %}
 listen_eth = {{ nic_inner_ctrl.name }}
 {% endif %}
@@ -47,8 +47,8 @@ listen_port = 2475
 
 [watch_dog]
 switch = {{ kni.watch_dog.switch }}
-{% if tsg_running_type == 0 %}
-listen_eth = {{ tsg_tun_mode.tun_name }}
+{% if tsg_running_type == 0 or 1 %}
+listen_eth = {{ server.tun_name }}
 {% else %}
 listen_eth = {{ nic_inner_ctrl.name }}
 {% endif %}

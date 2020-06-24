@@ -24,8 +24,8 @@ IP_ADDR_TABLE=TSG_SECURITY_ADDR
 
 [TSG_LOG]
 MODE=1
-{% if tsg_running_type == 0 %}
-NIC_NAME={{ tsg_tun_mode.ethname }}
+{% if tsg_running_type == 0 or 1 %}
+NIC_NAME={{ server.ethname }}
 {% else %}
 NIC_NAME={{ nic_mgr.name }}
 {% endif %}

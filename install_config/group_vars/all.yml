@@ -1,9 +1,9 @@
 #########################################
 #####0: Pcap; 1: Inline_device;  2: Allot;  3: ADC_Tun_mode;  4: ATCA;
-tsg_access_type: 0
+tsg_access_type: 4
 
-#####0: Tun_mode;  1: ADC;
-tsg_running_type: 0 
+#####0: Tun_mode;  1: normal; 2: ADC;
+tsg_running_type: 1 
 
 ########################################
 maat_redis_server:
@@ -21,7 +21,7 @@ cert_store_server:
   port: 9991
 
 log_kafkabrokers:
-  address: "192.168.40.169:9092"
+  address: "1.1.1.1:9092,2.2.2.2:9092"
 
 log_minio:
   address: "192.168.40.168;"
@@ -35,7 +35,9 @@ fs_remote:
 ########################################
 sapp:
   worker_threads: 16
+  send_only_threads_max: 8
   bind_mask: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
+  inbound_route_dir: 1
 
 ########################################
 kni:
@@ -49,12 +51,9 @@ kni:
   send_logger:
     switch: 1
   tfe_nodes:
-    - tfe0:
-        enabled: 1
-    - tfe1:
-        enabled: 1
-    - tfe2:
-        enabled: 1
+    tfe0_enabled: 1
+    tfe1_enabled: 1
+    tfe2_enabled: 1
 
 ########################################
 tfe:
@@ -72,7 +71,7 @@ mrtunnat:
   lcore_id: 38
 
 nic_data_incoming:
-  name: enp1s0
+  ethname: enp1s0
   vf0_name: enp1s2
   vf1_name: enp1s2f1
   vf2_name: enp1s2f2
@@ -80,8 +79,10 @@ nic_data_incoming:
 VlanFlipping:
   vlanID_1: 100
   vlanID_2: 101
+  vlanID_3: 103
+  vlanID_4: 104
 ########################################
-tsg_tun_mode:
+server:
   ethname: eth0
   tun_name: eth0.100
   internal_interface: "eth2"
