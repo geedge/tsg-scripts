@@ -1,0 +1,35 @@
+stages:
+- build
+    
+.build_tar:
+  image: "git.mesalab.cn:7443/mesa_platform/build-env:self-test-env"
+  variables:
+    GIT_STRATEGY: "clone"
+    BUILD_PADDING_PREFIX: /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/
+    TESTING_VERSION_BUILD: 0
+  before_script:
+    - dockerd > /dev/null &
+    - docker info
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - mkdir -p $BUILD_PADDING_PREFIX/$CI_PROJECT_NAMESPACE/
+    - ln -s $CI_PROJECT_DIR $BUILD_PADDING_PREFIX/$CI_PROJECT_PATH
+    - cd $BUILD_PADDING_PREFIX/$CI_PROJECT_PATH
+    - chmod +x ./ci/travis.sh
+  script:
+    - yum makecache
+    - ./ci/travis.sh
+  tags:
+  - share
+    
+rpm_build:
+  stage: build
+  variables:
+    VER_NAME: $CI_COMMIT_REF_NAME
+  extends: .build_tar
+  artifacts:
+    name: "tsg-scripts-$CI_COMMIT_REF_NAME"
+    paths:
+      - build/*.tar.gz
+  only:
+    - tags
+
