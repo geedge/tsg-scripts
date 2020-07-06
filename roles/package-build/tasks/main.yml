@@ -1,3 +1,4 @@
 ---
 - include: ImageDownload.yml
 - include: RpmDownload.yml
+  include: TarBuild.yml 

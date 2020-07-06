@@ -15,6 +15,7 @@ stages:
     - ln -s $CI_PROJECT_DIR $BUILD_PADDING_PREFIX/$CI_PROJECT_PATH
     - cd $BUILD_PADDING_PREFIX/$CI_PROJECT_PATH
     - pwd
+    - du -h /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg-scripts/roles/self-test
     - chmod +x ./ci/travis.sh
   script:
     - yum makecache
