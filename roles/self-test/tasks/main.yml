@@ -1,0 +1,31 @@
+--- 
+- name: 'copy file to device'
+  copy: 
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    mode: "{{item.mode}}"
+  with_items:
+    - { src: "{{ role_path }}/files/", dest: "/tmp/ansible_deploy/self_test", mode: '0755' }
+
+- name: 'local docker image'
+  docker_image:
+    name: "{{item.name}}"
+    load_path: "{{item.load_path}}"
+    source: "{{item.source}}"
+  with_items:
+    - { name: 'badssl', load_path: '/tmp/ansible_deploy/self_test/images/badssl.tar', source: load }
+    - { name: 'golang', load_path: '/tmp/ansible_deploy/self_test/images/wpr.tar', source: load }
+    - { name: 'python', load_path: '/tmp/ansible_deploy/self_test/images/unittest.tar', source: load }
+
+- name: "install kni rpms from localhost"
+  yum:
+    name:
+      - "/tmp/ansible_deploy/self_test/rpms/{{rpmdict.selftest.fullname}}"
+    state: present
+    
+- name: 'self-test service start and docker-compose up'
+  systemd:
+    name: self-test
+    enabled: yes
+    daemon_reload: yes
+

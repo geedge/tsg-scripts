@@ -1,0 +1,6 @@
+---
+- name: "build install tar package"
+  archive:
+    path: "{{ tarpath.src }}" 
+    dest: "{{ tarpath.destdict }}{{ tarname }}"
+    format: gz

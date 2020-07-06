@@ -1,0 +1,23 @@
+---
+- name: "pull image from remote git registry"
+  docker_image:
+    name: "{{ item.name }}"
+    tag: "{{ item.tag }}"
+    source: pull
+  with_items: "{{ dockerImages }}"
+
+- name: "add tag"
+  docker_image:
+    name: "{{ item.name }}"
+    repository: "{{ item.repo }}"
+    force_tag: yes
+    source: local
+  with_items: "{{ dockerImages2tags }}"
+
+- name: "Archive image"
+  docker_image:
+    name: "{{ item.name }}"
+    tag: "{{ item.tag }}"
+    archive_path: "{{ item.tarpath }}"
+    source: local
+  with_items: "{{ dockerImagesTar }}"
