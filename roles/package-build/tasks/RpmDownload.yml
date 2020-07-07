@@ -1,8 +1,8 @@
 ---
 - name: "download rpm package by rpm list"
   yum:
-    name: "{{ item.name }}"
+    name: "{{ item.value.name }}"
     state: present
     download_only: true
-    download_dir: "{{ item.downpath }}"
+    download_dir: "{{ item.value.downpath }}"
   with_dict: "{{ rpmdict }}"
