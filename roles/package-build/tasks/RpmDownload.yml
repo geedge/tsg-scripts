@@ -5,4 +5,4 @@
     state: present
     download_only: true
     download_dir: "{{ item.downpath }}"
-  with_dict: "{{ rpmlist }}"
+  with_dict: "{{ rpmdict }}"
