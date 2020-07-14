@@ -11,4 +11,7 @@ ls -halt ./build/tsg-scripts-${VER_NAME}.tar.gz
 cd build
 cp ~/file_upload_tools.py ./
 
+split --help
+
+ls -halt ./ch
 python3 file_upload_tools.py ${PULP3_REPO_NAME} ${PULP3_DIST_NAME} *.tar.gz
