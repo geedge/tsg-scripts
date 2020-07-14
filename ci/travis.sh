@@ -9,6 +9,6 @@ ansible-playbook -i ./build_config -e tarname=tsg-scripts-${VER_NAME}.tar.gz  bu
 ls -halt ./build/tsg-scripts-${VER_NAME}.tar.gz
 
 cd build
-cp ~/rpm_upload_tools.py ./
+cp ~/file_upload_tools.py ./
 
-python3 rpm_upload_tools.py ${PULP3_REPO_NAME} ${PULP3_DIST_NAME} *.tar.gz
+python3 file_upload_tools.py ${PULP3_REPO_NAME} ${PULP3_DIST_NAME} *.tar.gz
