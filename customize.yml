@@ -1,0 +1,5 @@
+rpmdict:
+  selftest:
+    fullname: "self-test-ci_test_rpm-1.el7.x86_64.rpm"
+    name: "self-test"
+    downpath: "/tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/roles/self-test/files/rpms"

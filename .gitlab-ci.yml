@@ -26,11 +26,10 @@ rpm_build:
   stage: build
   variables:
     VER_NAME: $CI_COMMIT_REF_NAME
+    PULP3_REPO_NAME: install-package-stable
+    PULP3_DIST_NAME: install-package-stable
+
   extends: .build_tar
-  artifacts:
-    name: "tsg-scripts-$CI_COMMIT_REF_NAME"
-    paths:
-      - build/*.tar.gz
   only:
     - tags
 
