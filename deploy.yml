@@ -16,6 +16,7 @@
     - certstore
     - cert-redis
     - telegraf_statistic
+    - tsg-diagnose
 
 - hosts: blade-01
   roles:

@@ -1,33 +1,6 @@
-#dockerImages:
-#  - name: "git.mesalab.cn:7443/tsg/tsg-diagnose/unittest"
-#    tag: latest
-#  - name: "git.mesalab.cn:7443/tsg/tsg-diagnose/wpr"
-#    tag: latest
-#  - name: "git.mesalab.cn:7443/tsg/tsg-diagnose/badssl"
-#    tag: latest
-#
-#dockerImages2tags:
-#  - name: "git.mesalab.cn:7443/tsg/tsg-diagnose/unittest:latest"
-#    repo: "unittest-self-test:latest"
-#  - name: "git.mesalab.cn:7443/tsg/tsg-diagnose/wpr:latest"
-#    repo: "wpr-self-test:latest"
-#  - name: "git.mesalab.cn:7443/tsg/tsg-diagnose/badssl:latest"
-#    repo: "badssl-self-test:latest"
-#
-#dockerImagesTar:
-#  - name: "unittest-self-test"
-#    tag: "latest"
-#    tarpath: /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/roles/self-test/files/images/unittest.tar
-#  - name: "wpr-self-test"
-#    tag: "latest"
-#    tarpath: /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/roles/self-test/files/images/wpr.tar
-#  - name: "badssl-self-test"
-#    tag: "latest"
-#    tarpath: /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/roles/self-test/files/images/badssl.tar
-#
 tarpath:
   src:
     - /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/install_config
     - /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/deploy.yml
-    - /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/roles/self-test
+    - /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/roles/tsg-diagnose
   destdict: /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/build/
