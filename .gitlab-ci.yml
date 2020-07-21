@@ -12,6 +12,7 @@ cache:
   variables:
     BUILD_PADDING_PREFIX: /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/
   before_script:
+    - pip install ansible
     - cp repo.internal.geedge.net.repo /etc/yum.repos.d/repo.internal.geedge.net.repo
     - mkdir -p $BUILD_PADDING_PREFIX/$CI_PROJECT_NAMESPACE/
     - ln -s $CI_PROJECT_DIR $BUILD_PADDING_PREFIX/$CI_PROJECT_PATH
