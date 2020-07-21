@@ -1,35 +1,52 @@
 stages:
 - build
-    
+- upload    
+
+cache:
+   key: "$CI_COMMIT_REF_SLUG$CI_COMMIT_TAG"
+   paths:
+     - /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/build
+
 .build_tar:
-  image: "git.mesalab.cn:7443/mesa_platform/build-env:self-test-env"
+  image: "ansible/ansible:centos7"
   variables:
-    GIT_STRATEGY: "clone"
     BUILD_PADDING_PREFIX: /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/
-    TESTING_VERSION_BUILD: 0
   before_script:
-    - dockerd > /dev/null &
-    - docker info
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - cp repo.internal.geedge.net.repo /etc/yum.repos.d/repo.internal.geedge.net.repo
     - mkdir -p $BUILD_PADDING_PREFIX/$CI_PROJECT_NAMESPACE/
     - ln -s $CI_PROJECT_DIR $BUILD_PADDING_PREFIX/$CI_PROJECT_PATH
     - cd $BUILD_PADDING_PREFIX/$CI_PROJECT_PATH
     - pwd
-    - chmod +x ./ci/travis.sh
+    - chmod +x ./ci/travis-tar.sh
   script:
     - yum makecache
+    - ./ci/travis-tar.sh
+  tags:
+  - share
+
+.upload_tar:
+  image: "git.mesalab.cn:7443/mesa_platform/build-env:self-test-env"
+  before_script:
+    - pwd
+    - chmod +x ./ci/travis.sh
+  script:
     - ./ci/travis.sh
   tags:
   - share
-    
+
 rpm_build:
   stage: build
-  variables:
-    VER_NAME: $CI_COMMIT_REF_NAME
-    PULP3_REPO_NAME: install-package-stable
-    PULP3_DIST_NAME: install-package-stable
-
   extends: .build_tar
   only:
     - tags
 
+rpm_upload:
+  stage: upload
+  variables:
+    PULP3_FILE_REPO_NAME: install-package-stable
+    PULP3_FILE_DIST_NAME: install-package-stable
+  extends: .upload_tar
+  dependencies:
+    - rpm_build
+  only:
+    - tags
