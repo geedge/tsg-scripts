@@ -4,3 +4,7 @@ tarpath:
     - /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/deploy.yml
     - /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/roles/tsg-diagnose
   destdict: /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/build/
+
+tsgDiagnoseDockerFile: 
+  unarchiveUrl: https://repo.internal.geedge.net/pulp/content/install/stable/package/docker-rpm-test-docker-ce-7.tar.gz
+  unarchiveDest: /tmp/padding_for_PACK_TAR_BUILD_DIRS_PREFIX/tsg/tsg-scripts/roles/tsg-diagnose/files

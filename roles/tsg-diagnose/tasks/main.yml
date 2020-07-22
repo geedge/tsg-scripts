@@ -1,21 +1,14 @@
 --- 
-- name: 'copy file to device'
+- name: 'Copy tsg-diagnose file to device'
   copy: 
     src: "{{item.src}}"
     dest: "{{item.dest}}"
     mode: "{{item.mode}}"
   with_items:
     - { src: "{{ role_path }}/files/", dest: "/tmp/ansible_deploy/tsg-diagnose", mode: '0755' }
-
-- name: "install kni rpms from localhost"
-  yum:
-    name:
-      - "/tmp/ansible_deploy/tsg-diagnose/rpms/{{rpmdict.tsgDiagnose.fullname}}"
-    state: present
     
-- name: 'tsg-diagnose service start and docker-compose up'
-  systemd:
-    name: tsg-diagnose
-    enabled: yes
-    daemon_reload: yes
+- name: 'Install docker env rpm'
+  include: DockerEnv.yml
 
+- name: 'Install Tsg-diagnose'
+  include: TsgDiagnose.yml

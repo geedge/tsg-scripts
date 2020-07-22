@@ -1,0 +1,6 @@
+---
+- name: 'Unarchive docker env rpm file from remote host'
+  unarchive:
+    src: "{{ tsgDiagnoseDockerFile.unarchiveUrl }}"
+    dest: "{{ tsgDiagnoseDockerFile.unarchiveDest }}"
+    remote_src: yes

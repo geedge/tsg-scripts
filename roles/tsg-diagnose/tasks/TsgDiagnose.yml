@@ -1,0 +1,12 @@
+--- 
+- name: "Install tsg-diagnose rpm package"
+  yum:
+    name:
+      - "/tmp/ansible_deploy/tsg-diagnose/rpms/{{rpmdict.tsgDiagnose.fullname}}"
+    state: present
+    
+- name: 'Tsg-diagnose service start'
+  systemd:
+    name: tsg-diagnose
+    enabled: yes
+    daemon_reload: yes

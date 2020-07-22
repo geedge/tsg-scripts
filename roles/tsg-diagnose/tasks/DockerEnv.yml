@@ -1,0 +1,19 @@
+--- 
+- name: "Install docker-ce"
+  yum:
+    name: "/tmp/ansible_deploy/tsg-diagnose/rpms/rpm-docker/docker-ce/{{ item }}"
+    state: present
+    with_items: "{{ dockerEnvRpm.dockerCe }}"
+
+- name: "Install docker-compose"
+  yum:
+    name: "/tmp/ansible_deploy/tsg-diagnose/rpms/rpm-docker/docker-compose/{{ item }}"
+    state: present
+    with_items: "{{ dockerEnvRpm.dockerCompose }}"
+
+- name: 'Docker service start'
+  systemd:
+    name: docker
+    enabled: yes
+    daemon_reload: yes
+

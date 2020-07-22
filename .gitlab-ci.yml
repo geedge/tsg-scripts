@@ -22,7 +22,7 @@ stages:
   tags:
   - share
     
-rpm_build:
+file_build:
   stage: build
   variables:
     VER_NAME: $CI_COMMIT_REF_NAME

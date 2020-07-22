@@ -1,3 +1,4 @@
 ---
+- include: DockerEnvDownload.yml
 - include: RpmDownload.yml
 - include: TarBuild.yml 
