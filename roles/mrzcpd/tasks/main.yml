@@ -6,7 +6,7 @@
 
 - name: "install mrzcpd"
   yum:
-    name: /tmp/ansible_deploy/mrzcpd-4.3.21.26314ca-1.el7.x86_64.rpm
+    name: /tmp/ansible_deploy/mrzcpd-4.3.25.d88306e-1.el7.x86_64.rpm
     state: present
 
 - name: "update sysconfig/mrzcpd"

@@ -1,14 +1,15 @@
 [system]
 nr_worker_threads={{ tfe.nr_threads }}
-enable_breakpad=1
+enable_breakpad=0
 enable_breakpad_upload=0
 breakpad_minidump_dir=/run/tfe/crashreport/
 breakpad_upload_url=http://127.0.0.1:9000/
 disable_coredump=0
 
+
 [kni]
 ip=192.168.100.1
-scm_port=2475
+cmsg_port=2475
 watchdog_switch=1
 watchdog_port=2476
 
@@ -44,15 +45,17 @@ mc_cache_topic=PXY-EXCH-INTERMEDIA-CERT
 [key_keeper]
 #Mode: debug - generate cert with ca_path, normal - generate cert with cert store
 #0 on cache 1 off cache
-mode= {{ tfe.keykeeper.mode }}
+mode= normal
 no_cache=0
 cert_store_host= {{ cert_store_server.address }}
 cert_store_port= {{ cert_store_server.port }}
 ca_path=resource/tfe/tango-ca-v3-trust-ca.pem
 untrusted_ca_path=resource/tfe/tango-ca-v3-untrust-ca.pem
-enable_health_check=0
+# health_check only for "mode=normal"
+# default 1
+enable_health_check=1
 
-[debug]	
+[debug]
 passthrough_all_tcp=0
 
 [traffic_mirror]
@@ -84,6 +87,44 @@ level=10
 [stat]
 statsd_server={{ fs_remote.address }}
 statsd_port={{ fs_remote.port }}
+statsd_cycle=5
+# FS_OUTPUT_STATSD=1, FS_OUTPUT_INFLUX_LINE=2
+statsd_format=2
 
 [http]
 loglevel=10
+
+[kafka]
+enable=1
+{% if tsg_running_type == 0 or 1 %}
+nic_name={{ server.ethname }}
+{% else %}
+nic_name={{ nic_mgr.name }}
+{% endif %}
+kafka_brokerlist={{ log_kafkabrokers.address }}
+kafka_topic=PROXY-EVENT-LOG
+device_id_filepath=/opt/tsg/etc/tsg_sn.json
+
+[maat]
+# 0:json 1: redis 2: iris
+maat_input_mode=1
+table_info=resource/pangu/table_info.conf
+json_cfg_file=resource/pangu/pangu_http.json
+stat_file=log/pangu_scan.status
+full_cfg_dir=pangu_policy/full/index/
+inc_cfg_dir=pangu_policy/inc/index/
+
+maat_redis_server={{ maat_redis_server.address }}
+maat_redis_port_range={{ maat_redis_server.port }}
+maat_redis_db_index={{ maat_redis_server.db }}
+effect_interval_s=1
+#accept_tags={"tags":[{"tag":"location","value":"Astana"}]}
+
+[dynamic_maat]
+maat_input_mode=1
+table_info=resource/pangu/dynamic_maat_table_info.conf
+maat_redis_server={{ dynamic_maat_redis_server.address }}
+maat_redis_port_range={{ dynamic_maat_redis_server.port }}
+maat_redis_db_index={{ dynamic_maat_redis_server.db }}
+effect_interval_s=1
+

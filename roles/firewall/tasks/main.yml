@@ -11,21 +11,22 @@
     skip_broken: yes
   vars:
     fw_packages:
-      - /tmp/ansible_deploy/dns-2.0.2.5effe72-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/ftp-1.0.4.5d3a283-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/http-2.0.1.e8f12ee-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/mail-1.0.3.cbc6034-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/ssl-1.0.0.73e5273-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/tsg_conn_record-1.0.0.2155660-1.el7.centos.x86_64.rpm
-      - /tmp/ansible_deploy/fw_dns_plug-debug-1.0.3.ea8e0f6-1.el7.centos.x86_64.rpm
-      - /tmp/ansible_deploy/fw_ftp_plug-1.1.0.74c9a05-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_ssl_plug-1.0.3.30fcf35-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_mail_plug-1.1.0.a42c5a0-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_http_plug-1.2.0.a7e63c0-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/capture_packet_plug-debug-1.0.0.-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/capture_packet_plug-3.0.2.09f193c-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/clotho-debug-1.0.0.-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/quic-1.1.4.9c2e0ba-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_quic_plug-1.0.1.e8cded4-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/dns-2.0.6.d8317e9-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/ftp-1.0.6.2710506-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_dns_plug-3.0.0.0a5d574-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_ftp_plug-3.0.0.7a867ea-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_http_plug-3.0.0.1ca1c65-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_mail_plug-3.0.0.3b4e481-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_quic_plug-3.0.0.b06d39c-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_ssl_plug-3.0.0.3a29c3f-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/http-2.0.3.9218b4b-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/mail-1.0.7.9e3be05-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/quic-1.1.6.d6755d8-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/ssl-1.0.3.e8482a4-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tsg_conn_record-1.0.0.2155660-1.el7.centos.x86_64.rpm
+      - /tmp/ansible_deploy/tsg_conn_sketch-2.0.v2.0_alpha.af621ca-2.el7.x86_64.rpm
 
 - name: "Template the tsgconf/main.conf"
   template:

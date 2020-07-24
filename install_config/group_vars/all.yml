@@ -60,7 +60,6 @@ tfe:
   nr_threads: 32
   mc_cache_eth: lo 
   keykeeper:
-    mode: "normal"
     no_cache: 0
 
 ########################################

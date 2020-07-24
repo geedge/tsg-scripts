@@ -1,16 +1,8 @@
 [debug]
-log_level=30
+log_level=10
 
 [log]
-{% if tsg_running_type == 0 or 1 %}
-nic_name={{ server.ethname }}
-{% else %}
-nic_name={{ nic_mgr.name }}
-{% endif %}
 entrance_id=0
-device_id_filepath=/opt/tsg/etc/tsg_sn.json
-kafka_brokerlist= {{ log_kafkabrokers.address }}
-kafka_topic=PROXY-EVENT-LOG
 
 #Addresses of minio. Format is defined by WiredLB.
 #minio_ip_list=192.168.10.61-64;
@@ -58,28 +50,13 @@ log_fsstat_interval=10
 log_fsstat_trig=1
 log_fsstat_dst_ip=10.4.20.202
 log_fsstat_dst_port=8125
-[maat]
-# 0:json 1: redis 2: iris
-maat_input_mode=1
-table_info=resource/pangu/table_info.conf
-json_cfg_file=resource/pangu/pangu_http.json
-stat_file=log/pangu_scan.status
-full_cfg_dir=pangu_policy/full/index/
-inc_cfg_dir=pangu_policy/inc/index/
 
-maat_redis_server={{ maat_redis_server.address }}
-maat_redis_port_range={{ maat_redis_server.port }}
-maat_redis_db_index={{ maat_redis_server.db }}
-effect_interval_s=1
-#accept_tags={"tags":[{"tag":"location","value":"Astana"}]}
-
-[dynamic_maat]
-maat_input_mode=1
-table_info=resource/pangu/dynamic_maat_table_info.conf
-maat_redis_server={{ dynamic_maat_redis_server.address }}
-maat_redis_port_range={{ dynamic_maat_redis_server.port }}
-maat_redis_db_index={{ dynamic_maat_redis_server.db }}
-effect_interval_s=1
+[ratelimit]
+enable=0
+token_name=ratelimit
+redis_server={{ maat_redis_server.address }}
+redis_port={{ maat_redis_server.port }}
+redis_db_index=6
 
 [tango_cache]
 enable_cache=0
@@ -112,8 +89,8 @@ wiredlb_group=TangoCache
 
 cache_undefined_obj=1
 query_undefined_obj=0
-statsd_server={{fs_remote.address}}
-statsd_port={{fs_remote.port}}
+statsd_server=192.168.10.72
+statsd_port=8126
 histogram_bins=0.20,0.40,0.6,0.8
 
 log_fsstat_appname=tango_cache
@@ -127,3 +104,4 @@ log_fsstat_dst_port=8125
 [traffic_mirror]
 table_info=resource/pangu/table_info_traffic_mirror.conf
 stat_file=log/traffic_mirror.status
+

@@ -14,7 +14,7 @@
   yum:
     name:
       - /tmp/ansible_deploy/tfe-kmod-v1.0.5.20200408-1dkms.noarch.rpm
-      - /tmp/ansible_deploy/tfe-4.3.5.0db794c-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tfe-4.3.7.39bff00-1.el7.x86_64.rpm
     state: present
 
 - name: "template tfe-env config"
@@ -36,6 +36,16 @@
   template:
     src: "{{ role_path }}/templates/pangu_pxy.conf.j2"
     dest: /opt/tsg/tfe/conf/pangu/pangu_pxy.conf
+
+- name: "create conf/doh/"
+  file:
+    path: /opt/tsg/tfe/conf/doh/ 
+    state: directory
+
+- name: "template the doh.conf"
+  template:
+    src: "{{ role_path }}/templates/doh.conf.j2"
+    dest: /opt/tsg/tfe/conf/doh/doh.conf
 
 - name: "create a override conf - first step, create dir"
   file:

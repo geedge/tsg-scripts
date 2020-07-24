@@ -1,7 +1,7 @@
 [device]
 device={{nic_data_incoming.vf0_name}},{{ nic_data_incoming.vf1_name }},vxlan_user,vxlan_fwd
 sz_tunnel=8192
-sz_buffer=0
+sz_buffer=32
 
 [device:{{nic_data_incoming.vf0_name}}]
 mtu=4096
@@ -22,12 +22,15 @@ vlan-id-allow=4095
 vlan-pvid=0
 vlan-pvid-mode=2
 hw_strip_crc=1
+sz_tunnel=8192
+sz_buffer=0
 
 [service]
 # lcore id for i/o service, use comma to split
 iocore={{ mrzcpd.iocore }}
 distmode=2
 hashmode=0
+idle_threshold=10000
 
 [eal]
 virtaddr=0x7f40c4a00000
