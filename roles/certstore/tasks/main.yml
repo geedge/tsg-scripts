@@ -10,7 +10,7 @@
 - name: install certstore
   yum:
     name:
-      - /tmp/ansible_deploy/certstore-v20.05.0f61dde-1.el7.centos.x86_64.rpm
+      - /tmp/ansible_deploy/certstore-2.1.2.20200728.7515a19-1.el7.x86_64.rpm
     state: present
 
 - name: template certstore configure file

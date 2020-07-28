@@ -5,19 +5,19 @@ package_source=local
 [pc-as-tun-mode]
 
 [blade-mxn]
-192.168.40.170
+1.1.1.1 device_id=1
 
 [blade-00]
-192.168.40.166 vvipv4_1= vvipv4_2= vvipv6_1= vvipv6_2=
+1.1.1.1 device_id=1 vvipv4_1= vvipv4_2= vvipv6_1= vvipv6_2=
 
 [blade-01]
-192.168.40.167
+1.1.1.1 device_id=1
 
 [blade-02]
-192.168.40.168
+1.1.1.1 device_id=1
 
 [blade-03]
-192.168.40.169
+1.1.1.1 device_id=1
 
 [Functional_Host:children]
 blade-00
