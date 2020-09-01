@@ -5,6 +5,14 @@ tsg_access_type: 4
 #####0: Tun_mode;  1: normal; 2: ADC;
 tsg_running_type: 1 
 
+#Common combination mode:
+#1:Server or PC tun mode:      0 + 0
+#2:Server with Inline device:  1 + 1
+#3:ADC with Inline device:     1 + 2
+#4:ADC with Allot:             2 + 2
+#5:ADC tun mode:               3 + 1
+#6:ATCA:                       4 + 1
+
 ########################################
 maat_redis_server:
   address: "192.168.40.168"
@@ -69,6 +77,7 @@ mrzcpd:
 mrtunnat:
   lcore_id: 38
 
+#############ATCA config################
 nic_data_incoming:
   ethname: enp1s0
   vf0_name: enp1s2
@@ -80,10 +89,13 @@ VlanFlipping:
   vlanID_2: 101
   vlanID_3: 103
   vlanID_4: 104
-########################################
+
+#############Server or PC tun mode######
 server:
   ethname: eth0
   tun_name: eth0.100
   internal_interface: "eth2"
   external_interface: "eth3"
+
+
 
