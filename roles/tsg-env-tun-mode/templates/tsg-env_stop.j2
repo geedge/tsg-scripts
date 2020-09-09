@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-echo 0 >/sys/class/net/{{ server.ethname }}/device/sriov_numvfs
-ifconfig {{ server.ethname }}.100 down
-vconfig rem {{ server.ethname }}.100
+echo 0 >/sys/class/net/{{ nic_mgr.name }}/device/sriov_numvfs
+ifconfig {{ nic_mgr.name }}.100 down
+vconfig rem {{ nic_mgr.name }}.100
 {% if tsg_access_type == 4 %}
 echo 0 >/sys/class/net/{{ nic_data_incoming.ethname }}/device/sriov_numvfs
 {% endif %}

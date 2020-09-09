@@ -1,12 +1,8 @@
 [global]
 log_path = ./log/kni/kni.log
-log_level = {{ kni.global.log_level }}
+log_level = {{ kni_log_level }}
 tfe_node_count = {{ kni.global.tfe_node_count }}
-{% if tsg_running_type == 0 or 1 %}
-manage_eth = {{ server.ethname }}
-{% else %}
 manage_eth = {{ nic_mgr.name }}
-{% endif %}
 {% if tsg_running_type == 0 %}
 deploy_mode = tun
 {% else %}
@@ -38,20 +34,12 @@ ip_addr = 192.168.100.4
 {% endif %}
 
 [tfe_cmsg_receiver]
-{% if tsg_running_type == 0 or 1%}
-listen_eth = {{ server.tun_name }}
-{% else %}
 listen_eth = {{ nic_inner_ctrl.name }}
-{% endif %}
 listen_port = 2475
 
 [watch_dog]
 switch = {{ kni.watch_dog.switch }}
-{% if tsg_running_type == 0 or 1 %}
-listen_eth = {{ server.tun_name }}
-{% else %}
 listen_eth = {{ nic_inner_ctrl.name }}
-{% endif %}
 listen_port = 2476
 keepalive_idle = 2
 keepalive_intvl = 1
@@ -87,9 +75,9 @@ mho_expire_time = 0
 mho_eliminate_type = LRU
 
 [field_stat]
-remote_switch = {{ fs_remote.switch }}
-remote_ip = {{ fs_remote.address }}
-remote_port = {{ fs_remote.port }}
+remote_switch = 1
+remote_ip = 127.0.0.1
+remote_port = 8100
 local_path = ./fs2_kni.status
 stat_cycle = 1
 print_mode = 1

@@ -1,15 +1,15 @@
 #!/bin/bash
 modprobe 8021q
-vconfig add {{ server.ethname }} 100
-vconfig set_flag {{ server.ethname }}.100 1 1
-ifconfig {{ server.ethname }}.100 192.168.100.1 netmask 255.255.255.0 up
+vconfig add {{ nic_mgr.name }} 100
+vconfig set_flag {{ nic_mgr.name }}.100 1 1
+ifconfig {{ nic_mgr.name }}.100 192.168.100.1 netmask 255.255.255.0 up
 {% if tsg_access_type == 0 %}
-ethtool -K {{ server.internal_interface }} tso off
-ethtool -K {{ server.internal_interface }} gso off
-ethtool -K {{ server.internal_interface }} gro off
-ethtool -K {{ server.external_interface }} tso off
-ethtool -K {{ server.external_interface }} gso off
-ethtool -K {{ server.external_interface }} gro off
+ethtool -K {{ packet_io.internal_interface }} tso off
+ethtool -K {{ packet_io.internal_interface }} gso off
+ethtool -K {{ packet_io.internal_interface }} gro off
+ethtool -K {{ packet_io.external_interface }} tso off
+ethtool -K {{ packet_io.external_interface }} gso off
+ethtool -K {{ packet_io.external_interface }} gro off
 {% elif tsg_access_type == 4 %}
 echo 3 > /sys/class/net/{{ nic_data_incoming.ethname }}/device/sriov_numvfs
 ip link set {{ nic_data_incoming.ethname }} vf 1 vlan 4095

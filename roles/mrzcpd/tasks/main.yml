@@ -14,80 +14,80 @@
     src: "{{ role_path }}/templates/mrzcpd.j2"
     dest: /etc/sysconfig/mrzcpd
 
-- name: "update mrglobal.conf - slave blade"
+- name: "update mrglobal.conf - traffic_mirror"
   template:
-    src: "{{ role_path }}/templates/mrglobal.conf.traffic_mirror.j2"
+    src: "{{ role_path }}/templates/traffic_mirror/mrglobal.conf.traffic_mirror.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: nic_traffic_mirror is defined
 
 
-- name: "update mrglobal.conf.tun_mode - tun_server"
-  template:
-    src: "{{ role_path }}/templates/mrglobal.conf.tun_mode.j2"
-    dest: /opt/mrzcpd/etc/mrglobal.conf
-  when: 
-    - tsg_access_type == 0
+#- name: "update mrglobal.conf.tun_mode - tun_server"
+#  template:
+#    src: "{{ role_path }}/templates//mrglobal.conf.tun_mode.j2"
+#    dest: /opt/mrzcpd/etc/mrglobal.conf
+#  when: 
+#    - tsg_access_type == 0
 
-- name: "update mrglobal.conf.inline - blade00"
+- name: "update mrglobal.conf.inline - mcn0"
   template:
-    src: "{{ role_path }}/templates/mrglobal.conf.inline.j2"
+    src: "{{ role_path }}/templates/inline_device/mrglobal.conf.inline_device.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: 
     - nic_traffic_mirror is not defined
     - tsg_access_type == 1
 
-- name: "update mrglobal.conf.allot - blade00"
+- name: "update mrglobal.conf.allot - mcn0"
   template:
-    src: "{{ role_path }}/templates/mrglobal.conf.allot_access.j2"
+    src: "{{ role_path }}/templates/allot_access/mrglobal.conf.allot_access.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: 
     - nic_traffic_mirror is not defined
     - tsg_access_type == 2
 
-- name: "update mrglobal.conf.allot - blade00"
+- name: "update mrglobal.conf.adc_tun_mode - mcn0"
   template:
-    src: "{{ role_path }}/templates/mrglobal.conf.adc_tun_mode.j2"
+    src: "{{ role_path }}/templates/adc_tun_mode/mrglobal.conf.adc_tun_mode.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: 
     - nic_traffic_mirror is not defined
     - tsg_access_type == 3
 
 
-- name: "update mrglobal.conf.ATCA_40G - blade00"
+- name: "update mrglobal.conf.ATCA_40G - mcn0"
   template:
-    src: "{{ role_path }}/templates/mrglobal.conf.ATCA_40G.j2"
+    src: "{{ role_path }}/templates/ATCA_40G/mrglobal.conf.ATCA_40G.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: 
     - nic_traffic_mirror is not defined
     - tsg_access_type == 4   
 
-- name: "update mrtunnat.conf.inline - blade00"
+- name: "update mrtunnat.conf.inline - mcn0"
   template:
-    src: "{{ role_path }}/templates/mrtunnat.conf.inline.j2"
+    src: "{{ role_path }}/templates/inline_device/mrtunnat.conf.inline_device.j2"
     dest: /opt/mrzcpd/etc/mrtunnat.conf
   when: 
     - nic_traffic_mirror is not defined
     - tsg_access_type == 1
 
-- name: "update mrtunnat.conf.allot_access - blade00"
+- name: "update mrtunnat.conf.allot_access - mcn0"
   template:
-    src: "{{ role_path }}/templates/mrtunnat.conf.allot_access.j2"
+    src: "{{ role_path }}/templates/allot_access/mrtunnat.conf.allot_access.j2"
     dest: /opt/mrzcpd/etc/mrtunnat.conf
   when: 
     - nic_traffic_mirror is not defined
     - tsg_access_type == 2
 
-- name: "update mrtunnat.conf.allot_access - blade00"
+- name: "update mrtunnat.conf.adc_tun_mode - mcn0"
   template:
-    src: "{{ role_path }}/templates/mrtunnat.conf.adc_tun_mode.j2"
+    src: "{{ role_path }}/templates/adc_tun_mode/mrtunnat.conf.adc_tun_mode.j2"
     dest: /opt/mrzcpd/etc/mrtunnat.conf
   when: 
     - nic_traffic_mirror is not defined
     - tsg_access_type == 3
 
-- name: "update mrtunnat.conf.ATCA_40G - blade00"
+- name: "update mrtunnat.conf.ATCA_40G - mcn0"
   template:
-    src: "{{ role_path }}/templates/mrtunnat.conf.ATCA_40G.j2"
+    src: "{{ role_path }}/templates/ATCA_40G/mrtunnat.conf.ATCA_40G.j2"
     dest: /opt/mrzcpd/etc/mrtunnat.conf
   when: 
     - nic_traffic_mirror is not defined

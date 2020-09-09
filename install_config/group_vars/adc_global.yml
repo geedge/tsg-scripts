@@ -1,0 +1,88 @@
+#########################################
+#####1: Inline_device;  2: Allot;  3: ADC_Tun_mode;
+tsg_access_type: 2
+#####2: ADC;
+tsg_running_type: 2
+
+########################################
+#IP Config
+maat_redis_server:
+  address: "192.168.40.168"
+  port: 7002
+  db: 0
+
+dynamic_maat_redis_server:
+  address: "192.168.40.168"
+  port: 7002
+  db: 0
+
+cert_store_server:
+  address: "192.168.100.1"
+  port: 9991
+
+log_kafkabrokers:
+  address: "1.1.1.1:9092,2.2.2.2:9092"
+
+log_minio:
+  address: "192.168.40.168;"
+  port: 9090
+
+#########################################
+#Log Level Config
+#日志等级 10:DEBUG 20:INFO 30:FATAL
+fw_ftp_log_level: 10
+fw_mail_log_level: 10
+fw_http_log_level: 10
+fw_dns_log_level: 10
+fw_quic_log_level: 10
+capture_packet_log_level: 10
+tsg_log_level: 10
+tsg_master_log_level: 10
+kni_log_level: 10
+tfe_log_level: 10
+tfe_http_log_level: 10
+pangu_log_level: 10
+doh_log_level: 10
+certstore_log_level: 10
+
+#######################################
+#Sapp Performance Config
+#Sapp工作在ADC计算板0时，建议使用如下30+8的配置，以保证更高的处理性能
+sapp:
+  worker_threads: 30
+  send_only_threads_max: 8
+  bind_mask: 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37
+  inbound_route_dir: 1
+
+########################################
+#Kni Config
+kni:
+  global:
+    tfe_node_count: 3
+  watch_dog:
+    switch: 1
+  maat:
+    readconf_mode: 2
+  send_logger:
+    switch: 1
+  tfe_nodes:
+    tfe0_enabled: 1
+    tfe1_enabled: 1
+    tfe2_enabled: 1
+
+########################################
+#Tfe Config
+tfe:
+  nr_threads: 32
+  mc_cache_eth: lo 
+  keykeeper:
+    no_cache: 0
+
+########################################
+#Marsio Config
+#marsio工作在ADC计算板时，建议使用如下配置，以保证更高的处理性能
+mrzcpd:
+  iocore: 44,45,46,47
+
+mrtunnat:
+  lcore_id: 40,41,42,43

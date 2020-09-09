@@ -47,7 +47,7 @@ BSD_packet_filter=""
     [packet_io.internal.interface]
     {% if tsg_access_type == 0 %}
     type=pcap
-    name={{server.internal_interface}}
+    name={{packet_io.internal_interface}}
     {% else %}
     type=marsio
     name=vxlan_user
@@ -56,7 +56,7 @@ BSD_packet_filter=""
     [packet_io.external.interface]
     {% if tsg_access_type == 0 %}
     type=pcap
-    name={{server.external_interface}}
+    name={{packet_io.external_interface}}
     {% else %}
     type=pcap
     name=lo
@@ -108,8 +108,8 @@ BSD_packet_filter=""
      
         [profiling.log.remote]
         enabled=1
-        server_ip={{ fs_remote.address }}
-        server_port={{ fs_remote.port }}
+        server_ip=127.0.0.1
+        server_port=8100
 
         [profiling.log.remote.field_stat2]
 ### note, is valid when "remote_send_out_type=field_stat2"	 

@@ -1,5 +1,5 @@
 {% if tsg_access_type == 4 %}
-TFE_DEVICE_DATA_INCOMING={ nic_data_incoming.vf2_name }}
+TFE_DEVICE_DATA_INCOMING={{ nic_data_incoming.vf2_name }}
 {% elif tsg_running_type == 0 %}
 TFE_DEVICE_DATA_INCOMING=tun_kni
 {% else %}
@@ -14,7 +14,7 @@ TFE_PEER_MAC_DATA_INCOMING=aa:bb:cc:dd:ee:ff
 TFE_LOCAL_IP_DATA_INCOMING=172.16.241.2
 TFE_PEER_IP_DATA_INCOMING=172.16.241.1
 
-{% if tsg_running_type == 0 or 1 %}
-TFE_WATCHDOG_DEVICE={{ server.tun_name }}
+{% if tsg_running_type == 0 %}
+TFE_WATCHDOG_DEVICE={{ nic_inner_ctrl.name }}
 TFE_WATCHDOG_IP=192.168.100.1
 {% endif %}

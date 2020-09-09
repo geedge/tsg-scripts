@@ -2,10 +2,6 @@
 BROKER_LIST={{ log_kafkabrokers.address }}
 
 [SYSTEM]
-{% if tsg_running_type == 0 or 1 %}
-NIC_NAME={{ server.ethname }}
-{% else %}
 NIC_NAME={{ nic_mgr.name }}
-{% endif %}
 LOG_LEVEL=10
 LOG_PATH=log/clotho

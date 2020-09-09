@@ -1,0 +1,123 @@
+#########################################
+#####0: Pcap;  1: Inline_device;  4: ATCA;
+tsg_access_type: 0
+#####0: Tun_mode;  1: normal;
+tsg_running_type: 0
+
+########################################
+#Server Basic Config
+nic_mgr:
+  name: eth0
+
+nic_inner_ctrl:
+  name: eth0.100
+
+#########################################
+#IP Config
+maat_redis_server:
+  address: "192.168.40.168"
+  port: 7002
+  db: 0
+
+dynamic_maat_redis_server:
+  address: "192.168.40.168"
+  port: 7002
+  db: 0
+
+cert_store_server:
+  address: "192.168.100.1"
+  port: 9991
+
+log_kafkabrokers:
+  address: "1.1.1.1:9092,2.2.2.2:9092"
+
+log_minio:
+  address: "192.168.40.168;"
+  port: 9090
+
+#########################################
+#Log Level Config
+#日志等级 10:DEBUG 20:INFO 30:FATAL
+fw_ftp_log_level: 10
+fw_mail_log_level: 10
+fw_http_log_level: 10
+fw_dns_log_level: 10
+fw_quic_log_level: 10
+capture_packet_log_level: 10
+tsg_log_level: 10
+tsg_master_log_level: 10
+kni_log_level: 10
+tfe_log_level: 10
+tfe_http_log_level: 10
+pangu_log_level: 10
+doh_log_level: 10
+certstore_log_level: 10
+
+#########################################
+#Sapp Performance Config
+#如果tsg_access_type=0，sapp跑在pcap模式，则以下配置可忽略
+sapp:
+  worker_threads: 16
+  send_only_threads_max: 8
+  bind_mask: 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23
+  inbound_route_dir: 1
+
+#########################################
+#Sapp Double-Arm Config
+packet_io:
+  internal_interface: eth2
+  external_interface: eth3
+
+
+#########################################
+#Kni Config
+kni:
+  global:
+    tfe_node_count: 1
+  watch_dog:
+    switch: 1
+  maat:
+    readconf_mode: 2
+  send_logger:
+    switch: 1
+  tfe_nodes:
+    tfe0_enabled: 1
+    tfe1_enabled: 0
+    tfe2_enabled: 0
+
+#########################################
+#Tfe Config
+tfe:
+  nr_threads: 32
+  mc_cache_eth: lo 
+  keykeeper:
+    no_cache: 0
+
+#########################################
+#Marsio Config
+mrzcpd:
+  iocore: 39
+
+mrtunnat:
+  lcore_id: 38
+
+#########################################
+#ATCA Config
+#下列配置只在tsg_access_type=4时生效
+nic_data_incoming:
+  ethname: enp1s0
+  vf0_name: enp1s2
+  vf1_name: enp1s2f1
+  vf2_name: enp1s2f2
+
+VlanFlipping:
+  vlanID_1: 100
+  vlanID_2: 101
+  vlanID_3: 103
+  vlanID_4: 104
+
+#########################################
+#Inline Device Config
+inline_device_config:
+  ip: 192.168.1.30
+  mask: 255.255.255.252

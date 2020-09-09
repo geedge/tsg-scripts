@@ -4,16 +4,13 @@ sz_tunnel=8192
 sz_buffer=0
 
 [device:{{nic_data_incoming.name}}]
-in_addr={{nic_data_incoming.ip}}
-in_mask={{nic_data_incoming.mask}}
-gateway={{nic_data_incoming.gw}}
+in_addr={{inline_device_config.ip}}
+in_mask={{inline_device_config.mask}}
 jumbo_frame=1
 max_rx_pkt_len=15360
 clear_tx_flags=1
-#vlan-filter=1
-#vlan-id-allow=1301,1302,2301,2302,1501,1502,2501,2502,1601,1602,2601,2602,1701,1702,2701,2702,1801,1802,2801,2802,1901,1902,2901,2902
-#vlan-pvid=0
-#vlan-pvid-mode=0
+vlan-filter=1
+vlan-id-allow=1000,1001
 
 [device:{{nic_to_tfe.tfe0.name}}]
 jumbo_frame=1

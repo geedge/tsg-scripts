@@ -7,6 +7,9 @@
 - name: "install kernels-ml"
   yum:
     name:
+      - /tmp/ansible_deploy/pkgconfig-0.27.1-4.el7.x86_64.rpm
+      - /tmp/ansible_deploy/zlib-devel-1.2.7-17.el7.x86_64.rpm
+      - /tmp/ansible_deploy/elfutils-libelf-devel-0.168-8.el7.x86_64.rpm
       - /tmp/ansible_deploy/kernel/kernel-ml-5.1.8-1.el7.elrepo.x86_64.rpm
       - /tmp/ansible_deploy/kernel/kernel-ml-devel-5.1.8-1.el7.elrepo.x86_64.rpm
       - /tmp/ansible_deploy/dkms-2.7.1-1.el7.noarch.rpm

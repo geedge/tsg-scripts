@@ -1,11 +1,15 @@
-- hosts: Functional_Host
+- hosts: adc_mxn
   roles:
-    - framework
-    - kernel-ml
+#    - tsg-env-mxn
 
-- hosts: blade-00
+- hosts: adc_mcn0
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+    - install_config/group_vars/adc_mcn0.yml
   roles:
 #    - tsg-env-mcn0
+    - framework
+    - kernel-ml
     - mrzcpd
     - sapp
     - tsg_master
@@ -17,29 +21,42 @@
     - cert-redis
     - telegraf_statistic
 
-- hosts: blade-01
+- hosts: adc_mcn1
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+    - install_config/group_vars/adc_mcn1.yml
   roles:
 #    - tsg-env-mcn1
+    - framework
+    - kernel-ml
     - mrzcpd
     - tfe
 
-- hosts: blade-02
+- hosts: adc_mcn2
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+    - install_config/group_vars/adc_mcn2.yml
   roles:
 #    - tsg-env-mcn2
+    - framework
+    - kernel-ml
     - mrzcpd
     - tfe
 
-- hosts: blade-03
+- hosts: adc_mcn3
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+    - install_config/group_vars/adc_mcn3.yml
   roles:
 #    - tsg-env-mcn3
+    - framework
+    - kernel-ml
     - mrzcpd
     - tfe
 
-- hosts: blade-mxn
-  roles:
-#    - tsg-env-mxn
-
-- hosts: pc-as-tun-mode
+- hosts: server-as-tun-mode
+  vars_files:
+    - install_config/group_vars/server_as_tun_mode.yml
   roles:
     - kernel-ml
     - framework

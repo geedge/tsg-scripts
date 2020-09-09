@@ -12,6 +12,7 @@ vlan-id-allow={{ VlanFlipping.vlanID_1 }},{{ VlanFlipping.vlanID_2 }},{{ VlanFli
 vlan-pvid=0
 vlan-pvid-mode=2
 hw_strip_crc=1
+rssmode=3
 
 [device:{{ nic_data_incoming.vf1_name }}]
 mtu=4096
@@ -28,7 +29,7 @@ sz_buffer=0
 [service]
 # lcore id for i/o service, use comma to split
 iocore={{ mrzcpd.iocore }}
-distmode=2
+distmode=1
 hashmode=0
 idle_threshold=10000
 

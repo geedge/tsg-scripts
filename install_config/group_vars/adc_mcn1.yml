@@ -1,0 +1,17 @@
+#########################################
+#Mcn1管理口网卡名
+nic_mgr:
+  name: enp6s0
+
+#########################################
+#Mcn1流量接入网卡，固定配置
+nic_data_incoming:
+  name: ens1f1
+
+#########################################
+#Mcn1其他数据口网卡名配置，固定配置
+nic_inner_ctrl:
+  name: ens1.100
+nic_traffic_mirror:
+  name: ens1f2
+  use_mrzcpd: 1

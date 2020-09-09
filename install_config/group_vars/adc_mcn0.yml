@@ -1,0 +1,37 @@
+#########################################
+#Mcn0管理口网卡名
+nic_mgr:
+  name: enp6s0
+
+#########################################
+#Mcn0流量接入网卡，固定配置
+nic_data_incoming:
+  name: ens1f4
+
+#########################################
+#Mcn0其他数据口网卡名配置，固定配置
+nic_inner_ctrl:
+  name: ens1.100
+nic_to_tfe:
+  tfe0:
+      name: ens1f5
+  tfe1:
+      name: ens1f6
+  tfe2:
+      name: ens1f7
+
+#########################################
+#串联设备接入相关配置
+inline_device_config:
+  ip: 192.168.1.30
+  mask: 255.255.255.252
+
+#########################################
+#Allot接入相关配置
+AllotAccess:
+  virturlInterface_1: ens1f2.103
+  virturlInterface_2: ens1f2.104
+  virturlID_1: 103
+  virturlID_2: 104
+  vvipv4_mask: 24
+  vvipv6_mask: 64

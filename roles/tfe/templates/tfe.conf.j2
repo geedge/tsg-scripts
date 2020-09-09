@@ -32,11 +32,7 @@ service_cache_expire_seconds=600
 # default 0
 mc_cache_enable=1
 # default eth0
-{% if tsg_running_type == 0 or 1 %}
-mc_cache_eth={{ server.tun_name }}
-{% else %}
 mc_cache_eth={{ nic_inner_ctrl.name }}
-{% endif %}
 # default NULL
 mc_cache_broker_list={{ log_kafkabrokers.address }}
 # default PXY-EXCH-INTERMEDIA-CERT
@@ -59,12 +55,14 @@ enable_health_check=1
 passthrough_all_tcp=0
 
 [traffic_mirror]
-{% if tsg_running_type == 0 or 1 %}
+{% if tsg_running_type == 0 %}
 device=lo
+type=0
 {% else %}
 device={{ nic_traffic_mirror.name }}
+type=1
 {% endif %}
-type=0
+
 
 [ratelimit]
 #read_rate=200000
@@ -82,25 +80,21 @@ tcp_ttl_upstream=75
 tcp_ttl_downstream=70
 
 [log]
-level=10
+level={{ tfe_log_level }}
 
 [stat]
-statsd_server={{ fs_remote.address }}
-statsd_port={{ fs_remote.port }}
+statsd_server=127.0.0.1
+statsd_port=8100
 statsd_cycle=5
 # FS_OUTPUT_STATSD=1, FS_OUTPUT_INFLUX_LINE=2
 statsd_format=2
 
 [http]
-loglevel=10
+loglevel={{ tfe_http_log_level }}
 
 [kafka]
 enable=1
-{% if tsg_running_type == 0 or 1 %}
-nic_name={{ server.ethname }}
-{% else %}
 nic_name={{ nic_mgr.name }}
-{% endif %}
 kafka_brokerlist={{ log_kafkabrokers.address }}
 kafka_topic=PROXY-EVENT-LOG
 device_id_filepath=/opt/tsg/etc/tsg_sn.json
