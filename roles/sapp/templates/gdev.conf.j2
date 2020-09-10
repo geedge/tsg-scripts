@@ -2,7 +2,7 @@
 {% if tsg_running_type == 2 %}
 pcapdevice={{ nic_data_incoming.name }}
 sendto_gdev_card={{ nic_data_incoming.name }}
-sendto_gdev_ip={{ inline_device_config.ip }}
+sendto_gdev_ip={{ inline_device_config.keepalive_ip }}
 {% else %}
 pcapdevice={{ inline_device_config.data_incoming }}
 sendto_gdev_card={{ inline_device_config.data_incoming }}
