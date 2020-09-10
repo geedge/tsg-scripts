@@ -55,7 +55,7 @@ enable_health_check=1
 passthrough_all_tcp=0
 
 [traffic_mirror]
-{% if tsg_running_type == 0 %}
+{% if tsg_running_type != 2 %}
 device=lo
 type=0
 {% else %}

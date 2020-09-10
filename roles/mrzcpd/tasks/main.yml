@@ -21,20 +21,30 @@
   when: nic_traffic_mirror is defined
 
 
-#- name: "update mrglobal.conf.tun_mode - tun_server"
-#  template:
-#    src: "{{ role_path }}/templates//mrglobal.conf.tun_mode.j2"
-#    dest: /opt/mrzcpd/etc/mrglobal.conf
-#  when: 
-#    - tsg_access_type == 0
-
-- name: "update mrglobal.conf.inline - mcn0"
+- name: "copy mrapp.sapp4.conf to destination server"
   template:
-    src: "{{ role_path }}/templates/inline_device/mrglobal.conf.inline_device.j2"
+    src: "{{ role_path }}/templates/mrapp.sapp4.conf "
+    dest: /opt/mrzcpd/etc/mrapp.sapp4.conf 
+  when: 
+    - tsg_access_type == 4
+
+- name: "update mrglobal.conf.adc_inline"
+  template:
+    src: "{{ role_path }}/templates/adc_inline/mrglobal.conf.adc_inline.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: 
     - nic_traffic_mirror is not defined
     - tsg_access_type == 1
+    - tsg_running_type == 2
+
+- name: "update mrglobal.conf.server_inline"
+  template:
+    src: "{{ role_path }}/templates/server_inline/mrglobal.conf.server_inline.j2"
+    dest: /opt/mrzcpd/etc/mrglobal.conf
+  when: 
+    - nic_traffic_mirror is not defined
+    - tsg_access_type == 1
+    - tsg_running_type != 2
 
 - name: "update mrglobal.conf.allot - mcn0"
   template:
@@ -53,21 +63,39 @@
     - tsg_access_type == 3
 
 
-- name: "update mrglobal.conf.ATCA_40G - mcn0"
+- name: "update mrglobal.conf.ATCA_Vlan_Flipping"
   template:
-    src: "{{ role_path }}/templates/ATCA_40G/mrglobal.conf.ATCA_40G.j2"
+    src: "{{ role_path }}/templates/ATCA_Vlan_Flipping/mrglobal.conf.ATCA_Vlan_Flipping.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
   when: 
     - nic_traffic_mirror is not defined
-    - tsg_access_type == 4   
+    - tsg_access_type == 4
 
-- name: "update mrtunnat.conf.inline - mcn0"
+- name: "update mrglobal.conf.ATCA_VXLAN"
   template:
-    src: "{{ role_path }}/templates/inline_device/mrtunnat.conf.inline_device.j2"
+    src: "{{ role_path }}/templates/ATCA_VXLAN/mrglobal.conf.ATCA_VXLAN.j2"
+    dest: /opt/mrzcpd/etc/mrglobal.conf
+  when:
+    - nic_traffic_mirror is not defined
+    - tsg_access_type == 5
+
+- name: "update mrtunnat.conf.adc_inline"
+  template:
+    src: "{{ role_path }}/templates/adc_inline/mrtunnat.conf.adc_inline.j2"
     dest: /opt/mrzcpd/etc/mrtunnat.conf
   when: 
     - nic_traffic_mirror is not defined
     - tsg_access_type == 1
+    - tsg_running_type == 2 
+
+- name: "update mrtunnat.conf.server_inline"
+  template:
+    src: "{{ role_path }}/templates/server_inline/mrtunnat.conf.server_inline.j2"
+    dest: /opt/mrzcpd/etc/mrtunnat.conf
+  when: 
+    - nic_traffic_mirror is not defined
+    - tsg_access_type == 1
+    - tsg_running_type != 2 
 
 - name: "update mrtunnat.conf.allot_access - mcn0"
   template:
@@ -85,13 +113,21 @@
     - nic_traffic_mirror is not defined
     - tsg_access_type == 3
 
-- name: "update mrtunnat.conf.ATCA_40G - mcn0"
+- name: "update mrtunnat.conf.ATCA_Vlan_Flipping"
   template:
-    src: "{{ role_path }}/templates/ATCA_40G/mrtunnat.conf.ATCA_40G.j2"
+    src: "{{ role_path }}/templates/ATCA_Vlan_Flipping/mrtunnat.conf.ATCA_Vlan_Flipping.j2"
     dest: /opt/mrzcpd/etc/mrtunnat.conf
   when: 
     - nic_traffic_mirror is not defined
     - tsg_access_type == 4
+
+- name: "update mrtunnat.conf.ATCA_VXLAN"
+  template:
+    src: "{{ role_path }}/templates/ATCA_VXLAN/mrtunnat.conf.ATCA_VXLAN.j2"
+    dest: /opt/mrzcpd/etc/mrtunnat.conf
+  when:
+    - nic_traffic_mirror is not defined
+    - tsg_access_type == 5
 
 - name: "enable mrenv"
   systemd:
@@ -124,3 +160,20 @@
     enabled: no
     daemon_reload: yes
   when: nic_traffic_mirror is defined
+
+
+- name: "mask mrzcpd on server_tun_mode"
+  systemd:
+    name: mrzcpd
+    enabled: no
+    masked: yes
+  when: 
+    - tsg_access_type == 0
+
+- name: "mask mrtunnat on server_tun_mode"
+  systemd:
+    name: mrtunnat
+    enabled: no
+    masked: yes
+  when: 
+    - tsg_access_type == 0

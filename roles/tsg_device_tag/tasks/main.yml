@@ -1,6 +1,6 @@
 - name: "create /opt/tsg/etc/"
   file:
-    path: /opt/proxy_status
+    path: /opt/tsg/etc
     state: directory
 
 - name: "Template tsg_device_tag.json"

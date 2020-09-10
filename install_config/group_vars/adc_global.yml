@@ -1,6 +1,6 @@
 #########################################
 #####1: Inline_device;  2: Allot;  3: ADC_Tun_mode;
-tsg_access_type: 2
+tsg_access_type: 3
 #####2: ADC;
 tsg_running_type: 2
 
@@ -30,20 +30,21 @@ log_minio:
 #########################################
 #Log Level Config
 #日志等级 10:DEBUG 20:INFO 30:FATAL
-fw_ftp_log_level: 10
-fw_mail_log_level: 10
-fw_http_log_level: 10
-fw_dns_log_level: 10
-fw_quic_log_level: 10
-capture_packet_log_level: 10
-tsg_log_level: 10
-tsg_master_log_level: 10
-kni_log_level: 10
-tfe_log_level: 10
-tfe_http_log_level: 10
-pangu_log_level: 10
-doh_log_level: 10
-certstore_log_level: 10
+fw_ftp_log_level: 30
+fw_mail_log_level: 30
+fw_http_log_level: 30
+fw_dns_log_level: 30
+fw_quic_log_level: 30
+capture_packet_log_level: 30
+tsg_log_level: 30
+tsg_master_log_level: 30
+kni_log_level: 30
+tfe_log_level: 30
+tfe_http_log_level: 30
+pangu_log_level: 30
+doh_log_level: 30
+certstore_log_level: 30
+clotho_log_level: 10
 
 #######################################
 #Sapp Performance Config
@@ -58,7 +59,7 @@ sapp:
 #Kni Config
 kni:
   global:
-    tfe_node_count: 3
+    tfe_node_count: 1
   watch_dog:
     switch: 1
   maat:
@@ -67,8 +68,8 @@ kni:
     switch: 1
   tfe_nodes:
     tfe0_enabled: 1
-    tfe1_enabled: 1
-    tfe2_enabled: 1
+    tfe1_enabled: 0
+    tfe2_enabled: 0
 
 ########################################
 #Tfe Config

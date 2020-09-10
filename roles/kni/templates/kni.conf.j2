@@ -3,7 +3,7 @@ log_path = ./log/kni/kni.log
 log_level = {{ kni_log_level }}
 tfe_node_count = {{ kni.global.tfe_node_count }}
 manage_eth = {{ nic_mgr.name }}
-{% if tsg_running_type == 0 %}
+{% if tsg_running_type != 2 %}
 deploy_mode = tun
 {% else %}
 deploy_mode = normal
@@ -14,7 +14,7 @@ dst_mac_addr = fe:65:b7:03:50:bd
 {% if tsg_access_type == 4 %}
 [tfe0]
 enabled = 1
-dev_eth_symbol = {{ nic_data_incoming.vf1_name }}
+dev_eth_symbol = {{ ATCA_data_incoming.vf1_name }}
 ip_addr = 192.168.100.1
 {% elif tsg_running_type == 2 %}
 [tfe0]

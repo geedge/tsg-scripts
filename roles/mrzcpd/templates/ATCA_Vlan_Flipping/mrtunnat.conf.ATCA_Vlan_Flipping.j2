@@ -1,7 +1,7 @@
 [tunnat]
 lcore_id={{ mrtunnat.lcore_id }}
 appsym=tunnat
-phydev={{nic_data_incoming.vf0_name}}
+phydev={{ATCA_data_incoming.vf0_name}}
 virtdev=vxlan_fwd
 nr_max_sessions=524280
 nr_slots=1048576
@@ -15,10 +15,9 @@ idle_threshold=10000
 
 [vlan_flipping]
 enable=1
-c_router_vlan_id_0={{ VlanFlipping.vlanID_1 }}
-i_router_vlan_id_0={{ VlanFlipping.vlanID_2 }}
+c_router_vlan_id_0={{ ATCA_VlanFlipping.vlanID_1 }}
+i_router_vlan_id_0={{ ATCA_VlanFlipping.vlanID_2 }}
 en_mac_flipping_0=0
-en_mac_flipping_0=0
-c_router_vlan_id_1={{ VlanFlipping.vlanID_3 }}
-i_router_vlan_id_1={{ VlanFlipping.vlanID_4 }}
+c_router_vlan_id_1={{ ATCA_VlanFlipping.vlanID_3 }}
+i_router_vlan_id_1={{ ATCA_VlanFlipping.vlanID_4 }}
 en_mac_flipping_1=0

@@ -4,8 +4,8 @@ sz_tunnel=8192
 sz_buffer=0
 
 [device:{{nic_data_incoming.name}}]
-in_addr={{inline_device_config.ip}}
-in_mask={{inline_device_config.mask}}
+in_addr={{inline_device_config.keepalive_ip}}
+in_mask={{inline_device_config.keepalive_mask}}
 jumbo_frame=1
 max_rx_pkt_len=15360
 clear_tx_flags=1

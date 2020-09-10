@@ -1,7 +1,9 @@
 [Unit]
 Description=sapp service
+{% if tsg_running_type != 0 %}
 Requires=mrzcpd.service
 After=mrzcpd.service
+{% endif %}
 [Service]
 WorkingDirectory=/home/mesasoft/sapp_run
 ExecStart=/home/mesasoft/sapp_run/sapp

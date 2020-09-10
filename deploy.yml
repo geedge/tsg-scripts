@@ -1,8 +1,10 @@
 - hosts: adc_mxn
+  remote_user: root
   roles:
 #    - tsg-env-mxn
 
 - hosts: adc_mcn0
+  remote_user: root
   vars_files:
     - install_config/group_vars/adc_global.yml
     - install_config/group_vars/adc_mcn0.yml
@@ -20,8 +22,10 @@
     - certstore
     - cert-redis
     - telegraf_statistic
+    - tsg_device_tag
 
 - hosts: adc_mcn1
+  remote_user: root
   vars_files:
     - install_config/group_vars/adc_global.yml
     - install_config/group_vars/adc_mcn1.yml
@@ -33,6 +37,7 @@
     - tfe
 
 - hosts: adc_mcn2
+  remote_user: root
   vars_files:
     - install_config/group_vars/adc_global.yml
     - install_config/group_vars/adc_mcn2.yml
@@ -44,6 +49,7 @@
     - tfe
 
 - hosts: adc_mcn3
+  remote_user: root
   vars_files:
     - install_config/group_vars/adc_global.yml
     - install_config/group_vars/adc_mcn3.yml
@@ -55,6 +61,7 @@
     - tfe
 
 - hosts: server-as-tun-mode
+  remote_user: root
   vars_files:
     - install_config/group_vars/server_as_tun_mode.yml
   roles:
@@ -73,3 +80,4 @@
     - tfe
     - telegraf_statistic
     - proxy_status
+    - tsg_device_tag

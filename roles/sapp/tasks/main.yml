@@ -41,10 +41,10 @@
   when: tsg_access_type == 1
   
 
-- name: "copy sapp.service destination server"
-  copy:
-    src: "{{ role_path }}/files/sapp.service"
-    dest: /usr/lib/systemd/system/
+- name: "Template sapp.service destination server"
+  template:
+    src: "{{ role_path }}/templates/sapp.service.j2"
+    dest: /usr/lib/systemd/system/sapp.service
     mode: 0755
 
 - name: "enable sapp"

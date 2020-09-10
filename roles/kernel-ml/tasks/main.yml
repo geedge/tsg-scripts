@@ -28,8 +28,14 @@
     - tsg_access_type == 4
     - t_kernel_ml.changed
 
-- name: "grub2-mkconfig"
+- name: "BIOS:grub2-mkconfig"
   shell: grub2-mkconfig -o /boot/grub2/grub.cfg
+  when:
+    - tsg_access_type == 4
+    - t_kernel_ml.changed
+
+- name: "UEFI:grub2-mkconfig"
+  shell: grub2-mkconfig  -o /boot/efi/EFI/centos/grub.cfg
   when:
     - tsg_access_type == 4
     - t_kernel_ml.changed

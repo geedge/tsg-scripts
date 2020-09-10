@@ -1,8 +1,8 @@
 #########################################
-#####0: Pcap;  1: Inline_device;  4: ATCA;
-tsg_access_type: 0
+#####0: Pcap;  1: Inline_device;  4: ATCA_Vlan_Flipping;  5:ATCA_VXLAN;
+tsg_access_type: 1
 #####0: Tun_mode;  1: normal;
-tsg_running_type: 0
+tsg_running_type: 1
 
 ########################################
 #Server Basic Config
@@ -52,6 +52,7 @@ tfe_http_log_level: 10
 pangu_log_level: 10
 doh_log_level: 10
 certstore_log_level: 10
+clotho_log_level: 10
 
 #########################################
 #Sapp Performance Config
@@ -104,20 +105,26 @@ mrtunnat:
 #########################################
 #ATCA Config
 #下列配置只在tsg_access_type=4时生效
-nic_data_incoming:
+ATCA_data_incoming:
   ethname: enp1s0
   vf0_name: enp1s2
   vf1_name: enp1s2f1
   vf2_name: enp1s2f2
 
-VlanFlipping:
+ATCA_VlanFlipping:
   vlanID_1: 100
   vlanID_2: 101
   vlanID_3: 103
   vlanID_4: 104
 
+#下列配置只在tsg_access_type=5时生效
+ATCA_VXLAN:
+  keepalive_ip: "10.254.19.1"
+  keepalive_mask: "255.255.255.252"
+
 #########################################
 #Inline Device Config
 inline_device_config:
-  ip: 192.168.1.30
-  mask: 255.255.255.252
+  keepalive_ip: 192.168.1.30
+  keepalive_mask: 255.255.255.252
+  data_incoming: eth5
