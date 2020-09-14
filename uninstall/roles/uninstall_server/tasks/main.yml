@@ -1,0 +1,570 @@
+####################
+#Uninstall Kernel
+- name: "reset default kernel"
+  shell: grub2-set-default '{{ origin_kernel }}'
+  when: uninstall.kernel == 1
+
+- name: "reboot"
+  reboot:
+  when: uninstall.kernel == 1
+
+- name: "uninstall tfe-kmod and kernel"
+  yum:
+    name:
+      - "{{ tfe_kmod }}"
+      - "{{ dkms }}"
+      - "{{ kernel_ml }}"
+      - "{{ kernel_ml_devel }}"
+      - "{{ elfutils_libelf_devel }}"
+      - "{{ zlib_devel }}"
+    state: absent
+  when: uninstall.kernel == 1
+  ignore_errors: true
+
+####################
+#Uninstall Marsio
+- name: stop mrzcpd
+  systemd:
+    name: mrzcpd
+    state: stopped
+    enabled: no
+  when: 
+    - backup.marsio == 1
+    - uninstall.marsio == 1
+  ignore_errors: true
+
+- name: stop mrtunnat
+  systemd:
+    name: mrtunnat
+    state: stopped
+    enabled: no
+  when: 
+    - backup.marsio == 1
+    - uninstall.marsio == 1
+  ignore_errors: true
+
+- name: create backup_dest_path
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  when: backup.marsio == 1
+
+- name: backup /opt/mrzcpd to destination path
+  archive:
+    path: /opt/mrzcpd
+    dest: "{{ backup_dest_path }}/mrzcpd_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.marsio == 1
+
+- name: uninstall mrzcpd
+  yum:
+    name:
+      - "{{ mrzcpd }}"
+    state: absent
+  when: uninstall.marsio == 1
+
+- name: remove marsio files
+  file:
+    path: /opt/mrzcpd
+    state: absent
+  when: remove.marsio == 1
+
+- name: remove mrzcpd.service
+  file:
+    path: /usr/lib/systemd/system/mrzcpd.service
+    state: absent
+  when: remove.marsio == 1
+
+- name: remove mrtunnat.service
+  file:
+    path: /usr/lib/systemd/system/mrtunnat.service
+    state: absent
+  when: remove.marsio == 1
+
+####################
+#Uninstall kni
+- name: stop sapp
+  systemd:
+    name: sapp
+    state: stopped
+    enabled: no
+  when:
+    - backup.kni == 1
+    - uninstall.kni == 1
+  ignore_errors: true
+
+- name: create backup_dest_path
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  when: backup.kni == 1
+
+- name: backup sapp_run/etc/kni/ to destination path
+  archive:
+    path: /home/mesasoft/sapp_run/etc/kni
+    dest: "{{ backup_dest_path }}/kni_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.kni == 1
+
+- name: backup sapp_run/plug to destination path
+  archive:
+    path: /home/mesasoft/sapp_run/plug
+    dest: "{{ backup_dest_path }}/sapp_plug_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.sapp_plug == 1
+
+- name: "judge plug.zip"
+  shell: "ls {{ backup_dest_path }}/sapp_plug_{{ uninstall_version }}_{{ date }}.zip"
+  register: return
+  ignore_errors: true
+
+- name: uninstall kni
+  yum:
+    name:
+      - "{{ kni }}"
+    state: absent
+  when: uninstall.kni == 1
+
+- name: remove kni files
+  file:
+    path: /home/mesasoft/sapp_run/etc/kni/
+    state: absent
+  when: remove.kni == 1
+
+####################
+#Uninstall tsg_master
+- name: stop sapp
+  systemd:
+    name: sapp
+    state: stopped
+    enabled: no
+  when:
+    - backup.sapp_tsgconf == 1
+    - uninstall.tsgmaster == 1
+  ignore_errors: true
+
+- name: create backup_dest_path
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  when: backup.sapp_tsgconf == 1
+
+- name: backup sapp_run/tsgconf/ to destination path
+  archive:
+    path: /home/mesasoft/sapp_run/tsgconf
+    dest: "{{ backup_dest_path }}/tsgconf_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.sapp_tsgconf == 1
+
+- name: backup sapp_run/plug to destination path
+  archive:
+    path: /home/mesasoft/sapp_run/plug
+    dest: "{{ backup_dest_path }}/sapp_plug_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: 
+    - backup.sapp_plug == 1
+    - return.rc != 0
+
+- name: uninstall tsg_master
+  yum:
+    name:
+      - "{{ tsg_master }}"
+    state: absent
+  when: uninstall.tsgmaster == 1
+
+####################
+#Uninstall firewall
+- name: stop sapp
+  systemd:
+    name: sapp
+    state: stopped
+    enabled: no
+  when:
+    - backup.sapp_conf == 1
+    - uninstall.firewall == 1
+  ignore_errors: true
+
+- name: create backup_dest_path
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  when: backup.sapp_conf == 1
+
+- name: create /home/mesasoft/sapp_runetc/
+  file:
+    path: /home/mesasoft/sapp_runetc/
+    state: directory
+  when: backup.sapp_conf == 1
+
+- name: create entrylist.conf
+  file:
+    path: /home/mesasoft/sapp_runetc/entrylist.conf
+    state: touch
+  when: backup.sapp_conf == 1
+
+- name: backup sapp_run/conf/ to destination path
+  archive:
+    path: /home/mesasoft/sapp_run/conf
+    dest: "{{ backup_dest_path }}/sapp_conf_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.sapp_conf == 1
+
+- name: backup sapp_run/plug to destination path
+  archive:
+    path: /home/mesasoft/sapp_run/plug
+    dest: "{{ backup_dest_path }}/sapp_plug_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when:
+    - backup.sapp_plug == 1
+    - return.rc != 0
+
+- name: uninstall firewall
+  yum:
+    name:
+      - "{{ capture_packet_plug }}"
+      - "{{ dns }}"
+      - "{{ ftp }}"
+      - "{{ http }}"
+      - "{{ quic }}"
+      - "{{ ssl }}"
+      - "{{ mail }}"
+      - "{{ fw_dns }}"
+      - "{{ fw_ftp }}"
+      - "{{ fw_http }}"
+      - "{{ fw_ssl }}"
+      - "{{ fw_mail }}"
+      - "{{ tsg_conn_record }}"
+    state: absent
+  when: uninstall.firewall == 1
+
+- name: uninstall firewall
+  yum:
+    name:
+      - "{{ fw_quic }}"
+      - "{{ tsg_conn_sketch }}"
+    state: absent
+  when: uninstall.firewall == 1
+  ignore_errors: true
+
+- name: remove /home/mesasoft/sapp_runetc
+  file:
+    path: /home/mesasoft/sapp_runetc
+    state: absent
+  when: uninstall.firewall == 1
+
+####################
+#Uninstall sapp
+- name: stop sapp
+  systemd:
+    name: sapp
+    state: stopped
+    enabled: no
+  when:
+    - backup.sapp_etc == 1
+    - uninstall.sapp == 1
+  ignore_errors: true
+
+- name: create backup_dest_path
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  when: backup.sapp_etc == 1
+
+- name: backup sapp_run/etc to destination path
+  archive:
+    path: /home/mesasoft/sapp_run/etc
+    dest: "{{ backup_dest_path }}/sapp_etc_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.sapp_etc == 1
+
+- name: uninstall sapp
+  yum:
+    name:
+      - "{{ sapp }}"
+    state: absent
+  when: uninstall.sapp == 1
+
+#- name: remove /home/mesasoft/sapp_run
+#  file:
+#    path: /home/mesasoft/sapp_run
+#    state: absent
+#  when: 
+#    - remove.sapp == 1
+#    - backup.sapp_plug == 1
+#    - backup.sapp_tsgconf == 1
+#    - backup.sapp_etc == 1 
+#    - backup.sapp_conf == 1
+
+- name: remove sapp.service
+  file:
+    path: /usr/lib/systemd/system/sapp.service
+    state: absent
+  when: remove.sapp == 1
+
+####################
+#Uninstall tfe
+- name: stop tfe
+  systemd:
+    name: tfe
+    state: stopped
+    enabled: no
+  when:
+    - backup.tfe == 1
+    - uninstall.tfe == 1
+  ignore_errors: true 
+
+- name: stop tfe-env
+  systemd:
+    name: tfe-env
+    state: stopped
+    enabled: no
+  when:
+    - backup.tfe == 1
+    - uninstall.tfe == 1
+  ignore_errors: true
+
+- name: create backup_dest_path
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  when: backup.tfe == 1
+
+- name: backup /opt/tsg/tfe/conf to destination path
+  archive:
+    path: /opt/tsg/tfe/conf
+    dest: "{{ backup_dest_path }}/tfe_conf_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.tfe == 1
+
+- name: uninstall tfe
+  yum:
+    name:
+      - "{{ tfe }}"
+    state: absent
+  when: uninstall.tfe == 1
+
+- name: remove /opt/tsg/tfe
+  file:
+    path: /opt/tsg/tfe
+    state: absent
+  when: remove.tfe == 1
+
+- name: remove tfe.service
+  file:
+    path: /usr/lib/systemd/system/tfe.service
+    state: absent
+  when: remove.tfe == 1
+
+- name: remove tfe-env.service
+  file:
+    path: /usr/lib/systemd/system/tfe-env.service
+    state: absent
+  when: remove.tfe == 1
+
+- name: remove tfe-env-tun-mode.service
+  file:
+    path: /usr/lib/systemd/system/tfe-env-tun-mode.service
+    state: absent
+  when: remove.tfe == 1
+
+####################
+#Uninstall Certstore
+- name: stop certstore
+  systemd:
+    name: certstore
+    state: stopped
+    enabled: no
+  when: 
+    - backup.certstore == 1
+    - uninstall.certstore == 1
+  ignore_errors: true
+
+- name: create backup_dest_path
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  when: backup.certstore == 1
+  
+- name: backup /home/tsg/certstore to destination path
+  archive:
+    path: /home/tsg/certstore
+    dest: "{{ backup_dest_path }}/certstore_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.certstore == 1
+
+- name: uninstall certstore
+  yum:
+    name:
+      - "{{ certstore }}"
+    state: absent
+  when: uninstall.certstore == 1
+
+- name: remove certstore files
+  file:
+    path: /home/tsg/certstore
+    state: absent
+  when: remove.certstore == 1
+
+- name: remove certstore.service
+  file:
+    path: /usr/lib/systemd/system/certstore.service
+    state: absent
+  when: remove.certstore == 1
+
+####################
+#Uninstall cert-redis
+- name: stop cert-redis
+  systemd:
+    name: cert-redis
+    state: stopped
+    enabled: no
+  when: uninstall.certredis == 1 
+  ignore_errors: true
+
+- name: remove cert-redis files
+  file:
+    path: /home/tsg/cert-redis
+    state: absent
+  when: remove.certredis == 1
+
+####################
+#Uninstall clotho
+- name: stop clotho
+  systemd:
+    name: clotho
+    state: stopped
+    enabled: no
+  when: uninstall.clotho == 1
+  ignore_errors: true
+
+- name: uninstall clotho
+  yum:
+    name:
+      - "{{ clotho }}"
+    state: absent
+  when: uninstall.clotho == 1
+
+- name: remove clotho files
+  file:
+    path: /home/mesasoft/clotho
+    state: absent
+  when: remove.clotho == 1
+
+- name: remove clotho.service
+  file:
+    path: /usr/lib/systemd/system/clotho.service
+    state: absent
+  when: remove.clotho == 1
+
+####################
+#Uninstall http_healthcheck
+- name: uninstall http_healthcheck
+  yum:
+    name:
+      - "{{ http_healthcheck }}"
+    state: absent
+  when: uninstall.http_healthcheck == 1
+
+- name: remove http_healthcheck files
+  file:
+    path: /home/mesasoft/http_healthcheck
+    state: absent
+  when: remove.http_healthcheck == 1
+
+####################
+#Uninstall framework
+- name: create backup_dest_path
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  when: backup.framework == 1
+
+- name: backup /home/tsg/certstore to destination path
+  archive:
+    path: /opt/MESA
+    dest: "{{ backup_dest_path }}/opt_MESA_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.framework == 1
+
+- name: uninstall framework
+  yum:
+    name:
+      - "{{ libcjson }}"
+      - "{{ libdocument }}"
+      - "{{ libmaatframe }}"
+      - "{{ libMESA_field_stat }}"
+      - "{{ libMESA_field_stat2 }}"
+      - "{{ libMESA_handle_logger }}"
+      - "{{ libMESA_htable }}"
+      - "{{ libMESA_prof_load }}"
+      - "{{ librdkafka }}"
+      - "{{ librulescan }}"
+      - "{{ libwiredcfg }}"
+      - "{{ libWiredLB }}"
+      - "{{ lz4 }}"
+    state: absent
+  when: uninstall.framework == 1
+
+- name: remove framework files
+  file:
+    path: /opt/MESA
+    state: absent
+  when: remove.framework == 1
+
+####################
+#Uninstall telegraf_statistic
+- name: stop telegraf_statistic
+  systemd:
+    name: telegraf_statistic
+    state: stopped
+    enabled: no
+  when: uninstall.telegraf_statistic == 1
+  ignore_errors: true
+
+- name: uninstall telegraf_statistic
+  yum:
+    name:
+      - "{{ telegraf_statistic }}"
+    state: absent
+  when: uninstall.telegraf_statistic == 1
+
+- name: remove telegraf_statistic files
+  file:
+    path: /etc/telegraf/telegraf_statistic.conf
+    state: absent
+  when: remove.telegraf_statistic == 1
+
+- name: remove /tmp/metrics.out
+  file:
+    path: /tmp/metrics.out
+    state: absent 
+  when: remove.telegraf_statistic == 1
+
+####################
+#Remove other tsg files
+- name: remove /home/mesasoft
+  file:
+    path: /home/mesasoft
+    state: absent
+  when:
+    - remove.kni == 1
+    - remove.sapp == 1
+    - remove.clotho == 1
+
+- name: remove /home/tsg
+  file:
+    path: /home/tsg
+    state: absent
+  when:
+    - remove.certstore == 1
+    - remove.certredis == 1
+
+- name: remove /opt/proxy_status
+  file:
+    path: /opt/proxy_status
+    state: absent
+
+- name: remove /tmp/ansible_deploy
+  file:
+    path: /tmp/ansible_deploy
+    state: absent
