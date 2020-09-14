@@ -1,6 +1,8 @@
 ###################
 #   For example   #
 ###################
+#变量device_id根据设备序号设置即可
+#变量vvipv4_1、vvipv4_2、vvipv6_1、vvipv6_2为Allot相关配置，其他环境可不填或直接删除变量
 #
 #[server-as-tun-mode]
 #1.1.1.1 device_id=device_1

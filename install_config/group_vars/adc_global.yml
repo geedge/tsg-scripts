@@ -59,7 +59,7 @@ sapp:
 #Kni Config
 kni:
   global:
-    tfe_node_count: 1
+    tfe_node_count: 3
   watch_dog:
     switch: 1
   maat:
@@ -68,8 +68,8 @@ kni:
     switch: 1
   tfe_nodes:
     tfe0_enabled: 1
-    tfe1_enabled: 0
-    tfe2_enabled: 0
+    tfe1_enabled: 1
+    tfe2_enabled: 1
 
 ########################################
 #Tfe Config
