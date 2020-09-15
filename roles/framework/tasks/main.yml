@@ -18,7 +18,7 @@
       - /tmp/ansible_deploy/libWiredLB-2.0.3.c7d131b-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/libcjson-1.7.8.542ad7f-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/libdocumentanalyze-2.0.4.efdfc29-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/libmaatframe-3.0.3.5931b44-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/libmaatframe-3.0.4.7d6bc27-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/librulescan-2.2.0.900d2b3-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libwiredcfg-2.0.2.7ce1eea-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/lz4-1.7.5-3.el7.x86_64.rpm

@@ -6,6 +6,6 @@
 - name: "install tsg_master from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/tsg_master-3.1.2.7002e1b-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tsg_master-3.2.4.a73f956-2.el7.x86_64.rpm
     state: present
     skip_broken: yes
