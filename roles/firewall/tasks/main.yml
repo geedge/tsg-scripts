@@ -27,9 +27,6 @@
       - /tmp/ansible_deploy/ssl-1.0.8.0068bd9-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/tsg_conn_record-1.0.2.2afb19a-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/tsg_conn_sketch-2.0.v2.0_alpha.af621ca-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/app_control_plug-1.0.2.a724506-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/app_sketch_local-1.0.2.fd63c68-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/app_master-1.0.4.d189dee-2.el7.x86_64.rpm
 
 - name: "Template the tsgconf/main.conf"
   template:

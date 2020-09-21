@@ -1,4 +1,4 @@
-- name: stop certstore
+- name: "[certstore before 20.09] stop certstore"
   systemd:
     name: certstore
     state: stopped
@@ -8,33 +8,33 @@
     - uninstall.certstore == 1
   ignore_errors: true
 
-- name: create backup_dest_path
+- name: "[certstore before 20.09] create backup_dest_path"
   file:
     path: "{{ backup_dest_path }}"
     state: directory
   when: backup.certstore == 1
 
-- name: backup /home/tsg/certstore to destination path
+- name: "[certstore before 20.09] backup /home/tsg/certstore to destination path"
   archive:
     path: /home/tsg/certstore
     dest: "{{ backup_dest_path }}/certstore_{{ uninstall_version }}_{{ date }}.zip"
     format: zip
   when: backup.certstore == 1
 
-- name: uninstall certstore
+- name: "[certstore before 20.09] uninstall certstore"
   yum:
     name:
       - "{{ certstore }}"
     state: absent
   when: uninstall.certstore == 1
 
-- name: remove certstore files
+- name: "[certstore before 20.09] remove certstore files"
   file:
     path: /home/tsg/certstore
     state: absent
   when: remove.certstore == 1
 
-- name: remove certstore.service
+- name: "[certstore before 20.09] remove certstore.service"
   file:
     path: /usr/lib/systemd/system/certstore.service
     state: absent

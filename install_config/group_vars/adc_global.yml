@@ -90,6 +90,7 @@ mrtunnat:
   lcore_id: 40,41,42,43
 
 #########################################
-#Tsg-app
-tsg-app_enable: 1
+#Tsg_app
+#0: Disable tsg_app   1: Enable tsg_app
+tsg_app_enable: 1
 

@@ -13,5 +13,6 @@
 #10.3.74.1
 #10.3.75.1
 [uninstall_server]
+172.16.124.134
 [uninstall_adc_mcn0]
 [uninstall_adc_mcn123]

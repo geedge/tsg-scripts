@@ -1,17 +1,17 @@
-- name: create backup_dest_path
+- name: "[framework before 20.09] create backup_dest_path"
   file:
     path: "{{ backup_dest_path }}"
     state: directory
   when: backup.framework == 1
 
-- name: backup /opt/MESA to destination path
+- name: "[framework before 20.09] backup /home/tsg/certstore to destination path"
   archive:
     path: /opt/MESA
     dest: "{{ backup_dest_path }}/opt_MESA_{{ uninstall_version }}_{{ date }}.zip"
     format: zip
   when: backup.framework == 1
 
-- name: uninstall framework
+- name: "[framework before 20.09] uninstall framework"
   yum:
     name:
       - "{{ libcjson }}"
@@ -30,7 +30,7 @@
     state: absent
   when: uninstall.framework == 1
 
-- name: remove framework files
+- name: "[framework before 20.09] remove framework files"
   file:
     path: /opt/MESA
     state: absent

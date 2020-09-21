@@ -21,7 +21,7 @@ backup:
 ####################
 #Uninstall list
 uninstall:
-  kernel: 0
+  kernel: 1
   framework: 1
   marsio: 1
   sapp: 1
@@ -34,9 +34,9 @@ uninstall:
   clotho: 1
   http_healthcheck: 1
   telegraf_statistic: 1
-  tsg_env_tun_mode: 0
+  tsg_env_tun_mode: 1
   tsg_app: 1
-  tsg_diagnose: 1
+  tsg_diagnose: 0
 
 ####################
 #Remove list

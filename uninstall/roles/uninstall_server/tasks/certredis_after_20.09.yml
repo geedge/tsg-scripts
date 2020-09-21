@@ -1,4 +1,4 @@
-- name: stop cert-redis
+- name: "[certredis after 20.09] stop cert-redis"
   systemd:
     name: cert-redis
     state: stopped
@@ -6,7 +6,7 @@
   when: uninstall.certredis == 1
   ignore_errors: true
 
-- name: remove cert-redis files
+- name: "[certredis after 20.09] remove cert-redis files"
   file:
     path: /opt/tsg/cert-redis
     state: absent
