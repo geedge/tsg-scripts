@@ -13,9 +13,9 @@
     fw_packages:
       - /tmp/ansible_deploy/capture_packet_plug-3.0.2.09f193c-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/clotho-debug-1.0.0.-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/dns-2.0.6.d8317e9-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/dns-2.0.8.beb1d09-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/ftp-1.0.6.2710506-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_dns_plug-3.0.0.0a5d574-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_dns_plug-3.0.1.453c533-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_ftp_plug-3.0.0.7a867ea-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_http_plug-3.0.0.1ca1c65-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_mail_plug-3.0.0.3b4e481-2.el7.x86_64.rpm
@@ -23,10 +23,13 @@
       - /tmp/ansible_deploy/fw_ssl_plug-3.0.1.7ea9976-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/http-2.0.3.9218b4b-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/mail-1.0.7.9e3be05-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/quic-1.1.6.d6755d8-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/ssl-1.0.3.e8482a4-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/quic-1.1.9.810857d-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/ssl-1.0.8.0068bd9-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/tsg_conn_record-1.0.2.2afb19a-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/tsg_conn_sketch-2.0.v2.0_alpha.af621ca-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_control_plug-1.0.2.a724506-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_sketch_local-1.0.2.fd63c68-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_master-1.0.4.d189dee-2.el7.x86_64.rpm
 
 - name: "Template the tsgconf/main.conf"
   template:

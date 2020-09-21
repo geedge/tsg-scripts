@@ -3,20 +3,20 @@
     src: "{{ role_path }}/files/"
     dest: "/tmp/ansible_deploy/"
 
-- name: Ensures /home/tsg exists
-  file: path=/home/tsg state=directory
+- name: Ensures /opt/tsg exists
+  file: path=/opt/tsg state=directory
   tags: mkdir
 
 - name: install certstore
   yum:
     name:
-      - /tmp/ansible_deploy/certstore-2.1.2.20200828.f507b3e-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/certstore-2.1.2.202009.87fcacf-1.el7.x86_64.rpm
     state: present
 
 - name: template certstore configure file
   template:
     src: "{{ role_path }}/templates/cert_store.ini.j2"
-    dest: /home/tsg/certstore/conf/cert_store.ini
+    dest: /opt/tsg/certstore/conf/cert_store.ini
 
 - name: "start certstore"
   systemd:

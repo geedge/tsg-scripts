@@ -22,7 +22,7 @@
     - certstore
     - cert-redis
     - telegraf_statistic
-    - tsg_device_tag
+#    - tsg_device_tag
 
 - hosts: adc_mcn1
   remote_user: root
@@ -60,6 +60,24 @@
     - mrzcpd
     - tfe
 
+- hosts: adc_mcn0
+  remote_user: root
+  roles:
+    - tsg-diagnose
+
+- hosts: 
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+  remote_user: root
+  roles:
+    - tsg-diagnose_sync_ca
+    
+- hosts: adc_mcn0
+  remote_user: root
+  roles:
+    - tsg-diagnose_stop_sync
+
 - hosts: server-as-tun-mode
   remote_user: root
   vars_files:
@@ -80,4 +98,4 @@
     - tfe
     - telegraf_statistic
     - proxy_status
-    - tsg_device_tag
+#    - tsg_device_tag

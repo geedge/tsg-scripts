@@ -93,6 +93,7 @@ tfe:
   mc_cache_eth: lo 
   keykeeper:
     no_cache: 0
+  mirror_enable: 1
 
 #########################################
 #Marsio Config
@@ -101,6 +102,10 @@ mrzcpd:
 
 mrtunnat:
   lcore_id: 38
+
+#########################################
+#Tsg-app
+tsg-app_enable: 0
 
 #########################################
 #ATCA Config

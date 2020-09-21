@@ -1,76 +1,121 @@
 [system]
 nr_worker_threads={{ tfe.nr_threads }}
-enable_breakpad=0
-enable_breakpad_upload=0
-breakpad_minidump_dir=/run/tfe/crashreport/
-breakpad_upload_url=http://127.0.0.1:9000/
-disable_coredump=0
+enable_kni_v1=0
+enable_kni_v2=1
 
+# Only when (disable_coredump == 1 || (enable_breakpad == 1 && enable_breakpad_upload == 1)) is satisfied, the core will not be generated locally
+disable_coredump=0
+enable_breakpad=1
+enable_breakpad_upload=0
+breakpad_upload_url=http://sentry.mesalab.cn:9000/api/3/minidump/?sentry_key=e8e446bb3bd8435c97f4c01770ca7025
+# must be /run/tfe/crashreport，due to tmpfile limit
+breakpad_minidump_dir=/run/tfe/crashreport
+
+# ask for at least (1 + nr_worker_threads) masks
+# the first  mask for acceptor thread
+# the others mask for worker   thread
+enable_cpu_affinity=1
+cpu_affinity_mask=1-9
+# LEAST_CONN = 0; ROUND_ROBIN = 1
+load_balance=1
 
 [kni]
+# kni v1
+#uxdomain=/var/run/.tfe_kni_acceptor_handler
+# kni v2
+#scm_socket_file=/var/run/.tfe_kmod_scm_socket
+
+# send cmsg
+send_switch=1
 ip=192.168.100.1
 cmsg_port=2475
+
+# watch dog
 watchdog_switch=1
 watchdog_port=2476
 
 [ssl]
 ssl_max_version=tls13
 ssl_min_version=ssl3
-no_session_cache=0
+ssl_compression=1
+no_ssl2=1
+no_ssl3=0
+no_tls10=0
+no_tls11=0
+no_tls12=0
+default_ciphers=ALL:-aNULL
+no_cert_verify=0
+
+# session ticket
 no_session_ticket=0
-log_master_key=0
+stek_group_num=4
+stek_rotation_time=3600
+
+# session cache
+no_session_cache=0
+session_cache_slots=4194304
+session_cache_expire_seconds=1800
+
+# service cache
+service_cache_slots=4194304
+service_cache_expire_seconds=300
+service_cache_fail_as_pinning_cnt=4
+service_cache_fail_as_proto_err_cnt=5
+service_cache_succ_as_app_not_pinning_cnt=0
+service_cache_fail_time_window=30
+
+# cert
+check_cert_crl=0
 trusted_cert_load_local=1
 trusted_cert_file=resource/tfe/tls-ca-bundle.pem
 trusted_cert_dir=resource/tfe/trusted_storage
-key_log_file=log/sslkeylog.log
-no_alpn=0
-stek_group_num=4
-stek_rotation_time=3600
-service_cache_expire_seconds=600
 
-# SSL mid cert cache
-# default 0
+# master key
+log_master_key=0
+key_log_file=log/sslkeylog.log
+
+# mid cert cache
 mc_cache_enable=1
-# default eth0
 mc_cache_eth={{ nic_inner_ctrl.name }}
-# default NULL
 mc_cache_broker_list={{ log_kafkabrokers.address }}
-# default PXY-EXCH-INTERMEDIA-CERT
 mc_cache_topic=PXY-EXCH-INTERMEDIA-CERT
 
 [key_keeper]
 #Mode: debug - generate cert with ca_path, normal - generate cert with cert store
 #0 on cache 1 off cache
-mode= normal
 no_cache=0
-cert_store_host= {{ cert_store_server.address }}
-cert_store_port= {{ cert_store_server.port }}
+mode=normal
+cert_store_host={{ cert_store_server.address }}
+cert_store_port={{ cert_store_server.port }}
 ca_path=resource/tfe/tango-ca-v3-trust-ca.pem
 untrusted_ca_path=resource/tfe/tango-ca-v3-untrust-ca.pem
-# health_check only for "mode=normal"
-# default 1
+hash_slot_size=131072
+hash_expire_seconds=300
+cert_expire_time=24
+
+# health_check only for "mode=normal" default 1
 enable_health_check=1
 
 [debug]
+# 1 : enforce tcp passthrough
+# 0 : Whether to passthrough depends on the tcp_options in cmsg
 passthrough_all_tcp=0
 
-[traffic_mirror]
-{% if tsg_running_type != 2 %}
-device=lo
-type=0
-{% else %}
-device={{ nic_traffic_mirror.name }}
-type=1
-{% endif %}
-
-
 [ratelimit]
-#read_rate=200000
-#read_burst=200000
-#write_rate=200000
-#write_burst=200000
+read_rate=0
+read_burst=0
+write_rate=0
+write_burst=0
 
 [tcp]
+# read rcv_buff/snd_buff options from tfe conf
+sz_rcv_buffer=-1
+sz_snd_buffer=-1
+
+# 1 : use tcp_options in tfe.conf
+# 0 : use tcp_options in cmsg
+enable_overwrite=0
+tcp_nodelay=1
 so_keepalive=1
 tcp_keepcnt=8
 tcp_keepintvl=15
@@ -81,45 +126,66 @@ tcp_ttl_downstream=70
 
 [log]
 level={{ tfe_log_level }}
+location=log/tfe.log
 
 [stat]
-statsd_server=127.0.0.1
+statsd_server=192.168.100.1
 statsd_port=8100
 statsd_cycle=5
-# FS_OUTPUT_STATSD=1, FS_OUTPUT_INFLUX_LINE=2
+# 1:FS_OUTPUT_STATSD; 2:FS_OUTPUT_INFLUX_LINE
 statsd_format=2
+histogram_bins=0.5,0.8,0.9,0.95
 
 [http]
 loglevel={{ tfe_http_log_level }}
 
+[traffic_mirror]
+{% if tsg_running_type != 2 %}
+enable={{ tfe.mirror_enable }}
+device=lo
+# 0:TRAFFIC_MIRROR_ETHDEV_AF_PACKET; 1:TRAFFIC_MIRROR_ETHDEV_MARSIO
+type=0
+{% else %}
+enable={{ tfe.mirror_enable }}
+device={{ nic_traffic_mirror.name }}
+# 0:TRAFFIC_MIRROR_ETHDEV_AF_PACKET; 1:TRAFFIC_MIRROR_ETHDEV_MARSIO
+type=1
+{% endif %}
+
+
 [kafka]
 enable=1
-nic_name={{ nic_mgr.name }}
+NIC_NAME={{ nic_mgr.name }}
 kafka_brokerlist={{ log_kafkabrokers.address }}
 kafka_topic=PROXY-EVENT-LOG
 device_id_filepath=/opt/tsg/etc/tsg_sn.json
 
 [maat]
-# 0:json 1: redis 2: iris
+# 0:json 1:redis 2:iris
 maat_input_mode=1
+stat_switch=1
+perf_switch=1
 table_info=resource/pangu/table_info.conf
-json_cfg_file=resource/pangu/pangu_http.json
-stat_file=log/pangu_scan.status
-full_cfg_dir=pangu_policy/full/index/
-inc_cfg_dir=pangu_policy/inc/index/
+accept_path=/opt/tsg/etc/tsg_device_tag.json
+stat_file=log/pangu_scan.fs2
+effect_interval_s=1
+deferred_load_on=0
 
+# Pangu uses accept_tags to support the effective range of the device.
+# Traffic mirroring does not need to support the effective range of the device,
+# but pangu and traffic mirroring use the same maat configuration file.
+# Therefore, there is no need to set accept_tags in tfe.conf,
+# just set accept_tags in the tfe_resource_init() code
+# accept_tags={"tags":[{"tag":"device_id","value":"device_1"}]}
+
+# json mode conf iterm
+json_cfg_file=resource/pangu/pangu_http.json
+
+# redis mode conf iterm
 maat_redis_server={{ maat_redis_server.address }}
 maat_redis_port_range={{ maat_redis_server.port }}
 maat_redis_db_index={{ maat_redis_server.db }}
-effect_interval_s=1
-#accept_tags={"tags":[{"tag":"location","value":"Astana"}]}
-accept_path=/opt/tsg/etc/tsg_device_tag.json
 
-[dynamic_maat]
-maat_input_mode=1
-table_info=resource/pangu/dynamic_maat_table_info.conf
-maat_redis_server={{ dynamic_maat_redis_server.address }}
-maat_redis_port_range={{ dynamic_maat_redis_server.port }}
-maat_redis_db_index={{ dynamic_maat_redis_server.db }}
-effect_interval_s=1
-
+# iris mode conf iterm
+full_cfg_dir=pangu_policy/full/index/
+inc_cfg_dir=pangu_policy/inc/index/

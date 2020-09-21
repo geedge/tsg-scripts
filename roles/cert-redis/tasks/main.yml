@@ -1,11 +1,11 @@
 - name: "copy cert-redis to destination server"
   copy:
     src: "{{ role_path }}/files/"
-    dest: /home/tsg
+    dest: /opt/tsg
     mode: 0755
 
 - name: "install cert-redis"
-  shell: cd /home/tsg/cert-redis;sh install.sh
+  shell: cd /opt/tsg/cert-redis;sh install.sh
 
 - name: "start cert-redis"
   systemd:

@@ -4,10 +4,15 @@
     src: "{{ role_path }}/files/"
     dest: /tmp/ansible_deploy/
 
+- name: "copy maat_redis_tool to destination server"
+  copy:
+    src: "{{ role_path }}/files/maat_redis_tool"
+    dest: /usr/local/bin
+
 - name: "install sapp rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/sapp-4.0.20.b59c12a-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/sapp-4.1.7.4f2839a-2.el7.x86_64.rpm
     state: present
     skip_broken: yes
 

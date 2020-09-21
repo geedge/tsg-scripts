@@ -4,7 +4,7 @@
    - uninstall_server
   vars_files:
     - uninstall_config/group_vars/uninstall_vars.yml
-    - roles/package_list/20.08.yml
+    - roles/package_list/20.09.yml
 
 - hosts: uninstall_adc_mcn0
   remote_user: root
@@ -12,7 +12,7 @@
    - uninstall_adc_mcn0
   vars_files:
     - uninstall_config/group_vars/uninstall_vars.yml
-    - roles/package_list/20.08.yml
+    - roles/package_list/20.09.yml
 
 - hosts: uninstall_adc_mcn123
   remote_user: root
@@ -20,4 +20,4 @@
    - uninstall_adc_mcn123
   vars_files:
     - uninstall_config/group_vars/uninstall_vars.yml
-    - roles/package_list/20.08.yml
+    - roles/package_list/20.09.yml

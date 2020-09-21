@@ -10,6 +10,9 @@
 #./plug/platform/http_healthcheck/http_healthcheck.inf
 {% endif %}
 ./plug/platform/tsg_master/tsg_master.inf
+{% if tsg-app_enable == 1 %}
+./plug/platform/app_master/app_master.inf
+{% endif %}
 
 [protocol]
 ./plug/protocol/ssl/ssl.inf
@@ -30,3 +33,7 @@
 ./plug/business/tsg_conn_record/tsg_conn_record.inf
 ./plug/business/tsg_conn_sketch/tsg_conn_sketch.inf
 ./plug/business/capture_packet_plug/capture_packet_plug.inf
+{% if tsg-app_enable == 1 %}
+./plug/business/app_sketch_local/app_sketch_local.inf
+./plug/business/app_control_plug/app_control_plug.inf
+{% endif %}
