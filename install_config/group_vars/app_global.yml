@@ -1,0 +1,10 @@
+#########################################
+app_sketch_global_log_level: 10
+
+maat_redis_server:
+  address: "192.168.40.168"
+  port: 7002
+  db: 0
+
+file_stat_ip: "1.1.1.1"
+  

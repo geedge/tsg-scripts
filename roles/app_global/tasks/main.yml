@@ -1,0 +1,28 @@
+- name: "copy app_global rpm to destination server"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: /tmp/ansible_deploy/
+
+- name: "install app rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/emqx-centos7-v4.1.2.x86_64.rpm
+      - /tmp/ansible_deploy/app-sketch-global-1.0.2.20200907.81a5ea4-1.el7.x86_64.rpm
+    state: present
+
+- name: "template the app_sketch_global.conf"
+  template:
+    src: "{{ role_path }}/templates/app_sketch_global.conf.j2"
+    dest: /opt/tsg/app-sketch-global/conf/app_sketch_global.conf
+
+- name: "Start emqx"
+  systemd:
+    name: emqx.service
+    state: started
+    enabled: yes
+
+- name: "Start app-sketch-global"
+  systemd:
+    name: app-sketch-global.service
+    state: started
+    enabled: yes

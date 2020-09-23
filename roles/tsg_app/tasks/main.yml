@@ -1,0 +1,32 @@
+---
+- name: "copy tsg_app rpms to destination server"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: /tmp/ansible_deploy/
+
+- name: "install tsg_app packages"
+  yum:
+    name: "{{ app_packages }}"
+    state: present
+    skip_broken: yes
+  vars:
+    app_packages:
+      - /tmp/ansible_deploy/app_master-1.0.5.5a4fb22-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_control_plug-1.0.3.447fc53-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_proto_identify-1.0.3.6c893f2-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_sketch_local-1.0.4.0edaf58-2.el7.x86_64.rpm
+  when: tsg_app_enable == 1
+
+- name: "Template the appconf/main.conf"
+  template:
+    src: "{{ role_path }}/templates/main.conf.j2"
+    dest: /home/mesasoft/sapp_run/appconf/main.conf
+  tags: template
+  when: tsg_app_enable == 1
+
+- name: "Template the appconf/maat.conf"
+  template:
+    src: "{{ role_path }}/templates/maat.conf.j2"
+    dest: /home/mesasoft/sapp_run/appconf/maat.conf
+  tags: template
+  when: tsg_app_enable == 1

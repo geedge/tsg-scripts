@@ -58,7 +58,6 @@ fw_http: fw_http_plug-3.0.0.1ca1c65-1.x86_64
 fw_quic: fw_quic_plug-3.0.0.b06d39c-1.x86_64
 fw_ssl: fw_ssl_plug-3.0.1.7ea9976-1.x86_64
 fw_mail: fw_mail_plug-3.0.0.3b4e481-1.x86_64
-tsg_conn_record: tsg_conn_record-1.0.2.2afb19a-1.x86_64
 tsg_conn_sketch: tsg_conn_sketch-2.0.v2.0_alpha.af621ca-1.x86_64
 
 ####################

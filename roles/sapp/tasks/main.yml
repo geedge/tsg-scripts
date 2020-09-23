@@ -8,6 +8,7 @@
   copy:
     src: "{{ role_path }}/files/maat_redis_tool"
     dest: /usr/local/bin
+    mode: 0755
 
 - name: "install sapp rpms from localhost"
   yum:

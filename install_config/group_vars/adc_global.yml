@@ -50,9 +50,9 @@ clotho_log_level: 10
 #Sapp Performance Config
 #Sapp工作在ADC计算板0时，建议使用如下30+8的配置，以保证更高的处理性能
 sapp:
-  worker_threads: 30
-  send_only_threads_max: 8
-  bind_mask: 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37
+  worker_threads: 37
+  send_only_threads_max: 1
+  bind_mask: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38
   inbound_route_dir: 1
 
 ########################################
@@ -75,9 +75,6 @@ kni:
 #Tfe Config
 tfe:
   nr_threads: 32
-  mc_cache_eth: lo 
-  keykeeper:
-    no_cache: 0
   mirror_enable: 1
 
 ########################################
@@ -91,6 +88,5 @@ mrtunnat:
 
 #########################################
 #Tsg_app
-#0: Disable tsg_app   1: Enable tsg_app
 tsg_app_enable: 1
-
+app_global_ip: "1.1.1.1"
