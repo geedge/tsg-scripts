@@ -35,6 +35,7 @@ tsg_conn_sketch=`rpm -qa |grep ^tsg_conn_sketch`
 tsg_conn_record=`rpm -qa |grep ^tsg_conn_record`
 app_sketch_local=`rpm -qa |grep ^app_sketch_local`
 app_control_plug=`rpm -qa |grep ^app_control_plug`
+app_proto_identify=`rpm -qa |grep ^app_proto_identify`
 app_master=`rpm -qa |grep ^app_master`
 tfe=`rpm -qa |grep ^tfe-4`
 tfe_kmod=`rpm -qa |grep ^tfe-kmod`
@@ -108,6 +109,7 @@ tsg_conn_record: $tsg_conn_record
 #Tsg_app
 app_sketch_local: $app_sketch_local
 app_control_plug: $app_control_plug
+app_proto_identify: $app_proto_identify
 app_master: $app_master
 
 ####################

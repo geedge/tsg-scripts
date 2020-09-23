@@ -62,8 +62,9 @@ tsg_conn_sketch: tsg_conn_sketch-2.0.v2.0_alpha.af621ca-1.x86_64
 
 ####################
 #Tsg_app
-app_sketch_local: app_sketch_local-1.0.2.fd63c68-1.x86_64
-app_control_plug: app_control_plug-1.0.2.a724506-1.x86_64
+app_sketch_local: app_sketch_local-1.0.4.0edaf58-2.x86_64
+app_control_plug: app_control_plug-1.0.3.447fc53-2.x86_64
+app_proto_identify: app_proto_identify-1.0.3.6c893f2-2.x86_64 
 app_master: app_master-1.0.4.d189dee-1.x86_64
 
 ####################

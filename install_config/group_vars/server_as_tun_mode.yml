@@ -104,6 +104,10 @@ mrtunnat:
 #Tsg_app
 tsg_app_enable: 1
 app_global_ip: "1.1.1.1"
+applog_level: 10
+app_master_log_level: 10
+app_sketch_local_log_level: 10
+app_control_plug_log_level: 10
 
 #########################################
 #ATCA Config

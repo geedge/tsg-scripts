@@ -147,6 +147,7 @@
     name:
       - "{{ app_sketch_local }}"
       - "{{ app_control_plug }}"
+      - "{{ app_proto_identify }}"
       - "{{ app_master }}"
     state: absent
   when:
