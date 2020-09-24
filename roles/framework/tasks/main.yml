@@ -12,7 +12,7 @@
     packages:
       - /tmp/ansible_deploy/libMESA_field_stat-1.0.1.852c2df-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/libMESA_field_stat2-2.9.1.d80b5fb-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/libMESA_handle_logger-1.0.9.304259e-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/libMESA_handle_logger-2.0.4.1502550-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libMESA_htable-3.10.11.6275308-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/libMESA_prof_load-1.0.5.bf755de-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/libWiredLB-2.0.3.c7d131b-1.el7.x86_64.rpm

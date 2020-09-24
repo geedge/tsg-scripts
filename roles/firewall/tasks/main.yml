@@ -12,7 +12,6 @@
   vars:
     fw_packages:
       - /tmp/ansible_deploy/capture_packet_plug-3.0.2.09f193c-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/clotho-debug-1.0.0.-1.el7.x86_64.rpm
       - /tmp/ansible_deploy/dns-2.0.8.beb1d09-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/ftp-1.0.6.2710506-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_dns_plug-3.0.1.453c533-2.el7.x86_64.rpm

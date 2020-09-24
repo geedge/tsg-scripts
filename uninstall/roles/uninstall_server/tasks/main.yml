@@ -256,7 +256,6 @@
       - "{{ fw_http }}"
       - "{{ fw_ssl }}"
       - "{{ fw_mail }}"
-      - "{{ tsg_conn_record }}"
     state: absent
   when: uninstall.firewall == 1
 
@@ -264,6 +263,7 @@
   yum:
     name:
       - "{{ fw_quic }}"
+      - "{{ tsg_conn_record }}"
       - "{{ tsg_conn_sketch }}"
     state: absent
   when: uninstall.firewall == 1

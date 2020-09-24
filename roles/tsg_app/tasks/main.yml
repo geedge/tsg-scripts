@@ -17,6 +17,12 @@
       - /tmp/ansible_deploy/app_sketch_local-1.0.4.0edaf58-2.el7.x86_64.rpm
   when: tsg_app_enable == 1
 
+- name: "mkdir appconf"
+  file:
+    path: /home/mesasoft/sapp_run/appconf
+    state: directory
+  when: tsg_app_enable == 1
+
 - name: "Template the appconf/main.conf"
   template:
     src: "{{ role_path }}/templates/main.conf.j2"
