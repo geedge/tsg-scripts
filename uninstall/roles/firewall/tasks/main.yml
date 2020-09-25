@@ -39,15 +39,30 @@
     state: absent
   when: uninstall.firewall == 1
 
-- name: "[uninstall firewall] uninstall firewall"
+- name: "[uninstall firewall] uninstall fw_quic"
   yum:
     name:
       - "{{ fw_quic }}"
+    state: absent
+  when: uninstall.firewall == 1
+  ignore_errors: true
+
+- name: "[uninstall firewall] uninstall tsg_conn_record"
+  yum:
+    name:
       - "{{ tsg_conn_record }}"
+    state: absent
+  when: uninstall.firewall == 1
+  ignore_errors: true
+
+- name: "[uninstall firewall] uninstall tsg_conn_sketch"
+  yum:
+    name:
       - "{{ tsg_conn_sketch }}"
     state: absent
   when: uninstall.firewall == 1
   ignore_errors: true
+
 
 - name: "[uninstall firewall] remove /home/mesasoft/sapp_runetc"
   file:
