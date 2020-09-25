@@ -1,0 +1,13 @@
+- name: "create backup_dest_path"
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  ignore_errors: true
+
+- name: "backup /opt/mrzcpd to destination path"
+  archive:
+    path: /opt/mrzcpd
+    dest: "{{ backup_dest_path }}/mrzcpd_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.marsio == 1
+  ignore_errors: true

@@ -1,0 +1,26 @@
+####################
+#Uninstall tfe
+- name: "[uninstall tfe] stop tfe"
+  systemd:
+    name: tfe
+    state: stopped
+    enabled: no
+  when:
+    - uninstall.tfe == 1
+  ignore_errors: true
+
+- name: "[uninstall tfe] stop tfe-env"
+  systemd:
+    name: tfe-env
+    state: stopped
+    enabled: no
+  when:
+    - uninstall.tfe == 1
+  ignore_errors: true
+
+- name: "[uninstall tfe] uninstall tfe"
+  yum:
+    name:
+      - "{{ tfe }}"
+    state: absent
+  when: uninstall.tfe == 1

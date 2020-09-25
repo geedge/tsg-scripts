@@ -1,0 +1,47 @@
+- name: "create backup_dest_path"
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  ignore_errors: true
+
+- name: "backup sapp_run/etc to destination path"
+  archive:
+    path: /home/mesasoft/sapp_run/etc
+    dest: "{{ backup_dest_path }}/sapp_etc_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.sapp_etc == 1
+  ignore_errors: true
+
+- name: "backup sapp_run/plug to destination path"
+  archive:
+    path: /home/mesasoft/sapp_run/plug
+    dest: "{{ backup_dest_path }}/sapp_plug_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.sapp_plug == 1
+  ignore_errors: true
+
+- name: "backup sapp_run/tsgconf/ to destination path"
+  archive:
+    path: /home/mesasoft/sapp_run/tsgconf
+    dest: "{{ backup_dest_path }}/sapp_tsgconf_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.sapp_tsgconf == 1
+  ignore_errors: true
+
+- name: "backup sapp_run/appconf/ to destination path"
+  archive:
+    path: /home/mesasoft/sapp_run/appconf
+    dest: "{{ backup_dest_path }}/sapp_appconf_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.sapp_appconf == 1
+  ignore_errors: true
+
+- name: "backup sapp_run/conf/ to destination path"
+  archive:
+    path: /home/mesasoft/sapp_run/conf
+    dest: "{{ backup_dest_path }}/sapp_conf_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.sapp_conf == 1
+  ignore_errors: true
+
+

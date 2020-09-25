@@ -1,0 +1,14 @@
+- name: "create backup_dest_path"
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  ignore_errors: true
+
+- name: "backup /opt/MESA to destination path"
+  archive:
+    path: /opt/MESA
+    dest: "{{ backup_dest_path }}/optMESA_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when: backup.framework == 1
+  ignore_errors: true
+

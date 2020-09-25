@@ -1,0 +1,90 @@
+- name: "remove /home/mesasoft/sapp_run"
+  file:
+    path: /home/mesasoft/sapp_run
+    state: absent
+  when: remove.sapp == 1
+  ignore_errors: true
+
+- name: "remove sapp.service"
+  file:
+    path: /usr/lib/systemd/system/sapp.service
+    state: absent
+  when: remove.sapp == 1
+  ignore_errors: true
+
+- name: "remove clotho files"
+  file:
+    path: /home/mesasoft/clotho
+    state: absent
+  when: remove.clotho == 1
+  ignore_errors: true
+
+- name: "remove clotho.service"
+  file:
+    path: /usr/lib/systemd/system/clotho.service
+    state: absent
+  when: remove.clotho == 1
+  ignore_errors: true
+
+- name: "remove http_healthcheck files"
+  file:
+    path: /home/mesasoft/http_healthcheck
+    state: absent
+  when: remove.http_healthcheck == 1
+  ignore_errors: true
+
+- name: "remove telegraf_statistic files"
+  file:
+    path: /etc/telegraf/telegraf_statistic.conf
+    state: absent
+  when: remove.telegraf_statistic == 1
+  ignore_errors: true
+
+- name: "remove /tmp/metrics.out"
+  file:
+    path: /tmp/metrics.out
+    state: absent 
+  when: remove.telegraf_statistic == 1
+  ignore_errors: true
+
+- name: "remove certstore files"
+  file:
+    path: "{{ certstore_path }}"
+    state: absent
+  vars:
+    certstore_path:
+      - /home/tsg/certstore
+      - /opt/tsg/certstore
+  when: remove.certstore == 1
+  ignore_errors: true
+
+- name: "remove certstore.service"
+  file:
+    path: /usr/lib/systemd/system/certstore.service
+    state: absent
+  when: remove.certstore == 1
+  ignore_errors: true
+
+- name: "remove cert-redis files"
+  file:
+    path: "{{ certredis_path }}"
+    state: absent
+  vars:
+    certredis_path:
+      - /home/tsg/certstore
+      - /opt/tsg/certstore
+  when: remove.certredis == 1
+  ignore_errors: true
+
+- name: "remove /opt/proxy_status"
+  file:
+    path: /opt/proxy_status
+    state: absent
+  ignore_errors: true
+
+- name: "remove /tmp/ansible_deploy"
+  file:
+    path: /tmp/ansible_deploy
+    state: absent
+  ignore_errors: true
+
