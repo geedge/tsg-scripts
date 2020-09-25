@@ -4,11 +4,18 @@
     state: directory
   ignore_errors: true
 
+- name: "optMESA_{{ uninstall_version }}_{{ date }}.zip exist?"
+  shell: "ls {{ backup_dest_path }}/optMESA_{{ uninstall_version }}_{{ date }}.zip"
+  register: optMESA_directory
+  ignore_errors: true
+
 - name: "backup /opt/MESA to destination path"
   archive:
     path: /opt/MESA
     dest: "{{ backup_dest_path }}/optMESA_{{ uninstall_version }}_{{ date }}.zip"
     format: zip
-  when: backup.framework == 1
+  when:
+    - optMESA_directory.rc != 0 
+    - backup.framework == 1
   ignore_errors: true
 

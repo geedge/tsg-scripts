@@ -4,10 +4,17 @@
     state: directory
   ignore_errors: true
 
+- name: "tsg_env_{{ uninstall_version }}_{{ date }}.zip exist?"
+  shell: "ls {{ backup_dest_path }}/tsg_env_{{ uninstall_version }}_{{ date }}.zip"
+  register: tsgenv_directory
+  ignore_errors: true
+
 - name: "backup /opt/tsg/env to destination path"
   archive:
     path: /opt/tsg/env
     dest: "{{ backup_dest_path }}/tsg_env_{{ uninstall_version }}_{{ date }}.zip"
     format: zip
-  when: backup.tsg_env == 1
+  when:
+    - tsgenv_directory.rc != 0 
+    - backup.tsg_env == 1
   ignore_errors: true

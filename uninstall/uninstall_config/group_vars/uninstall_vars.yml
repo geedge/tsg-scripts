@@ -6,7 +6,7 @@ uninstall_version: 20.09
 ####################
 #Backup
 backup_dest_path: /root/backup_data
-date: 20200921
+date: 20200925
 backup:
   tsg_env: 1
   marsio: 1
@@ -45,6 +45,8 @@ remove:
   sapp: 1
   tfe: 1
   clotho: 1
+  certstore: 1
+  certredis: 1
   http_healthcheck: 1
   telegraf_statistic: 1
 

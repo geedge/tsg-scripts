@@ -47,14 +47,17 @@
   when: remove.telegraf_statistic == 1
   ignore_errors: true
 
-- name: "remove certstore files"
+- name: "remove /home/tsg/certstore files"
   file:
-    path: "{{ certstore_path }}"
+    path: /home/tsg/certstore
     state: absent
-  vars:
-    certstore_path:
-      - /home/tsg/certstore
-      - /opt/tsg/certstore
+  when: remove.certstore == 1
+  ignore_errors: true
+
+- name: "remove /opt/tsg/certstore files"
+  file:
+    path: /opt/tsg/certstore
+    state: absent
   when: remove.certstore == 1
   ignore_errors: true
 
@@ -65,14 +68,17 @@
   when: remove.certstore == 1
   ignore_errors: true
 
-- name: "remove cert-redis files"
+- name: "remove /opt/tsg/cert-redis files"
   file:
-    path: "{{ certredis_path }}"
+    path: /opt/tsg/cert-redis
     state: absent
-  vars:
-    certredis_path:
-      - /home/tsg/certstore
-      - /opt/tsg/certstore
+  when: remove.certredis == 1
+  ignore_errors: true
+
+- name: "remove /home/tsg/cert-redis files"
+  file:
+    path: /home/tsg/cert-redis
+    state: absent
   when: remove.certredis == 1
   ignore_errors: true
 

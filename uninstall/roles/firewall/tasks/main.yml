@@ -9,6 +9,18 @@
     - uninstall.firewall == 1
   ignore_errors: true
 
+- name: "[uninstall firewall] create /home/mesasoft/sapp_runetc/"
+  file:
+    path: /home/mesasoft/sapp_runetc/
+    state: directory
+  when: uninstall.firewall == 1
+
+- name: "[uninstall firewall] create entrylist.conf"
+  file:
+    path: /home/mesasoft/sapp_runetc/entrylist.conf
+    state: touch
+  when: uninstall.firewall == 1
+
 - name: "[uninstall firewall] uninstall firewall"
   yum:
     name:
