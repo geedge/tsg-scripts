@@ -5,6 +5,10 @@ tsg_access_type: 1
 tsg_running_type: 1
 
 ########################################
+#Deploy_finished_reboot
+Deploy_finished_reboot: 1
+
+########################################
 #Server Basic Config
 nic_mgr:
   name: eth0

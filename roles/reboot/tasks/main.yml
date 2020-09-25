@@ -1,0 +1,3 @@
+- name: "reboot"
+  reboot:
+  when: Deploy_finished_reboot == 1

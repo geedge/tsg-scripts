@@ -5,6 +5,10 @@ tsg_access_type: 3
 tsg_running_type: 2
 
 ########################################
+#Deploy_finished_reboot
+Deploy_finished_reboot: 1
+
+########################################
 #IP Config
 maat_redis_server:
   address: "192.168.40.168"

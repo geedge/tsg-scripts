@@ -40,6 +40,6 @@
     - tsg_access_type == 4
     - t_kernel_ml.changed
 
-- name: "reboot"
-  reboot:
-  when: t_kernel_ml.changed
+#- name: "reboot"
+#  reboot:
+#  when: t_kernel_ml.changed
