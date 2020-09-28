@@ -34,20 +34,20 @@ log_minio:
 #########################################
 #Log Level Config
 #日志等级 10:DEBUG 20:INFO 30:FATAL
-fw_ftp_log_level: 30
-fw_mail_log_level: 30
-fw_http_log_level: 30
-fw_dns_log_level: 30
-fw_quic_log_level: 30
-capture_packet_log_level: 30
-tsg_log_level: 30
-tsg_master_log_level: 30
-kni_log_level: 30
-tfe_log_level: 30
-tfe_http_log_level: 30
-pangu_log_level: 30
-doh_log_level: 30
-certstore_log_level: 30
+fw_ftp_log_level: 10
+fw_mail_log_level: 10
+fw_http_log_level: 10
+fw_dns_log_level: 10
+fw_quic_log_level: 10
+capture_packet_log_level: 10
+tsg_log_level: 10
+tsg_master_log_level: 10
+kni_log_level: 10
+tfe_log_level: 10
+tfe_http_log_level: 10
+pangu_log_level: 10
+doh_log_level: 10
+certstore_log_level: 10
 clotho_log_level: 10
 
 #######################################
@@ -85,14 +85,14 @@ tfe:
 #Marsio Config
 #marsio工作在ADC计算板时，建议使用如下配置，以保证更高的处理性能
 mrzcpd:
-  iocore: 44,45,46,47
+  iocore: 52,53,54,55
 
 mrtunnat:
-  lcore_id: 40,41,42,43
+  lcore_id: 48,49,50,51 
 
 #########################################
 #Tsg_app
-tsg_app_enable: 1
+tsg_app_enable: 0
 app_global_ip: "1.1.1.1"
 applog_level: 10
 app_master_log_level: 10

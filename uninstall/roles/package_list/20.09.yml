@@ -37,7 +37,7 @@ sapp: sapp-4.1.7.4f2839a-1.x86_64
 
 ####################
 #tsg_master
-tsg_master: tsg_master-3.2.8.e57ad7f-1.x86_64
+tsg_master: tsg_master-3.2.9.d1a6f00-1.x86_64
 
 ####################
 #kni

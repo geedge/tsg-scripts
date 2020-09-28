@@ -22,5 +22,6 @@
   yum:
     name:
       - "{{ tfe }}"
+      - "{{ tfe_kmod }}"
     state: absent
   when: uninstall.tfe == 1

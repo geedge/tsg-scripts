@@ -3,8 +3,10 @@
     - adc_mcn1
     - adc_mcn2
     - adc_mcn3
- remote_user: root
- roles:
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+  roles:
     - framework
     - kernel-ml
 
