@@ -14,9 +14,7 @@ worker_threads=1
 {% else %}
 worker_threads={{ sapp.worker_threads }}
 {% endif %}
-{% if tsg_access_type == 4 %}
 send_only_threads_max={{ sapp.send_only_threads_max }}
-{% endif %}
 ### note, bind_mask, if you do not want to bind thread to special CPU core, keep it empty as []
 {% if tsg_access_type == 0 %}
 bind_mask=[]

@@ -1,3 +1,13 @@
+- hosts:
+    - adc_mcn0
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+ remote_user: root
+ roles:
+    - framework
+    - kernel-ml
+
 - hosts: adc_mxn
   remote_user: root
   roles:
@@ -10,8 +20,6 @@
     - install_config/group_vars/adc_mcn0.yml
   roles:
 #    - tsg-env-mcn0
-    - framework
-    - kernel-ml
     - mrzcpd
     - sapp
     - tsg_master
@@ -32,8 +40,6 @@
     - install_config/group_vars/adc_mcn1.yml
   roles:
 #    - tsg-env-mcn1
-    - framework
-    - kernel-ml
     - mrzcpd
     - tfe
 
@@ -44,8 +50,6 @@
     - install_config/group_vars/adc_mcn2.yml
   roles:
 #    - tsg-env-mcn2
-    - framework
-    - kernel-ml
     - mrzcpd
     - tfe
 
@@ -56,8 +60,6 @@
     - install_config/group_vars/adc_mcn3.yml
   roles:
 #    - tsg-env-mcn3
-    - framework
-    - kernel-ml
     - mrzcpd
     - tfe
 
@@ -85,10 +87,10 @@
     - adc_mcn2
     - adc_mcn3
   remote_user: root
-  roles:
-    - reboot
   vars_files:
     - install_config/group_vars/adc_global.yml
+  roles:
+    - reboot
 
 - hosts: server-as-tun-mode
   remote_user: root
