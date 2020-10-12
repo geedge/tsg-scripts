@@ -46,10 +46,13 @@ capture_packet_log_level: 10
 tsg_log_level: 10
 tsg_master_log_level: 10
 kni_log_level: 10
-tfe_log_level: 10
-tfe_http_log_level: 10
-pangu_log_level: 10
-doh_log_level: 10
+
+#日志等级 DEBUG INFO FATAL
+tfe_log_level: DEBUG
+tfe_http_log_level: DEBUG
+pangu_log_level: DEBUG
+doh_log_level: DEBUG
+
 certstore_log_level: 10
 clotho_log_level: 10
 
