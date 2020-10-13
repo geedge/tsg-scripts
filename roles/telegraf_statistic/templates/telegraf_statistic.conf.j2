@@ -1,29 +1,59 @@
 [global_tags]
+   device_id = "${device_id}"
 [agent]
-  interval = "5s"
-  round_interval = true
-  metric_batch_size = 1000
-  metric_buffer_limit = 10000
-  collection_jitter = "0s"
-  flush_interval = "10s"
-  flush_jitter = "0s"
-  precision = ""
-  debug = false
-  quiet = false
-  logfile = ""
-  hostname = ""
-  omit_hostname = false
- [[outputs.file]]
-    files = ["stdout", "/tmp/metrics.out"]
-       data_format = "json"
- [[outputs.kafka]]
+   interval = "5s"
+   round_interval = true
+   metric_batch_size = 1000
+   metric_buffer_limit = 10000
+   collection_jitter = "0s"
+   flush_interval = "1s"
+   flush_jitter = "0s"
+   precision = ""
+   debug = false
+   quiet = false
+   logfile = ""
+   hostname = ""
+   omit_hostname = false
+[[outputs.file]]
+   files = ["stdout", "/tmp/metrics.out"]
+   data_format = "json"
+   rotation_interval = "1h"
+   rotation_max_size = "100MB"
+   rotation_max_archives = 5
+
+[[aggregators.basicstats]]
+   period = "15s"
+   namepass = ["TRAFFIC", "intercept", "hit_share", "tcp_links", "udp_links", "success_log", "failed_log", "bypass", "drop_log",
+      "byp_intcp_err","e_get_link_mode_err","e_no_link_mode_bysyn","e_asym_route","e_no_syn","e_no_s/a","e_ip_hdr","e_exc_mtu",
+      "e_tfe_tx","e_tup2stm_add","e_no_tfe","e_dup_tfc","e_cmsg_add","intcp_stm","intcp_B","ipv4_stm","ipv6_stm","ssl_stm",
+      "http_stm","dup_tfc_stm","dup_tfc_B","intcp_rdy_stm","intcp_rdy_B","pme_new","pme_free","pme_cnt","e_sendlog","e_id2pme_add",
+      "e_id2pme_del","e_tup2stm_add","e_tup2stm_del","e_sapp_inject","e_bloom_srch","e_bloom_add","id2pme_add_S","id2pme_del_S",
+      "id2pme_cnt","tup2stm_add_S","tup2stm_del_S","tup2stm_hit","tup2stm_miss","sendlog_S","sapp_inject_S","bloom_hit","bloom_miss",
+      "id2ssl_add_S","id2ssl_del_S","id2ssl_cnt","ssl2pass_add_S","ssl2pass_del_S","ssl2pass_cnt","dy_pass_stm","dy_pass_B",
+      "dy_pass_ipv6_stm","dy_pass_ipv4_stm","bloom_cnt","tuple2stm_cnt","usess_hit", "dsess_hit", "dtkt_hit", "SIGPIPE", "fd_rx", 
+      "fd_rx_err", "fd_inst_cls", "stm_open", "stm_cls", "dstm_eof","ustm_eof", "dstm_err", "ustm_err", "stm_kill", "stm_incpt", 
+      "stm_byp", "stm_incpt_B", "dstm_incpt_B", "ustm_incpt_B","plain", "ssl", "ussl_new", "ussl_err", "ussl_e_ciph", "ussl_e_prt", 
+      "ussl_clsing", "ussl_clsd", "ussl_dt_cls", "usess_cache","dssl_new", "dssl_err", "dssl_e_cert", "dssl_e_fb", "dssl_clsing", 
+      "dssl_clsd", "dssl_dt_cls", "dsess_cache", "dtkt_new","dtkt_notfnd", "ssl_no_chlo", "ssl_no_sni", "ssl_fk_crt", "kyr_cache", 
+      "kyr_ask", "kyr_new", "ssl_pinning", "ssl_mauth","ssl_ct_crt", "ssl_ev_crt", "app_no_pinning", "trusted_cert_nums", "doh_sess", 
+      "doh_log", "doh_hijack", "http_sess", "log_num","intcp_mon_num", "intcp_deny_num", "intcp_rdirt_num", "intcp_repl_num", 
+      "intcp_hijk_num", "hijk_bytes", "intcp_ins_num", "ins_bytes","intcp_allow_num", "suspending"]
+   drop_original = false
+   stats = ["sum"]
+
+[[outputs.kafka]]
    brokers = ["{{ log_kafkabrokers.address }}"]
+   fieldpass = [ "*_conn_num", "*_bytes", "*_in_packets",  "*_out_packets", "intercept", "hit_share", "tcp_links", "udp_links", "success_log", "failed_log", "bypass", "drop_log","pinning_num","*pinning_num","intcp_*_num"]
    topic = "TRAFFIC-METRICS-LOG"
-    data_format = "json"
- [[outputs.prometheus_client]]
+   data_format = "json"
+[[outputs.prometheus_client]]
    listen = ":9273"
-    path = "/metrics"
- [[inputs.tcp_listener]]
- [[inputs.udp_listener]]
-ServiceAddress= ":8100"
-data_format = "influx"
+   path = "/metrics"
+[[inputs.tcp_listener]]
+[[inputs.udp_listener]]
+   ServiceAddress= ":8100"
+   data_format = "influx"
+
+[[outputs.influxdb]]
+   urls = ["{{ monitor_outputs_influxdb.url }}"]
+   database = "tsg_stat

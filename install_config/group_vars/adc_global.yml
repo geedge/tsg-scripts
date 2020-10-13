@@ -27,6 +27,9 @@ cert_store_server:
 log_kafkabrokers:
   address: "1.1.1.1:9092,2.2.2.2:9092"
 
+monitor_outputs_influxdb:
+  url: "http://192.168.41.182:58086"
+
 log_minio:
   address: "192.168.40.168;"
   port: 9090

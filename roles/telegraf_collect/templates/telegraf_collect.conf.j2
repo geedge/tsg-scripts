@@ -1,10 +1,10 @@
 [global_tags]
 	blade = {{bladename}}
 [agent]
-	interval = "15s"
+	interval = "5s"
 	round_interval = true
-	metric_batch_size = 1000
-	metric_buffer_limit = 10000
+	metric_batch_size = 1000000
+	metric_buffer_limit = 1000000
 	collection_jitter = "0s"
 	flush_interval = "1s"
 	flush_jitter = "0s"
@@ -18,12 +18,13 @@
 [[outputs.file]]
 	files = ["stdout", "/tmp/collect.out"]
 	data_format = "json"
-
-[[outputs.socket_writer]]
-	address = "udp://192.168.100.1:8100"
 	rotation_interval = "1h"
 	rotation_max_size = "100MB"
 	rotation_max_archives = 5
+
+[[outputs.socket_writer]]
+	address = "udp://192.168.100.1:8100"
+
 
 {% if bladename == "mcn0" %}
 [[inputs.procstat]]
@@ -68,5 +69,5 @@
 [[inputs.kernel]]
 
 [[inputs.udp_listener]]
-	ServiceAddress= ":8100"
+	ServiceAddress= ":58100"
 	data_format = "influx"
