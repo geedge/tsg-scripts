@@ -7,7 +7,7 @@ enable_kni_v2=1
 disable_coredump=0
 enable_breakpad=1
 enable_breakpad_upload=1
-breakpad_upload_url=http://sentry.mesalab.cn:9000/api/3/minidump/?sentry_key=e8e446bb3bd8435c97f4c01770ca7025
+breakpad_upload_url={{ breakpad_upload_url }}
 # must be /run/tfe/crashreport，due to tmpfile limit
 breakpad_minidump_dir=/run/tfe/crashreport
 

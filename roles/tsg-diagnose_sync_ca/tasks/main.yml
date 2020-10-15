@@ -2,5 +2,5 @@
   shell: rsync -avzP --delete 192.168.100.1::blade0toother /tmp/sync/
 
 - name: "tsg-diagnose: add badssl ca file to tfe tls-ca-bundle"
-  shell: cat  /tmp/sync/ca-root.crt >> /opt/tsg/tfe/resource/tfe/tsg_diagnose_ca.pem && cat cat  /tmp/sync/wpr_cert.pem >> /opt/tsg/tfe/resource/tfe/tsg_diagnose_ca.pem
+  shell: cat /tmp/sync/ca-root.crt >> /opt/tsg/tfe/resource/tfe/tsg_diagnose_ca.pem && cat /tmp/sync/wpr_cert.pem >> /opt/tsg/tfe/resource/tfe/tsg_diagnose_ca.pem
 
