@@ -20,7 +20,7 @@
       - /tmp/ansible_deploy/fw_http_plug-3.0.1.0c7e082-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_mail_plug-3.0.1.02465eb-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_quic_plug-3.0.1.b790ee1-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_ssl_plug-3.0.3.71f6bff-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_ssl_plug-3.0.4.a0b19ee-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/http-2.0.5.c61ad9a-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/mail-1.0.9.c1d3bde-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/quic-1.1.10.c2b90a0-2.el7.x86_64.rpm
