@@ -10,13 +10,18 @@
 - name: install certstore
   yum:
     name:
-      - /tmp/ansible_deploy/certstore-2.1.2.202009.87fcacf-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/certstore-2.1.2.20200923.a36312c-1.el7.x86_64.rpm
     state: present
 
 - name: template certstore configure file
   template:
     src: "{{ role_path }}/templates/cert_store.ini.j2"
     dest: /opt/tsg/certstore/conf/cert_store.ini
+
+- name: template certstore zlog file
+  template:
+    src: "{{ role_path }}/templates/zlog.conf.j2"
+    dest: /opt/tsg/certstore/conf/zlog.conf
 
 - name: "start certstore"
   systemd:

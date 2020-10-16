@@ -1,9 +1,15 @@
 [SYSTEM]
 #1:print on screen, 0:don't
 DEBUG_SWITCH = 1
-#10:DEBUG, 20:INFO, 30:FATAL
-RUN_LOG_LEVEL = {{ certstore_log_level }}
-RUN_LOG_PATH = ./logs
+RUN_LOG_PATH = "conf/zlog.conf"
+
+[breakpad]
+disable_coredump=0
+enable_breakpad=1
+breakpad_minidump_dir=/tmp/certstore/crashreport
+enable_breakpad_upload=0
+breakpad_upload_url=http://127.0.0.1/
+
 [CONFIG]
 #Number of running threads
 thread-nu = 4
@@ -14,7 +20,8 @@ expire_after = 30
 #Local default root certificate path
 local_debug = 1
 ca_path = ./cert/tango-ca-v3-trust-ca.pem
-untrusted_ca_path = ./cert/mesalab-ca-untrust.pem
+untrusted_ca_path = ./cert/tango-ca-v3-untrust-ca.pem
+
 [MAAT]
 #Configure the load mode,
 #0: using the configuration distribution network
@@ -31,18 +38,21 @@ inc_cfg_dir=./rule/inc/index
 full_cfg_dir=./rule/full/index
 #Json file path when json schema is used
 pxy_obj_keyring=./conf/pxy_obj_keyring.json
+
 [LIBEVENT]
 #Local monitor port number, default is 9991
 port = 9991
+
 [CERTSTORE_REDIS]
 #The Redis server IP address and port number where the certificate is stored locally
 ip = 127.0.0.1
 port = 6379
+
 [MAAT_REDIS]
 #Maat monitors the Redsi server IP address and port number
 ip = {{ maat_redis_server.address }}
 port = {{ maat_redis_server.port }}
 dbindex =  {{ maat_redis_server.db }}
 [stat]
-statsd_server=192.168.100.1
-statsd_port=8126
+statsd_server=127.0.0.1
+statsd_port=58100

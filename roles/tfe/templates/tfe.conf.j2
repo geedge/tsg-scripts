@@ -6,7 +6,7 @@ enable_kni_v2=1
 # Only when (disable_coredump == 1 || (enable_breakpad == 1 && enable_breakpad_upload == 1)) is satisfied, the core will not be generated locally
 disable_coredump=0
 enable_breakpad=1
-enable_breakpad_upload=0
+enable_breakpad_upload=1
 breakpad_upload_url=http://sentry.mesalab.cn:9000/api/3/minidump/?sentry_key=e8e446bb3bd8435c97f4c01770ca7025
 # must be /run/tfe/crashreport，due to tmpfile limit
 breakpad_minidump_dir=/run/tfe/crashreport
@@ -35,8 +35,10 @@ watchdog_switch=1
 watchdog_port=2476
 
 [ssl]
-ssl_max_version=tls13
-ssl_min_version=ssl3
+ssl_ja3_debug=0
+# ssl version Not available, configured via TSG website
+# ssl_max_version=tls13
+# ssl_min_version=ssl3
 ssl_compression=1
 no_ssl2=1
 no_ssl3=0
@@ -48,7 +50,7 @@ no_cert_verify=0
 
 # session ticket
 no_session_ticket=0
-stek_group_num=4
+stek_group_num=4096
 stek_rotation_time=3600
 
 # session cache
@@ -68,12 +70,10 @@ service_cache_fail_time_window=30
 check_cert_crl=0
 {% if tsg_running_type == 2 %}
 trusted_cert_load_local=1
-#trusted_cert_file=resource/tfe/tls-ca-bundle.pem
 trusted_cert_file=resource/tfe/tsg_diagnose_ca.pem
 {% else %}
-trusted_cert_load_local=0
+trusted_cert_load_local=1
 trusted_cert_file=resource/tfe/tls-ca-bundle.pem
-#trusted_cert_file=resource/tfe/tsg_diagnose_ca.pem
 {% endif %}
 trusted_cert_dir=resource/tfe/trusted_storage
 
@@ -131,20 +131,13 @@ tcp_user_timeout=600
 tcp_ttl_upstream=75
 tcp_ttl_downstream=70
 
-[log]
-level={{ tfe_log_level }}
-location=log/tfe.log
-
 [stat]
-statsd_server=192.168.100.1
-statsd_port=8100
+statsd_server=127.0.0.1
+statsd_port=58100
 statsd_cycle=5
 # 1:FS_OUTPUT_STATSD; 2:FS_OUTPUT_INFLUX_LINE
 statsd_format=2
 histogram_bins=0.5,0.8,0.9,0.95
-
-[http]
-loglevel={{ tfe_http_log_level }}
 
 [traffic_mirror]
 {% if tsg_running_type != 2 %}
@@ -158,7 +151,6 @@ device={{ nic_traffic_mirror.name }}
 # 0:TRAFFIC_MIRROR_ETHDEV_AF_PACKET; 1:TRAFFIC_MIRROR_ETHDEV_MARSIO
 type=1
 {% endif %}
-
 
 [kafka]
 enable=1

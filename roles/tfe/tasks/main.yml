@@ -27,6 +27,11 @@
     src: "{{ role_path }}/templates/tfe.conf.j2"
     dest: /opt/tsg/tfe/conf/tfe/tfe.conf
 
+- name: "template the zlog.conf"
+  template:
+    src: "{{ role_path }}/templates/zlog.conf.j2"
+    dest: /opt/tsg/tfe/conf/tfe/zlog.conf
+
 - name: "template the future.conf"
   template:
     src: "{{ role_path }}/templates/future.conf.j2"
