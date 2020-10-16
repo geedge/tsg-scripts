@@ -22,7 +22,7 @@
 - name: "Install tsg-diagnose rpm package"
   yum:
     name:
-      - "/tmp/ansible_deploy/tsg-diagnose-20.10-1.el7.x86_64.rpm"
+      - "/tmp/ansible_deploy/tsg-diagnose-20.10.01.7041374-1.el7.x86_64.rpm"
     state: present
   
 - name: "tsg-diagnose init certs"

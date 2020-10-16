@@ -104,3 +104,6 @@ applog_level: 10
 app_master_log_level: 10
 app_sketch_local_log_level: 10
 app_control_plug_log_level: 10
+
+
+breakpad_upload_url: http://127.0.0.1/
