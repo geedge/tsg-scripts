@@ -1,0 +1,14 @@
+[KAFKA]
+BROKER_LIST={{ log_kafkabrokers.address }}
+
+[SYSTEM]
+NIC_NAME={{ nic_mgr.name }}
+LOG_LEVEL={{ packet_dump_log_level }}
+LOG_PATH=log/packet_dump
+
+[breakpad]
+disable_coredump=0
+enable_breakpad=1
+breakpad_minidump_dir=/tmp/packet_dump/crashreport
+enable_breakpad_upload=0
+breakpad_upload_url={{ breakpad_upload }}

@@ -29,7 +29,7 @@
     - firewall
     - tsg_app
     - http_healthcheck
-    - clotho
+    - packet_dump
     - certstore
     - cert-redis
     - telegraf_statistic
@@ -109,7 +109,7 @@
     - firewall
     - tsg_app
     - http_healthcheck
-    - clotho
+    - packet_dump
     - certstore
     - cert-redis
     - tfe
