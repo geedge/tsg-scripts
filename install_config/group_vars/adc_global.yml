@@ -54,7 +54,7 @@ pangu_log_level: DEBUG
 doh_log_level: DEBUG
 
 certstore_log_level: 10
-clotho_log_level: 10
+packet_dump_log_level: 10
 
 #######################################
 #Sapp Performance Config
