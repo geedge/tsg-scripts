@@ -26,4 +26,3 @@
     name: packet_dump.service
     enabled: yes
     daemon_reload: yes
-
