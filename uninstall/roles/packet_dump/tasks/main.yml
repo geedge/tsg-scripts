@@ -1,0 +1,16 @@
+####################
+#Uninstall packet_dump
+- name: "[uninstall packet_dump] stop packet_dump"
+  systemd:
+    name: packet_dump
+    state: stopped
+    enabled: no
+  when: uninstall.packet_dump == 1
+  ignore_errors: true
+
+- name: "[uninstall packet_dump] uninstall packet_dump"
+  yum:
+    name:
+      - "{{ packet_dump }}"
+    state: absent
+  when: uninstall.packet_dump == 1

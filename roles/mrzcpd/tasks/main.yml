@@ -111,7 +111,7 @@
     dest: /opt/mrzcpd/etc/mrtunnat.conf
   when: 
     - nic_traffic_mirror is not defined
-    - tsg_access_type == 3
+    -  == 3
 
 - name: "update mrtunnat.conf.ATCA_Vlan_Flipping"
   template:

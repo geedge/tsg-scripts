@@ -17,6 +17,7 @@
     - certstore
     - cert_redis
     - clotho
+    - packet_dump
     - http_healthcheck
     - framework
     - telegraf_statistic
@@ -45,6 +46,7 @@
     - certstore
     - cert_redis
     - clotho
+    - packet_dump
     - http_healthcheck
     - framework
     - telegraf_statistic

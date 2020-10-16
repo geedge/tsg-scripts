@@ -41,6 +41,7 @@ tfe=`rpm -qa |grep ^tfe-4`
 tfe_kmod=`rpm -qa |grep ^tfe-kmod`
 http_healthcheck=`rpm -qa |grep ^http_healthcheck`
 clotho=`rpm -qa |grep ^clotho`
+packet_dump=`rpm -qa |grep ^packet_dump`
 certstore=`rpm -qa |grep ^certstore`
 
 
@@ -124,6 +125,9 @@ http_healthcheck: $http_healthcheck
 #####################
 #clotho
 clotho: $clotho
+
+#packet_dump
+packet_dump: $packet_dump
 
 #####################
 #certstore
