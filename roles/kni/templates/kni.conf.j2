@@ -64,7 +64,7 @@ mho_hash_max_element_num = 2560000
 mho_expire_time = 30
 mho_eliminate_type = LRU
 
-//per thread
+#per thread
 [tuple2stream_htable]
 mho_screen_print_ctrl = 0
 mho_thread_safe = 0
@@ -81,8 +81,14 @@ remote_port = 58100
 local_path = ./fs2_kni.status
 stat_cycle = 1
 print_mode = 1
+# 1:FS_OUTPUT_STATSD; 2:FS_OUTPUT_INFLUX_LINE
 statsd_format = 2
 APP_NAME = fs2_kni
+
+#self test Shunt rules security policy id
+[tsg_diagnose]
+enabled = 1
+security_policy_id = 3,10
 
 
 [ssl_dynamic_bypass]

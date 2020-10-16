@@ -24,6 +24,7 @@
       - /tmp/ansible_deploy/libwiredcfg-2.0.6.67ae0ab-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libWiredLB-2.0.5.4629165-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/lz4-1.7.5-3.el7.x86_64.rpm
+      - /tmp/ansible_deploy/libbreakpad_mini-1.0.1.cb61125-2.el7.x86_64.rpm
 
 - name: "mkdir /etc/ld.so.conf.d/"
   file:
