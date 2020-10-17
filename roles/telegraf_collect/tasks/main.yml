@@ -19,7 +19,7 @@
   copy:
     src: "{{ role_path }}/files/telegraf_collect.service"
     dest: /usr/lib/systemd/system
-    mode: 0755
+    mode: 0644
 
 - name: "Start telegraf_collect"
   systemd:
