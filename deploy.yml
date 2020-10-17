@@ -9,6 +9,7 @@
   roles:
     - framework
     - kernel-ml
+    - telegraf_collect
 
 - hosts: adc_mxn
   remote_user: root
@@ -114,6 +115,7 @@
     - cert-redis
     - tfe
     - telegraf_statistic
+    - telegraf_collect
     - proxy_status
 #    - tsg_device_tag
     - reboot
