@@ -11,6 +11,7 @@
 {% endif %}
 ./plug/platform/tsg_master/tsg_master.inf
 {% if tsg_app_enable == 1 %}
+./plug/business/app_proto_identify/app_proto_identify.inf
 ./plug/platform/app_master/app_master.inf
 {% endif %}
 
@@ -35,5 +36,4 @@
 {% if tsg_app_enable == 1 %}
 ./plug/business/app_sketch_local/app_sketch_local.inf
 ./plug/business/app_control_plug/app_control_plug.inf
-./plug/business/app_proto_identify/app_proto_identify.inf
 {% endif %}
