@@ -7,7 +7,7 @@
   yum:
     name:
       - /tmp/ansible_deploy/emqx-centos7-v4.1.2.x86_64.rpm
-      - /tmp/ansible_deploy/app-sketch-global-1.0.2.20200918.ab44d17-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app-sketch-global-1.0.3.202010.a7b2e40-1.el7.x86_64.rpm
     state: present
 
 - name: "template the app_sketch_global.conf"
