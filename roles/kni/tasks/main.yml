@@ -9,6 +9,7 @@
     name:
       - /tmp/ansible_deploy/kni-20.10.20201019.3f20d93-2.el7.x86_64.rpm
     state: present
+    skip_broken: yes
 
 - name: Template the kni.conf
   template:

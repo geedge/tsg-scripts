@@ -107,3 +107,5 @@ app_control_plug_log_level: 10
 
 
 breakpad_upload_url: http://127.0.0.1/
+
+tsg_master_entrance_id: 0
