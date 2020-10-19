@@ -23,6 +23,12 @@
     src: "{{ role_path }}/templates/zlog.conf.j2"
     dest: /opt/tsg/certstore/conf/zlog.conf
 
+- name: "copy memory limit file to certstore.service.d"
+  copy:
+    src: "{{ role_path }}/files/memory.conf"
+    dest: /etc/systemd/system/certstore.service.d/
+    mode: 0644
+
 - name: "start certstore"
   systemd:
     name: certstore.service

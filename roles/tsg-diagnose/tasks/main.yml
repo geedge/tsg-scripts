@@ -28,6 +28,12 @@
 - name: "tsg-diagnose init certs"
   shell: /bin/sh /opt/tsg/tsg-diagnose/deploy/init_certs/init_badssl_certs.sh
 
+- name: "copy memory limit file to tsg-diagnose.service.d"
+  copy:
+    src: "{{ role_path }}/files/memory.conf"
+    dest: /etc/systemd/system/tsg-diagnose.service.d/
+    mode: 0644
+
 - name: 'Tsg-diagnose service start'
   systemd:
     name: tsg-diagnose

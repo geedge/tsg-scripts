@@ -25,9 +25,12 @@
     name: emqx.service
     state: started
     enabled: yes
+    daemon_reload: yes
+    
 
 - name: "Start app-sketch-global"
   systemd:
     name: app-sketch-global.service
     state: started
     enabled: yes
+    daemon_reload: yes

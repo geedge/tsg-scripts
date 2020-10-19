@@ -111,7 +111,7 @@
     dest: /opt/mrzcpd/etc/mrtunnat.conf
   when: 
     - nic_traffic_mirror is not defined
-    -  == 3
+    - tsg_access_type == 3
 
 - name: "update mrtunnat.conf.ATCA_Vlan_Flipping"
   template:
@@ -161,12 +161,18 @@
     daemon_reload: yes
   when: nic_traffic_mirror is defined
 
+- name: "copy memory limit file to tfe.service.d"
+  copy:
+    src: "{{ role_path }}/files/memory.conf"
+    dest: /etc/systemd/system/mrzcpd.service.d/
+    mode: 0644
 
 - name: "mask mrzcpd on server_tun_mode"
   systemd:
     name: mrzcpd
     enabled: no
     masked: yes
+    daemon_reload: yes
   when: 
     - tsg_access_type == 0
 
@@ -175,5 +181,6 @@
     name: mrtunnat
     enabled: no
     masked: yes
+    daemon_reload: yes
   when: 
     - tsg_access_type == 0
