@@ -11,7 +11,7 @@
     skip_broken: yes
   vars:
     fw_packages:
-      - /tmp/ansible_deploy/capture_packet_plug-3.0.3.cc6f3cf-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/capture_packet_plug-3.0.4.42574b7-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/conn_telemetry-1.0.2.8d6da43-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/dns-2.0.9.b639626-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/ftp-1.0.8.13d5fda-2.el7.x86_64.rpm
