@@ -1,0 +1,21 @@
+- name: "remove marsio files"
+  file:
+    path: /opt/mrzcpd
+    state: absent
+  when: remove.marsio == 1
+  ignore_errors: true
+
+- name: "remove mrzcpd.service"
+  file:
+    path: /usr/lib/systemd/system/mrzcpd.service
+    state: absent
+  when: remove.marsio == 1
+  ignore_errors: true
+
+- name: "remove mrtunnat.service"
+  file:
+    path: /usr/lib/systemd/system/mrtunnat.service
+    state: absent
+  when: remove.marsio == 1
+  ignore_errors: true
+

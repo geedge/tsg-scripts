@@ -1,0 +1,41 @@
+---
+- name: "copy vconfig-1.9-16.el7.x86_64.rpm"
+  copy:
+    src: "{{ role_path }}/files/vconfig-1.9-16.el7.x86_64.rpm"
+    dest: /tmp
+
+- name: "create /opt/tsg/env"
+  file:
+    path: /opt/tsg/env
+    state: directory
+
+- name: "template setup script"
+  template:
+    src: "{{ role_path }}/templates/setup.j2"
+    dest: "/opt/tsg/env/setup"   
+    mode: 0755   
+
+- name: "copy tsg-env-tun-mode.service"
+  copy:
+    src: "{{ role_path }}/files/tsg-env-tun-mode.service"
+    dest: "/usr/lib/systemd/system/"   
+    mode: 0644  
+
+- name: "template tsg-env_stop"
+  template:
+    src: "{{ role_path }}/templates/tsg-env_stop.j2"
+    dest: "/opt/tsg/env/tsg-env_stop"   
+    mode: 0755 
+    
+- name: "install vconfig rpms from localhost"
+  yum:
+    name:
+      - /tmp/vconfig-1.9-16.el7.x86_64.rpm
+    state: present
+
+- name: "enable tsg-env-tun-mode"
+  systemd:
+    name: tsg-env-tun-mode
+    enabled: yes
+    daemon_reload: yes
+

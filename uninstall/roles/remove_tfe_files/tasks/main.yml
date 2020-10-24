@@ -1,0 +1,28 @@
+- name: "remove /opt/tsg/tfe"
+  file:
+    path: /opt/tsg/tfe
+    state: absent
+  when: remove.tfe == 1
+  ignore_errors: true
+
+- name: "remove tfe.service"
+  file:
+    path: /usr/lib/systemd/system/tfe.service
+    state: absent
+  when: remove.tfe == 1
+  ignore_errors: true
+
+- name: "remove tfe-env.service"
+  file:
+    path: /usr/lib/systemd/system/tfe-env.service
+    state: absent
+  when: remove.tfe == 1
+  ignore_errors: true
+
+- name: "remove tfe-env-tun-mode.service"
+  file:
+    path: /usr/lib/systemd/system/tfe-env-tun-mode.service
+    state: absent
+  when: remove.tfe == 1
+  ignore_errors: true
+

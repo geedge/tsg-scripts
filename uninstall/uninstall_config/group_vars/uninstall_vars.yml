@@ -1,0 +1,52 @@
+####################
+#Uninstall the target TSG version
+#Support 20.09 / 20.08 / 20.07 / 20.07.rc1 / 20.06.1
+uninstall_version: 20.09
+
+####################
+#Backup
+backup_dest_path: /root/backup_data
+date: 20200925
+backup:
+  tsg_env: 1
+  marsio: 1
+  framework: 1
+  sapp_etc: 1
+  sapp_plug: 1
+  sapp_tsgconf: 1
+  sapp_appconf: 1
+  sapp_conf: 1
+  tfe: 1  
+
+####################
+#Uninstall list
+uninstall:
+  kernel: 0
+  marsio: 1
+  kni: 1
+  tsg_app: 1
+  tsgmaster: 1
+  firewall: 1
+  sapp: 1
+  tfe: 1
+  certstore: 1
+  certredis: 1
+  clotho: 1
+  http_healthcheck: 1
+  framework: 1
+  telegraf_statistic: 1
+  tsg_diagnose: 0
+
+####################
+#Remove list
+remove:
+  framework: 1
+  marsio: 1
+  sapp: 1
+  tfe: 1
+  clotho: 1
+  certstore: 1
+  certredis: 1
+  http_healthcheck: 1
+  telegraf_statistic: 1
+

@@ -1,0 +1,32 @@
+---
+- name: "copy setup script"
+  copy:
+    src: "{{ role_path }}/files/setup"
+    dest: "/opt/tsg/env/"   
+    mode: 0755   
+
+- name: "copy stop script"
+  copy:
+    src: "{{ role_path }}/files/stop"
+    dest: "/opt/tsg/env/"   
+    mode: 0755   
+    
+- name: "copy tsg-env.service"
+  copy:
+    src: "{{ role_path }}/files/tsg-env.service"
+    dest: "/usr/lib/systemd/system/"   
+    mode: 0644  
+
+- name: "enable tsg-env"
+  systemd:
+    name: tsg-env
+    enabled: yes
+    daemon_reload: yes
+
+- name: "Template PM1.13_vlan_mac_flipping_saved_startup"
+  template:
+    src: "{{ role_path }}/templates/PM1.13_vlan_mac_flipping_saved_startup"
+    dest: /usr/local/testpoint/perl/Config/libertyTrail/saved_startup
+  when: tsg_access_type == 2
+
+    

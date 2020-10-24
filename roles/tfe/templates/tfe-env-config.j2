@@ -1,0 +1,20 @@
+{% if tsg_access_type == 4 %}
+TFE_DEVICE_DATA_INCOMING={{ ATCA_data_incoming.vf2_name }}
+{% elif tsg_running_type != 2 %}
+TFE_DEVICE_DATA_INCOMING=tun_kni
+{% else %}
+TFE_DEVICE_DATA_INCOMING={{ nic_data_incoming.name }}
+{% endif %}
+TFE_LOCAL_MAC_DATA_INCOMING=fe:65:b7:03:50:bd
+{% if tsg_access_type == 4 %}
+TFE_PEER_MAC_DATA_INCOMING=00:0e:c6:d6:72:c1
+{% else %}
+TFE_PEER_MAC_DATA_INCOMING=aa:bb:cc:dd:ee:ff
+{% endif %}
+TFE_LOCAL_IP_DATA_INCOMING=172.16.241.2
+TFE_PEER_IP_DATA_INCOMING=172.16.241.1
+
+{% if tsg_running_type != 2 %}
+TFE_WATCHDOG_DEVICE={{ nic_inner_ctrl.name }}
+TFE_WATCHDOG_IP=192.168.100.1
+{% endif %}

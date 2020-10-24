@@ -1,0 +1,65 @@
+#!/bin/bash
+#
+
+systemctl status tsg-env-tun-mode &>/dev/null
+if [ $? -eq 0 ];then
+	echo -e "\033[32m tsg-env-tun-mode is running \033[0m"
+else
+        echo -e "\033[31m tsg-env-tun-mode is down \033[0m"
+fi
+
+systemctl status mrzcpd &>/dev/null
+if [ $? -eq 0 ];then
+	echo -e "\033[32m mrzcpd is running \033[0m"
+else
+        echo -e "\033[31m mrzcpd is down \033[0m"
+fi
+
+systemctl status mrenv &>/dev/null
+if [ $? -eq 0 ];then
+	echo -e "\033[32m mrenv is running \033[0m"
+else
+        echo -e "\033[31m mrenv is down \033[0m"
+fi
+
+systemctl status mrtunnat &>/dev/null
+if [ $? -eq 0 ];then
+	echo -e "\033[32m mrtunnat is running \033[0m"
+else
+        echo -e "\033[31m mrtunnat is down \033[0m"
+fi
+
+systemctl status sapp &>/dev/null
+if [ $? -eq 0 ];then
+	echo -e "\033[32m sapp is running \033[0m"
+else
+        echo -e "\033[31m sapp is down \033[0m"
+fi
+
+systemctl status tfe-env &>/dev/null
+if [ $? -eq 0 ];then
+	echo -e "\033[32m tfe-env is running \033[0m"
+else
+        echo -e "\033[31m tfe-env is down \033[0m"
+fi
+
+systemctl status tfe &>/dev/null
+if [ $? -eq 0 ];then
+	echo -e "\033[32m tfe is running \033[0m"
+else
+        echo -e "\033[31m tfe is down \033[0m"
+fi
+
+systemctl status certstore &>/dev/null
+if [ $? -eq 0 ];then
+	echo -e "\033[32m certstore is running \033[0m"
+else
+        echo -e "\033[31m certstore is down \033[0m"
+fi
+
+systemctl status cert-redis &>/dev/null
+if [ $? -eq 0 ];then
+	echo -e "\033[32m cert-redis is running \033[0m"
+else
+        echo -e "\033[31m cert-redis is down \033[0m"
+fi

@@ -1,0 +1,347 @@
+# TestPoint History
+load ./Config/libertyTrail/testpoint_startup
+
+add vlan port 1 0
+
+create vlan 100
+add vlan port 100 0,11,37,39,41,43
+set port config 11 pvid 100
+set port config 11 mask 0,37,39,41,43
+set port config 0,11,39,37,41,43 learning on
+
+create vlan 200
+add vlan port 200 0,37,39,9,10,41,43
+set port config 0 mask 9..44
+set port config 37 mask 0..36,38..44
+set port config 39 mask 0..38,40..44
+set port config 41 mask 0..40,42..44
+set port config 43 mask 0..44
+set port config 0,39,37,41,43 learning on
+
+create vlan 4000
+add vlan port 4000 43
+create vlan 4001
+add vlan port 4001 43
+
+create lag
+add lag 9261 9,10
+add vlan port 200 9261
+set port config 9261 pvid 200
+set port config 9261 parser_cfg L4
+set port config 9261 learning on
+set port config 9261 mask 0,11..44
+
+create vlan all
+create lag
+add vlan port all 43
+add lag 9293 1,2,3,4
+add vlan port all 9293
+set port config 9293 parser_cfg L4
+set port config 9293 learning on
+set port config 9293 mask 0,5..44
+set vlan tagging all 1,2,3,4 tag
+set vlan tagging 1 1,2,3,4 untag
+
+create lag
+add lag 9325 5,6,7,8
+add vlan port all 9325
+set port config 9325 parser_cfg L4
+set port config 9325 learning on
+set port config 9325 mask 0..4,9..44
+set vlan tagging all 5,6,7,8 tag
+set vlan tagging 1 5,6,7,8 untag
+
+set port 37,39,41,43 powerdown
+set port 37,39,41,43 up
+set port 1..36 up
+
+set port config 11 parser_cfg L4
+set port config 37..44 parser_cfg L4
+
+set port config 11..36 max_frame_size 15360
+set switch reserved_mac all switch
+
+set switch config hashing l234 use_smac on
+set switch config hashing l234 use_dmac on
+set switch config hashing l234 use_l34 on 
+set switch config hashing l34 use_dip on
+set switch config hashing l34 use_sip on
+set switch config hashing l234 symmetric on 
+set switch config hashing l34 symmetric on
+
+
+set port config 9261,9293,9325 max_frame_size 15360
+create acl 1
+
+# Redirect all ARP request to ens1f2
+create acl-rule 1 40
+add acl-rule condition 1 40 src-port 1
+add acl-rule condition 1 40 ethtype 0x0806
+add acl-rule action 1 40 redirect 7214
+ 
+create acl-rule 1 41
+add acl-rule condition 1 41 src-port 2
+add acl-rule condition 1 41 ethtype 0x0806
+add acl-rule action 1 41 redirect 7214
+ 
+create acl-rule 1 42
+add acl-rule condition 1 42 src-port 3
+add acl-rule condition 1 42 ethtype 0x0806
+add acl-rule action 1 42 redirect 7214
+ 
+create acl-rule 1 43
+add acl-rule condition 1 43 src-port 4
+add acl-rule condition 1 43 ethtype 0x0806
+add acl-rule action 1 43 redirect 7214
+
+# Redirect all ICMPv4 to ens1f2 -- 10.0.0.0/8
+create acl-rule 1 44
+add acl-rule condition 1 44 src-port 1
+add acl-rule condition 1 44 protocol 0x1/0xff
+add acl-rule condition 1 44 sip 10.0.0.0/8
+add acl-rule condition 1 44 dip 10.0.0.0/8
+add acl-rule action 1 44 redirect 7214
+ 
+create acl-rule 1 45
+add acl-rule condition 1 45 src-port 2
+add acl-rule condition 1 45 protocol 0x1/0xff3
+add acl-rule condition 1 45 sip 10.0.0.0/8
+add acl-rule condition 1 45 dip 10.0.0.0/8
+add acl-rule action 1 45 redirect 7214
+ 
+create acl-rule 1 46
+add acl-rule condition 1 46 src-port 3
+add acl-rule condition 1 46 protocol 0x1/0xff
+add acl-rule condition 1 46 sip 10.0.0.0/8
+add acl-rule condition 1 46 dip 10.0.0.0/8
+add acl-rule action 1 46 redirect 7214
+ 
+create acl-rule 1 47
+add acl-rule condition 1 47 src-port 4
+add acl-rule condition 1 47 protocol 0x1/0xff
+add acl-rule condition 1 47 sip 10.0.0.0/8
+add acl-rule condition 1 47 dip 10.0.0.0/8
+add acl-rule action 1 47 redirect 7214
+
+# Redirect all ICMPv4 to ens1f2 -- 192.168.0.0/16
+create acl-rule 1 48
+add acl-rule condition 1 48 src-port 1
+add acl-rule condition 1 48 protocol 0x1/0xff
+add acl-rule condition 1 48 sip 192.168.0.0/16
+add acl-rule condition 1 48 dip 192.168.0.0/16
+add acl-rule action 1 48 redirect 7214
+ 
+create acl-rule 1 49
+add acl-rule condition 1 49 src-port 2
+add acl-rule condition 1 49 protocol 0x1/0xff3
+add acl-rule condition 1 49 sip 192.168.0.0/16
+add acl-rule condition 1 49 dip 192.168.0.0/16
+add acl-rule action 1 49 redirect 7214
+ 
+create acl-rule 1 50
+add acl-rule condition 1 50 src-port 3
+add acl-rule condition 1 50 protocol 0x1/0xff
+add acl-rule condition 1 50 sip 192.168.0.0/16
+add acl-rule condition 1 50 dip 192.168.0.0/16
+add acl-rule action 1 50 redirect 7214
+ 
+create acl-rule 1 51
+add acl-rule condition 1 51 src-port 4
+add acl-rule condition 1 51 protocol 0x1/0xff
+add acl-rule condition 1 51 sip 192.168.0.0/16
+add acl-rule condition 1 51 dip 192.168.0.0/16
+add acl-rule action 1 51 redirect 7214
+
+# Redirect all TCP with port 51218, for health check - 192.168.0.0/24
+create acl-rule 1 60
+add acl-rule condition 1 60 src-port 1
+add acl-rule condition 1 60 protocol 0x6/0xff
+add acl-rule condition 1 60 sip 192.168.0.0/16
+add acl-rule condition 1 60 dip 192.168.0.0/16
+add acl-rule condition 1 60 l4-dst-port 51218/0xffff
+add acl-rule action 1 60 redirect 7214
+ 
+create acl-rule 1 61
+add acl-rule condition 1 61 src-port 2
+add acl-rule condition 1 61 protocol 0x6/0xff
+add acl-rule condition 1 61 sip 192.168.0.0/16
+add acl-rule condition 1 61 dip 192.168.0.0/16
+add acl-rule condition 1 61 l4-dst-port 51218/0xffff
+add acl-rule action 1 61 redirect 7214
+
+create acl-rule 1 62
+add acl-rule condition 1 62 src-port 3
+add acl-rule condition 1 62 protocol 0x6/0xff
+add acl-rule condition 1 62 sip 192.168.0.0/16
+add acl-rule condition 1 62 dip 192.168.0.0/16
+add acl-rule condition 1 62 l4-dst-port 51218/0xffff
+add acl-rule action 1 62 redirect 7214
+ 
+create acl-rule 1 63
+add acl-rule condition 1 63 src-port 4
+add acl-rule condition 1 63 protocol 0x6/0xff
+add acl-rule condition 1 63 sip 192.168.0.0/16
+add acl-rule condition 1 63 dip 192.168.0.0/16
+add acl-rule condition 1 63 l4-dst-port 51218/0xffff
+add acl-rule action 1 63 redirect 7214
+
+# Redirect all TCP with port 51218, for health check - 10.0.0.0/8
+create acl-rule 1 64
+add acl-rule condition 1 64 src-port 1
+add acl-rule condition 1 64 protocol 0x6/0xff
+add acl-rule condition 1 64 sip 10.0.0.0/8
+add acl-rule condition 1 64 dip 10.0.0.0/8
+add acl-rule condition 1 64 l4-dst-port 51218/0xffff
+add acl-rule action 1 64 redirect 7214
+ 
+create acl-rule 1 65
+add acl-rule condition 1 65 src-port 2
+add acl-rule condition 1 65 protocol 0x6/0xff
+add acl-rule condition 1 65 sip 10.0.0.0/8
+add acl-rule condition 1 65 dip 10.0.0.0/8
+add acl-rule condition 1 65 l4-dst-port 51218/0xffff
+add acl-rule action 1 65 redirect 7214
+ 
+create acl-rule 1 66
+add acl-rule condition 1 66 src-port 3
+add acl-rule condition 1 66 protocol 0x6/0xff
+add acl-rule condition 1 66 sip 10.0.0.0/8
+add acl-rule condition 1 66 dip 10.0.0.0/8
+add acl-rule condition 1 66 l4-dst-port 51218/0xffff
+add acl-rule action 1 66 redirect 7214
+ 
+create acl-rule 1 67
+add acl-rule condition 1 67 src-port 4
+add acl-rule condition 1 67 protocol 0x6/0xff
+add acl-rule condition 1 67 sip 10.0.0.0/8
+add acl-rule condition 1 67 dip 10.0.0.0/8
+add acl-rule condition 1 67 l4-dst-port 51218/0xffff
+add acl-rule action 1 67 redirect 7214
+
+# Redirect all ICMPv6 link-scope packets
+create acl-rule 1 70
+add acl-rule condition 1 70 src-port 1
+add acl-rule condition 1 70 frame-type ipv6
+add acl-rule condition 1 70 ttl 255
+add acl-rule action 1 70 redirect 7214
+ 
+create acl-rule 1 71
+add acl-rule condition 1 71 src-port 2
+add acl-rule condition 1 71 frame-type ipv6
+add acl-rule condition 1 71 ttl 255
+add acl-rule action 1 71 redirect 7214
+ 
+create acl-rule 1 72
+add acl-rule condition 1 72 src-port 3
+add acl-rule condition 1 72 frame-type ipv6
+add acl-rule condition 1 72 ttl 255
+add acl-rule action 1 72 redirect 7214
+ 
+create acl-rule 1 73
+add acl-rule condition 1 73 src-port 4
+add acl-rule condition 1 73 frame-type ipv6
+add acl-rule condition 1 73 ttl 255
+add acl-rule action 1 73 redirect 7214
+
+create acl-rule 1 74
+add acl-rule condition 1 74 src-port 1
+add acl-rule condition 1 74 frame-type ipv6
+add acl-rule condition 1 74 sip fc00::/7
+add acl-rule condition 1 74 dip fc00::/7
+add acl-rule action 1 74 redirect 7214
+ 
+create acl-rule 1 75
+add acl-rule condition 1 75 src-port 2
+add acl-rule condition 1 75 frame-type ipv6
+add acl-rule condition 1 75 sip fc00::/7
+add acl-rule condition 1 75 dip fc00::/7
+add acl-rule action 1 75 redirect 7214
+ 
+create acl-rule 1 76
+add acl-rule condition 1 76 src-port 3
+add acl-rule condition 1 76 frame-type ipv6
+add acl-rule condition 1 76 sip fc00::/7
+add acl-rule condition 1 76 dip fc00::/7
+add acl-rule action 1 76 redirect 7214
+ 
+create acl-rule 1 77
+add acl-rule condition 1 77 src-port 4
+add acl-rule condition 1 77 frame-type ipv6
+add acl-rule condition 1 77 sip fc00::/7
+add acl-rule condition 1 77 dip fc00::/7
+add acl-rule action 1 77 redirect 7214
+
+create acl-rule 1 80
+add acl-rule condition 1 80 src-glort 0x5801
+add acl-rule action 1 80 redirect 9293
+
+create acl-rule 1 90
+add acl-rule condition 1 90 src-glort 0x5803
+add acl-rule condition 1 90 vlan 4000
+add acl-rule action 1 90 redirect 7220
+add acl-rule action 1 90 vlan 1
+
+create acl-rule 1 91
+add acl-rule condition 1 91 src-glort 0x5803
+add acl-rule condition 1 91 vlan 4001
+add acl-rule action 1 91 redirect 7213
+add acl-rule action 1 91 vlan 1
+
+create acl-rule 1 100
+add acl-rule condition 1 100 src-glort 0x5803
+add acl-rule action 1 100 redirect 9293
+
+create acl-rule 1 101
+add acl-rule condition 1 101 src-port 1
+add acl-rule action 1 101 redirect 7216
+create acl-rule 1 102
+add acl-rule condition 1 102 src-port 2
+add acl-rule action 1 102 redirect 7216
+create acl-rule 1 103
+add acl-rule condition 1 103 src-port 3
+add acl-rule action 1 103 redirect 7216
+create acl-rule 1 104
+add acl-rule condition 1 104 src-port 4
+add acl-rule action 1 104 redirect 7216
+
+create acl-rule 1 200
+add acl-rule condition 1 200 src-glort 0x5804
+add acl-rule action 1 200 redirect 6189
+create acl-rule 1 201
+add acl-rule condition 1 201 src-glort 0x5805
+add acl-rule action 1 201 redirect 5165
+create acl-rule 1 202
+add acl-rule condition 1 202 src-glort 0x5806
+add acl-rule action 1 202 redirect 4141
+create acl-rule 1 203
+add acl-rule condition 1 203 src-glort 0x5000
+add acl-rule action 1 203 redirect 7217
+create acl-rule 1 204
+add acl-rule condition 1 204 src-glort 0x4800
+add acl-rule action 1 204 redirect 7218
+create acl-rule 1 205
+add acl-rule condition 1 205 src-glort 0x4000
+add acl-rule action 1 205 redirect 7219
+
+create acl-rule 1 301
+add acl-rule condition 1 301 src-glort 0x5807
+add acl-rule action 1 301 redirect 7216
+add acl-rule action 1 301 vlan 4000
+
+create acl-rule 1 302
+add acl-rule condition 1 302 src-glort 0x5800
+add acl-rule action 1 302 redirect 7216
+add acl-rule action 1 302 vlan 4001
+
+create acl-rule 1 401
+add acl-rule condition 1 401 src-glort 0x5001
+add acl-rule action 1 401 redirect 9325
+create acl-rule 1 402
+add acl-rule condition 1 402 src-glort 0x4801
+add acl-rule action 1 402 redirect 9325
+create acl-rule 1 403
+add acl-rule condition 1 403 src-glort 0x4001
+add acl-rule action 1 403  redirect 9325
+
+apply acl
+remote listen

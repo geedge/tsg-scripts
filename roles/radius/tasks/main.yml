@@ -1,0 +1,23 @@
+---
+- name: "copy radius rpms to destination server"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: /tmp/ansible_deploy/
+
+- name: "install firewall packages"
+  yum:
+    name: "{{ radius_packages }}"
+    state: present
+    skip_broken: yes
+  vars:
+    radius_packages:
+      - /tmp/ansible_deploy/radius-1.0.2.7bddf74-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/ntc_radius_plug-1.0.1.57ab95a-2.el7.x86_64.rpm
+
+
+- name: "Template the conf/radius/radius.conf"
+  template:
+    src: "{{ role_path }}/templates/radius.conf.j2"
+    dest: /home/mesasoft/sapp_run/conf/radius/radius.conf
+  tags: template
+

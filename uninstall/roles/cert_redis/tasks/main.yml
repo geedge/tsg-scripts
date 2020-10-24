@@ -1,0 +1,7 @@
+- name: "[uninstall cert_redis] stop cert-redis"
+  systemd:
+    name: cert-redis
+    state: stopped
+    enabled: no
+  when: uninstall.certredis == 1
+  ignore_errors: true

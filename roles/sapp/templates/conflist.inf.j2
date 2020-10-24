@@ -1,0 +1,40 @@
+[platform]
+{% if tsg_access_type == 1 %}
+./plug/platform/g_device_plug/g_device_plug.inf
+#./plug/platform/http_healthcheck/http_healthcheck.inf
+{% elif tsg_access_type == 2 %}
+#./plug/platform/g_device_plug/g_device_plug.inf
+./plug/platform/http_healthcheck/http_healthcheck.inf
+{% else %}
+#./plug/platform/g_device_plug/g_device_plug.inf
+#./plug/platform/http_healthcheck/http_healthcheck.inf
+{% endif %}
+./plug/platform/tsg_master/tsg_master.inf
+{% if tsg_app_enable == 1 %}
+./plug/platform/app_proto_identify/app_proto_identify.inf
+./plug/platform/app_master/app_master.inf
+{% endif %}
+
+[protocol]
+./plug/protocol/ssl/ssl.inf
+./plug/protocol/http/http.inf
+./plug/protocol/dns/dns.inf
+./plug/protocol/mail/mail.inf
+./plug/protocol/ftp/ftp.inf
+./plug/protocol/quic/quic.inf
+
+[business]
+./plug/business/tsg_conn_sketch/tsg_conn_sketch.inf
+./plug/business/capture_packet_plug/capture_packet_plug.inf
+./plug/business/kni/kni.inf
+./plug/business/fw_ssl_plug/fw_ssl_plug.inf
+./plug/business/fw_http_plug/fw_http_plug.inf
+./plug/business/fw_dns_plug/fw_dns_plug.inf
+./plug/business/fw_mail_plug/fw_mail_plug.inf
+./plug/business/fw_ftp_plug/fw_ftp_plug.inf
+./plug/business/fw_quic_plug/fw_quic_plug.inf
+./plug/business/conn_telemetry/conn_telemetry.inf
+{% if tsg_app_enable == 1 %}
+./plug/business/app_sketch_local/app_sketch_local.inf
+./plug/business/app_control_plug/app_control_plug.inf
+{% endif %}

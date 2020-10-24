@@ -1,0 +1,15 @@
+- name: "copy cert-redis to destination server"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: /opt/tsg
+    mode: 0755
+
+- name: "install cert-redis"
+  shell: cd /opt/tsg/cert-redis;sh install.sh
+
+- name: "start cert-redis"
+  systemd:
+    name: cert-redis.service
+    state: started
+    daemon_reload: yes
+    enabled: yes

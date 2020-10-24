@@ -1,0 +1,128 @@
+- hosts:
+    - adc_mcn0
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+  roles:
+    - framework
+    #- kernel-ml
+    - telegraf_collect
+
+- hosts: adc_mxn
+  remote_user: root
+  roles:
+#    - tsg-env-mxn
+
+- hosts: adc_mcn0
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+    - install_config/group_vars/adc_mcn0.yml
+  roles:
+#    - tsg-env-mcn0
+    - mrzcpd
+    - sapp
+    - tsg_master
+#    - kni
+    - firewall
+#    - tsg_app
+    - http_healthcheck
+#    - packet_dump
+    - certstore
+    - cert-redis
+    - telegraf_statistic
+#    - tsg_device_tag
+
+- hosts: adc_mcn1
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+    - install_config/group_vars/adc_mcn1.yml
+  roles:
+#    - tsg-env-mcn1
+    - mrzcpd
+    - tfe
+
+- hosts: adc_mcn2
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+    - install_config/group_vars/adc_mcn2.yml
+  roles:
+#    - tsg-env-mcn2
+    - mrzcpd
+    - tfe
+
+- hosts: adc_mcn3
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+    - install_config/group_vars/adc_mcn3.yml
+  roles:
+#    - tsg-env-mcn3
+    - mrzcpd
+    - tfe
+
+- hosts: adc_mcn0
+  remote_user: root
+  roles:
+    - tsg-diagnose
+
+- hosts: 
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+  remote_user: root
+  roles:
+    - tsg-diagnose_sync_ca
+    
+- hosts: adc_mcn0
+  remote_user: root
+  roles:
+    - tsg-diagnose_stop_sync
+
+- hosts:
+    - adc_mcn0
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/adc_global.yml
+  roles:
+    - reboot
+
+- hosts: server-as-tun-mode
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/server_as_tun_mode.yml
+  roles:
+    - kernel-ml
+    - framework
+    - mrzcpd
+    - tsg-env-tun-mode
+    - sapp
+    - tsg_master
+    - kni
+    - firewall
+    - tsg_app
+    - http_healthcheck
+    - packet_dump
+    - certstore
+    - cert-redis
+    - tfe
+    - telegraf_statistic
+    - telegraf_collect
+    - proxy_status
+#    - tsg_device_tag
+    - reboot
+
+- hosts: app_global
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/app_global.yml
+  roles:
+    - app_global

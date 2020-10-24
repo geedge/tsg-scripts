@@ -1,0 +1,10 @@
+####################
+#Uninstall telegraf_statistic
+- name: "[uninstall telegraf_statistic] stop telegraf_statistic"
+  systemd:
+    name: telegraf_statistic
+    state: stopped
+    enabled: no
+  when: uninstall.telegraf_statistic == 1
+  ignore_errors: true
+

@@ -1,0 +1,24 @@
+---
+- name: "create /opt/proxy_status"
+  file:
+    path: /opt/proxy_status
+    state: directory
+
+- name: "copy files"
+  copy:
+    src: "{{ role_path }}/files/" 
+    dest: /opt/proxy_status
+    mode: 0755
+
+- name: "copy proxy-status.service"
+  copy:
+    src: "{{ role_path }}/files/proxy-status.service"
+    dest: "/usr/lib/systemd/system/"   
+    mode: 0644
+
+- name: "enable proxy-status"
+  systemd:
+    name: proxy-status
+    enabled: yes
+    daemon_reload: yes
+

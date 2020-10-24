@@ -1,0 +1,9 @@
+- name: "create /opt/tsg/etc/"
+  file:
+    path: /opt/tsg/etc
+    state: directory
+
+- name: "Template tsg_device_tag.json"
+  template:
+    src: "{{ role_path }}/templates/tsg_device_tag.json.j2"
+    dest: /opt/tsg/etc/tsg_device_tag.json

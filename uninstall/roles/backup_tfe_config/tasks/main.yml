@@ -1,0 +1,20 @@
+- name: "create backup_dest_path"
+  file:
+    path: "{{ backup_dest_path }}"
+    state: directory
+  ignore_errors: true
+
+- name: "tfe_conf_{{ uninstall_version }}_{{ date }}.zip exist?"
+  shell: "ls {{ backup_dest_path }}/tfe_conf_{{ uninstall_version }}_{{ date }}.zip"
+  register: tfeconf_directory
+  ignore_errors: true
+
+- name: "backup /opt/tsg/tfe/conf to destination path"
+  archive:
+    path: /opt/tsg/tfe/conf
+    dest: "{{ backup_dest_path }}/tfe_conf_{{ uninstall_version }}_{{ date }}.zip"
+    format: zip
+  when:
+    - tfeconf_directory.rc != 0 
+    - backup.tfe == 1
+  ignore_errors: true

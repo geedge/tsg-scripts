@@ -1,0 +1,17 @@
+#!/bin/bash
+
+/usr/local/bin/open_intf.inst
+vconfig add ens1 100
+vconfig set_flag ens1.100 1 1
+ifconfig ens1.100 192.168.100.5 netmask 255.255.255.0 up
+
+vconfig add ens1 200
+vconfig set_flag ens1.200 1 1
+ifconfig ens1.200 192.168.200.5 netmask 255.255.255.0 up
+
+echo 1 > /proc/sys/net/ipv6/conf/default/disable_ipv6
+
+/usr/local/testpoint/testpoint.sh start full &
+
+echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+echo 1 > /proc/sys/net/ipv6/conf/default/disable_ipv6

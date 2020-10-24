@@ -1,0 +1,44 @@
+- name: "Tsg-diagnose:copy file to device"
+  copy:
+    src: '{{ role_path }}/files/'
+    dest: /tmp/ansible_deploy/
+    
+- name: "unarchive install_docker.zip"
+  unarchive:
+    src: /tmp/ansible_deploy/install_docker.zip
+    dest: /tmp/ansible_deploy/
+    remote_src: yes
+
+- name: "exec docker install shell"
+  shell: cd /tmp/ansible_deploy/install_docker; sh setup_docker.sh
+
+- name: 'Docker service start and enable'
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+    daemon_reload: yes
+
+- name: "Install tsg-diagnose rpm package"
+  yum:
+    name:
+      - "/tmp/ansible_deploy/tsg-diagnose-20.10.01.7041374-1.el7.x86_64.rpm"
+    state: present
+  
+- name: "tsg-diagnose init certs"
+  shell: /bin/sh /opt/tsg/tsg-diagnose/deploy/init_certs/init_badssl_certs.sh
+
+- name: "copy memory limit file to tsg-diagnose.service.d"
+  copy:
+    src: "{{ role_path }}/files/memory.conf"
+    dest: /etc/systemd/system/tsg-diagnose.service.d/
+    mode: 0644
+
+- name: 'Tsg-diagnose service start'
+  systemd:
+    name: tsg-diagnose
+    enabled: yes
+    daemon_reload: yes
+
+- name: "tsg-diagnose init rsync deamon"
+  shell: /bin/sh /opt/tsg/tsg-diagnose/deploy/rsync/init_rsyncd.sh

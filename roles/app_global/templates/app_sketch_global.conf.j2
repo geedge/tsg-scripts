@@ -1,0 +1,41 @@
+[SYSTEM]
+#1:print on screen, 0:don't
+DEBUG_SWITCH = 1
+RUN_LOG_PATH = "conf/zlog.conf"
+
+[breakpad]
+disable_coredump=0
+enable_breakpad=1
+breakpad_minidump_dir=/tmp/app-sketch-global/crashreport
+enable_breakpad_upload=0
+breakpad_upload_url={{ breakpad_upload_url }}
+
+[CONFIG]
+#Number of running threads
+thread-nu = 1
+timeout = 3600
+address="tcp://127.0.0.1:1883"
+topic_name="APP_SIGNATURE_ID"
+client_name="ExampleClientSub"
+
+[maat]
+# 0:json 1: redis 2: iris
+maat_input_mode=1
+table_info=./resource/table_info.conf
+json_cfg_file=./resource/gtest.json
+stat_file=logs/verify-policy.status
+full_cfg_dir=verify-policy/
+inc_cfg_dir=verify-policy/
+
+maat_redis_server={{ maat_redis_server.address }}
+maat_redis_port_range={{ maat_redis_server.port }}
+maat_redis_db_index={{ maat_redis_server.db }}
+effect_interval_s=1
+accept_tags={"tags":[{"tag":"location","value":"Astana"}]}
+
+[stat]
+statsd_server={{ file_stat_ip }}
+statsd_port=8100
+statsd_cycle=5
+# FS_OUTPUT_STATSD=1, FS_OUTPUT_INFLUX_LINE=2
+statsd_format=2

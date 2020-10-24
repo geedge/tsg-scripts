@@ -1,0 +1,16 @@
+####################
+#Uninstall clotho
+- name: "[uninstall clotho] stop clotho"
+  systemd:
+    name: clotho
+    state: stopped
+    enabled: no
+  when: uninstall.clotho == 1
+  ignore_errors: true
+
+- name: "[uninstall clotho] uninstall clotho"
+  yum:
+    name:
+      - "{{ clotho }}"
+    state: absent
+  when: uninstall.clotho == 1

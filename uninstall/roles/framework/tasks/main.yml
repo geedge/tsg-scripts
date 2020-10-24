@@ -1,0 +1,40 @@
+- name: "[uninstall framework] create project_list.conf"
+  file:
+    path: /home/mesasoft/sapp_run/etc/project_list.conf
+    state: touch
+  when: uninstall.framework == 1
+  ignore_errors: true
+
+- name: "[uninstall framework] create conflist.inf"
+  file:
+    path: /home/mesasoft/sapp_run/plug/conflist.inf
+    state: touch
+  when: uninstall.framework == 1
+  ignore_errors: true
+
+- name: "[uninstall framework] uninstall framework"
+  yum:
+    name:
+      - "{{ libcjson }}"
+      - "{{ libdocument }}"
+      - "{{ libmaatframe }}"
+      - "{{ libMESA_field_stat }}"
+      - "{{ libMESA_field_stat2 }}"
+      - "{{ libMESA_handle_logger }}"
+      - "{{ libMESA_htable }}"
+      - "{{ libMESA_prof_load }}"
+      - "{{ librdkafka }}"
+      - "{{ librulescan }}"
+      - "{{ libwiredcfg }}"
+      - "{{ libWiredLB }}"
+      - "{{ lz4 }}"
+    state: absent
+  when: uninstall.framework == 1
+
+- name: "[uninstall framework] uninstall framework"
+  yum:
+    name:
+      - "{{ libtsglua }}"
+    state: absent
+  when: uninstall.framework == 1
+  ignore_errors: true

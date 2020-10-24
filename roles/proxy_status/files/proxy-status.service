@@ -1,0 +1,11 @@
+[Unit]
+Description=proxy status
+
+[Service]
+ExecStart=/opt/proxy_status/proxy_start
+ExecStop=/opt/proxy_status/proxy_stop
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
