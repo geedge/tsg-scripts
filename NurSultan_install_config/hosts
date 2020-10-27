@@ -33,12 +33,15 @@
 
 #[app_global]
 #[server-as-tun-mode]
+#p
 #[adc_mxn]
 [adc_mcn0]
-10.4.51.2
+10.4.51.[1:78]
 [adc_mcn1]
-10.4.52.2
+10.4.52.[1:78]
 [adc_mcn2]
-10.4.53.2
+10.4.53.[1:78]
 [adc_mcn3]
-10.4.54.2
+10.4.54.[1:78]
+[packet_dump_server]
+10.4.61.3

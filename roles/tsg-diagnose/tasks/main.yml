@@ -24,9 +24,24 @@
     name:
       - "/tmp/ansible_deploy/tsg-diagnose-20.10.01.7041374-1.el7.x86_64.rpm"
     state: present
-  
-- name: "tsg-diagnose init certs"
-  shell: /bin/sh /opt/tsg/tsg-diagnose/deploy/init_certs/init_badssl_certs.sh
+
+- name: "Templates tsg-diagnose.config"
+  template:
+    src: "{{role_path}}/templates/tsg-diagnose.config.j2"
+    dest: /opt/tsg/tsg-diagnose/etc/tsg-diagnose.config
+  tags: template
+
+- name: "tsg-diagnose:mkdir -p .badssl_cert_dict"
+  file:
+    path: /opt/tsg/tsg-diagnose/.badssl_cert_dict
+    state: directory
+
+
+- name: "tsg-diagnose: unarchive certs"
+  unarchive:
+    src: /tmp/ansible_deploy/tsg-diagnose-certs.tgz
+    dest: /opt/tsg/tsg-diagnose/.badssl_cert_dict
+    remote_src: yes
 
 - name: "copy memory limit file to tsg-diagnose.service.d"
   copy:

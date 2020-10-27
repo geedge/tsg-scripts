@@ -3,13 +3,21 @@
     - adc_mcn1
     - adc_mcn2
     - adc_mcn3
+    - packet_dump_server
   remote_user: root
   vars_files:
-    - install_config/group_vars/adc_global.yml
+    - NurSultan_install_config/group_vars/adc_global.yml
   roles:
     - framework
     #- kernel-ml
     - telegraf_collect
+
+- hosts: packet_dump_server
+  remote_user: root
+  vars_files:
+    - NurSultan_install_config/group_vars/adc_global.yml
+  roles:
+    - packet_dump
 
 - hosts: adc_mxn
   remote_user: root
@@ -19,50 +27,56 @@
 - hosts: adc_mcn0
   remote_user: root
   vars_files:
-    - install_config/group_vars/adc_global.yml
-    - install_config/group_vars/adc_mcn0.yml
+    - NurSultan_install_config/group_vars/adc_global.yml
+    - NurSultan_install_config/group_vars/adc_mcn0.yml
   roles:
 #    - tsg-env-mcn0
+    - kernel-ml
     - mrzcpd
     - sapp
     - tsg_master
-#    - kni
+    - kni
     - firewall
 #    - tsg_app
     - http_healthcheck
-#    - packet_dump
-    - certstore
+    - redis
     - cert-redis
+    - certstore
     - telegraf_statistic
 #    - tsg_device_tag
 
 - hosts: adc_mcn1
   remote_user: root
   vars_files:
-    - install_config/group_vars/adc_global.yml
-    - install_config/group_vars/adc_mcn1.yml
+    - NurSultan_install_config/group_vars/adc_global.yml
+    - NurSultan_install_config/group_vars/adc_mcn1.yml
   roles:
 #    - tsg-env-mcn1
+    - kernel-ml
     - mrzcpd
     - tfe
 
 - hosts: adc_mcn2
   remote_user: root
   vars_files:
-    - install_config/group_vars/adc_global.yml
-    - install_config/group_vars/adc_mcn2.yml
+    - NurSultan_install_config/group_vars/adc_global.yml
+    - NurSultan_install_config/group_vars/adc_mcn2.yml
   roles:
 #    - tsg-env-mcn2
+    - kernel-ml
     - mrzcpd
     - tfe
 
 - hosts: adc_mcn3
   remote_user: root
   vars_files:
-    - install_config/group_vars/adc_global.yml
-    - install_config/group_vars/adc_mcn3.yml
+    - NurSultan_install_config/group_vars/adc_global.yml
+    - NurSultan_install_config/group_vars/adc_mcn3.yml
   roles:
 #    - tsg-env-mcn3
+    - redis
+    - maat-redis
+    - kernel-ml
     - mrzcpd
     - tfe
 
@@ -91,14 +105,14 @@
     - adc_mcn3
   remote_user: root
   vars_files:
-    - install_config/group_vars/adc_global.yml
+    - NurSultan_install_config/group_vars/adc_global.yml
   roles:
-    - reboot
+    #- reboot
 
 - hosts: server-as-tun-mode
   remote_user: root
   vars_files:
-    - install_config/group_vars/server_as_tun_mode.yml
+    - NurSultan_install_config/group_vars/server_as_tun_mode.yml
   roles:
     - kernel-ml
     - framework
@@ -110,9 +124,10 @@
     - firewall
     - tsg_app
     - http_healthcheck
-    - packet_dump
     - certstore
+    - redis
     - cert-redis
+    - maat-redis
     - tfe
     - telegraf_statistic
     - telegraf_collect
@@ -123,6 +138,6 @@
 - hosts: app_global
   remote_user: root
   vars_files:
-    - install_config/group_vars/app_global.yml
+    - NurSultan_install_config/group_vars/app_global.yml
   roles:
     - app_global

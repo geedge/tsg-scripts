@@ -1,6 +1,6 @@
 - name: "copy packet_dump rpm to destination server"
   copy:
-    src: "{{ role_path }}/files/packet_dump-1.0.4.82e85d1-2.el7.x86_64.rpm"
+    src: "{{ role_path }}/files/packet_dump-1.0.6.2ea75d5-2.el7.x86_64.rpm"
     dest: /tmp/ansible_deploy/
 
 - name: "copy  packet_dump.service to destination server"
@@ -12,7 +12,7 @@
 - name: "install packet_dump rpm from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/packet_dump-1.0.4.82e85d1-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/packet_dump-1.0.6.2ea75d5-2.el7.x86_64.rpm
     state: present
 
 - name: "Template the packet_dump.conf"

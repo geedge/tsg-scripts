@@ -42,7 +42,7 @@
    stats = ["sum"]
 
 [[outputs.kafka]]
-   brokers = ["{{ log_kafkabrokers.address }}"]
+   brokers = [ {{ telegraf_kafkabrokers.address }} ]
    fieldpass = [ "*_conn_num", "*_bytes", "*_in_packets",  "*_out_packets", "intercept", "hit_share", "tcp_links", "udp_links", "success_log", "failed_log", "bypass", "drop_log","pinning_num","*pinning_num","intcp_*_num"]
    topic = "TRAFFIC-METRICS-LOG"
    data_format = "json"

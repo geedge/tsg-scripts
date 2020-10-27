@@ -1,6 +1,6 @@
 #########################################
 #####1: Inline_device;  2: Allot;  3: ADC_Tun_mode;
-tsg_access_type: 3
+tsg_access_type: 2
 #####2: ADC;
 tsg_running_type: 2
 
@@ -10,15 +10,21 @@ Deploy_finished_reboot: 0
 
 ########################################
 #IP Config
+maat_redis_city_server:
+  address: "10.4.62.253"
+  port: 7002
+
 maat_redis_server:
   address: "192.168.100.4"
   port: 7002
+  port_num: 1
   db: 0
 
 dynamic_maat_redis_server:
   address: "192.168.100.4"
   port: 7002
-  db: 0
+  port_num: 1
+  db: 1
 
 cert_store_server:
   address: "192.168.100.1"
@@ -26,6 +32,9 @@ cert_store_server:
 
 log_kafkabrokers:
   address: "10.4.61.10:9092,10.4.61.11:9092,10.4.61.12:9092,10.4.61.13:9092,10.4.61.14:9092,10.4.61.15:9092,10.4.61.16:9092,10.4.61.17:9092,10.4.61.18:9092,10.4.61.19:9092,10.4.61.20:9092"
+
+telegraf_kafkabrokers:
+  address: "\"10.4.61.10:9092\",\"10.4.61.11:9092\",\"10.4.61.12:9092\",\"10.4.61.13:9092\",\"10.4.61.14:9092\",\"10.4.61.15:9092\",\"10.4.61.16:9092\",\"10.4.61.17:9092\",\"10.4.61.18:9092\",\"10.4.61.19:9092\",\"10.4.61.20:9092\""
 
 monitor_outputs_influxdb:
   url: "http://127.0.0.1:58086"
@@ -37,15 +46,15 @@ log_minio:
 #########################################
 #Log Level Config
 #日志等级 10:DEBUG 20:INFO 30:FATAL
-fw_ftp_log_level: 30
-fw_mail_log_level: 30
-fw_http_log_level: 30
-fw_dns_log_level: 30
-fw_quic_log_level: 30
-capture_packet_log_level: 30
-tsg_log_level: 30
-tsg_master_log_level: 30
-kni_log_level: 30
+fw_ftp_log_level: 10
+fw_mail_log_level: 10
+fw_http_log_level: 10
+fw_dns_log_level: 10
+fw_quic_log_level: 10
+capture_packet_log_level: 10
+tsg_log_level: 10
+tsg_master_log_level: 10
+kni_log_level: 10
 
 #日志等级 DEBUG INFO FATAL
 tfe_log_level: FATAL
@@ -54,7 +63,7 @@ pangu_log_level: FATAL
 doh_log_level: FATAL
 
 certstore_log_level: 30
-packet_dump_log_level: 30
+packet_dump_log_level: 10
 
 #######################################
 #Sapp Performance Config
@@ -108,4 +117,7 @@ app_control_plug_log_level: 10
 
 breakpad_upload_url: http://127.0.0.1/
 
+data_center: Nur-sultan
 tsg_master_entrance_id: 4
+nic_mgr: 
+   name: em1
