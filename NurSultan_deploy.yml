@@ -9,8 +9,6 @@
     - NurSultan_install_config/group_vars/adc_global.yml
   roles:
     - framework
-    #- kernel-ml
-    - telegraf_collect
 
 - hosts: packet_dump_server
   remote_user: root
@@ -31,6 +29,7 @@
     - NurSultan_install_config/group_vars/adc_mcn0.yml
   roles:
 #    - tsg-env-mcn0
+    - telegraf_collect
     - kernel-ml
     - mrzcpd
     - sapp
@@ -52,6 +51,7 @@
     - NurSultan_install_config/group_vars/adc_mcn1.yml
   roles:
 #    - tsg-env-mcn1
+    - telegraf_collect
     - kernel-ml
     - mrzcpd
     - tfe
@@ -63,6 +63,7 @@
     - NurSultan_install_config/group_vars/adc_mcn2.yml
   roles:
 #    - tsg-env-mcn2
+    - telegraf_collect
     - kernel-ml
     - mrzcpd
     - tfe
@@ -73,10 +74,11 @@
     - NurSultan_install_config/group_vars/adc_global.yml
     - NurSultan_install_config/group_vars/adc_mcn3.yml
   roles:
+    - kernel-ml
 #    - tsg-env-mcn3
+    - telegraf_collect
     - redis
     - maat-redis
-    - kernel-ml
     - mrzcpd
     - tfe
 

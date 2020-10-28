@@ -40,6 +40,12 @@
     dest: /home/mesasoft/sapp_run/tsgconf/maat.conf
   tags: template
 
+- name: "Template the tsgconf/tsg_log_field.conf"
+  template:
+    src: "{{ role_path }}/templates/tsg_log_field.conf.j2"
+    dest: /home/mesasoft/sapp_run/tsgconf/tsg_log_field.conf
+  tags: template
+
 - name: "Template the conf/capture_packet_plug.conf.j2"
   template:
     src: "{{ role_path }}/templates/capture_packet_plug.conf.j2"

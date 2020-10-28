@@ -26,3 +26,9 @@
     name: packet_dump.service
     enabled: yes
     daemon_reload: yes
+
+- name: "enable httpd"
+  systemd:
+    name: httpd
+    enabled: yes
+    daemon_reload: yes
