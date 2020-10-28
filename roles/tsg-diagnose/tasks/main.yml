@@ -22,7 +22,7 @@
 - name: "Install tsg-diagnose rpm package"
   yum:
     name:
-      - "/tmp/ansible_deploy/tsg-diagnose-20.10.01.7041374-1.el7.x86_64.rpm"
+      - "/tmp/ansible_deploy/tsg-diagnose-20.10.02.6d0631a-1.el7.x86_64.rpm"
     state: present
 
 - name: "Templates tsg-diagnose.config"
@@ -42,12 +42,6 @@
     src: /tmp/ansible_deploy/tsg-diagnose-certs.tgz
     dest: /opt/tsg/tsg-diagnose/.badssl_cert_dict
     remote_src: yes
-
-- name: "copy memory limit file to tsg-diagnose.service.d"
-  copy:
-    src: "{{ role_path }}/files/memory.conf"
-    dest: /etc/systemd/system/tsg-diagnose.service.d/
-    mode: 0644
 
 - name: 'Tsg-diagnose service start'
   systemd:
