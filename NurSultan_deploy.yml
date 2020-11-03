@@ -40,6 +40,7 @@
     - http_healthcheck
     - redis
     - cert-redis
+    - maat-redis
     - certstore
     - telegraf_statistic
 #    - tsg_device_tag
@@ -77,8 +78,6 @@
     - kernel-ml
 #    - tsg-env-mcn3
     - telegraf_collect
-    - redis
-    - maat-redis
     - mrzcpd
     - tfe
 

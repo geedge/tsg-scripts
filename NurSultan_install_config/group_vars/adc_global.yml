@@ -15,13 +15,13 @@ maat_redis_city_server:
   port: 7002
 
 maat_redis_server:
-  address: "192.168.100.4"
+  address: "192.168.100.1"
   port: 7002
   port_num: 1
   db: 0
 
 dynamic_maat_redis_server:
-  address: "192.168.100.4"
+  address: "192.168.100.1"
   port: 7002
   port_num: 1
   db: 1
