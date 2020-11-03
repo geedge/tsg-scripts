@@ -84,6 +84,7 @@
 - hosts: adc_mcn0
   remote_user: root
   roles:
+    - docker-env
     - tsg-diagnose
 
 - hosts: 

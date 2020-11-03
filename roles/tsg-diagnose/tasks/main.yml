@@ -3,15 +3,6 @@
     src: '{{ role_path }}/files/'
     dest: /tmp/ansible_deploy/
     
-- name: "unarchive install_docker.zip"
-  unarchive:
-    src: /tmp/ansible_deploy/install_docker.zip
-    dest: /tmp/ansible_deploy/
-    remote_src: yes
-
-- name: "exec docker install shell"
-  shell: cd /tmp/ansible_deploy/install_docker; sh setup_docker.sh
-
 - name: 'Docker service start and enable'
   systemd:
     name: docker
