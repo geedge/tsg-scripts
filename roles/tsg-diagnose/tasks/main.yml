@@ -32,6 +32,7 @@
     name: tsg-diagnose
     enabled: yes
     daemon_reload: yes
+    state: started
 
 - name: "tsg-diagnose init rsync deamon"
   shell: /bin/sh /opt/tsg/tsg-diagnose/deploy/rsync/init_rsyncd.sh
