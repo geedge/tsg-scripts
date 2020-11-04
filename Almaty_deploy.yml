@@ -78,8 +78,6 @@
     - kernel-ml
 #    - tsg-env-mcn3
     - telegraf_collect
-    - redis
-    - maat-redis
     - mrzcpd
     - tfe
 
