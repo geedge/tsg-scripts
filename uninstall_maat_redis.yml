@@ -1,0 +1,3 @@
+- hosts: host_uninstall_redis
+  roles:
+    - maat-redis-uninstall
