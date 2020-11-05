@@ -34,7 +34,8 @@
 #[app_global]
 #[server-as-tun-mode]
 #p
-#[adc_mxn]
+[adc_mxn]
+10.9.55.[1:15]
 [adc_mcn0]
 10.9.51.[1:15]
 [adc_mcn1]

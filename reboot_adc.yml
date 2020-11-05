@@ -1,0 +1,4 @@
+- hosts: adc_mxn
+  remote_user: root
+  roles:
+    -  reboot-all-adc 
