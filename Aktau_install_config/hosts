@@ -1,0 +1,52 @@
+###################
+#   For example   #
+###################
+#变量device_id根据设备序号设置即可
+#变量vvipv4_1、vvipv4_2、vvipv6_1、vvipv6_2为Allot相关配置，其他环境可不填或直接删除变量
+#
+#20.09版本新增APP部署
+#[app_global]
+#0.0.0.0
+
+#[server-as-tun-mode]
+#1.1.1.1 device_id=device_1
+#
+#[adc_mxn]
+#10.3.72.1
+#10.3.72.2
+#
+#[adc_mcn0]
+#10.3.73.1 device_id=device_1 vvipv4_1=10.3.61.1 vvipv4_2=10.3.62.1 vvipv6_1=fc00::61:1 vvipv6_2=fc00::62:1
+#10.3.73.2 device_id=device_2 vvipv4_1=10.3.61.2 vvipv4_2=10.3.62.2 vvipv6_1=fc00::61:2 vvipv6_2=fc00::62:2
+#
+#[adc_mcn1]
+#10.3.74.1 device_id=device_1
+#10.3.74.2 device_id=device_2
+#
+#[adc_mcn2]
+#10.3.75.1 device_id=device_1
+#10.3.75.2 device_id=device_2
+#
+#[adc_mcn3]
+#10.3.76.1 device_id=device_1
+#10.3.76.2 device_id=device_2
+
+#[app_global]
+#[server-as-tun-mode]
+
+# aktau city device 15
+# device 15 is broken !!!
+# device 15 is broken !!!
+# device 15 is broken !!!
+[adc_mxn]
+10.1.55.[1:14]
+[adc_mcn0]
+10.1.51.[1:14]
+[adc_mcn1]
+10.1.52.[1:14]
+[adc_mcn2]
+10.1.53.[1:14]
+[adc_mcn3]
+10.1.54.[1:14]
+[packet_dump_server]
+10.1.61.3
