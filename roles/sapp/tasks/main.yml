@@ -13,7 +13,7 @@
 - name: "install sapp rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/sapp-4.1.13.ed89137-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/sapp-4.2.5.d8bc307-2.el7.x86_64.rpm
     state: present
     skip_broken: yes
 
@@ -51,8 +51,13 @@
     src: "{{ role_path }}/templates/gdev.conf.j2"
     dest: /home/mesasoft/sapp_run/etc/gdev.conf
   when: tsg_access_type == 1
-  
 
+- name: Template the vlan_flipping_map.conf
+  template:
+    src: "{{ role_path }}/templates/vlan_flipping_map.conf.j2"
+    dest: /home/mesasoft/sapp_run/etc/vlan_flipping_map.conf
+  when: tsg_access_type == 2
+  
 - name: "Template sapp.service destination server"
   template:
     src: "{{ role_path }}/templates/sapp.service.j2"

@@ -2,9 +2,6 @@
 {% if tsg_access_type == 1 %}
 ./plug/platform/g_device_plug/g_device_plug.inf
 #./plug/platform/http_healthcheck/http_healthcheck.inf
-{% elif tsg_access_type == 2 %}
-#./plug/platform/g_device_plug/g_device_plug.inf
-./plug/platform/http_healthcheck/http_healthcheck.inf
 {% else %}
 #./plug/platform/g_device_plug/g_device_plug.inf
 #./plug/platform/http_healthcheck/http_healthcheck.inf
@@ -37,4 +34,7 @@
 {% if tsg_app_enable == 1 %}
 ./plug/business/app_sketch_local/app_sketch_local.inf
 ./plug/business/app_control_plug/app_control_plug.inf
+{% endif %}
+{% if tsg_access_type == 2 %}
+./plug/platform/http_healthcheck/http_healthcheck.inf
 {% endif %}

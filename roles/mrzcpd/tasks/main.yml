@@ -6,7 +6,7 @@
 
 - name: "install mrzcpd"
   yum:
-    name: /tmp/ansible_deploy/mrzcpd-4.3.28.2d13de4-1.el7.x86_64.rpm
+    name: /tmp/ansible_deploy/mrzcpd-4.3.29.7c73322-1.el7.x86_64.rpm
     state: present
 
 - name: "update sysconfig/mrzcpd"
@@ -148,7 +148,7 @@
 - name: "enable mrtunnat on master"
   systemd:
     name: mrtunnat
-    enabled: yes
+    enabled: no
     daemon_reload: yes
   when: 
     - nic_traffic_mirror is not defined
