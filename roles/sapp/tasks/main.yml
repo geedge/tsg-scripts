@@ -64,6 +64,12 @@
     dest: /usr/lib/systemd/system/sapp.service
     mode: 0755
 
+- name: "copy memory limit file to sapp.service.d"
+  copy:
+    src: "{{ role_path }}/files/memory.conf"
+    dest: /etc/systemd/system/sapp.service.d/
+    mode: 0644
+
 - name: "enable sapp"
   systemd:
     name: sapp
