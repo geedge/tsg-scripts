@@ -1,0 +1,12 @@
+- hosts: adc_mcn0
+  remote_user: root
+  roles:
+    - sapp_restart
+
+- hosts: 
+   - adc_mcn1
+   - adc_mcn2
+   - adc_mcn3
+  remote_user: root
+  roles:
+    - tfe_restart
