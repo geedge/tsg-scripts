@@ -62,7 +62,7 @@ tfe_http_log_level: FATAL
 pangu_log_level: FATAL
 doh_log_level: FATAL
 
-certstore_log_level: 30
+certstore_log_level: FATAL
 packet_dump_log_level: 10
 
 #######################################
