@@ -1,0 +1,7 @@
+- name: 'certstore service start'
+  systemd:
+    name: certstore
+    enabled: yes
+    daemon_reload: yes
+    state: restarted
+

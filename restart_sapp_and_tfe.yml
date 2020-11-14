@@ -2,6 +2,7 @@
   remote_user: root
   roles:
     - sapp_restart
+    - certstore_restart
 
 - hosts: 
    - adc_mcn1
