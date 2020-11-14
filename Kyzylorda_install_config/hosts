@@ -33,7 +33,9 @@
 
 #[app_global]
 #[server-as-tun-mode]
-#p
+#broken warning
+#broken blade list
+#10.9.54.15
 [adc_mxn]
 10.9.55.[1:15]
 [adc_mcn0]
@@ -43,6 +45,6 @@
 [adc_mcn2]
 10.9.53.[1:15]
 [adc_mcn3]
-10.9.54.[1:14]
+10.9.54.[1:15]
 [packet_dump_server]
 10.9.61.3
