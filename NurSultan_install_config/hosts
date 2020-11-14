@@ -33,7 +33,8 @@
 
 #[app_global]
 #[server-as-tun-mode]
-
+#broken warning:
+#10.4.52.71
 [adc_mxn]
 10.4.55.[1:78]
 [adc_mcn0]
