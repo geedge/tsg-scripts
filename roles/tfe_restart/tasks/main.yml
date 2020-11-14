@@ -1,4 +1,4 @@
-- name: 'sapp service start'
+- name: 'tfe service start'
   systemd:
     name: tfe
     enabled: yes

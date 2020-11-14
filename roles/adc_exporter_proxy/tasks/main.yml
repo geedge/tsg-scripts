@@ -1,0 +1,34 @@
+- name: "mkdir /opt/adc-exporter-proxy/"
+  file:
+    path: /opt/adc-exporter-proxy/
+    state: directory
+
+- name: "copy file to device"
+  copy:
+    src: '{{ role_path }}/files/'
+    dest: /tmp/ansible_deploy/
+    
+- name: "unarchive adc-exporter-proxy(NGINX)"
+  unarchive:
+    src: /tmp/ansible_deploy/adc_exporter_proxy.tar.gz
+    dest: /opt/adc-exporter-proxy
+    remote_src: yes
+
+- name: "templates adc-exporter-proxy.service"
+  template:
+    src: "{{role_path}}/templates/adc-exporter-proxy.service.j2"
+    dest: /usr/lib/systemd/system/adc-exporter-proxy.service
+  tags: template
+
+- name: "template nginx.conf"
+  template:
+    src: "{{role_path}}/templates/nginx.conf.j2"
+    dest: /opt/adc-exporter-proxy/adc-exporter-proxy/conf/nginx.conf
+  tags: template
+
+- name: 'adc-exporter-proxy service start'
+  systemd:
+    name: adc-exporter-proxy
+    enabled: yes
+    daemon_reload: yes
+    state: started

@@ -1,0 +1,42 @@
+- name: "mkdir /opt/adc-exporter/"
+  file:
+    path: /opt/adc-exporter/
+    state: directory
+
+- name: "copy node_exporter"
+  copy:
+    src: '{{ role_path }}/files/node_exporter'
+    dest: /opt/adc-exporter/node_exporter
+    mode: 0755
+
+- name: "copy systemd_exporter"
+  copy:
+    src: '{{ role_path }}/files/systemd_exporter'
+    dest: /opt/adc-exporter/systemd_exporter
+    mode: 0755
+
+- name: "templates adc-exporter-node.service"
+  template:
+    src: "{{role_path}}/templates/adc-exporter-node.service.j2"
+    dest: /usr/lib/systemd/system/adc-exporter-node.service
+  tags: template
+
+- name: "templates adc-exporter-systemd.service"
+  template:
+    src: "{{role_path}}/templates/adc-exporter-systemd.service.j2"
+    dest: /usr/lib/systemd/system/adc-exporter-systemd.service
+  tags: template
+
+- name: 'adc-exporter-node service start'
+  systemd:
+    name: adc-exporter-node
+    enabled: yes
+    daemon_reload: yes
+    state: started
+
+- name: 'adc-exporter-systemd service start'
+  systemd:
+    name: adc-exporter-systemd
+    enabled: yes
+    daemon_reload: yes
+    state: started

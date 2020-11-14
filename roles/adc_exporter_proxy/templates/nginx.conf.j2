@@ -1,0 +1,72 @@
+
+user  nobody;
+worker_processes  1;
+daemon off;
+
+error_log  logs/error.log;
+error_log  logs/error.log  notice;
+error_log  logs/error.log  info;
+pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    tcp_nopush     on;
+
+    keepalive_timeout  65;
+    gzip  on;
+
+    server {
+	    listen       9000;
+	    server_name  localhost;
+
+	    location /metrics/blade/mcn0/node_exporter {
+		    proxy_pass   http://192.168.100.1:9100/metrics;
+	    }
+
+	    location /metrics/blade/mcn1/node_exporter {
+		    proxy_pass   http://192.168.100.2:9100/metrics;
+	    }
+
+	    location /metrics/blade/mcn2/node_exporter {
+		    proxy_pass   http://192.168.100.3:9100/metrics;
+	    }
+
+	    location /metrics/blade/mcn3/node_exporter {
+		    proxy_pass   http://192.168.100.4:9100/metrics;
+	    }
+
+	    location /metrics/blade/mxn/node_exporter {
+		    proxy_pass   http://192.168.100.5:9100/metrics;
+	    }
+
+            location /metrics/blade/mcn0/systemd_exporter {
+                    proxy_pass   http://192.168.100.1:9558/metrics;
+            }
+
+            location /metrics/blade/mcn1/systemd_exporter {
+                    proxy_pass   http://192.168.100.2:9558/metrics;
+            }
+
+            location /metrics/blade/mcn2/systemd_exporter {
+                    proxy_pass   http://192.168.100.3:9558/metrics;
+            }
+
+            location /metrics/blade/mcn3/systemd_exporter {
+                    proxy_pass   http://192.168.100.4:9558/metrics;
+            }
+    }
+}

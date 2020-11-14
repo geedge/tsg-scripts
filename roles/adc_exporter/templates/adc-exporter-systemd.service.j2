@@ -1,0 +1,11 @@
+[Unit]
+Description=Systemd Exporter
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/adc-exporter/systemd_exporter
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
