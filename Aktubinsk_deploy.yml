@@ -126,6 +126,15 @@
   roles:
     - adc_exporter_proxy
 
+- hosts:
+    - adc_mcn0
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+  remote_user: root
+  roles:
+    - switch_control
+
 - hosts: server-as-tun-mode
   remote_user: root
   vars_files:
