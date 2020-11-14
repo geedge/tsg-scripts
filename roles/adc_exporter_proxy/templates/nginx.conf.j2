@@ -68,5 +68,21 @@ http {
             location /metrics/blade/mcn3/systemd_exporter {
                     proxy_pass   http://192.168.100.4:9558/metrics;
             }
+
+            location /metrics/blade/mcn0/certstore {
+                    proxy_pass   http://192.168.100.1:9002/metrics;
+            }
+
+            location /metrics/blade/mcn1/tfe {
+                    proxy_pass   http://192.168.100.2:9001/metrics;
+            }
+
+            location /metrics/blade/mcn2/tfe {
+                    proxy_pass   http://192.168.100.3:9001/metrics;
+            }
+
+            location /metrics/blade/mcn3/tfe {
+                    proxy_pass   http://192.168.100.4:9001/metrics;
+            }
     }
 }

@@ -46,9 +46,6 @@
    fieldpass = [ "*_conn_num", "*_bytes", "*_in_packets",  "*_out_packets", "intercept", "hit_share", "tcp_links", "udp_links", "success_log", "failed_log", "bypass", "drop_log","pinning_num","*pinning_num","intcp_*_num"]
    topic = "TRAFFIC-METRICS-LOG"
    data_format = "json"
-[[outputs.prometheus_client]]
-   listen = ":9273"
-   path = "/metrics"
 [[inputs.tcp_listener]]
 [[inputs.udp_listener]]
    ServiceAddress= ":8100"
