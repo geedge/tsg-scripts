@@ -25,7 +25,7 @@
       - /tmp/ansible_deploy/mail-1.0.9.c1d3bde-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/quic-1.1.12.409501c-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/ssl-1.0.9.69f3742-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/tsg_conn_sketch-2.0.8.515835a-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tsg_conn_sketch-2.0.9.bc6f00e-2.el7.x86_64.rpm
 
 - name: "Template the tsgconf/main.conf"
   template:
