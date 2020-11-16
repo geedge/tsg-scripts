@@ -1,7 +1,7 @@
 - name: "copy freeipmi tools"
   copy:
     src: '{{ role_path }}/files/freeipmi-1.5.7-3.el7.x86_64.rpm'
-    dest: /tmp/ansible_deploy/freeipmi-1.5.7-3.el7.x86_64.rpm
+    dest: /tmp/ansible_deploy/
 
 - name: "Install freeipmi rpm package"
   yum:
