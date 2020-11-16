@@ -1,0 +1,7 @@
+- hosts: adc_mxn
+  remote_user: root
+  tasks:
+    - name: remove the node-exporter
+      yum:
+        name: node-exporter
+        state: absent
