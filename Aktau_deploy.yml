@@ -29,7 +29,6 @@
     - Aktau_install_config/group_vars/adc_mcn0.yml
   roles:
 #    - tsg-env-mcn0
-    - telegraf_collect
     - kernel-ml
     - mrzcpd
     - sapp
@@ -43,6 +42,7 @@
     - maat-redis
     - certstore
     - telegraf_statistic
+    - app_proto_identify
 #    - tsg_device_tag
 
 - hosts: adc_mcn1
@@ -52,7 +52,6 @@
     - Aktau_install_config/group_vars/adc_mcn1.yml
   roles:
 #    - tsg-env-mcn1
-    - telegraf_collect
     - kernel-ml
     - mrzcpd
     - tfe
@@ -64,7 +63,6 @@
     - Aktau_install_config/group_vars/adc_mcn2.yml
   roles:
 #    - tsg-env-mcn2
-    - telegraf_collect
     - kernel-ml
     - mrzcpd
     - tfe
@@ -77,7 +75,6 @@
   roles:
     - kernel-ml
 #    - tsg-env-mcn3
-    - telegraf_collect
     - mrzcpd
     - tfe
 
@@ -156,7 +153,6 @@
     - maat-redis
     - tfe
     - telegraf_statistic
-    - telegraf_collect
     - proxy_status
 #    - tsg_device_tag
     - reboot

@@ -121,3 +121,7 @@ data_center: Aktau
 tsg_master_entrance_id: 1
 nic_mgr: 
    name: em1
+
+sapp_prometheus_enable: 1
+sapp_prometheus_port: 9273
+sapp_prometheus_url_path: "/metrics"
