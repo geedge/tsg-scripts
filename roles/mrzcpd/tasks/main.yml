@@ -6,7 +6,7 @@
 
 - name: "install mrzcpd"
   yum:
-    name: /tmp/ansible_deploy/mrzcpd-4.3.29.7c73322-1.el7.x86_64.rpm
+    name: /tmp/ansible_deploy/mrzcpd-4.3.30.4627eb7-1.el7.x86_64.rpm
     state: present
 
 - name: "update sysconfig/mrzcpd"
@@ -144,6 +144,18 @@
     daemon_reload: yes
   when: 
     - tsg_access_type != 0
+
+- name: "enable prometheus output - monit_device"
+  systemd:
+    name: mrapm_device
+    enable: yes
+    daemon_reload: yes
+
+- name: "enable prometheus output - monit_stream"
+  systemd:
+    name: mrapm_stream
+    enable: yes
+    daemon_reload: yes
 
 - name: "enable mrtunnat on master"
   systemd:
