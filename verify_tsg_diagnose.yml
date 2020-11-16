@@ -1,4 +1,0 @@
-- hosts: adc_mcn0
-  remote_user: root
-  roles:
-    - tsg-diagnose-verify-succ
