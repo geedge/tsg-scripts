@@ -84,5 +84,41 @@ http {
             location /metrics/blade/mcn3/tfe {
                     proxy_pass   http://192.168.100.4:9001/metrics;
             }
+
+            location /metrics/blade/mcn0/sapp {
+                    proxy_pass   http://192.168.100.1:9273/metrics;
+            }
+
+            location /metrics/blade/mcn0/mrapm_device {
+                    proxy_pass   http://192.168.100.1:8901/metrics;
+            }
+
+	    location /metrics/blade/mcn0/mrapm_stream {
+                    proxy_pass   http://192.168.100.1:8902/metrics;
+            }
+
+	    location /metrics/blade/mcn1/mrapm_device {
+                    proxy_pass   http://192.168.100.1:8901/metrics;
+            }
+
+	    location /metrics/blade/mcn1/mrapm_stream {
+                    proxy_pass   http://192.168.100.1:8902/metrics;
+            }
+
+            location /metrics/blade/mcn2/mrapm_device {
+                    proxy_pass   http://192.168.100.1:8901/metrics;
+            }
+
+	    location /metrics/blade/mcn2/mrapm_stream {
+                    proxy_pass   http://192.168.100.1:8902/metrics;
+            }
+
+            location /metrics/blade/mcn3/mrapm_device {
+                    proxy_pass   http://192.168.100.1:8901/metrics;
+            }
+
+	    location /metrics/blade/mcn3/mrapm_stream {
+                    proxy_pass   http://192.168.100.1:8902/metrics;
+            }
     }
 }
