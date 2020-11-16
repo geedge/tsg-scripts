@@ -118,27 +118,27 @@ http {
             }
 
 	    location /metrics/blade/mcn1/mrapm_device {
-                    proxy_pass   http://192.168.100.1:8901/metrics;
+                    proxy_pass   http://192.168.100.2:8901/metrics;
             }
 
 	    location /metrics/blade/mcn1/mrapm_stream {
-                    proxy_pass   http://192.168.100.1:8902/metrics;
+                    proxy_pass   http://192.168.100.2:8902/metrics;
             }
 
             location /metrics/blade/mcn2/mrapm_device {
-                    proxy_pass   http://192.168.100.1:8901/metrics;
+                    proxy_pass   http://192.168.100.3:8901/metrics;
             }
 
 	    location /metrics/blade/mcn2/mrapm_stream {
-                    proxy_pass   http://192.168.100.1:8902/metrics;
+                    proxy_pass   http://192.168.100.3:8902/metrics;
             }
 
             location /metrics/blade/mcn3/mrapm_device {
-                    proxy_pass   http://192.168.100.1:8901/metrics;
+                    proxy_pass   http://192.168.100.4:8901/metrics;
             }
 
 	    location /metrics/blade/mcn3/mrapm_stream {
-                    proxy_pass   http://192.168.100.1:8902/metrics;
+                    proxy_pass   http://192.168.100.4:8902/metrics;
             }
     }
 }
