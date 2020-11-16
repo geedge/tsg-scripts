@@ -31,4 +31,4 @@
     name: adc-exporter-proxy
     enabled: yes
     daemon_reload: yes
-    state: started
+    state: restarted

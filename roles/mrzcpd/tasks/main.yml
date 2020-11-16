@@ -148,13 +148,13 @@
 - name: "enable prometheus output - monit_device"
   systemd:
     name: mrapm_device
-    enable: yes
+    enabled: yes
     daemon_reload: yes
 
 - name: "enable prometheus output - monit_stream"
   systemd:
     name: mrapm_stream
-    enable: yes
+    enabled: yes
     daemon_reload: yes
 
 - name: "enable mrtunnat on master"

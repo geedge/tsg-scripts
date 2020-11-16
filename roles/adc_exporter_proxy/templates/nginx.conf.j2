@@ -69,6 +69,26 @@ http {
                     proxy_pass   http://192.168.100.4:9558/metrics;
             }
 
+	    location /metrics/blade/mcn0/ipmi_exporter {
+		    proxy_pass   http://192.168.100.1:9290/metrics;
+	    }
+
+	    location /metrics/blade/mcn1/ipmi_exporter {
+		    proxy_pass   http://192.168.100.2:9290/metrics;
+	    }
+
+	    location /metrics/blade/mcn2/ipmi_exporter {
+		    proxy_pass   http://192.168.100.3:9290/metrics;
+	    }
+
+	    location /metrics/blade/mcn3/ipmi_exporter {
+		    proxy_pass   http://192.168.100.4:9290/metrics;
+	    }
+
+	    location /metrics/blade/mxn/ipmi_exporter {
+		    proxy_pass   http://192.168.100.5:9290/metrics;
+	    }
+
             location /metrics/blade/mcn0/certstore {
                     proxy_pass   http://192.168.100.1:9002/metrics;
             }
