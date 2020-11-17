@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/opt/adc-exporter/systemd_exporter
+ExecStart=/opt/adc-exporter/systemd_exporter --collector.unit-whitelist="(tsg-env|tfe-env|tfe|sapp|mrzcpd|certstore|cert-redis|maat-redis).service" --web.disable-exporter-metrics
 Restart=always
 
 [Install]
