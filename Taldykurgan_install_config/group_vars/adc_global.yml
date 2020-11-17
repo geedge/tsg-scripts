@@ -1,0 +1,128 @@
+#########################################
+#####1: Inline_device;  2: Allot;  3: ADC_Tun_mode;
+tsg_access_type: 2
+#####2: ADC;
+tsg_running_type: 2
+
+########################################
+#Deploy_finished_reboot
+Deploy_finished_reboot: 0
+
+########################################
+#IP Config
+maat_redis_city_server:
+  address: "10.14.62.253"
+  port: 7002
+
+maat_redis_server:
+  address: "192.168.100.1"
+  port: 7002
+  port_num: 1
+  db: 0
+
+dynamic_maat_redis_server:
+  address: "192.168.100.1"
+  port: 7002
+  port_num: 1
+  db: 1
+
+cert_store_server:
+  address: "192.168.100.1"
+  port: 9991
+
+log_kafkabrokers:
+  address: "10.14.61.4:9092,10.14.61.5:9092,10.14.61.6:9092,10.14.61.7:9092,10.14.61.8:9092"
+
+telegraf_kafkabrokers:
+  address: "\"10.14.61.4:9092\",\"10.14.61.5:9092\",\"10.14.61.6:9092\",\"10.14.61.7:9092\",\"10.14.61.8:9092\""
+
+monitor_outputs_influxdb:
+  url: "http://127.0.0.1:58086"
+
+log_minio:
+  address: "10.14.62.253"
+  port: 9090
+
+#########################################
+#Log Level Config
+#日志等级 10:DEBUG 20:INFO 30:FATAL
+fw_ftp_log_level: 10
+fw_mail_log_level: 10
+fw_http_log_level: 10
+fw_dns_log_level: 10
+fw_quic_log_level: 10
+capture_packet_log_level: 10
+tsg_log_level: 10
+tsg_master_log_level: 10
+kni_log_level: 10
+
+#日志等级 DEBUG INFO FATAL
+tfe_log_level: FATAL
+tfe_http_log_level: FATAL
+pangu_log_level: FATAL
+doh_log_level: FATAL
+
+certstore_log_level: FATAL
+packet_dump_log_level: 10
+
+#######################################
+#Sapp Performance Config
+#Sapp工作在ADC计算板0时，建议使用如下30+8的配置，以保证更高的处理性能
+sapp:
+  worker_threads: 42
+  send_only_threads_max: 1
+  bind_mask: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43
+  inbound_route_dir: 1
+
+########################################
+#Kni Config
+kni:
+  global:
+    tfe_node_count: 3
+  watch_dog:
+    switch: 1
+  maat:
+    readconf_mode: 2
+  send_logger:
+    switch: 1
+  tfe_nodes:
+    tfe0_enabled: 1
+    tfe1_enabled: 1
+    tfe2_enabled: 1
+
+########################################
+#Tfe Config
+tfe:
+  nr_threads: 32
+  mirror_enable: 1
+
+########################################
+#Marsio Config
+#marsio工作在ADC计算板时，建议使用如下配置，以保证更高的处理性能
+mrzcpd:
+  iocore: 52,53,54,55
+
+mrtunnat:
+  lcore_id: 48,49,50,51 
+
+#########################################
+#Tsg_app
+tsg_app_enable: 0
+app_global_ip: "1.1.1.1"
+applog_level: 10
+app_master_log_level: 10
+app_sketch_local_log_level: 10
+app_control_plug_log_level: 10
+
+
+breakpad_upload_url: http://10.4.63.4:9000/api/2/minidump/?sentry_key=3556bac347c74585a994eb6823faf5c6
+
+data_center: Taldykurgan
+tsg_master_entrance_id: 14
+nic_mgr: 
+   name: em1
+
+sapp_prometheus_enable: 1
+sapp_prometheus_port: 9273
+sapp_prometheus_url_path: "/metrics"
+
