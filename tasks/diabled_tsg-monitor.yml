@@ -9,4 +9,5 @@
       systemd:
         name: tsg-monitor
         enabled: no
+        state: stopped
         daemon_reload: yes
