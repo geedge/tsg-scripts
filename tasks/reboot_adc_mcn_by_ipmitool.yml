@@ -1,0 +1,11 @@
+- hosts: adc_mxn
+  remote_user: root
+  tasks:
+    - name: "reboot adc in mxn by ipmitool"
+      shell: "{{ item }}"
+      ignore_errors: true
+      with_items:
+       - ipmitool -t 0x90 chassis power reset
+       - ipmitool -t 0x80 chassis power reset
+       - ipmitool -t 0x98 chassis power reset
+       - ipmitool -t 0x88 chassis power reset
