@@ -51,6 +51,7 @@ fw_mail_log_level: 10
 fw_http_log_level: 10
 fw_dns_log_level: 10
 fw_quic_log_level: 10
+app_control_log_level: 10
 capture_packet_log_level: 10
 tsg_log_level: 10
 tsg_master_log_level: 10
