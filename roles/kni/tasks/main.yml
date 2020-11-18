@@ -7,7 +7,7 @@
 - name: "install kni rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/kni-20.11.02.f6d1080-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/kni-20.11.03.8b13689-2.el7.x86_64.rpm
     state: present
 #    skip_broken: yes
 
