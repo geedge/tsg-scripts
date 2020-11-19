@@ -1,0 +1,51 @@
+- hosts: packet_dump_server
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+  roles:
+    - framework
+
+- hosts: adc_mcn0
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+    - '{{ config_path }}/group_vars/adc_mcn0.yml'
+  roles:
+#    - tsg-env-mcn0
+    - framework
+    - firewall
+
+- hosts: adc_mcn1
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+    - '{{ config_path }}/group_vars/adc_mcn1.yml'
+  roles:
+#    - tsg-env-mcn1
+    - framework
+    - tfe
+
+- hosts: adc_mcn2
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+    - '{{ config_path }}/group_vars/adc_mcn2.yml'
+  roles:
+#    - tsg-env-mcn2
+    - framework
+    - tfe
+
+- hosts: adc_mcn3
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+    - '{{ config_path }}/group_vars/adc_mcn3.yml'
+  roles:
+    - framework
+    - tfe
+    
