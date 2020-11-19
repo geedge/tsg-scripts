@@ -1,6 +1,5 @@
-- hosts:
-    - adc_mcn0
- remote_user: root
+- hosts: adc_mcn0
+  remote_user: root
   tasks:
     - name: 'mcn0 stop tsg-diagnose service'
       systemd:
