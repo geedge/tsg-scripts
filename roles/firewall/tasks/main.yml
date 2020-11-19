@@ -51,4 +51,10 @@
   template:
     src: "{{ role_path }}/templates/app_l7_proto_id.conf.j2"
     dest: /home/mesasoft/sapp_run/tsgconf/app_l7_proto_id.conf
-  tags: template
+ 
+- name: "Template the /home/mesasoft/sapp_run/plug/business/tsg_conn_sketch/tsg_conn_sketch.inf"
+  template:
+    src: "{{ role_path }}/templates/tsg_conn_sketch.inf.j2"
+    dest: /home/mesasoft/sapp_run/plug/business/tsg_conn_sketch/tsg_conn_sketch.inf
+  tags: template tags: template
+
