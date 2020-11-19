@@ -1,12 +1,3 @@
-- hosts: packet_dump_server
-  remote_user: root
-  vars_files:
-    - group_vars/adc_global_general.yml
-    - '{{ config_path }}/group_vars/adc_global.yml'
-  roles:
-    - framework
-    - packet_dump
-
 - hosts: adc_mxn
   remote_user: root
   roles:
@@ -40,6 +31,7 @@
     - tsg-diagnose
     - adc_exporter
     - switch_control
+    - tsg-env-patch
 
 - hosts: adc_mcn1
   remote_user: root
@@ -55,7 +47,8 @@
     - tfe
     - tsg-diagnose_sync_ca
     - adc_exporter
-    - switch_control    
+    - switch_control
+    - tsg-env-patch   
 
 - hosts: adc_mcn2
   remote_user: root
@@ -72,6 +65,7 @@
     - tsg-diagnose_sync_ca
     - adc_exporter
     - switch_control
+    - tsg-env-patch
 
 - hosts: adc_mcn3
   remote_user: root
@@ -87,11 +81,21 @@
     - tsg-diagnose_sync_ca
     - adc_exporter
     - switch_control
+    - tsg-env-patch
     
 - hosts: adc_mcn0
   remote_user: root
   roles:
     - tsg-diagnose_stop_sync
+
+- hosts: packet_dump_server
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+  roles:
+    - framework
+    - packet_dump
 
 - hosts: server-as-tun-mode
   remote_user: root
