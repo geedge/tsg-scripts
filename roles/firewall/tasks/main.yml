@@ -46,3 +46,9 @@
     src: "{{ role_path }}/templates/capture_packet_plug.conf.j2"
     dest: /home/mesasoft/sapp_run/conf/capture_packet_plug.conf
   tags: template
+
+- name: "Template the tsgconf/app_l7_proto_id.conf"
+  template:
+    src: "{{ role_path }}/templates/app_l7_proto_id.conf.j2"
+    dest: /home/mesasoft/sapp_run/tsgconf/app_l7_proto_id.conf
+  tags: template

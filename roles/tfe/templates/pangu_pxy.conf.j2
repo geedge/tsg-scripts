@@ -34,7 +34,7 @@ cache_store_object_way=0
 redis_cache_object_size=1024000
 #Configs of WiredLB for Minios load balancer.
 #WIREDLB_OVERRIDE=1
-wiredlb_health_port=42310
+#wiredlb_health_port=42310
 #If CACHE_STORE_OBJECT_WAY is not 0, we will use redis to store meta and object.
 redis_cluster_ip_list=192.168.10.62-63;
 redis_cluster_port_range=6379
@@ -43,7 +43,7 @@ redis_cluster_port_range=6379
 wiredlb_override=1
 wiredlb_topic=MinioFileLog
 wiredlb_datacenter=k18consul-tse
-wiredlb_health_port=52102
+wiredlb_health_port=8560
 wiredlb_group=FileLog
 
 log_fsstat_appname=tango_log_file
