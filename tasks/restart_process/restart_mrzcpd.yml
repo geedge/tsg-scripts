@@ -1,0 +1,14 @@
+- hosts:
+    - adc_mcn0
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+  remote_user: root
+  tasks:
+    - name: 'mrzcpd service start'
+      systemd:
+        name: mrzcpd
+        enabled: yes
+        daemon_reload: yes
+        state: restarted
+
