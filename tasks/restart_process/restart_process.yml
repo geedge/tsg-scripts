@@ -1,4 +1,5 @@
 ---
+- include: restart_telegraf_statistic.yml
 - include: restart_mrzcpd.yml
 - include: restart_sapp.yml
 - include: restart_certstore.yml 
