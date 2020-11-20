@@ -1,0 +1,14 @@
+- hosts:
+    - adc_mcn0
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+  remote_user: root
+  tasks:
+    - name: 'adc-exporter-systemd service start'
+      systemd:
+        name: adc-exporter-systemd
+        enabled: yes
+        daemon_reload: yes
+        state: restarted
+
