@@ -77,14 +77,17 @@ kni:
 ########################################
 #Tfe Config
 tfe:
-  nr_threads: 32
+  nr_threads: 50
   mirror_enable: 1
 
 ########################################
 #Marsio Config
 #marsio工作在ADC计算板时，建议使用如下配置，以保证更高的处理性能
-mrzcpd:
+mcn0_mrzcpd:
   iocore: 52,53,54,55
+
+mcn123_mrzcpd:
+  iocore: 54,55
 
 mrtunnat:
   lcore_id: 48,49,50,51 
