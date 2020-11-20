@@ -33,11 +33,7 @@ promisc=1
 
 [service]
 # lcore id for i/o service, use comma to split
-{% if bladename == "mcn0" %}
 iocore={{ mcn0_mrzcpd.iocore }}
-{% else %}
-iocore={{ mcn123_mrzcpd.iocore }}
-{% endif %}
 distmode=2
 hashmode=0
 

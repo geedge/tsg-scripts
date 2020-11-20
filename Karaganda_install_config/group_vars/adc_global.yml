@@ -36,8 +36,8 @@ log_kafkabrokers:
 telegraf_kafkabrokers:
   address: "\"10.6.61.9:9092\",\"10.6.61.10:9092\",\"10.6.61.11:9092\",\"10.6.61.12:9092\",\"10.6.61.13:9092\""
 
-monitor_outputs_influxdb:
-  url: "http://127.0.0.1:58086"
+#monitor_outputs_influxdb:
+#  url: "http://127.0.0.1:58086"
 
 log_minio:
   address: "10.6.62.253"
@@ -93,9 +93,9 @@ kni:
 
 ########################################
 #Tfe Config
-tfe:
-  nr_threads: 32
-  mirror_enable: 1
+#tfe:
+#  nr_threads: 32
+#  mirror_enable: 1
 
 ########################################
 #Marsio Config

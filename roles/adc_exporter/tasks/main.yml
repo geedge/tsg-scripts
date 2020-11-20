@@ -62,11 +62,11 @@
     name: adc-exporter-systemd
     enabled: yes
     daemon_reload: yes
-    state: started
+    state: restarted
 
 - name: 'adc-exporter-ipmi service start'
   systemd:
     name: adc-exporter-ipmi
     enabled: yes
     daemon_reload: yes
-    state: started
+    state: restarted
