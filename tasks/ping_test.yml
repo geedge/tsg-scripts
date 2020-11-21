@@ -1,0 +1,10 @@
+- hosts:
+    - adc_mxn 
+    - adc_mcn0
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+  remote_user: root
+  tasks:
+    - name: "ping test"
+      ping:

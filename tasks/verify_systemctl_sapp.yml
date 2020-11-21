@@ -1,0 +1,13 @@
+- hosts: adc_mcn0
+  remote_user: root
+  tasks:
+    - name: "register systemctl status sapp result"
+      shell: systemctl status sapp
+      register: sapp_results
+
+    - name: assert
+      assert:
+        that:
+          - sapp_results.stdout.find('active (running)') != -1
+        fail_msg: "FAIL"
+        success_msg: "PASS"
