@@ -1,0 +1,129 @@
+- hosts: adc_mxn
+  remote_user: root
+  roles:
+    - {role: adc_exporter, tags: adc_exporter}
+    - {role: adc_exporter_proxy, tags: adc_exporter_proxy}
+
+- hosts: adc_mcn0
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+    - '{{ config_path }}/group_vars/adc_mcn0.yml'
+  roles:
+    - {role: framework, tags: framework}
+    - {role: kernel-ml, tags: kernel-ml}
+    - {role: mrzcpd, tags: mrzcpd}
+    - {role: sapp, tags: sapp}
+    - {role: tsg_master, tags: tsg_master}
+    - {role: kni, tags: kni}
+    - {role: firewall, tags: firewall}
+#    - tsg_app
+    - {role: http_healthcheck,tags: http_healthcheck}
+    - {role: redis, tags: redis}
+    - {role: cert-redis, tags: cert-redis}
+    - {role: maat-redis, tags: maat-redis}
+    - {role: certstore, tags: certstore}
+    - {role: telegraf_statistic, tags: telegraf_statistic}
+    - {role: app_proto_identify, tags: app_proto_identify}
+    - {role: docker-env, tags: docker-env}
+    - {role: tsg-diagnose, tags: tsg-diagnose}
+    - {role: adc_exporter, tags: adc_exporter}
+    - {role: switch_control, tags: switch_control}
+    - {role: tsg-env-patch, tags: tsg-env-patch}
+
+- hosts: adc_mcn1
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+    - '{{ config_path }}/group_vars/adc_mcn1.yml'
+  roles:
+#    - tsg-env-mcn1
+    - {role: framework, tags: framework}
+    - {role: kernel-ml, tags: kernel-ml}
+    - {role: mrzcpd, tags: mrzcpd}
+    - {role: tfe, tags: tfe}
+    - {role: tsg-diagnose_sync_ca, tags: tsg-diagnose}
+    - {role: adc_exporter, tags: adc_exporter}
+    - {role: switch_control, tags: switch_control}
+    - {role: tsg-env-patch, tags: tsg-env-patch}
+
+- hosts: adc_mcn2
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+    - '{{ config_path }}/group_vars/adc_mcn2.yml'
+  roles:
+#    - tsg-env-mcn2
+    - {role: framework, tags: framework}
+    - {role: kernel-ml, tags: kernel-ml}
+    - {role: mrzcpd, tags: mrzcpd}
+    - {role: tfe, tags: tfe}
+    - {role: tsg-diagnose_sync_ca, tags: tsg-diagnose}
+    - {role: adc_exporter, tags: adc_exporter}
+    - {role: switch_control, tags: switch_control}
+    - {role: tsg-env-patch, tags: tsg-env-path}
+
+- hosts: adc_mcn3
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+    - '{{ config_path }}/group_vars/adc_mcn3.yml'
+  roles:
+    - {role: framework, tags: framework}
+    - {role: kernel-ml, tags: kernel-ml}
+    - {role: mrzcpd, tags: mrzcpd}
+    - {role: tfe, tags: tfe}
+    - {role: tsg-diagnose_sync_ca, tags: tsg-diagnose}
+    - {role: adc_exporter, tags: adc_exporter}
+    - {role: switch_control, tags: switch_control}
+    - {role: tsg-env-patch, tags: tsg-env-patch}
+    
+- hosts: adc_mcn0
+  remote_user: root
+  roles:
+    - {role: tsg-diagnose_stop_sync, tags: tsg-diagnose}
+
+- hosts: packet_dump_server
+  remote_user: root
+  vars_files:
+    - group_vars/adc_global_general.yml
+    - '{{ config_path }}/group_vars/adc_global.yml'
+  roles:
+    - {role: framework, tags: framework}
+    - {role: packet_dump, tags: packet_dump}
+
+- hosts: server-as-tun-mode
+  remote_user: root
+  vars_files:
+    - '{{ config_path }}/group_vars/server_as_tun_mode.yml'
+  roles:
+    - kernel-ml
+    - framework
+    - mrzcpd
+    - tsg-env-tun-mode
+    - sapp
+    - tsg_master
+    - kni
+    - firewall
+    - tsg_app
+    - http_healthcheck
+    - certstore
+    - redis
+    - cert-redis
+    - maat-redis
+    - tfe
+    - telegraf_statistic
+    - proxy_status
+#    - tsg_device_tag
+    - reboot
+
+- hosts: app_global
+  remote_user: root
+  vars_files:
+    - '{{ config_path }}/group_vars/app_global.yml'
+  roles:
+    - app_global
