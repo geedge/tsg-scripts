@@ -1,3 +1,8 @@
+- name: "Tsg-diagnose:copy cert file to device"
+  copy:
+    src: '{{ role_path }}/files/tsg_diagnose_ca.pem'
+    dest: /opt/tsg/tfe/resource/tfe/
+
 - name: "tsg-diagnose: rsync badssl ca certs"
   shell: rsync -avzP --delete 192.168.100.1::blade0toother /tmp/sync/
   ignore_errors: true
