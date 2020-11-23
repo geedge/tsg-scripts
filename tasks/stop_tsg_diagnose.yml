@@ -5,3 +5,4 @@
       systemd:
         name:  tsg-diagnose
         state: stopped
+        enabled: no
