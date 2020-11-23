@@ -182,7 +182,7 @@ dictator_enable=0
 
 [TOOLS]
     [tools.pkt_dump]
-    enabled=0
+    enabled=1
 ### note, mode options value:[storage, udp_socket]
     mode=udp_socket
     BSD_packet_filter=""
@@ -196,7 +196,7 @@ dictator_enable=0
         dump_thread_id=[0,1,2,3,4]
    
         [tools.pkt_dump.udp]
-        command_port=12345
+        command_port=9345
 
         [tools.pkt_dump.storage]
 ### note, file path must be double quotation mark extension, for example,  path="/dev/shm/pkt_dump"
@@ -215,8 +215,8 @@ dictator_enable=0
     vxlan_sport_service_map_path="./etc/vxlan_sport_service_map.conf"
 
 [breakpad]
-    disable_coredump=0
-    enable_breakpad=0
+    disable_coredump=1
+    enable_breakpad=1
     breakpad_minidump_dir="/tmp/crashreport"
-    enable_breakpad_upload=0
+    enable_breakpad_upload=1
     breakpad_upload_url="{{ breakpad_upload_url }}"

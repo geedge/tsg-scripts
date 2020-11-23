@@ -94,3 +94,5 @@ mrtunnat:
 
 #########################################
 #Tsg_app
+
+breakpad_upload_url: http://10.4.63.4:9000/api/2/minidump/?sentry_key=3203b43fd5384a7dbe6a48ecb1f3c595

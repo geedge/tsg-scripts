@@ -15,7 +15,15 @@
     name:
       - /tmp/ansible_deploy/sapp-4.2.7.5f789f6-2.el7.x86_64.rpm
     state: present
+ 
+- name: "install tcpdump_mesa rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/tcpdump_mesa-1.0.2.0c5a950-2.el7.x86_64.rpm
+    state: present
     skip_broken: yes
+
+   skip_broken: yes
 
 - name: "mkdir tsgconf"
   file:
@@ -44,6 +52,12 @@
   template:
     src: "{{ role_path }}/templates/sapp_log.conf.j2"
     dest: /home/mesasoft/sapp_run/etc/sapp_log.conf
+  tags: template
+
+- name: Template the sapp_tmpfile.conf
+  template:
+    src: "{{ role_path }}/files/sapp_tmpfile.conf.j2"
+    dest: /etc/tmpfiles.d/sapp_tmpfile.conf
   tags: template
 
 - name: Template the gdev.conf

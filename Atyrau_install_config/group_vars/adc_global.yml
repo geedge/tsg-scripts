@@ -116,7 +116,6 @@ app_sketch_local_log_level: 10
 app_control_plug_log_level: 10
 
 
-breakpad_upload_url: http://10.4.63.4:9000/api/2/minidump/?sentry_key=3556bac347c74585a994eb6823faf5c6
 
 data_center: Atyrau
 tsg_master_entrance_id: 5

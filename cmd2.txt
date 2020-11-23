@@ -1,0 +1,1 @@
+ansible-playbook -i NurSultan_install_config/hosts adc_deploy.yml.with_tags -e "config_path=NurSultan_install_config" -l "10.4.51.*,10.4.55.*" -t "adc_exporter_proxy,redis,maat-redis" -f 78
