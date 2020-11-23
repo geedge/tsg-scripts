@@ -19,14 +19,14 @@
       - /tmp/ansible_deploy/fw_ftp_plug-3.0.1.0a78573-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_http_plug-3.0.1.0c7e082-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_mail_plug-3.0.1.02465eb-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_quic_plug-3.0.3.1422b36-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_quic_plug-3.0.4.947ef77-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_ssl_plug-3.0.4.a0b19ee-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/http-2.0.5.c61ad9a-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/mail-1.0.9.c1d3bde-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/quic-1.1.12.409501c-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/quic-1.1.14.a5fc078-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/ssl-1.0.9.69f3742-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/tsg_conn_sketch-2.0.9.bc6f00e-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/app_control_plug-1.0.6.fc7be94-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_control_plug-1.0.7.801b2f8-2.el7.x86_64.rpm
 
 - name: "Template the tsgconf/main.conf"
   template:
