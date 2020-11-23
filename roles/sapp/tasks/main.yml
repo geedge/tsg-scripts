@@ -23,8 +23,6 @@
     state: present
     skip_broken: yes
 
-   skip_broken: yes
-
 - name: "mkdir tsgconf"
   file:
     path: /home/mesasoft/sapp_run/tsgconf
