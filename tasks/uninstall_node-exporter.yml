@@ -1,0 +1,20 @@
+- hosts: adc_mxn
+  remote_user: root
+  tasks:
+
+    - name: "stop node-exporter service"
+      shell: systemctl stop node-exporter
+      ignore_errors: true
+
+    - name: "disable node-exporter service"
+      shell: systemctl disable node-exporter
+      ignore_errors: true
+
+    - name: "remove node-exporter service"
+      shell: rm /usr/lib/systemd/system/node-exporter.service
+      ignore_errors: true 
+
+    - name: 'reset node-exporter in mxn'
+      shell: systemctl daemon-reload; systemctl reset-failed node-exporter
+      ignore_errors: true
+
