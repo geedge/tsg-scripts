@@ -69,7 +69,8 @@
     src: "{{ role_path }}/templates/vlan_flipping_map.conf.j2"
     dest: /home/mesasoft/sapp_run/etc/vlan_flipping_map.conf
   when: tsg_access_type == 2
-  
+
+
 - name: "Template sapp.service destination server"
   template:
     src: "{{ role_path }}/templates/sapp.service.j2"
@@ -82,6 +83,20 @@
     dest: /etc/systemd/system/sapp.service.d/
     mode: 0644
 
+- name: "copy fake promisc tools for tera mode - service file"
+  copy:
+    src: "{{ role_path }}/files/tera_fake_promisc_setup.conf"
+    dest: /etc/systemd/system/sapp.service.d/
+    mode: 0644
+  when: tsg_access_type == 2
+
+- name: "copy fake promisc tools for tera mode - scripts"
+  copy:
+    src: "{{ role_path }}/files/tera_fake_promisc_setup.sh"
+    dest: /home/mesasoft/sapp_run/tera_fake_promisc_setup.sh
+    mode: 0755
+  when: tsg_access_type == 2
+ 
 - name: "enable sapp"
   systemd:
     name: sapp
