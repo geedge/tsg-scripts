@@ -34,6 +34,8 @@
 #[app_global]
 #[server-as-tun-mode]
 #broken warning:
+# 10.11.54.30 !!!
+# 10.11.51.14 !!!
 [adc_mxn]
 10.11.55.[1:30]
 [adc_mcn0]
