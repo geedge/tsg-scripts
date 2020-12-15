@@ -3,6 +3,7 @@
   roles:
     - {role: adc_exporter, tags: adc_exporter}
     - {role: adc_exporter_proxy, tags: adc_exporter_proxy}
+#   - {role: switch_rule, tags: switch_rule}
 
 - hosts: adc_mcn0
   remote_user: root
@@ -29,6 +30,7 @@
     - {role: docker-env, tags: docker-env}
     - {role: tsg-diagnose, tags: tsg-diagnose}
     - {role: adc_exporter, tags: adc_exporter}
+#    - {role: adc_exporter_ping, tags: adc_exporter_ping}
     - {role: switch_control, tags: switch_control}
     - {role: tsg-env-patch, tags: tsg-env-patch}
 
