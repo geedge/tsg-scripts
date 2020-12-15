@@ -1,0 +1,1 @@
+grep -E "certstore-2.1.6.20201215.f2e9ba7-1.el7.x86_64.rpm|kni-20.12.01.13e663f-2.el7.x86_64.rpm|sapp-4.2.9.4bfc910-2.el7.x86_64.rpm|ssl-1.0.12.16b8fb5-2.el7.x86_64.rpm|tfe-4.3.26.17bbb54-1.el7.x86_64.rpm|tsg_conn_sketch-2.0.11.481c9b1-2.el7.x86_64.rpm|tsg_master-3.3.12.099a9a4-2.el7.x86_64.rpm" ./
