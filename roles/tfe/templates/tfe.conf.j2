@@ -36,6 +36,7 @@ watchdog_port=2476
 
 [ssl]
 ssl_ja3_debug=0
+ssl_ja3_table=PXY_SSL_FINGERPRINT
 # ssl version Not available, configured via TSG website
 # ssl_max_version=tls13
 # ssl_min_version=ssl3
@@ -63,7 +64,6 @@ service_cache_slots=4194304
 service_cache_expire_seconds=300
 service_cache_fail_as_pinning_cnt=4
 service_cache_fail_as_proto_err_cnt=5
-service_cache_succ_as_app_not_pinning_cnt=0
 service_cache_fail_time_window=30
 
 # cert
