@@ -9,6 +9,10 @@ tsg_running_type: 2
 Deploy_finished_reboot: 0
 
 ########################################
+#TSG Cluster Mode
+tsg_cluster_mode: 0
+
+########################################
 #IP Config
 maat_redis_city_server:
   address: "10.9.62.253"

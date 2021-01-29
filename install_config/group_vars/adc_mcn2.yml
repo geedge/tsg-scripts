@@ -15,5 +15,5 @@ nic_inner_ctrl:
 nic_traffic_mirror:
   name: ens8f2
   use_mrzcpd: 1
-  
+
 bladename: mcn2

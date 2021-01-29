@@ -11,9 +11,17 @@
 
 - name: "Templates telegraf_collect.conf"
   template:
-    src: "{{role_path}}/templates/telegraf_collect.conf.j2"
+    src: "{{role_path}}/templates/telegraf_collect.conf_adc.j2"
     dest: /etc/telegraf/telegraf_collect.conf
   tags: template
+  when: tsg_running_type == 2
+
+- name: "Templates telegraf_collect.conf"
+  template:
+    src: "{{role_path}}/templates/telegraf_collect.conf_server.j2"
+    dest: /etc/telegraf/telegraf_collect.conf
+  tags: template
+  when: tsg_running_type != 2
 
 - name: "copy telegraf_collect.service to destination server"
   copy:

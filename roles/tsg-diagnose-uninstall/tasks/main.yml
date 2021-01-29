@@ -1,9 +1,0 @@
-- name: stop tsg-diagnose 
-  systemd:
-    name: tsg-diagnose
-    state: stopped
-
-- name: remove the tsg-diagnose
-  yum:
-    name: tsg-diagnose
-    state: absent
