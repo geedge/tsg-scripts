@@ -29,11 +29,13 @@ inline_device_config:
 #########################################
 #Allot接入相关配置
 AllotAccess:
-  virturlInterface_1: ens1f2.103
-  virturlInterface_2: ens1f2.104
-  virturlID_1: 103
-  virturlID_2: 104
-  vvipv4_mask: 24
-  vvipv6_mask: 64
+  #virturlInterface_1: ens1f2.103
+  #virturlInterface_2: ens1f2.104
+  virturlID_1: 1201
+  virturlID_2: 1202
+  virturlID_3: 1301
+  virturlID_4: 1302
+  #vvipv4_mask: 24
+  #vvipv6_mask: 64
 
 bladename: mcn0

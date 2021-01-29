@@ -1,4 +1,0 @@
-#!/bin/bash
-#
-
-/usr/local/bin/redis-server /opt/tsg/cert-redis/6379/6379.conf

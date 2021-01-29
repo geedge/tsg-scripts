@@ -1,0 +1,9 @@
+---
+- name: "register tsg-diagnose exec result"
+  shell: docker exec -it unittest_tsg-diagnose /bin/sh -c 'python3 /root/unittest/tsg_diagnose.py'
+  register: tsgdiagnoseresults
+
+- name: "check the results"
+  fail:
+    msg: fail
+  when: tsgdiagnoseresults.stdout.find('FAIL') != -1

@@ -66,9 +66,9 @@ BSD_packet_filter=""
 
 [STREAM]
     [stream.tcp]
-    max=200000
+    max=100000
     timeout=30
-    syn_mandatory=1
+    syn_mandatory=0
     reorder_pkt_max=5
     analyse_option_enabled=1
         [stream.tcp.inject]
@@ -81,7 +81,7 @@ BSD_packet_filter=""
         signature_seed2=13
 	
     [stream.udp]
-    max=10000
+    max=100000
     timeout=60
 
 [PROFILING]

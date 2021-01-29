@@ -1,6 +1,6 @@
 - name: "copy packet_dump rpm to destination server"
   copy:
-    src: "{{ role_path }}/files/packet_dump-1.0.4.82e85d1-2.el7.x86_64.rpm"
+    src: "{{ role_path }}/files/packet_dump-1.0.7.0c9be9e-2.el7.x86_64.rpm"
     dest: /tmp/ansible_deploy/
 
 - name: "copy  packet_dump.service to destination server"
@@ -12,7 +12,7 @@
 - name: "install packet_dump rpm from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/packet_dump-1.0.4.82e85d1-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/packet_dump-1.0.7.0c9be9e-2.el7.x86_64.rpm
     state: present
 
 - name: "Template the packet_dump.conf"
@@ -20,9 +20,20 @@
     src: "{{ role_path }}/templates/packet_dump.conf.j2"
     dest: /home/mesasoft/packet_dump/conf/packet_dump.conf 
   tags: template
+
+- name: "create /var/www/html/troubleshooting"
+  file:
+    path: /var/www/html/troubleshooting
+    state: directory
  
 - name: "start packet_dump"
   systemd:
     name: packet_dump.service
+    enabled: yes
+    daemon_reload: yes
+
+- name: "enable httpd"
+  systemd:
+    name: httpd
     enabled: yes
     daemon_reload: yes
