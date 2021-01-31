@@ -1,3 +1,0 @@
-- name: "tsg-diagnose:  stop rsync deamon process"
-  shell: killall -9 rsync
-

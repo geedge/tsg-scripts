@@ -13,7 +13,13 @@
 - name: "install sapp rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/sapp-4.1.13.ed89137-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/sapp-4.2.25.893d15d-2.el7.x86_64.rpm
+    state: present
+ 
+- name: "install tcpdump_mesa rpms from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/tcpdump_mesa-1.0.2.0c5a950-2.el7.x86_64.rpm
     state: present
     skip_broken: yes
 
@@ -46,12 +52,24 @@
     dest: /home/mesasoft/sapp_run/etc/sapp_log.conf
   tags: template
 
+- name: Template the sapp_tmpfile.conf
+  template:
+    src: "{{ role_path }}/templates/sapp_tmpfile.conf.j2"
+    dest: /etc/tmpfiles.d/sapp_tmpfile.conf
+  tags: template
+
 - name: Template the gdev.conf
   template:
     src: "{{ role_path }}/templates/gdev.conf.j2"
     dest: /home/mesasoft/sapp_run/etc/gdev.conf
   when: tsg_access_type == 1
-  
+
+- name: Template the vlan_flipping_map.conf
+  template:
+    src: "{{ role_path }}/templates/vlan_flipping_map.conf.j2"
+    dest: /home/mesasoft/sapp_run/etc/vlan_flipping_map.conf
+  when: tsg_access_type == 2
+
 
 - name: "Template sapp.service destination server"
   template:
@@ -59,6 +77,26 @@
     dest: /usr/lib/systemd/system/sapp.service
     mode: 0755
 
+- name: "copy memory limit file to sapp.service.d"
+  copy:
+    src: "{{ role_path }}/files/memory.conf"
+    dest: /etc/systemd/system/sapp.service.d/
+    mode: 0644
+
+- name: "copy fake promisc tools for tera mode - service file"
+  copy:
+    src: "{{ role_path }}/files/tera_fake_promisc_setup.conf"
+    dest: /etc/systemd/system/sapp.service.d/
+    mode: 0644
+  when: tsg_access_type == 2
+
+- name: "copy fake promisc tools for tera mode - scripts"
+  copy:
+    src: "{{ role_path }}/files/tera_fake_promisc_setup.sh"
+    dest: /home/mesasoft/sapp_run/tera_fake_promisc_setup.sh
+    mode: 0755
+  when: tsg_access_type == 2
+ 
 - name: "enable sapp"
   systemd:
     name: sapp

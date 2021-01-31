@@ -1,21 +1,9 @@
-- hosts:
-    - adc_mcn0
-    - adc_mcn1
-    - adc_mcn2
-    - adc_mcn3
-    - packet_dump_server
+- hosts: adc_mxn
   remote_user: root
-  vars_files:
-    - install_config/group_vars/adc_global.yml
   roles:
-    - framework
-
-- hosts: packet_dump_server
-  remote_user: root
-  vars_files:
-    - install_config/group_vars/adc_global.yml
-  roles:
-    - packet_dump
+    - {role: adc_exporter, tags: adc_exporter}
+    - {role: adc_exporter_proxy, tags: adc_exporter_proxy}
+#    - {role: switch_rule, tags: switch_rule}
 
 - hosts: adc_mcn0
   remote_user: root
@@ -23,21 +11,24 @@
     - install_config/group_vars/adc_global.yml
     - install_config/group_vars/adc_mcn0.yml
   roles:
-    - telegraf_collect
-    - kernel-ml
-    - mrzcpd
-    - sapp
-    - tsg_master
-    - kni
-    - firewall
+    - {role: framework, tags: framework}
+    - {role: kernel-ml, tags: kernel-ml}
+    - {role: mrzcpd, tags: mrzcpd}
+    - {role: sapp, tags: sapp}
+    - {role: tsg_master, tags: tsg_master}
+    - {role: kni, tags: kni}
+    - {role: firewall, tags: firewall}
 #    - tsg_app
-    - http_healthcheck
-    - redis
-    - cert-redis
-    - maat-redis
-    - certstore
-    - telegraf_statistic
-#    - tsg_device_tag
+    - {role: http_healthcheck,tags: http_healthcheck}
+    - {role: redis, tags: redis}
+    - {role: cert-redis, tags: cert-redis}
+    - {role: maat-redis, tags: maat-redis, when: deploy_mode == "cluster"}
+    - {role: certstore, tags: certstore}
+    - {role: telegraf_statistic, tags: telegraf_statistic}
+    - {role: app_proto_identify, tags: app_proto_identify}
+    - {role: adc_exporter, tags: adc_exporter}
+#    - {role: switch_control, tags: switch_control}
+    - {role: tsg-env-patch, tags: tsg-env-patch}
 
 - hosts: adc_mcn1
   remote_user: root
@@ -45,10 +36,14 @@
     - install_config/group_vars/adc_global.yml
     - install_config/group_vars/adc_mcn1.yml
   roles:
-    - telegraf_collect
-    - kernel-ml
-    - mrzcpd
-    - tfe
+#    - tsg-env-mcn1
+    - {role: framework, tags: framework}
+    - {role: kernel-ml, tags: kernel-ml}
+    - {role: mrzcpd, tags: mrzcpd}
+    - {role: tfe, tags: tfe}
+    - {role: adc_exporter, tags: adc_exporter}
+#    - {role: switch_control, tags: switch_control}
+    - {role: tsg-env-patch, tags: tsg-env-patch}
 
 - hosts: adc_mcn2
   remote_user: root
@@ -56,10 +51,14 @@
     - install_config/group_vars/adc_global.yml
     - install_config/group_vars/adc_mcn2.yml
   roles:
-    - telegraf_collect
-    - kernel-ml
-    - mrzcpd
-    - tfe
+#    - tsg-env-mcn2
+    - {role: framework, tags: framework}
+    - {role: kernel-ml, tags: kernel-ml}
+    - {role: mrzcpd, tags: mrzcpd}
+    - {role: tfe, tags: tfe}
+    - {role: adc_exporter, tags: adc_exporter}
+#    - {role: switch_control, tags: switch_control}
+    - {role: tsg-env-patch, tags: tsg-env-path}
 
 - hosts: adc_mcn3
   remote_user: root
@@ -67,44 +66,25 @@
     - install_config/group_vars/adc_global.yml
     - install_config/group_vars/adc_mcn3.yml
   roles:
-    - telegraf_collect
-    - kernel-ml
-    - mrzcpd
-    - tfe
-
-- hosts: adc_mcn0
-  remote_user: root
-  roles:
-    - tsg-diagnose
-
-- hosts: 
-    - adc_mcn1
-    - adc_mcn2
-    - adc_mcn3
-  remote_user: root
-  roles:
-    - tsg-diagnose_sync_ca
+    - {role: framework, tags: framework}
+    - {role: kernel-ml, tags: kernel-ml}
+    - {role: mrzcpd, tags: mrzcpd}
+    - {role: tfe, tags: tfe}
+#    - {role: adc_exporter, tags: adc_exporter}
+    - {role: switch_control, tags: switch_control}
+    - {role: tsg-env-patch, tags: tsg-env-patch}
     
-- hosts: adc_mcn0
-  remote_user: root
-  roles:
-    - tsg-diagnose_stop_sync
-
-
-- hosts:
-    - adc_mcn0
-    - adc_mcn1
-    - adc_mcn2
-    - adc_mcn3
+- hosts: packet_dump_server
   remote_user: root
   vars_files:
     - install_config/group_vars/adc_global.yml
   roles:
-    #- reboot
+    - {role: framework, tags: framework}
+    - {role: packet_dump, tags: packet_dump}
 
 - hosts: app_global
   remote_user: root
   vars_files:
     - install_config/group_vars/app_global.yml
   roles:
-    - app_global
+    - {role: app_global, tags: app_global}

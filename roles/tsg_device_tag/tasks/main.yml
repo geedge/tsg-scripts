@@ -3,12 +3,7 @@
     path: /opt/tsg/etc
     state: directory
 
-- name: "Template tsg_sn.json"
+- name: "Template tsg_device_tag.json"
   template:
-    src: "{{ role_path }}/templates/tsg_sn.json.j2"
-    dest: /opt/tsg/etc/tsg_sn.json
-
-- name: "Template tsg_tag.json"
-  template:
-    src: "{{ role_path }}/templates/tsg_tags.json.j2"
-    dest: /opt/tsg/etc/tsg_tags.json
+    src: "{{ role_path }}/templates/tsg_device_tag.json.j2"
+    dest: /opt/tsg/etc/tsg_device_tag.json

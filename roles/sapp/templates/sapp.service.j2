@@ -5,9 +5,18 @@ Requires=mrzcpd.service
 After=mrzcpd.service
 {% endif %}
 [Service]
+Type=notify
 WorkingDirectory=/home/mesasoft/sapp_run
 ExecStart=/home/mesasoft/sapp_run/sapp
+TimeoutSec=900s
+RestartSec=10s
 Restart=always
-RestartSec=5s
+LimitNOFILE=524288
+LimitNPROC=infinity
+LimitCORE=0
+TasksMax=infinity
+Delegate=yes
+KillMode=process
+
 [Install]
 WantedBy=multi-user.target

@@ -1,9 +1,0 @@
-####################
-#Uninstall http_healthcheck
-- name: "[uninstall http_healthcheck] uninstall http_healthcheck"
-  yum:
-    name:
-      - "{{ http_healthcheck }}"
-    state: absent
-  when: uninstall.http_healthcheck == 1
-

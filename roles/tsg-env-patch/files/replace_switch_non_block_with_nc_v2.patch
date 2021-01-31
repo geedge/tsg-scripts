@@ -1,0 +1,8 @@
+99c99
+<   ${CURRENT_PATH}/${REMOTE_CONTROL_BIN} -s ${TP_SVR} -n ${TP_PORT} -c "show version"
+---
+>   echo "show version" | nc ${TP_SVR} ${TP_PORT}
+136c136
+<   MAC_TABLE=`${CURRENT_PATH}/${REMOTE_CONTROL_BIN} -s ${TP_SVR} -n ${TP_PORT} -c "show mac table all"`
+---
+>   MAC_TABLE=$(echo "show mac table all" | nc ${TP_SVR} ${TP_PORT})

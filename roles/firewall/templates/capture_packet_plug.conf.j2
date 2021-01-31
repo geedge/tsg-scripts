@@ -19,7 +19,7 @@ ACCEPT_TAGS={"tags":[{"tag":"data_center","value":"{{ data_center }}"}]}
 
 [LOG]
 NIC_NAME={{ nic_mgr.name }}
-BROKER_LIST={{ log_kafkabrokers.address }}
+BROKER_LIST={{ log_kafkabrokers.address | join(",") }}
 FIELD_FILE=conf/capture_packet_log_field.conf
 
 [SYSTEM]

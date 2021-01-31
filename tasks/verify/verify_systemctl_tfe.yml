@@ -1,0 +1,16 @@
+- hosts: 
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+  remote_user: root
+  tasks:
+    - name: "register systemctl status tfe result"
+      shell: systemctl status tfe
+      register: tfe_results
+
+    - name: assert
+      assert:
+        that:
+          - tfe_results.stdout.find('active (running)') != -1
+        fail_msg: "FAIL"
+        success_msg: "PASS"

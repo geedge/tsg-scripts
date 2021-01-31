@@ -6,7 +6,7 @@
 
 - name: "install mrzcpd"
   yum:
-    name: /tmp/ansible_deploy/mrzcpd-4.3.28.2d13de4-1.el7.x86_64.rpm
+    name: /tmp/ansible_deploy/mrzcpd-4.3.30.4627eb7-1.el7.x86_64.rpm
     state: present
 
 - name: "update sysconfig/mrzcpd"
@@ -145,10 +145,22 @@
   when: 
     - tsg_access_type != 0
 
+- name: "enable prometheus output - monit_device"
+  systemd:
+    name: mrapm_device
+    enabled: yes
+    daemon_reload: yes
+
+- name: "enable prometheus output - monit_stream"
+  systemd:
+    name: mrapm_stream
+    enabled: yes
+    daemon_reload: yes
+
 - name: "enable mrtunnat on master"
   systemd:
     name: mrtunnat
-    enabled: yes
+    enabled: no
     daemon_reload: yes
   when: 
     - nic_traffic_mirror is not defined
@@ -160,12 +172,6 @@
     enabled: no
     daemon_reload: yes
   when: nic_traffic_mirror is defined
-
-- name: "copy memory limit file to tfe.service.d"
-  copy:
-    src: "{{ role_path }}/files/memory.conf"
-    dest: /etc/systemd/system/mrzcpd.service.d/
-    mode: 0644
 
 - name: "mask mrzcpd on server_tun_mode"
   systemd:

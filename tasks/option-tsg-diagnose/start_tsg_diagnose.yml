@@ -1,0 +1,8 @@
+- hosts: adc_mcn0
+  remote_user: root
+  tasks:
+    - name: 'mcn0 start tsg-diagnose service'
+      systemd:
+        name:  tsg-diagnose
+        state: started
+        enabled: yes

@@ -3,19 +3,16 @@
 tsg_access_type: 2
 #####2: ADC;
 tsg_running_type: 2
-
+#####deploy mode: cluster, single
+deploy_mode: "cluster"
 ########################################
 #Deploy_finished_reboot
 Deploy_finished_reboot: 0
 
 ########################################
-#TSG Cluster Mode
-tsg_cluster_mode: 0
-
-########################################
 #IP Config
 maat_redis_city_server:
-  address: "10.9.62.253"
+  address: "10.4.62.253"
   port: 7002
 
 maat_redis_server:
@@ -35,16 +32,10 @@ cert_store_server:
   port: 9991
 
 log_kafkabrokers:
-  address: "10.9.61.4:9092,10.9.61.5:9092,10.9.61.6:9092"
-
-telegraf_kafkabrokers:
-  address: "\"10.9.61.4:9092\",\"10.9.61.5:9092\",\"10.9.61.6:9092\""
-
-monitor_outputs_influxdb:
-  url: "http://127.0.0.1:58086"
+  address: ['1.1.1.1:9092','2.2.2.2:9092']
 
 log_minio:
-  address: "10.9.62.253"
+  address: "10.4.62.253"
   port: 9090
 
 #########################################
@@ -55,6 +46,7 @@ fw_mail_log_level: 10
 fw_http_log_level: 10
 fw_dns_log_level: 10
 fw_quic_log_level: 10
+app_control_log_level: 10
 capture_packet_log_level: 10
 tsg_log_level: 10
 tsg_master_log_level: 10
@@ -66,7 +58,7 @@ tfe_http_log_level: FATAL
 pangu_log_level: FATAL
 doh_log_level: FATAL
 
-certstore_log_level: 30
+certstore_log_level: FATAL
 packet_dump_log_level: 10
 
 #######################################
@@ -103,8 +95,11 @@ tfe:
 ########################################
 #Marsio Config
 #marsio工作在ADC计算板时，建议使用如下配置，以保证更高的处理性能
-mrzcpd:
+mcn0_mrzcpd:
   iocore: 52,53,54,55
+
+mcn123_mrzcpd:
+  iocore: 54,55
 
 mrtunnat:
   lcore_id: 48,49,50,51 
@@ -118,10 +113,12 @@ app_master_log_level: 10
 app_sketch_local_log_level: 10
 app_control_plug_log_level: 10
 
-
-breakpad_upload_url: http://10.4.63.4:9000/api/2/minidump/?sentry_key=3556bac347c74585a994eb6823faf5c6
-
+breakpad_upload_url: http://10.4.63.4:9000/api/2/minidump/?sentry_key=3203b43fd5384a7dbe6a48ecb1f3c595
 data_center: Kyzylorda
 tsg_master_entrance_id: 9
 nic_mgr: 
    name: em1
+   
+sapp_prometheus_enable: 1
+sapp_prometheus_port: 9273
+sapp_prometheus_url_path: "/metrics"

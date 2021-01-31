@@ -14,7 +14,7 @@ PROFILE=./appconf/maat.conf
 MODE=1
 LOG_LEVEL={{ applog_level }}
 LOG_PATH=./applog/applog
-BROKER_LIST={{ log_kafkabrokers.address }}
+BROKER_LIST={{ log_kafkabrokers.address | join(",") }}
 COMMON_FIELD_FILE=appconf/app_log_field.conf
 
 [FIELD_STAT]

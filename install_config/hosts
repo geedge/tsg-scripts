@@ -7,7 +7,8 @@
 #20.09版本新增APP部署
 #[app_global]
 #0.0.0.0
-#[server-as-tun-mode]
+
+#[server_as_tun_mode]
 #1.1.1.1 device_id=device_1
 #
 #[adc_mxn]
@@ -29,19 +30,16 @@
 #[adc_mcn3]
 #10.3.76.1 device_id=device_1
 #10.3.76.2 device_id=device_2
-#[app_global]
 
-#[server-as-tun-mode]
-#p
-#[adc_mxn]
+#[app_global]
+#[server_as_tun_mode]
+#broken warning:
+#10.4.52.71
 [adc_mcn0]
-10.9.51.[1:15]
 [adc_mcn1]
-10.9.52.[1:15]
 [adc_mcn2]
-10.9.53.[1:15]
 [adc_mcn3]
-10.9.54.[1:14]
-[packet_dump_server]
-10.9.61.3
+[app_global]
+[server_as_tun_mode]
+
 

@@ -1,0 +1,31 @@
+- hosts: adc_mcn0
+  remote_user: root
+  tasks:
+    - name: 'mcn0 start tsg-diagnose service'
+      systemd:
+        name:  tsg-diagnose
+        state: started
+        enabled: yes
+
+- hosts: adc_mcn0
+  remote_user: root
+  tasks:
+    - name: "register tsg-diagnose exec result"
+      shell: docker exec -it unittest_tsg-diagnose /bin/sh -c 'python3 /root/unittest/tsg_diagnose.py'
+      register: tsgdiagnoseresults
+
+    - name: assert
+      assert:
+        that:
+          - tsgdiagnoseresults.stdout.find('FAIL') == -1
+        fail_msg: "FAIL"
+        success_msg: "PASS"
+
+- hosts: adc_mcn0
+  remote_user: root
+  tasks:
+    - name: 'mcn0 stop tsg-diagnose service'
+      systemd:
+        name:  tsg-diagnose
+        state: stopped
+        enabled: no

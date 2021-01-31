@@ -1,0 +1,24 @@
+- hosts: host_uninstall_redis
+  remote_user: root
+  tasks:
+    - name: "maat-redis-uninstall: stop maat-redis service"
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+      with_items:
+        - maat-redis.service
+        - redis.service
+    
+    - name: "maat-redis-uninstall: rm maat-redis.conf and maat-redis.service"
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /etc/maat-redis.conf
+        - /usr/lib/systemd/system/maat-redis.service
+    
+    - name: remove redis
+      yum:
+        name: redis
+        state: absent
+    

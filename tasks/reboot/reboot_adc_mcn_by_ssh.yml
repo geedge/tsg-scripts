@@ -1,0 +1,13 @@
+- hosts: adc_mxn
+  remote_user: root
+  tasks:
+    - name: "reboot adc mcn*"
+      shell: "{{ item }}"
+      ignore_errors: true
+      with_items:
+       - ssh 192.168.100.1 reboot
+       - ssh 192.168.100.2 reboot
+       - ssh 192.168.100.3 reboot
+       - ssh 192.168.100.4 reboot
+       - reboot
+    

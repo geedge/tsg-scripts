@@ -1,5 +1,5 @@
 [KAFKA]
-BROKER_LIST={{ log_kafkabrokers.address }}
+BROKER_LIST={{ log_kafkabrokers.address | join(",")}}
 KAFKA_OFFSET=largest
 
 [SYSTEM]

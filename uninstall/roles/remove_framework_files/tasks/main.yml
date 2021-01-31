@@ -1,6 +1,0 @@
-- name: "remove framework files"
-  file:
-    path: /opt/MESA
-    state: absent
-  when: remove.framework == 1
-  ignore_errors: true

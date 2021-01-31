@@ -1,0 +1,5 @@
+- hosts: adc_mcn3
+  remote_user: root
+  tasks:
+    - name: 'reset maat-redis'
+      shell: systemctl daemon-reload; systemctl reset-failed maat-redis
