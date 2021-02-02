@@ -1,0 +1,21 @@
+---
+- name: "copy firewall rpms to destination server"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: /tmp/ansible_deploy/
+
+- name: "install firewall packages"
+  yum:
+    name: "{{ fw_packages }}"
+    state: present
+    skip_broken: yes
+  vars:
+    fw_packages:
+      - /tmp/ansible_deploy/dns-2.0.9.b639626-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/ftp-1.0.8.13d5fda-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/http-2.0.5.c61ad9a-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/mail-1.0.9.c1d3bde-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/quic-1.1.17.8c22b4d-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/ssl-1.0.12.16b8fb5-2.el7.x86_64.rpm
+ 
+
