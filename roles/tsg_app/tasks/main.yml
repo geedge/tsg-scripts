@@ -11,8 +11,8 @@
     skip_broken: yes
   vars:
     app_packages:
-      - /tmp/ansible_deploy/app_master-1.0.5.5a4fb22-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/app_control_plug-1.0.3.447fc53-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_master-1.0.9.2a34d9e-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_control_plug-1.0.10.8f8be82-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/app_proto_identify-1.0.5.5c5342a-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/app_sketch_local-1.0.4.0edaf58-2.el7.x86_64.rpm
   when: tsg_app_enable == 1

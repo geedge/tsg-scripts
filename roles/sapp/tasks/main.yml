@@ -13,7 +13,7 @@
 - name: "install sapp rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/sapp-4.2.25.893d15d-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/sapp-4.2.26.fc1a6aa-2.el7.x86_64.rpm
     state: present
  
 - name: "install tcpdump_mesa rpms from localhost"
