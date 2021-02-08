@@ -29,6 +29,8 @@
     - {role: adc_exporter, tags: adc_exporter}
 #    - {role: switch_control, tags: switch_control}
     - {role: tsg-env-patch, tags: tsg-env-patch}
+    - {role: docker-env, tags: docker-env}
+    - {role: tsg-diagnose, tags: tsg-diagnose}
 
 - hosts: adc_mcn1
   remote_user: root
@@ -44,6 +46,7 @@
     - {role: adc_exporter, tags: adc_exporter}
 #    - {role: switch_control, tags: switch_control}
     - {role: tsg-env-patch, tags: tsg-env-patch}
+    - {role: tsg-diagnose_sync_ca, tags: tsg-diagnose_sync_ca}
 
 - hosts: adc_mcn2
   remote_user: root
@@ -59,6 +62,7 @@
     - {role: adc_exporter, tags: adc_exporter}
 #    - {role: switch_control, tags: switch_control}
     - {role: tsg-env-patch, tags: tsg-env-path}
+    - {role: tsg-diagnose_sync_ca, tags: tsg-diagnose_sync_ca}
 
 - hosts: adc_mcn3
   remote_user: root
@@ -73,19 +77,6 @@
 #    - {role: adc_exporter, tags: adc_exporter}
     - {role: switch_control, tags: switch_control}
     - {role: tsg-env-patch, tags: tsg-env-patch}
-
-- hosts: adc_mcn0
-  remote_user: root
-  roles:
-    - {role: docker-env, tags: docker-env}
-    - {role: tsg-diagnose, tags: tsg-diagnose}
-
-- hosts:
-    - adc_mcn1
-    - adc_mcn2
-    - adc_mcn3
-  remote_user: root
-  roles:
     - {role: tsg-diagnose_sync_ca, tags: tsg-diagnose_sync_ca}
 
 - hosts: adc_mcn0
