@@ -1,0 +1,15 @@
+- name: "tsg-diagnose: rsync badssl ca certs"
+  shell: rsync -avzP --delete 192.168.100.1::blade0toother /tmp/sync/
+  ignore_errors: true
+
+- name: "tsg-diagnose: add badssl ca file to tfe tls-ca-bundle"
+  shell: cat /tmp/sync/ca-root.crt > /opt/tsg/tfe/resource/tfe/tsg_diagnose_ca.pem && cat /tmp/sync/wpr_cert.pem >> /opt/tsg/tfe/resource/tfe/tsg_diagnose_ca.pem
+  ignore_errors: true
+  register: result_tsg_diagnose_sync_cert_shell
+
+- name: "Tsg-diagnose:copy cert file to device"
+  copy:
+    src: '{{ role_path }}/files/tsg_diagnose_ca.pem'
+    dest: /opt/tsg/tfe/resource/tfe/
+  when: result_tsg_diagnose_sync_cert_shell.rc==1
+

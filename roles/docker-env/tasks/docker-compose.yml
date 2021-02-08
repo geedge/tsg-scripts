@@ -1,0 +1,18 @@
+---
+- name: "docker-compose: copy docker-compose.zip to dest device"
+  copy:
+    src: '{{ role_path }}/files/docker-compose.zip'
+    dest: /tmp/ansible_deploy/
+
+- name: "docker-compose: unarchive docker-compose.zip"
+  unarchive:
+    src: /tmp/ansible_deploy/docker-compose.zip
+    dest: /tmp/ansible_deploy/
+    remote_src: yes
+
+- name: "docker-compose: install docker-compose using pip3"
+  pip:
+    requirements: /tmp/ansible_deploy/docker-compose/requirements.txt
+    extra_args: "--no-index --find-links=file:///tmp/ansible_deploy/docker-compose"
+    state: forcereinstall
+    executable: pip3
