@@ -1,0 +1,1 @@
+ansible-playbook -i NurSultan_install_config/hosts tasks/stop_disable_device_manager/stop_disable_device_manager.yml

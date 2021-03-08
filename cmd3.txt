@@ -1,0 +1,3 @@
+ansible-playbook   -i UstKamenogorsk_install_config/hosts  -e "config_path=UstKamenogorsk_install_config"  -l adc_mcn0 -t  firewall    adc_deploy.yml -f 100
+ansible-playbook   -i NurSultan_install_config/hosts  tasks/restart_process/restart_sapp.yml -f 100
+ansible-playbook   -i NurSultan_install_config/hosts  tasks/verify/verify_tsg_diagnose_once.yml -f 100

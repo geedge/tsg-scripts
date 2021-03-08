@@ -1,4 +1,5 @@
 - hosts: 
+    - adc_mxn
     - adc_mcn0
     - adc_mcn1
     - adc_mcn2

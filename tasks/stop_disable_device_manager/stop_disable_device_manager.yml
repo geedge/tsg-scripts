@@ -1,0 +1,12 @@
+- hosts: adc_mxn
+  remote_user: root
+  tasks:
+    - name: "oam stop and disable: stop oam_core, oam_snmp service, tsg-monitor"
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: no
+      with_items:
+        - oam_core.service
+        - oam_snmp.service
+        - tsg-monitor.service
