@@ -27,7 +27,7 @@
       - /tmp/ansible_deploy/ssl-1.0.12.16b8fb5-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/tsg_conn_sketch-2.1.4.f333054-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/rtp-1.0.4.91b4ab7-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/mesa_sip-1.0.8.c2e2163-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/mesa_sip-1.0.9.ede6893-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_voip_plug-1.0.2.090e5da-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/app_proto_identify-1.0.9.a6581a6-2.el7.x86_64.rpm
 
