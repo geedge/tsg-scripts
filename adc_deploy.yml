@@ -18,14 +18,13 @@
     - {role: tsg_master, tags: tsg_master}
     - {role: kni, tags: kni}
     - {role: firewall, tags: firewall}
-#    - tsg_app
+    - {role: tsg_app, tags: tsg_app}
     - {role: http_healthcheck,tags: http_healthcheck}
     - {role: redis, tags: redis}
     - {role: cert-redis, tags: cert-redis}
     - {role: maat-redis, tags: maat-redis, when: deploy_mode == "cluster"}
     - {role: certstore, tags: certstore}
     - {role: telegraf_statistic, tags: telegraf_statistic}
-    - {role: app_proto_identify, tags: app_proto_identify}
     - {role: adc_exporter, tags: adc_exporter}
 #    - {role: switch_control, tags: switch_control}
     - {role: tsg-env-patch, tags: tsg-env-patch}

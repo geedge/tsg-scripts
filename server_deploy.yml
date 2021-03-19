@@ -19,12 +19,6 @@
     - {role: maat-redis, tags: maat-redis, when: deploy_mode == "cluster"}
     - {role: tfe, tags: tfe}
     - {role: telegraf_statistic, tags: telegraf_statistic}
-    - {role: app_proto_identify, tags: app_proto_identify}
-#    - {role: proxy_status, tags: proxy_status}
-#    - {role: adc_exporter, tags: adc_exporter}
-#    - {role: adc_exporter_proxy, tags: adc_exporter_proxy}
-#    - tsg_device_tag
-#    - reboot
 
 - hosts: packet_dump_server
   remote_user: root

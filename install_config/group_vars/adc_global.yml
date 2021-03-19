@@ -41,6 +41,7 @@ log_minio:
 #########################################
 #Log Level Config
 #日志等级 10:DEBUG 20:INFO 30:FATAL
+fw_voip_log_level: 10
 fw_ftp_log_level: 10
 fw_mail_log_level: 10
 fw_http_log_level: 10
@@ -122,3 +123,22 @@ nic_mgr:
 sapp_prometheus_enable: 1
 sapp_prometheus_port: 9273
 sapp_prometheus_url_path: "/metrics"
+
+
+hos_serverip: "192.168.40.223"
+hos_serverport: 9098
+hos_accesskeyid: "default"
+hos_secretkey: "default"
+hos_poolsize: 100
+hos_thread_sum: 32
+hos_cache_size: 102400
+hos_fs2_serverip: "127.0.0.1"
+hos_fs2_serverport: 10086
+
+APP_SKETCH_LOG_LEVEL: 10
+APP_SKETCH_LOG_PATH: "./tsglog/app_sketch_local/app_sketch_local"
+APP_SKETCH_L7_PROTOCOL_LABEL: "BASIC_PROTO_LABEL"
+APP_SKETCH_QOS: 1
+APP_SKETCH_PUBLISH_TOPIC: "APP_SIGNATURE_ID"
+APP_SKETCH_BROKER_LIST: "tcp://192.168.40.161:1883"
+
