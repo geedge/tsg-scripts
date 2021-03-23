@@ -74,6 +74,13 @@
     dest: /etc/systemd/system/tfe.service.d/
     mode: 0644
 
+- name: "enable tfe-env-tun-mode"
+  systemd:
+    name: tfe-env-tun-mode
+    enabled: yes
+    daemon_reload: yes
+  when: tsg_running_type == 0
+
 - name: "enable tfe-env"
   systemd:
     name: tfe-env
