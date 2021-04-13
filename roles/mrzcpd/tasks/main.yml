@@ -26,7 +26,7 @@
     src: "{{ role_path }}/templates/mrapp.sapp4.conf "
     dest: /opt/mrzcpd/etc/mrapp.sapp4.conf 
   when: 
-    - tsg_access_type == 4
+    - tsg_access_type == 4 or tsg_access_type == 5
 
 - name: "update mrglobal.conf.adc_inline"
   template:

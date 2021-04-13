@@ -130,7 +130,7 @@ app_control_plug_log_level: 10
 
 #########################################
 #ATCA Config
-#下列配置只在tsg_access_type=4时生效
+#下列配置只在tsg_access_type=4 or 5时生效
 ATCA_data_incoming:
   ethname: enp1s0
   vf0_name: enp1s2
