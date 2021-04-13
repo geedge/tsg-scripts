@@ -3,6 +3,6 @@
 echo 0 >/sys/class/net/{{ nic_mgr.name }}/device/sriov_numvfs
 ifconfig {{ nic_mgr.name }}.100 down
 vconfig rem {{ nic_mgr.name }}.100
-{% if tsg_access_type == 4 %}
+{% if tsg_access_type == 4 or tsg_access_type == 5 %}
 echo 0 >/sys/class/net/{{ ATCA_data_incoming.ethname }}/device/sriov_numvfs
 {% endif %}

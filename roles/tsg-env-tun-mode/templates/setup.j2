@@ -10,7 +10,7 @@ ethtool -K {{ packet_io.internal_interface }} gro off
 ethtool -K {{ packet_io.external_interface }} tso off
 ethtool -K {{ packet_io.external_interface }} gso off
 ethtool -K {{ packet_io.external_interface }} gro off
-{% elif tsg_access_type == 4 %}
+{% elif tsg_access_type == 4 or tsg_access_type == 5 %}
 echo 3 > /sys/class/net/{{ ATCA_data_incoming.ethname }}/device/sriov_numvfs
 ip link set {{ ATCA_data_incoming.ethname }} vf 1 vlan 4095
 ip link set {{ ATCA_data_incoming.ethname }} vf 2 vlan 4095
