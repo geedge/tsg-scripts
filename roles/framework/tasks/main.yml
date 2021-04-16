@@ -30,7 +30,7 @@
       - /tmp/ansible_deploy/libaws-checksums-1.0.6.8b09ac1-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libaws-cpp-sdk-core-1.0.8.a3fe079-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libaws-cpp-sdk-s3-2.0.0.f3c33ea-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/libhos-client-cpp-1.0.22.82dc6b0-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/libhos-client-cpp-1.0.24.20e6f94-2.el7.x86_64.rpm  
 
 - name: "mkdir /etc/ld.so.conf.d/"
   file:
