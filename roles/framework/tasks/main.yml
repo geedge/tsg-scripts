@@ -28,9 +28,9 @@
       - /tmp/ansible_deploy/libaws-c-common-1.0.3.fa2adf0-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libaws-c-event-stream-1.0.6.67fd944-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libaws-checksums-1.0.6.8b09ac1-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/libaws-cpp-sdk-core-1.0.7.b2135e6-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/libaws-cpp-sdk-s3-1.0.6.ba073f0-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/libhos-client-cpp-1.0.15.aadc23c-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/libaws-cpp-sdk-core-1.0.8.a3fe079-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/libaws-cpp-sdk-s3-2.0.0.f3c33ea-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/libhos-client-cpp-1.0.22.82dc6b0-2.el7.x86_64.rpm
 
 - name: "mkdir /etc/ld.so.conf.d/"
   file:
