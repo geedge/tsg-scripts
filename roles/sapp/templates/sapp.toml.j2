@@ -122,6 +122,8 @@ dictator_enable=0
     treat_vlan_as_mac_in_mac=0
     reverse_ethernet_addr=1
 
+[DUPLICATE_PKT]
+    duplicate_pkt_distinguish=0
 	
 [STREAM]
 ### note, stream_id_base_time format is "%Y-%m-%d %H:%M:%S" 
@@ -207,7 +209,7 @@ dictator_enable=0
         dump_thread_id=[0,1,2,3,4]
    
         [tools.pkt_dump.udp]
-        command_port=12345
+        command_port=9345
 
         [tools.pkt_dump.storage]
 ### note, file path must be double quotation mark extension, for example,  path="/dev/shm/pkt_dump"
