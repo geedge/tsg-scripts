@@ -1,0 +1,22 @@
+- name: "dump-rtp-pcap: copy dump-rtp-pcap rpm package to destination"
+  copy:
+    src: "{{ role_path }}/files/"
+    dest: /tmp/ansible_deploy/
+
+- name: "dump-rtp-pcap: install dump-rtp-pcap rpm from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/dump_rtp_pcap-1.0.2.445da24-2.el7.x86_64.rpm
+    state: present
+
+- name: "dump-rtp-pcap: Template the dump_rtp_pcap.json"
+  template:
+    src: "{{ role_path }}/templates/dump_rtp_pcap.json.j2"
+    dest: /home/mesasoft/dump_rtp_pcap/dump_rtp_pcap.json
+  tags: template
+ 
+- name: "start dump_rtp_pcap"
+  systemd:
+    name: dump_rtp_pcap.service
+    enabled: yes
+    daemon_reload: yes

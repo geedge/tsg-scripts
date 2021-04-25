@@ -27,6 +27,7 @@
   roles:
     - {role: framework, tags: framework}
     - {role: packet_dump, tags: packet_dump}
+    - {role: dump_rtp_pcap, tags: dump_rtp_pcap}
 
 - hosts: app_global
   remote_user: root

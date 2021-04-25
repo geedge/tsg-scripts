@@ -73,23 +73,23 @@ log_service=2
 
 
 [HOS_CONF]
-hos_serverip="{{ hos_serverip }}"
-hos_serverport={{ hos_serverport }}
-hos_accesskeyid="{{ hos_accesskeyid }}"
-hos_secretkey="{{ hos_secretkey }}"
-hos_poolsize={{ hos_poolsize }}
-hos_thread_sum={{ hos_thread_sum }}
-hos_cache_size={{ hos_cache_size }}
-hos_fs2_serverip="{{ hos_fs2_serverip }}"
-hos_fs2_serverport={{ hos_fs2_serverport }}
+hos_serverip="{{ firewall.hos_serverip }}"
+hos_serverport={{ firewall.hos_serverport }}
+hos_accesskeyid="{{ firewall.hos_accesskeyid }}"
+hos_secretkey="{{ firewall.hos_secretkey }}"
+hos_poolsize={{ firewall.hos_poolsize }}
+hos_thread_sum={{ firewall.hos_thread_sum }}
+hos_cache_size={{ firewall.hos_cache_size }}
+hos_fs2_serverip="{{ firewall.hos_fs2_serverip }}"
+hos_fs2_serverport={{ firewall.hos_fs2_serverport }}
 
 [APP_SKETCH_LOCAL]
-LOG_LEVEL={{ APP_SKETCH_LOG_LEVEL }}
-LOG_PATH="{{ APP_SKETCH_LOG_PATH }}"
-L7_PROTOCOL_LABEL="{{ APP_SKETCH_L7_PROTOCOL_LABEL }}"
+LOG_LEVEL={{ firewall.APP_SKETCH_LOG_LEVEL }}
+LOG_PATH="{{ firewall.APP_SKETCH_LOG_PATH }}"
+L7_PROTOCOL_LABEL="{{ firewall.APP_SKETCH_L7_PROTOCOL_LABEL }}"
 
 [APP_SKETCH_FEEDBACK]
-QOS={{ APP_SKETCH_QOS }}
-PUBLISH_TOPIC="{{ APP_SKETCH_PUBLISH_TOPIC }}"
+QOS={{ firewall.APP_SKETCH_QOS }}
+PUBLISH_TOPIC="{{ firewall.APP_SKETCH_PUBLISH_TOPIC }}"
 #CLIENT_ID=
-BROKER_LIST="{{ APP_SKETCH_BROKER_LIST }}"
+BROKER_LIST="{{ firewall.APP_SKETCH_BROKER_LIST }}"

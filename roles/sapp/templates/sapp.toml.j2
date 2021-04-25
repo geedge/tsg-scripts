@@ -189,9 +189,9 @@ dictator_enable=0
         app_name=sapp
      
         [profiling.log.prometheus]
-        prometheus_enabled={{ sapp_prometheus_enable }}
-        prometheus_port={{ sapp_prometheus_port }}
-        prometheus_url_path="{{ sapp_prometheus_url_path }}"
+        prometheus_enabled={{ sapp.prometheus_enable }}
+        prometheus_port={{ sapp.prometheus_port }}
+        prometheus_url_path="{{ sapp.prometheus_url_path }}"
 
 [TOOLS]
     [tools.pkt_dump]
