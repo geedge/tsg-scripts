@@ -25,7 +25,24 @@
   file:
     path: /var/www/html/troubleshooting
     state: directory
- 
+
+- name: "mkdir /opt/packet-dump-exporter/"
+  file:
+    path: /opt/packet-dump-exporter/
+    state: directory
+
+- name: "copy systemd_exporter"
+  copy:
+    src: '{{ role_path }}/files/systemd_exporter'
+    dest: /opt/packet-dump-exporter/systemd_exporter
+    mode: 0755
+
+- name: "templates packet-dump-exporter-systemd.service"
+  template:
+    src: "{{role_path}}/templates/packet-dump-exporter-systemd.service.j2"
+    dest: /usr/lib/systemd/system/packet-dump-exporter-systemd.service
+  tags: template
+
 - name: "start packet_dump"
   systemd:
     name: packet_dump.service
@@ -37,3 +54,10 @@
     name: httpd
     enabled: yes
     daemon_reload: yes
+
+- name: 'packet-dump-exporter-systemd service start'
+  systemd:
+    name: packet-dump-exporter-systemd
+    enabled: yes
+    daemon_reload: yes
+    state: restarted
