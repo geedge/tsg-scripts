@@ -23,7 +23,7 @@
 - hosts: packet_dump_server
   remote_user: root
   vars_files:
-    - install_config/group_vars/adc_global.yml
+    - install_config/group_vars/server_as_tun_mode.yml
   roles:
     - {role: framework, tags: framework}
     - {role: packet_dump, tags: packet_dump}
