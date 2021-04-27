@@ -1,0 +1,16 @@
+- hosts: 
+    - adc_mcn0
+  remote_user: root
+  tasks:
+    - name: "uninstall tsg-diagnose: stop tsg-diagnose.service"
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: no
+      with_items:
+        - tsg-diagnose.service
+  
+    - name: "uninstall tsg_master: uninstall tsg-diagnose rpm package"
+      yum:
+        name: tsg-diagnose
+        state: absent

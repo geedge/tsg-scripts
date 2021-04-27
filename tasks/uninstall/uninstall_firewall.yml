@@ -1,0 +1,36 @@
+- hosts: 
+    - adc_mcn0
+  remote_user: root
+  tasks:
+    - name: "uninstall firewall: stop sapp.service"
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: no
+      with_items:
+        - sapp.service
+    
+    - name: "uninstall firewall: uninstall rpm packages"
+      yum:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - capture_packet_plug
+        - conn_telemetry
+        - dns
+        - ftp
+        - fw_dns_plug
+        - fw_ftp_plug
+        - fw_http_plug
+        - fw_mail_plug
+        - fw_quic_plug
+        - fw_ssl_plug
+        - http
+        - mail
+        - quic
+        - ssl
+        - tsg_conn_sketch
+        #- rtp
+        #- mesa_sip
+        #- fw_voip_plug
+        - app_proto_identify

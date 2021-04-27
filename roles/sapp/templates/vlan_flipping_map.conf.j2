@@ -6,6 +6,11 @@
 #配置文件格式, pattern:
 #来自C路由器vlan_id	  	来自I路由器vlan_id   	是否开启mac地址翻转
 #C_router_vlan_id  I_router_vlan_id mac_flipping_enable
+{% if tsg_access_type == 2 and tsg_running_type == 2 %}
 1301	1302	1
 1201	1202	1
 4000	4001	0
+{% else %}
+4000	4001	0
+{% endif %}
+

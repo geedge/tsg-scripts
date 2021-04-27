@@ -1,0 +1,19 @@
+- hosts: 
+    - adc_mcn0
+    - adc_mcn1
+    - adc_mcn2
+    - adc_mcn3
+  remote_user: root
+  tasks:
+    - name: "uninstall framework: uninstall rpm packages"
+      yum:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - libaws-c-common
+        - libaws-c-event-stream
+        - libaws-checksums
+        - libaws-cpp-sdk-core
+        - libaws-cpp-sdk-s3
+        - libhos-client-cpp
+        - libmaatframe

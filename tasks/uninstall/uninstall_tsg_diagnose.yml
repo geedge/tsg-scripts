@@ -1,0 +1,16 @@
+- hosts: 
+    - adc_mcn0
+  remote_user: root
+  tasks:
+    - name: "uninstall tsg_master: stop sapp.service"
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: no
+      with_items:
+        - sapp.service
+  
+    - name: "uninstall tsg_master: uninstall tsg_master rpm package"
+      yum:
+        name: tsg_master
+        state: absent

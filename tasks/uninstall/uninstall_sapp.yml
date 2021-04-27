@@ -1,0 +1,21 @@
+- hosts: 
+    - adc_mcn0
+  remote_user: root
+  tasks:
+    - name: "uninstall sapp: stop sapp.service"
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: no
+      with_items:
+        - sapp.service
+    
+    - name: "uninstall sapp: uninstall tcpdump_mesa rpm package"
+      yum:
+        name: tcpdump_mesa
+        state: absent
+    
+    - name: "uninstall sapp: uninstall sapp rpm package"
+      yum:
+        name: sapp
+        state: absent

@@ -14,7 +14,7 @@
   yum:
     name:
       - /tmp/ansible_deploy/tfe-kmod-v1.0.5.20200408-1dkms.noarch.rpm
-      - /tmp/ansible_deploy/tfe-4.3.28.ce28c42-1.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tfe-4.4.01.3e020b9-1.el7.x86_64.rpm
     state: present
 
 - name: "template tfe-env config"
@@ -68,6 +68,13 @@
     src: "{{ role_path }}/files/memory.conf"
     dest: /etc/systemd/system/tfe.service.d/
     mode: 0644
+
+ - name: "enable tfe-env-tun-mode"
+  systemd:
+    name: tfe-env-tun-mode
+    enabled: yes
+    daemon_reload: yes
+  when: tsg_running_type == 0   
 
 - name: "enable tfe-env"
   systemd:

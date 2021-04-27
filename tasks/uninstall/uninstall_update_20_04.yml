@@ -1,0 +1,9 @@
+---
+- include: uninstall_tsg_master.yml
+- include: uninstall_kni.yml 
+- include: uninstall_firewall.yml
+- include: uninstall_sapp.yml
+- include: uninstall_certstore.yml
+- include: uninstall_tsg_diagnose.yml
+- include: uninstall_tfe.yml
+- include: uninstall_framework.yml

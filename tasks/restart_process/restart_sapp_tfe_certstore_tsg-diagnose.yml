@@ -1,0 +1,5 @@
+---
+- include: restart_sapp.yml
+- include: restart_certstore.yml 
+- include: restart_tfe.yml 
+- include: restart_tsg-diagnose.yml
