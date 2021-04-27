@@ -45,9 +45,10 @@ cert_store_server:
 log_kafkabrokers:
   address: ['1.1.1.1:9092','2.2.2.2:9092']
 
-log_minio:
-  address: "10.9.62.253"
-  port: 9090
+
+#log_minio:
+#  address: "10.9.62.253"
+#  port: 9090
 
 #########################################
 #Log Level Config
@@ -162,6 +163,10 @@ breakpad_upload_url: http://127.0.0.1:9000/api/2/minidump/?sentry_key=3556bac347
 data_center: Beijing
 tsg_master_entrance_id: 0
 
+pangu_pxy:
+  log_cache:
+    address: "10.9.62.253"
+    port: 9090
 
 firewall:
   hos_serverip: "192.168.40.223"
