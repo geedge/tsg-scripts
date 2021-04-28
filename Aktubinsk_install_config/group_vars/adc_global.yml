@@ -43,6 +43,12 @@ log_minio:
   address: "10.2.62.253"
   port: 9090
 
+pangu_pxy:
+  log_cache:
+    address: "10.2.61.253"
+    port: 9098
+
+
 #########################################
 #Log Level Config
 #日志等级 10:DEBUG 20:INFO 30:FATAL
