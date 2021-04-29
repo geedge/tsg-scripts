@@ -69,7 +69,7 @@
     dest: /etc/systemd/system/tfe.service.d/
     mode: 0644
 
- - name: "enable tfe-env-tun-mode"
+- name: "enable tfe-env-tun-mode"
   systemd:
     name: tfe-env-tun-mode
     enabled: yes
