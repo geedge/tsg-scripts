@@ -88,14 +88,14 @@
   roles:
     - {role: tsg-diagnose_stop_sync, tags: tsg-diagnose}
 
-- hosts: packet_dump_server
-  remote_user: root
-  vars_files:
-    - group_vars/adc_global_general.yml
-    - '{{ config_path }}/group_vars/adc_global.yml'
-  roles:
-    - {role: framework, tags: framework}
-    - {role: packet_dump, tags: packet_dump}
+#- hosts: packet_dump_server
+#  remote_user: root
+#  vars_files:
+#    - group_vars/adc_global_general.yml
+#    - '{{ config_path }}/group_vars/adc_global.yml'
+#  roles:
+#    - {role: framework, tags: framework}
+#    - {role: packet_dump, tags: packet_dump}
 
 #- hosts: app_global
 #  remote_user: root
