@@ -17,7 +17,7 @@
       - /tmp/ansible_deploy/ftp-1.0.8.13d5fda-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_dns_plug-3.0.5.2a25c20-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_ftp_plug-3.0.1.0a78573-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_http_plug-3.1.11.b0f7b8f-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_http_plug-3.2.3.6b8c95d-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_mail_plug-3.0.9.d496513-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_quic_plug-3.0.4.947ef77-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_ssl_plug-3.0.6.a121701-2.el7.x86_64.rpm
