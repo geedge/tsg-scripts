@@ -1,7 +1,7 @@
 #########################################
-#####1: Inline_device;  2: Allot;  3: ADC_Tun_mode;
+#####0: pcap; 1: Inline_device; 2: Allot;  3: ADC_Tun_mode;  4:ATCA_Vlan_Flipping 5:ATCA_VXLAN
 tsg_access_type: 2
-#####2: ADC;
+#####2: ADC;  0:Tun_mode; 1: normal;
 tsg_running_type: 2
 #####deploy mode: cluster, single
 deploy_mode: "cluster"
