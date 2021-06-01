@@ -29,7 +29,7 @@
       - /tmp/ansible_deploy/rtp-1.0.4.91b4ab7-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/mesa_sip-1.1.0.cfebc76-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_voip_plug-1.0.6.341fe83-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/app_proto_identify-1.0.10.1eeff1d-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_proto_identify-2.0.1.dd683eb-2.el7.x86_64.rpm
 
 - name: "Template the tsgconf/main.conf"
   template:
