@@ -19,7 +19,7 @@
       - /tmp/ansible_deploy/libMESA_htable-3.10.12.cf4ccfc-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libMESA_prof_load-1.0.6.c6da36a-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/librdkafka-0.11.4-1.el7.x86_64.rpm
-      - /tmp/ansible_deploy/librulescan-2.2.2.e5a4457-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/librulescan-2.2.3.93a68a2-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libtsglua-1.0.8.0dbf2e6-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libwiredcfg-2.0.6.67ae0ab-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/libWiredLB-2.0.5.4629165-2.el7.x86_64.rpm
