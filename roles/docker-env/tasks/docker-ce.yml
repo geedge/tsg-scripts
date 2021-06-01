@@ -30,6 +30,11 @@
       - /tmp/ansible_deploy/docker-ce/libsemanage-2.5-14.el7.x86_64.rpm
     state: present
 
+- name: "docker-ce: copy daemon.json to target"
+  copy:
+    src: '{{ role_path }}/files/daemon.json'
+    dest: /etc/docker/
+
 - name: "docker-ce: systemctl start docker and enabled docker"
   systemd:
     name: docker
