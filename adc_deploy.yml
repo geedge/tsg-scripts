@@ -73,8 +73,8 @@
     - {role: kernel-ml, tags: kernel-ml}
     - {role: mrzcpd, tags: mrzcpd}
     - {role: tfe, tags: tfe}
-#    - {role: adc_exporter, tags: adc_exporter}
-    - {role: switch_control, tags: switch_control}
+    - {role: adc_exporter, tags: adc_exporter}
+#    - {role: switch_control, tags: switch_control}
     - {role: tsg-env-patch, tags: tsg-env-patch}
     - {role: tsg-diagnose_sync_ca, tags: tsg-diagnose_sync_ca}
 
