@@ -1,4 +1,0 @@
----
-- include: docker-ce.yml
-- include: python3.yml 
-- include: docker-compose.yml 

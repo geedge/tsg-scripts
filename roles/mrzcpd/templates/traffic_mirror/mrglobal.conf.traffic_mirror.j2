@@ -1,23 +1,30 @@
 [device]
-device={{nic_traffic_mirror.name}}
+device={{ data_incoming_nic_list | join(",") }},vxlan_user,vxlan_fwd
 sz_tunnel=8192
 sz_buffer=0
 
-[device:{{nic_traffic_mirror.name}}]
-jumbo_frame=1
-max_rx_pkt_len=15360
+{% for nic_name in data_incomint_nic_list %}
+[device:{{  nic_name  }}]
+mtu=4096
 clear_tx_flags=1
-promisc=1
+
+{% endfor %}
 
 [service]
-iocore={{ mcn123_mrzcpd.iocore }}
+# lcore id for i/o service, use comma to split
+iocore={{ mrzcpd.iocore }}
+distmode=2
+hashmode=0
 
 [eal]
-virtaddr=0x7d0000000000
+virtaddr=0x7f40c4a00000
 loglevel=7
 
 [keepalive]
-check_spinlock=1
+check_spinlock=0
+
+[ctrlzone]
+ctrlzone0=tunnat,64
 
 [pool]
 create_mode=3

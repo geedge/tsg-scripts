@@ -1,5 +1,0 @@
-- name: "patch setup scripts in tsg-env"
-  patch:
-    src: "{{ role_path }}/files/replace_switch_non_block_with_nc_v2.patch"
-    dest: /opt/tsg/env/setup
-    backup: true

@@ -4,22 +4,16 @@
     src: "{{ role_path }}/files/"
     dest: /tmp/ansible_deploy/
 
-- name: "copy maat_redis_tool to destination server"
-  copy:
-    src: "{{ role_path }}/files/maat_redis_tool"
-    dest: /usr/local/bin
-    mode: 0755
-
 - name: "install sapp rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/sapp-4.2.35.b0d7518-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/sapp-4.2.37.ead1db6-2.el7.x86_64.rpm
     state: present
  
 - name: "install tcpdump_mesa rpms from localhost"
   yum:
     name:
-      - /tmp/ansible_deploy/tcpdump_mesa-1.0.4.4ef2936-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/tcpdump_mesa-1.0.5.793bb53-2.el7.x86_64.rpm
     state: present
     skip_broken: yes
 
@@ -58,18 +52,6 @@
     dest: /etc/tmpfiles.d/sapp_tmpfile.conf
   tags: template
 
-- name: Template the gdev.conf
-  template:
-    src: "{{ role_path }}/templates/gdev.conf.j2"
-    dest: /home/mesasoft/sapp_run/etc/gdev.conf
-  when: tsg_access_type == 1
-
-- name: Template the vlan_flipping_map.conf
-  template:
-    src: "{{ role_path }}/templates/vlan_flipping_map.conf.j2"
-    dest: /home/mesasoft/sapp_run/etc/vlan_flipping_map.conf
-  when: tsg_access_type == 2
-
 
 - name: "Template sapp.service destination server"
   template:
@@ -83,19 +65,6 @@
     dest: /etc/systemd/system/sapp.service.d/
     mode: 0644
 
-- name: "copy fake promisc tools for tera mode - service file"
-  copy:
-    src: "{{ role_path }}/files/tera_fake_promisc_setup.conf"
-    dest: /etc/systemd/system/sapp.service.d/
-    mode: 0644
-  when: tsg_access_type == 2
-
-- name: "copy fake promisc tools for tera mode - scripts"
-  copy:
-    src: "{{ role_path }}/files/tera_fake_promisc_setup.sh"
-    dest: /home/mesasoft/sapp_run/tera_fake_promisc_setup.sh
-    mode: 0755
-  when: tsg_access_type == 2
  
 - name: "enable sapp"
   systemd:

@@ -6,7 +6,7 @@
 
 - name: "install mrzcpd"
   yum:
-    name: /tmp/ansible_deploy/mrzcpd-4.3.30.4627eb7-1.el7.x86_64.rpm
+    name: /tmp/ansible_deploy/mrzcpd-4.4.5.cebe25a-1.el7.x86_64.rpm
     state: present
 
 - name: "update sysconfig/mrzcpd"
@@ -18,132 +18,18 @@
   template:
     src: "{{ role_path }}/templates/traffic_mirror/mrglobal.conf.traffic_mirror.j2"
     dest: /opt/mrzcpd/etc/mrglobal.conf
-  when: nic_traffic_mirror is defined
-
-
-- name: "copy mrapp.sapp4.conf to destination server"
-  template:
-    src: "{{ role_path }}/templates/mrapp.sapp4.conf "
-    dest: /opt/mrzcpd/etc/mrapp.sapp4.conf 
-  when: 
-    - tsg_access_type == 4 or tsg_access_type == 5
-
-- name: "update mrglobal.conf.adc_inline"
-  template:
-    src: "{{ role_path }}/templates/adc_inline/mrglobal.conf.adc_inline.j2"
-    dest: /opt/mrzcpd/etc/mrglobal.conf
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 1
-    - tsg_running_type == 2
-
-- name: "update mrglobal.conf.server_inline"
-  template:
-    src: "{{ role_path }}/templates/server_inline/mrglobal.conf.server_inline.j2"
-    dest: /opt/mrzcpd/etc/mrglobal.conf
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 1
-    - tsg_running_type != 2
-
-- name: "update mrglobal.conf.allot - mcn0"
-  template:
-    src: "{{ role_path }}/templates/allot_access/mrglobal.conf.allot_access.j2"
-    dest: /opt/mrzcpd/etc/mrglobal.conf
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 2
-
-- name: "update mrglobal.conf.adc_tun_mode - mcn0"
-  template:
-    src: "{{ role_path }}/templates/adc_tun_mode/mrglobal.conf.adc_tun_mode.j2"
-    dest: /opt/mrzcpd/etc/mrglobal.conf
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 3
-
-
-- name: "update mrglobal.conf.ATCA_Vlan_Flipping"
-  template:
-    src: "{{ role_path }}/templates/ATCA_Vlan_Flipping/mrglobal.conf.ATCA_Vlan_Flipping.j2"
-    dest: /opt/mrzcpd/etc/mrglobal.conf
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 4
-
-- name: "update mrglobal.conf.ATCA_VXLAN"
-  template:
-    src: "{{ role_path }}/templates/ATCA_VXLAN/mrglobal.conf.ATCA_VXLAN.j2"
-    dest: /opt/mrzcpd/etc/mrglobal.conf
-  when:
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 5
-
-- name: "update mrtunnat.conf.adc_inline"
-  template:
-    src: "{{ role_path }}/templates/adc_inline/mrtunnat.conf.adc_inline.j2"
-    dest: /opt/mrzcpd/etc/mrtunnat.conf
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 1
-    - tsg_running_type == 2 
-
-- name: "update mrtunnat.conf.server_inline"
-  template:
-    src: "{{ role_path }}/templates/server_inline/mrtunnat.conf.server_inline.j2"
-    dest: /opt/mrzcpd/etc/mrtunnat.conf
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 1
-    - tsg_running_type != 2 
-
-- name: "update mrtunnat.conf.allot_access - mcn0"
-  template:
-    src: "{{ role_path }}/templates/allot_access/mrtunnat.conf.allot_access.j2"
-    dest: /opt/mrzcpd/etc/mrtunnat.conf
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 2
-
-- name: "update mrtunnat.conf.adc_tun_mode - mcn0"
-  template:
-    src: "{{ role_path }}/templates/adc_tun_mode/mrtunnat.conf.adc_tun_mode.j2"
-    dest: /opt/mrzcpd/etc/mrtunnat.conf
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 3
-
-- name: "update mrtunnat.conf.ATCA_Vlan_Flipping"
-  template:
-    src: "{{ role_path }}/templates/ATCA_Vlan_Flipping/mrtunnat.conf.ATCA_Vlan_Flipping.j2"
-    dest: /opt/mrzcpd/etc/mrtunnat.conf
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 4
-
-- name: "update mrtunnat.conf.ATCA_VXLAN"
-  template:
-    src: "{{ role_path }}/templates/ATCA_VXLAN/mrtunnat.conf.ATCA_VXLAN.j2"
-    dest: /opt/mrzcpd/etc/mrtunnat.conf
-  when:
-    - nic_traffic_mirror is not defined
-    - tsg_access_type == 5
 
 - name: "enable mrenv"
   systemd:
     name: mrenv
     enabled: yes
     daemon_reload: yes
-  when: 
-    - tsg_access_type != 0
 
 - name: "enable mrzcpd"
   systemd:
     name: mrzcpd
     enabled: yes
     daemon_reload: yes
-  when: 
-    - tsg_access_type != 0
 
 - name: "enable prometheus output - monit_device"
   systemd:
@@ -157,36 +43,8 @@
     enabled: yes
     daemon_reload: yes
 
-- name: "enable mrtunnat on master"
-  systemd:
-    name: mrtunnat
-    enabled: no
-    daemon_reload: yes
-  when: 
-    - nic_traffic_mirror is not defined
-    - tsg_access_type != 0
-
 - name: "disable mrtunnat on slave"
   systemd:
     name: mrtunnat
     enabled: no
     daemon_reload: yes
-  when: nic_traffic_mirror is defined
-
-- name: "mask mrzcpd on server_tun_mode"
-  systemd:
-    name: mrzcpd
-    enabled: no
-    masked: yes
-    daemon_reload: yes
-  when: 
-    - tsg_access_type == 0
-
-- name: "mask mrtunnat on server_tun_mode"
-  systemd:
-    name: mrtunnat
-    enabled: no
-    masked: yes
-    daemon_reload: yes
-  when: 
-    - tsg_access_type == 0

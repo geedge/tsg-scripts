@@ -1,9 +1,0 @@
-- hosts:
-    - adc_mcn0
-    - adc_mcn1
-    - adc_mcn2
-    - adc_mcn3
-  remote_user: root
-  tasks:
-    - name: 'remove mrzcpd system edit memory config'
-      shell: rm /etc/systemd/system/mrzcpd.service.d/memory.conf

@@ -1,5 +1,0 @@
-- name: "copy switch_control_client_non_block"
-  copy:
-    src: '{{ role_path }}/files/switch_control_client_non_block'
-    dest: /opt/tsg/env/switch_control_client_non_block
-    mode: 0755

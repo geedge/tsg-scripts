@@ -1,0 +1,13 @@
+- hosts: mirror_taffic
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/mirror_taffic.yml
+  roles:
+    - {role: framework, tags: framework}
+    - {role: kernel-ml, tags: kernel-ml}
+    - {role: mrzcpd, tags: mrzcpd}
+    - {role: sapp, tags: sapp}
+    - {role: tsg_master, tags: tsg_master}
+    - {role: kni, tags: kni}
+    - {role: firewall, tags: firewall}
+    - {role: telegraf_statistic, tags: telegraf_statistic}

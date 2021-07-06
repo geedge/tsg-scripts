@@ -1,5 +1,0 @@
-- name: "copy switch_rule"
-  copy:
-    src: '{{ role_path }}/files/saved_startup'
-    dest: /usr/local/testpoint/perl/Config/libertyTrail/saved_startup
-    mode: 0755

@@ -9,18 +9,10 @@
 instance_name = "sapp4"
 
 [CPU]
-{% if tsg_access_type == 0 %}
-worker_threads=1
-{% else %}
 worker_threads={{ sapp.worker_threads }}
-{% endif %}
 send_only_threads_max={{ sapp.send_only_threads_max }}
 ### note, bind_mask, if you do not want to bind thread to special CPU core, keep it empty as []
-{% if tsg_access_type == 0 %}
-bind_mask=[]
-{% else %}
 bind_mask=[{{ sapp.bind_mask }}]
-{% endif %}
 
 [MEM]
 dictator_enable=0
@@ -33,11 +25,7 @@ dictator_enable=0
     l2_l3_tunnel_support=1
 
 ### note, optional value is [none, vxlan]
-    {% if tsg_access_type == 5 or tsg_access_type == 1 %}
-    overlay_mode=vxlan
-    {% else %}
     overlay_mode=none
-    {% endif %}
     stream_compare_layer_cfg_file="etc/stream_compare_layer.conf"
     vlan_flipping_cfg_file="etc/vlan_flipping_map.conf"
     asymmetric_presence_layer_cfg_file="etc/asymmetric_presence_layer.conf"
@@ -46,14 +34,12 @@ dictator_enable=0
 
     [packet_io.feature]
 	
-	{% if tsg_access_type == 4 or tsg_access_type == 5 %}
 	### note, used to represent inbound or outbound direction value,
 	### because it comes from Third party device, so it needs to be specified manually,
 	### if inbound_route_dir=1, then outbound_route_dir=0, vice versa,
 	### in other words, outbound_route_dir = 1 ^ inbound_route_dir;
-	inbound_route_dir={{ sapp.inbound_route_dir }}
-	{% endif %}
-	
+	inbound_route_dir=1
+
 ### note, BSD_packet_filter, if you do not want to set any filter rule, keep it empty as ""
     BSD_packet_filter=""
 
@@ -80,34 +66,16 @@ dictator_enable=0
    
 ### note, depolyment.mode options: [mirror, inline, transparent]
     [packet_io.depolyment]
-    {% if tsg_access_type == 0 %}
-    mode=transparent
-    {% else %}
-    mode=inline
-    {% endif %}
+    mode=mirror
 
 ### note, interface.type options: [pag,pcap,marsio]
     [packet_io.internal.interface]
-    {% if tsg_access_type == 0 %}
-    type=pcap
-    name={{packet_io.internal_interface}}
-    {% else %}
     type=marsio
-    {% if tsg_access_type == 4 or tsg_access_type == 5 %}
-    name={{ATCA_data_incoming.vf0_name}}
-    {% else %}
-    name={{nic_data_incoming.name}}
-    {% endif %}
-    {% endif %}
+    name={{ data_incoming_nic_list | join(",") }}
 
     [packet_io.external.interface]
-    {% if tsg_access_type == 0 %}
-    type=pcap
-    name={{packet_io.external_interface}}
-    {% else %}
     type=pcap
     name=lo
-    {% endif %}
 
     [packet_io.polling]
 ### note, polling_priority = call sapp_recv_pkt every call polling_entry times,     
