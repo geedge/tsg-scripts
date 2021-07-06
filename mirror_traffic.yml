@@ -8,6 +8,5 @@
     - {role: mrzcpd, tags: mrzcpd}
     - {role: sapp, tags: sapp}
     - {role: tsg_master, tags: tsg_master}
-    - {role: kni, tags: kni}
     - {role: firewall, tags: firewall}
     - {role: telegraf_statistic, tags: telegraf_statistic}
