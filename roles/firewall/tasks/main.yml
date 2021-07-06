@@ -20,11 +20,11 @@
       - /tmp/ansible_deploy/fw_http_plug-3.2.3.6b8c95d-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_mail_plug-3.1.1.777fa90-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_quic_plug-3.0.4.947ef77-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_ssl_plug-3.0.6.a121701-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_ssl_plug-3.1.0.10d88fa-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/http-2.0.5.c61ad9a-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/mail-1.0.9.c1d3bde-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/quic-1.1.17.8c22b4d-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/ssl-1.0.12.16b8fb5-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/ssl-2.0.0.eaa9479-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/tsg_conn_sketch-2.1.33.68c9aaf-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/rtp-1.0.4.91b4ab7-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/mesa_sip-1.1.0.cfebc76-2.el7.x86_64.rpm

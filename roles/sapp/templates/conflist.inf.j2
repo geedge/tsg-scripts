@@ -1,16 +1,9 @@
 [platform]
-{% if tsg_access_type == 1 %}
-./plug/platform/g_device_plug/g_device_plug.inf
-#./plug/platform/http_healthcheck/http_healthcheck.inf
-{% else %}
-#./plug/platform/g_device_plug/g_device_plug.inf
-#./plug/platform/http_healthcheck/http_healthcheck.inf
+{% if tsg_access_type == 2 %}
+./plug/platform/http_healthcheck/http_healthcheck.inf
 {% endif %}
 ./plug/platform/app_proto_identify/app_proto_identify.inf
 ./plug/platform/tsg_master/tsg_master.inf
-{% if tsg_app.enable == 1 %}
-./plug/platform/app_master/app_master.inf
-{% endif %}
 
 [protocol]
 ./plug/protocol/mesa_sip/mesa_sip.inf
@@ -38,8 +31,5 @@
 ./plug/business/conn_telemetry/conn_telemetry.inf
 {% if tsg_app.enable == 1 %}
 ./plug/business/app_sketch_local/app_sketch_local.inf
-{% endif %}
-{% if tsg_access_type == 2 %}
-./plug/platform/http_healthcheck/http_healthcheck.inf
 {% endif %}
 ./plug/business/gtp_signaling_plug/gtp_signaling_plug.inf
