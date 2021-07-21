@@ -11,12 +11,13 @@
     skip_broken: yes
   vars:
     fw_packages:
+      - /tmp/ansible_deploy/capture_packet_plug-3.0.6.a2db4a4-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/conn_telemetry-1.0.2.8d6da43-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/dns-2.0.12.e083fec-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/ftp-1.0.8.13d5fda-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_dns_plug-3.0.6.57c2feb-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_ftp_plug-3.0.1.0a78573-2.el7.x86_64.rpm
-      - /tmp/ansible_deploy/fw_http_plug-3.2.3.6b8c95d-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/fw_http_plug-3.2.5.30df450-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_mail_plug-3.1.1.777fa90-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_quic_plug-3.0.4.947ef77-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/fw_ssl_plug-3.1.1.d9e9de4-2.el7.x86_64.rpm
@@ -30,6 +31,8 @@
       - /tmp/ansible_deploy/fw_voip_plug-1.0.6.341fe83-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/gtp-1.0.4.8804e43-2.el7.x86_64.rpm
       - /tmp/ansible_deploy/gtp_signaling_plug-1.0.2.2dfced5-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_proto_identify-2.0.1.dd683eb-2.el7.x86_64.rpm
+      - /tmp/ansible_deploy/app_proto_engine-devel-2.0.4.95a943e-2.el7.x86_64.rpm
 
 - name: "Template the tsgconf/main.conf"
   template:
