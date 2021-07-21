@@ -80,10 +80,24 @@ live_intervals_time = 30
 [HOS_CONF]
 hos_serverip="{{ firewall.hos_serverip }}"
 hos_serverport={{ firewall.hos_serverport }}
-hos_accesskeyid="{{ firewall.hos_accesskeyid }}"
-hos_secretkey="{{ firewall.hos_secretkey }}"
-hos_poolsize={{ firewall.hos_poolsize }}
-hos_thread_sum={{ firewall.hos_thread_sum }}
-hos_cache_size={{ firewall.hos_cache_size }}
-hos_fs2_serverip="{{ firewall.hos_fs2_serverip }}"
-hos_fs2_serverport={{ firewall.hos_fs2_serverport }}
+hos_accesskeyid="default"
+hos_secretkey="default"
+hos_poolsize=100
+hos_thread_sum=32
+hos_cache_size=102400
+hos_fs2_serverip="127.0.0.1"
+hos_fs2_serverport=10086
+
+[APP_SKETCH_LOCAL]
+LOG_LEVEL=10
+LOG_PATH="./tsglog/app_sketch_local/app_sketch_local"
+
+[APP_SKETCH_FEEDBACK]
+QOS=1
+PUBLISH_TOPIC="APP_SIGNATURE_ID"
+#CLIENT_ID=
+BROKER_IP="{{ firewall.APP_SKETCH_BROKER_IP }}"
+BROKER_PORT="{{ firewall.APP_SKETCH_BROKER_PORT }}"
+
+[APP_PROTO_ENGINE]
+license_path=/data/app_proto_engine/license
