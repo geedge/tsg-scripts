@@ -3,11 +3,13 @@ device={{ data_incoming_nic_list | join(",") }}
 sz_tunnel=8192
 sz_buffer=0
 
-{% for nic_name in data_incomint_nic_list %}
+{% for nic_name in data_incoming_nic_list %}
 [device:{{  nic_name  }}]
-mtu=4096
+jumbo_frame=1
 clear_tx_flags=1
-
+max_rx_pkt_len=15360
+promisc=1
+rssmode=0
 {% endfor %}
 
 [service]

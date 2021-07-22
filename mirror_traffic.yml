@@ -1,7 +1,7 @@
-- hosts: mirror_taffic
+- hosts: mirror_traffic
   remote_user: root
   vars_files:
-    - install_config/group_vars/mirror_taffic.yml
+    - install_config/group_vars/mirror_traffic.yml
   roles:
     - {role: framework, tags: framework}
     - {role: kernel-ml, tags: kernel-ml}
