@@ -1,0 +1,19 @@
+[Unit]
+Description=packet dump service
+After=After=network.target
+
+[Service]
+Type=fork
+WorkingDirectory=/home/mesasoft/packet_dump
+ExecStart=/home/mesasoft/packet_dump/packet_dump
+TimeoutSec=60s
+RestartSec=10s
+Restart=always
+LimitNOFILE=524288
+LimitNPROC=infinity
+LimitCORE=infinity
+TasksMax=infinity
+Delegate=yes
+
+[Install]
+WantedBy=multi-user.target

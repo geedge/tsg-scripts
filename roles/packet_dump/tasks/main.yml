@@ -1,0 +1,63 @@
+- name: "copy packet_dump rpm to destination server"
+  copy:
+    src: "{{ role_path }}/files/packet_dump-1.0.8.2e723ab-2.el7.x86_64.rpm"
+    dest: /tmp/ansible_deploy/
+
+- name: "copy  packet_dump.service to destination server"
+  copy:
+    src: "{{ role_path }}/files/packet_dump.service"
+    dest: /usr/lib/systemd/system
+    mode: 0755
+
+- name: "install packet_dump rpm from localhost"
+  yum:
+    name:
+      - /tmp/ansible_deploy/packet_dump-1.0.8.2e723ab-2.el7.x86_64.rpm
+    state: present
+
+- name: "Template the packet_dump.conf"
+  template:
+    src: "{{ role_path }}/templates/packet_dump.conf.j2"
+    dest: /home/mesasoft/packet_dump/conf/packet_dump.conf 
+  tags: template
+
+- name: "create /var/www/html/troubleshooting"
+  file:
+    path: /var/www/html/troubleshooting
+    state: directory
+
+- name: "mkdir /opt/packet-dump-exporter/"
+  file:
+    path: /opt/packet-dump-exporter/
+    state: directory
+
+- name: "copy systemd_exporter"
+  copy:
+    src: '{{ role_path }}/files/systemd_exporter'
+    dest: /opt/packet-dump-exporter/systemd_exporter
+    mode: 0755
+
+- name: "templates packet-dump-exporter-systemd.service"
+  template:
+    src: "{{role_path}}/templates/packet-dump-exporter-systemd.service.j2"
+    dest: /usr/lib/systemd/system/packet-dump-exporter-systemd.service
+  tags: template
+
+- name: "start packet_dump"
+  systemd:
+    name: packet_dump.service
+    enabled: yes
+    daemon_reload: yes
+
+- name: "enable httpd"
+  systemd:
+    name: httpd
+    enabled: yes
+    daemon_reload: yes
+
+- name: 'packet-dump-exporter-systemd service start'
+  systemd:
+    name: packet-dump-exporter-systemd
+    enabled: yes
+    daemon_reload: yes
+    state: restarted

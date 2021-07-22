@@ -1,0 +1,8 @@
+- hosts: packet_dump_server
+  remote_user: root
+  vars_files:
+    - install_config/group_vars/packet_dump_server.yml
+  roles:
+    - {role: framework, tags: framework}
+    - {role: packet_dump, tags: packet_dump}
+    - {role: dump_rtp_pcap, tags: dump_rtp_pcap}
